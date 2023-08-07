@@ -1,14 +1,14 @@
 /*
- Guia_0211 - v0.0. - 07 / 08 / 2023
+ Guia_0212 - v0.0. - 07 / 08 / 2023
  Author: Vinicius Miranda de Araujo
  Para compilar em uma janela de comandos (terminal):
 
- No Linux : g++ -o Guia0211 ./Guia0211.cpp
- No Windows: g++ -o Guia0211 Guia0211.cpp
+ No Linux : g++ -o Guia0212 ./Guia0212.cpp
+ No Windows: g++ -o Guia0212 Guia0212.cpp
  Para executar em uma janela de comandos (terminal):
 
- No Linux : ./Guia0211
- No Windows: Guia0211
+ No Linux : ./Guia0212
+ No Windows: Guia0212
 */
 // lista de dependencias
 #include "karel.hpp"
@@ -21,25 +21,55 @@
 void decorateWorld(const char *fileName)
 {
     // colocar paredes no mundo
-    world->set(2, 1, VWALL);
-    world->set(3, 1, HWALL);
-    world->set(3, 2, VWALL);
-    world->set(4, 2, HWALL);
-    world->set(4, 3, VWALL);
-    world->set(5, 3, HWALL);
-    world->set(6, 3, HWALL);
-    world->set(6, 3, VWALL);
-    world->set(7, 2, HWALL);
+    // verticais
+    world->set(2, 2, VWALL);
+    world->set(2, 3, VWALL);
+    world->set(2, 4, VWALL);
+    world->set(4, 5, VWALL);
+    world->set(2, 6, VWALL);
+    world->set(2, 7, VWALL);
+    world->set(2, 8, VWALL);
+    world->set(4, 7, VWALL);
+    world->set(4, 8, VWALL);
+    world->set(5, 7, VWALL);
+    world->set(5, 8, VWALL);
+    world->set(7, 6, VWALL);
+    world->set(7, 7, VWALL);
+    world->set(7, 8, VWALL);
+    world->set(5, 5, VWALL);
     world->set(7, 2, VWALL);
-    world->set(8, 1, HWALL);
-    world->set(8, 1, VWALL);
+    world->set(7, 3, VWALL);
+    world->set(7, 4, VWALL);
+    world->set(4, 2, VWALL);
+    world->set(4, 3, VWALL);
+    world->set(5, 2, VWALL);
+    world->set(5, 3, VWALL);
+
+    // horizontais
+    world->set(4, 4, HWALL);
+    world->set(3, 4, HWALL);
+    world->set(4, 5, HWALL);
+    world->set(3, 5, HWALL);
+    world->set(3, 8, HWALL);
+    world->set(4, 8, HWALL);
+    world->set(5, 6, HWALL);
+    world->set(6, 8, HWALL);
+    world->set(7, 8, HWALL);
+    world->set(6, 5, HWALL);
+    world->set(7, 5, HWALL);
+    world->set(6, 4, HWALL);
+    world->set(7, 4, HWALL);
+    world->set(3, 1, HWALL);
+    world->set(4, 1, HWALL);
+    world->set(5, 3, HWALL);
+    world->set(6, 1, HWALL);
+    world->set(7, 1, HWALL);
+
     // colocar um marcador no mundo
-    world->set(9, 1, BEEPER);
-    world->set(8, 2, BEEPER);
-    world->set(8, 2, BEEPER);
-    world->set(7, 3, BEEPER);
-    world->set(7, 3, BEEPER);
-    world->set(7, 3, BEEPER);
+    world->set(4, 5, BEEPER);
+    world->set(5, 3, BEEPER);
+    world->set(5, 7, BEEPER);
+    world->set(6, 5, BEEPER);
     // salvar a configuracao atual do mundo
     world->save(fileName);
 } // decorateWorld ( )
@@ -469,34 +499,61 @@ public:
     */
     void doTask()
     {
-        move();
-        stepUpRight();
-        stepUpRight();
-        stepUpRight();
-        move();
-        stepDownRight();
-        stepDownRight();
-        stepDownRight();
-        pickBeeper();
-        stepUpLeft();
-        pickBeepers();
-        stepUpLeft();
-        pickBeepers();
-        stepUpLeft();
-        move();
-        stepDownLeft();
-        putBeeper();
-        putBeeper();
-        putBeeper();
-        stepDownLeft();
-        putBeeper();
-        putBeeper();
-        stepDownLeft();
-        putBeeper();
-        turnRight();
-        move();
-        turnRight();
-        turnRight();
+        moveN( 4 );
+        if( leftIsClear( ) )
+        {
+            turnLeft( );
+            move( );
+        }
+        move( );
+        if( nextToABeeper( ) )
+            pickBeeper( );
+        turnRight( );
+        turnRight( );
+        moveN( 2 );
+        if( rightIsClear( ) )
+            turnRight( );
+        moveN( 3 );
+        if( rightIsClear( ) )
+            turnRight( );
+        moveN( 4 );
+        if( rightIsClear( ) )
+            turnRight( );
+        moveN( 2 );
+        if( nextToABeeper( ) )
+            pickBeeper( );
+        turnRight( );
+        turnRight( );
+        moveN( 2 );
+        if( rightIsClear( ) )
+            turnRight( );
+        moveN( 4 );
+        turnRight( );
+        moveN( 3 );
+        if( rightIsClear( ) )
+            turnRight( );
+        moveN( 2 );
+        if( nextToABeeper( ) )
+            pickBeeper( );
+        turnRight( );
+        turnRight( );
+        moveN( 2 );
+        turnRight( );
+        moveN( 3 );
+        turnRight( );
+        moveN( 4 );
+        turnRight( );
+        moveN( 2 );
+        pickBeeper( );
+        turnRight( );
+        turnRight( );
+        moveN( 2 );
+        turnRight( );
+        moveN( 4 );
+        turnRight( );
+        moveN( 7 );
+        turnRight( );
+        turnRight( );
         // encerrar
         turnOff();
     } // end doTask( )
@@ -514,11 +571,11 @@ int main()
     // antes de qualquer outra coisa
     // (depois de criado, podera' ser comentado)
     world->create(""); // criar o mundo
-    decorateWorld("Guia0211.txt");
+    decorateWorld("Guia0212.txt");
     world->show();
     // preparar o ambiente para uso
     world->reset();              // limpar configuracoes
-    world->read("Guia0211.txt"); // ler configuracao atual para o ambiente
+    world->read("Guia0212.txt"); // ler configuracao atual para o ambiente
     world->show();               // mostrar a configuracao atual
     set_Speed(3);                // definir velocidade padrao
                                  // criar robo
