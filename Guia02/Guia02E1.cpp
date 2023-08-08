@@ -1,14 +1,14 @@
 /*
- Guia_0215 - v0.0. - 07 / 08 / 2023
+ Guia_02E1 - v0.0. - 07 / 08 / 2023
  Author: Vinicius Miranda de Araujo
  Para compilar em uma janela de comandos (terminal):
 
- No Linux : g++ -o Guia0215 ./Guia0215.cpp
- No Windows: g++ -o Guia0215 Guia0215.cpp
+ No Linux : g++ -o Guia02E1 ./Guia02E1.cpp
+ No Windows: g++ -o Guia02E1 Guia02E1.cpp
  Para executar em uma janela de comandos (terminal):
 
- No Linux : ./Guia0215
- No Windows: Guia0215
+ No Linux : ./Guia02E1
+ No Windows: Guia02E1
 */
 // lista de dependencias
 #include "karel.hpp"
@@ -131,7 +131,7 @@ public:
         int x, y;
         x = xAvenue();
         y = yStreet();
-        char fileName[15] = "Tarefa0215.txt";
+        char fileName[15] = "Tarefa02E1.txt";
         //definir arquivo para receber acrescimos ao final
         std::fstream archive (fileName, std::ios::app);
         
@@ -419,7 +419,7 @@ public:
     void appendActions(const char *fileName)
     {
         // definir dados
-        int action;
+        int action, count = 0;
         // definir arquivo para receber acrescimos ao final
         std::fstream archive(fileName, std::ios::app);
         // repetir enquanto acao diferente de zero
@@ -434,8 +434,13 @@ public:
                 execute(action);
                 // guardar o comando em arquivo
                 archive << action << std::endl;
+                // contador de linhas
+                count++;
+
             } // end if
         } while (action != 0);
+        // gravar no arquivo na ultima linha o tanto de linhas de arquivo
+        archive << count << std::endl;
         // fechar o arquivo
         // INDISPENSAVEL para a gravacao
         archive.close();
@@ -609,11 +614,11 @@ int main()
     // antes de qualquer outra coisa
     // (depois de criado, podera' ser comentado)
     world->create(""); // criar o mundo
-    decorateWorld("Guia0215.txt");
+    decorateWorld("Guia02E1.txt");
     world->show();
     // preparar o ambiente para uso
     world->reset();              // limpar configuracoes
-    world->read("Guia0215.txt"); // ler configuracao atual para o ambiente
+    world->read("Guia02E1.txt"); // ler configuracao atual para o ambiente
     world->show();               // mostrar a configuracao atual
     set_Speed(3);                // definir velocidade padrao
                                  // criar robo
@@ -622,7 +627,7 @@ int main()
     // posicao(x=1,y=1), voltado para direita, com zero marcadores, nome escolhido )
     robot->create(1, 1, EAST, 0, "Karel");
     // executar tarefa
-    robot->appendActions("Tarefa0215.txt");
+    robot->appendActions("Tarefa02E1.txt");
     // encerrar operacoes no ambiente
     world->close();
     // encerrar programa
