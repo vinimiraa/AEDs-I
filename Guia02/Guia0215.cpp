@@ -1,14 +1,14 @@
 /*
- Guia_0214 - v0.0. - 07 / 08 / 2023
+ Guia_0215 - v0.0. - 07 / 08 / 2023
  Author: Vinicius Miranda de Araujo
  Para compilar em uma janela de comandos (terminal):
 
- No Linux : g++ -o Guia0214 ./Guia0214.cpp
- No Windows: g++ -o Guia0214 Guia0214.cpp
+ No Linux : g++ -o Guia0215 ./Guia0215.cpp
+ No Windows: g++ -o Guia0215 Guia0215.cpp
  Para executar em uma janela de comandos (terminal):
 
- No Linux : ./Guia0214
- No Windows: Guia0214
+ No Linux : ./Guia0215
+ No Windows: Guia0215
 */
 // lista de dependencias
 #include "karel.hpp"
@@ -53,20 +53,17 @@ void decorateWorld(const char *fileName)
     world->set(5, 8, HWALL);
 
     // colocar um marcador no mundo
-    world->set(3, 5, BEEPER);
-    world->set(3, 4, BEEPER);
-    world->set(3, 4, BEEPER);
     world->set(3, 3, BEEPER);
-    world->set(3, 3, BEEPER);
-    world->set(3, 3, BEEPER);
+    world->set(4, 3, BEEPER);
+    world->set(5, 3, BEEPER);
     world->set(4, 4, BEEPER);
     world->set(4, 4, BEEPER);
-    world->set(4, 3, BEEPER);
-    world->set(4, 3, BEEPER);
-    world->set(4, 3, BEEPER);
-    world->set(5, 3, BEEPER);
-    world->set(5, 3, BEEPER);
-    world->set(5, 3, BEEPER);
+    world->set(5, 4, BEEPER);
+    world->set(5, 4, BEEPER);
+    world->set(5, 5, BEEPER);
+    world->set(5, 5, BEEPER);
+    world->set(5, 5, BEEPER);
+    
     // salvar a configuracao atual do mundo
     world->save(fileName);
 } // decorateWorld ( )
@@ -134,7 +131,7 @@ public:
         int x, y;
         x = xAvenue();
         y = yStreet();
-        char fileName[15] = "Tarefa0214.txt";
+        char fileName[15] = "Tarefa0215.txt";
         //definir arquivo para receber acrescimos ao final
         std::fstream archive (fileName, std::ios::app);
         
@@ -606,11 +603,11 @@ int main()
     // antes de qualquer outra coisa
     // (depois de criado, podera' ser comentado)
     world->create(""); // criar o mundo
-    decorateWorld("Guia0214.txt");
+    decorateWorld("Guia0215.txt");
     world->show();
     // preparar o ambiente para uso
     world->reset();              // limpar configuracoes
-    world->read("Guia0214.txt"); // ler configuracao atual para o ambiente
+    world->read("Guia0215.txt"); // ler configuracao atual para o ambiente
     world->show();               // mostrar a configuracao atual
     set_Speed(3);                // definir velocidade padrao
                                  // criar robo
@@ -619,7 +616,7 @@ int main()
     // posicao(x=1,y=1), voltado para direita, com zero marcadores, nome escolhido )
     robot->create(1, 1, EAST, 0, "Karel");
     // executar tarefa
-    robot->doTask();
+    robot->doTask( );
     // encerrar operacoes no ambiente
     world->close();
     // encerrar programa
