@@ -22,10 +22,54 @@ decorateWorld - Metodo para preparar o cenario.
 void decorateWorld(const char *fileName)
 {
     // colocar paredes no mundo
-    // world->set ( 4, 4, VWALL );
-    // world->set ( 4, 4, HWALL );
+    // quadrado 1 
+    //horizontais
+    world->set ( 2, 2, HWALL );
+    world->set ( 3, 2, HWALL );
+    world->set ( 4, 2, HWALL );
+    world->set ( 2, 7, HWALL );
+    world->set ( 3, 7, HWALL );
+    world->set ( 4, 7, HWALL );
+    //verticais
+    world->set ( 1, 3, VWALL );
+    world->set ( 1, 4, VWALL );
+    world->set ( 1, 5, VWALL );
+    world->set ( 1, 6, VWALL );
+    world->set ( 1, 7, VWALL );
+    world->set ( 4, 3, VWALL );
+    world->set ( 4, 4, VWALL );
+    world->set ( 4, 5, VWALL );
+    world->set ( 4, 6, VWALL );
+    world->set ( 4, 7, VWALL );
+    //quadrado 2
+    //horizontais
+    world->set ( 7, 2, HWALL );
+    world->set ( 8, 2, HWALL );
+    world->set ( 9, 2, HWALL );
+    world->set ( 7, 7, HWALL );
+    world->set ( 8, 7, HWALL );
+    world->set ( 9, 7, HWALL );
+    //verticais
+    world->set ( 6, 3, VWALL );
+    world->set ( 6, 4, VWALL );
+    world->set ( 6, 5, VWALL );
+    world->set ( 6, 6, VWALL );
+    world->set ( 6, 7, VWALL );
+    world->set ( 9, 3, VWALL );
+    world->set ( 9, 4, VWALL );
+    world->set ( 9, 5, VWALL );
+    world->set ( 9, 6, VWALL );
+    world->set ( 9, 7, VWALL );
+
     // colocar um marcador no mundo
-    world->set(4, 4, BEEPER);
+    //primeiro quadrado
+    world->set(3, 2, BEEPER);
+    world->set(3, 8, BEEPER);
+    world->set(1, 5, BEEPER);
+    //segundo quadrado
+    world->set(8, 2, BEEPER);
+    world->set(8, 8, BEEPER);
+    world->set(10, 5, BEEPER);
     // salvar a configuracao atual do mundo
     world->save(fileName);
 } // decorateWorld ( )
