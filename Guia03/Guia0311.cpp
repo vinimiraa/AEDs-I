@@ -66,10 +66,6 @@ void decorateWorld(const char *fileName)
     world->set(3, 2, BEEPER);
     world->set(3, 8, BEEPER);
     world->set(1, 5, BEEPER);
-    //segundo quadrado
-    world->set(8, 2, BEEPER);
-    world->set(8, 8, BEEPER);
-    world->set(10, 5, BEEPER);
     // salvar a configuracao atual do mundo
     world->save(fileName);
 } // decorateWorld ( )
@@ -279,7 +275,7 @@ public:
         int comandos[MAX_COMMANDS];
         char message[80];
         // ler quantidade e comandos
-        quantidade = readCommands(comandos, "Tarefa0301.txt");
+        quantidade = readCommands(comandos, "Tarefa0311.txt");
         message[0] = '\0'; // limpar a mensagem
         sprintf(message, "Commands = %d", quantidade);
         show_Text(message);
@@ -507,9 +503,7 @@ int main()
     int map[HEIGHT][WIDTH]; // altura x largura
 
     // executar tarefa
-    robot->mapWorld(map);
-    robot->saveMap("Mapa0311.txt", map);
-    robot->readMap("Mapa0311.txt");
+    robot->doTask("Tarefa0311.txt");
 
     // encerrar operacoes no ambiente
     world->close();
