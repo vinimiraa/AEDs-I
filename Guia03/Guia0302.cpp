@@ -1,12 +1,12 @@
 /*
-Guia0301 - v0.0. - 08 / 08 / 2023
+Guia0302 - v0.0. - 08 / 08 / 2023
 Author: Vinicius Miranda de Araujo
 Para compilar em uma janela de comandos (terminal):
-No Linux : g++ -o Guia0301 ./Guia0301.cpp
-No Windows: g++ -o Guia0301 Guia0301.cpp
+No Linux : g++ -o Guia0302 ./Guia0302.cpp
+No Windows: g++ -o Guia0302 Guia0302.cpp
 Para executar em uma janela de comandos (terminal):
-No Linux : ./Guia0301
-No Windows: Guia0301
+No Linux : ./Guia0302
+No Windows: Guia0302
 */
 
 // lista de dependencias
@@ -16,8 +16,8 @@ No Windows: Guia0301
 // --------------------------- definicoes de metodos
 
 /**
- decorateWorld - Metodo para preparar o cenario.
- @param fileName - nome do arquivo para guardar a descricao.
+decorateWorld - Metodo para preparar o cenario.
+@param fileName - nome do arquivo para guardar a descricao.
 */
 void decorateWorld(const char *fileName)
 {
@@ -75,34 +75,32 @@ public:
     }     // end moveN( )
 
     /**
-    countCommands - Metodo para contar comandos de arquivo.
+    countCommands - Funcao para contar comandos de arquivo.
+    @return quantidade de comandos
     @param fileName - nome do arquivo
     */
-    void countCommands(const char *fileName)
+    int countCommands(const char *fileName)
     {
         // definir dados
-        char message[80];
         int x = 0;
         int length = 0;
-        // abrir arquivo para leitura
         std::ifstream archive(fileName);
         // repetir enquanto houver dados
         archive >> x; // tentar ler o primeiro
         while (!archive.eof() && x != 0)
         {
-            // contar mais um comando lido
+            // contar mais um comando
             length = length + 1;
             // tentar ler o proximo
             archive >> x;
         } // end while
         // fechar o arquivo
         archive.close();
-        // informar a quantidade de comandos guardados
-        sprintf(message, "Commands = %d", length);
-        show_Text(message);
+        // retornar resultado
+        return (length);
     } // end countCommands( )
 
-};    // end class MyRobot
+}; // end class MyRobot
 
 // --------------------------- acao principal
 
@@ -117,42 +115,39 @@ int main()
     // antes de qualquer outra coisa
     // (depois de criado, podera' ser comentado)
     world->create(""); // criar o mundo
-    decorateWorld("Guia0301.txt");
+    decorateWorld("Guia0302.txt");
     world->show();
-
     // preparar o ambiente para uso
     world->reset();              // limpar configuracoes
-    world->read("Guia0301.txt"); // ler configuracao atual para o ambiente
+    world->read("Guia0302.txt"); // ler configuracao atual para o ambiente
     world->show();               // mostrar a configuracao atual
     set_Speed(3);                // definir velocidade padrao
-
     // criar robo
     MyRobot *robot = new MyRobot();
-
     // posicionar robo no ambiente (situacao inicial):
     // posicao(x=1,y=1), voltado para direita, com zero marcadores, nome escolhido )
     robot->create(1, 1, EAST, 0, "Karel");
-
     // executar tarefa
-    robot->countCommands("Tarefa0301.txt");
-
+    char message[80];
+    sprintf(message, "Commands = %d",
+            robot->countCommands("Tarefa0301.txt"));
+    show_Text(message);
     // encerrar operacoes no ambiente
     world->close();
-    
     // encerrar programa
     getchar();
     return (0);
 } // end main ( )
 
-  // ------------------------------------------- testes
-  /*
-  ---------------------------------------------- documentacao complementar
-  ---------------------------------------------- notas / observacoes / comentarios
-  ---------------------------------------------- previsao de testes
-  ---------------------------------------------- historico
-  Versao Data Modificacao
-  0.1 __/__ esboco
-  ---------------------------------------------- testes
-  Versao Teste
-  0.1 01. ( OK ) identificacao de programa
-  */
+// ------------------------------------------- testes
+/*
+---------------------------------------------- documentacao complementar
+---------------------------------------------- notas / observacoes / comentarios
+---------------------------------------------- previsao de testes
+---------------------------------------------- historico
+Versao Data Modificacao
+0.1 __/__ esboco
+---------------------------------------------- testes
+Versao Teste
+0.1 01. ( OK ) identificacao de programa
+*/
