@@ -22,60 +22,63 @@ decorateWorld - Metodo para preparar o cenario.
 void decorateWorld(const char *fileName)
 {
     // colocar paredes no mundo
-    // quadrado 1 
-    //horizontais
-    world->set ( 2, 2, HWALL );
-    world->set ( 3, 2, HWALL );
-    world->set ( 4, 2, HWALL );
-    world->set ( 5, 2, HWALL );
-    world->set ( 6, 2, HWALL );
-    world->set ( 2, 8, HWALL );
-    world->set ( 3, 8, HWALL );
-    world->set ( 4, 8, HWALL );
-    world->set ( 5, 8, HWALL );
-    world->set ( 6, 8, HWALL );
-    world->set ( 3, 7, HWALL );
-    world->set ( 5, 7, HWALL );
-    world->set ( 6, 7, HWALL );
-    world->set ( 7, 7, HWALL );
-    world->set ( 8, 7, HWALL );
-    world->set ( 4, 6, HWALL );
-    world->set ( 5, 6, HWALL );
-    world->set ( 6, 5, HWALL );
-    world->set ( 4, 4, HWALL );
-    world->set ( 5, 4, HWALL );
-    world->set ( 6, 4, HWALL );
-    world->set ( 7, 4, HWALL );
-    world->set ( 7, 5, HWALL );
-    world->set ( 7, 2, HWALL );
-    world->set ( 8, 2, HWALL );
-    world->set ( 7, 8, HWALL );
-    world->set ( 8, 8, HWALL );
-    //verticais
-    world->set ( 1, 3, VWALL );
-    world->set ( 1, 4, VWALL );
-    world->set ( 1, 5, VWALL );
-    world->set ( 1, 6, VWALL );
-    world->set ( 1, 7, VWALL );
-    world->set ( 1, 8, VWALL );
-    world->set ( 2, 3, VWALL );
-    world->set ( 2, 4, VWALL );
-    world->set ( 2, 5, VWALL );
-    world->set ( 2, 6, VWALL );
-    world->set ( 2, 7, VWALL );
-    world->set ( 4, 7, VWALL );
-    world->set ( 8, 7, VWALL );
-    world->set ( 5, 6, VWALL );
-    world->set ( 3, 6, VWALL );
-    world->set ( 3, 5, VWALL );
-    world->set ( 8, 3, VWALL );
-    world->set ( 8, 4, VWALL );
-    world->set ( 8, 5, VWALL );
-    world->set ( 8, 6, VWALL );
+    // quadrado 1
+    // horizontais
+    world->set(2, 2, HWALL);
+    world->set(3, 2, HWALL);
+    world->set(4, 2, HWALL);
+    world->set(5, 2, HWALL);
+    world->set(6, 2, HWALL);
+    world->set(2, 8, HWALL);
+    world->set(3, 8, HWALL);
+    world->set(4, 8, HWALL);
+    world->set(5, 8, HWALL);
+    world->set(6, 8, HWALL);
+    world->set(3, 7, HWALL);
+    world->set(5, 7, HWALL);
+    world->set(6, 7, HWALL);
+    world->set(7, 7, HWALL);
+    world->set(8, 7, HWALL);
+    world->set(4, 6, HWALL);
+    world->set(5, 6, HWALL);
+    world->set(6, 5, HWALL);
+    world->set(4, 4, HWALL);
+    world->set(5, 4, HWALL);
+    world->set(6, 4, HWALL);
+    world->set(7, 4, HWALL);
+    world->set(7, 5, HWALL);
+    world->set(7, 2, HWALL);
+    world->set(8, 2, HWALL);
+    world->set(7, 8, HWALL);
+    world->set(8, 8, HWALL);
+    // verticais
+    world->set(1, 3, VWALL);
+    world->set(1, 4, VWALL);
+    world->set(1, 5, VWALL);
+    world->set(1, 6, VWALL);
+    world->set(1, 7, VWALL);
+    world->set(1, 8, VWALL);
+    world->set(2, 3, VWALL);
+    world->set(2, 4, VWALL);
+    world->set(2, 5, VWALL);
+    world->set(2, 6, VWALL);
+    world->set(2, 7, VWALL);
+    world->set(4, 7, VWALL);
+    world->set(8, 7, VWALL);
+    world->set(5, 6, VWALL);
+    world->set(3, 6, VWALL);
+    world->set(3, 5, VWALL);
+    world->set(8, 3, VWALL);
+    world->set(8, 4, VWALL);
+    world->set(8, 5, VWALL);
+    world->set(8, 6, VWALL);
 
     // colocar um marcador no mundo
-    //primeiro quadrado
+    // primeiro quadrado
     world->set(2, 3, BEEPER);
+    world->set(2, 3, BEEPER);
+    world->set(2, 3, BEEPER);
+    world->set(4, 6, BEEPER);
     world->set(4, 6, BEEPER);
     world->set(5, 7, BEEPER);
     // salvar a configuracao atual do mundo
@@ -187,6 +190,39 @@ public:
     } // end readCommands( )
 
     /**
+    turnAround - inverter a direção do movimento
+    (virar 180º, para a direção contrária)
+    */
+    void turnAround()
+    {
+        turnLeft();
+        turnLeft();
+    }
+
+    /*
+    turnAroundCornerLeft - fazer curva fechada à esquerda (“U”)
+    (acompanhar uma parede interna,
+    com aquelas mais internas)
+    */
+    void turnAroundCornerLeft()
+    {
+        turnLeft(); // vira à esquerda
+        while (!frontIsClear())
+        {
+            move(); // anda em frente até encontrar uma parede
+        }
+        turnRight(); // vira à direita
+        while (!frontIsClear())
+        {
+            move(); // anda em frente até encontrar outra parede
+        }
+        turnLeft(); // vira à esquerda novamente
+        while (frontIsClear())
+        {
+            move(); // anda em frente até completar a curva
+        }
+    }
+    /**
     execute - Metodo para executar um comando.
     @param action - comando a ser executado
     */
@@ -251,6 +287,12 @@ public:
             {
                 putBeeper();
             } // end if
+            break;
+        case 10: // inverter movimento
+            turnAround();
+            break;
+        case 11: // curva fechada
+            turnAroundCornerLeft();
             break;
         default: // nenhuma das alternativas anteriores
             // comando invalido
