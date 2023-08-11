@@ -974,31 +974,32 @@ void menu()
 {
     // para mostrar opcoes
     printf("Escolha alguma das opcoes a seguir:\n\n");
-    printf(" 1 - M01     26 - M26\n");
-    printf(" 2 - M01     27 - M27\n");
-    printf(" 3 - M01     28 - M28\n");
-    printf(" 4 - M01     29 - M29\n");
-    printf(" 5 - M01     30 - M30\n");
-    printf(" 6 - M01     31 - M31\n");
-    printf(" 7 - M01     32 - M32\n");
-    printf(" 8 - M01     33 - M33\n");
-    printf(" 9 - M01     34 - M34\n");
-    printf("10 - M01     35 - M35\n");
-    printf("11 - M01     36 - M36\n");
-    printf("12 - M01     37 - M37\n");
-    printf("13 - M01     38 - M38\n");
-    printf("14 - M01     39 - M39\n");
-    printf("15 - M01     40 - M40\n");
-    printf("16 - M01     41 - M41\n");
-    printf("17 - M01     42 - M42\n");
-    printf("18 - M01     43 - M43\n");
-    printf("19 - M01     44 - M44\n");
-    printf("20 - M01     45 - M45\n");
-    printf("21 - M01     46 - M46\n");
-    printf("22 - M01     47 - M47\n");
-    printf("23 - M01     48 - M48\n");
-    printf("24 - M01     49 - M49\n");
-    printf("25 - M01     50 - M50\n");
+    printf(" 1 - Metodo01     26 - Metodo26\n");
+    printf(" 2 - Metodo02     27 - Metodo27\n");
+    printf(" 3 - Metodo03     28 - Metodo28\n");
+    printf(" 4 - Metodo04     29 - Metodo29\n");
+    printf(" 5 - Metodo05     30 - Metodo30\n");
+    printf(" 6 - Metodo06     31 - Metodo31\n");
+    printf(" 7 - Metodo07     32 - Metodo32\n");
+    printf(" 8 - Metodo08     33 - Metodo33\n");
+    printf(" 9 - Metodo09     34 - Metodo34\n");
+    printf("10 - Metodo10     35 - Metodo35\n");
+    printf("11 - Metodo11     36 - Metodo36\n");
+    printf("12 - Metodo12     37 - Metodo37\n");
+    printf("13 - Metodo13     38 - Metodo38\n");
+    printf("14 - Metodo14     39 - Metodo39\n");
+    printf("15 - Metodo15     40 - Metodo40\n");
+    printf("16 - Metodo16     41 - Metodo41\n");
+    printf("17 - Metodo17     42 - Metodo42\n");
+    printf("18 - Metodo18     43 - Metodo43\n");
+    printf("19 - Metodo19     44 - Metodo44\n");
+    printf("20 - Metodo20     45 - Metodo45\n");
+    printf("21 - Metodo21     46 - Metodo46\n");
+    printf("22 - Metodo22     47 - Metodo47\n");
+    printf("23 - Metodo23     48 - Metodo48\n");
+    printf("24 - Metodo24     49 - Metodo49\n");
+    printf("25 - Metodo25     50 - Metodo50\n");
+    printf("     0 - Encerrar programa "      );
 }
 /*
  Funcao principal
@@ -1175,6 +1176,12 @@ int main()
             printf("\nERRO: Opcao invalida.\n");
             break;
         } // end switch
+
+        if(opcao == 0)
+        {
+            printf("Programa Encerrado!\n");
+        } // end if
+
         printf("\n============ %s %d ============\n\n", "Fim Opcao", opcao);
     } while (opcao != 0);
     // encerrar

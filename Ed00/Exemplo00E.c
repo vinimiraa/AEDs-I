@@ -1392,7 +1392,7 @@ void metodo100()
         struct S_CELULA *LINK;
     } CELULA;
     typedef struct S_CELULA *REF_CELULA;
-    REF_CELULA NEW_CELULA(int INICIAL)
+    REF_CELULA NEW_CELULA5(int INICIAL)
     {
         REF_CELULA P;                  // APONTADOR PARA CELULA
         P = calloc(1, sizeof(CELULA)); // OUTRA FORMA DE RESERVAR
@@ -1410,7 +1410,7 @@ void metodo100()
     printf("VALOR = ");
     scanf("%d", &x);
     getchar();
-    P1 = NEW_CELULA(x); // montar o primeiro
+    P1 = NEW_CELULA5(x); // montar o primeiro
     for (y = 0; y < 4; y = y + 1)
     {
         printf("VALOR = ");
@@ -1419,7 +1419,7 @@ void metodo100()
         P2 = P1;                 // comecar no primeiro
         while (P2->LINK != NULL) // procurar o ultimo
             P2 = P2->LINK;
-        P2->LINK = NEW_CELULA(x); // anexar mais outro
+        P2->LINK = NEW_CELULA5(x); // anexar mais outro
     }                             // end for
     P2 = P1;                      // comecar no primeiro
     while (P2 != NULL)
@@ -1446,31 +1446,32 @@ void menu()
 {
     // para mostrar opcoes
     printf("Escolha alguma das opcoes a seguir:\n\n");
-    printf("51 - M01     76 - M26\n");
-    printf("52 - M01     77 - M27\n");
-    printf("53 - M01     78 - M28\n");
-    printf("54 - M01     79 - M29\n");
-    printf("55 - M01     80 - M30\n");
-    printf("56 - M01     81 - M31\n");
-    printf("57 - M01     82 - M32\n");
-    printf("58 - M01     83 - M33\n");
-    printf("59 - M01     84 - M34\n");
-    printf("60 - M01     85 - M35\n");
-    printf("61 - M01     86 - M36\n");
-    printf("62 - M01     87 - M37\n");
-    printf("63 - M01     88 - M38\n");
-    printf("64 - M01     89 - M39\n");
-    printf("65 - M01     90 - M40\n");
-    printf("66 - M01     91 - M41\n");
-    printf("67 - M01     92 - M42\n");
-    printf("68 - M01     93 - M43\n");
-    printf("69 - M01     94 - M44\n");
-    printf("70 - M01     95 - M45\n");
-    printf("71 - M01     96 - M46\n");
-    printf("72 - M01     97 - M47\n");
-    printf("73 - M01     98 - M48\n");
-    printf("74 - M01     99 - M49\n");
-    printf("75 - M01     100 - M50\n");
+    printf("51 - Metodo51     76 - Metodo76\n");
+    printf("52 - Metodo52     77 - Metodo77\n");
+    printf("53 - Metodo53     78 - Metodo78\n");
+    printf("54 - Metodo54     79 - Metodo79\n");
+    printf("55 - Metodo55     80 - Metodo80\n");
+    printf("56 - Metodo56     81 - Metodo81\n");
+    printf("57 - Metodo57     82 - Metodo82\n");
+    printf("58 - Metodo58     83 - Metodo83\n");
+    printf("59 - Metodo59     84 - Metodo84\n");
+    printf("60 - Metodo61     85 - Metodo85\n");
+    printf("61 - Metodo61     86 - Metodo86\n");
+    printf("62 - Metodo62     87 - Metodo87\n");
+    printf("63 - Metodo63     88 - Metodo88\n");
+    printf("64 - Metodo64     89 - Metodo89\n");
+    printf("65 - Metodo65     90 - Metodo90\n");
+    printf("66 - Metodo66     91 - Metodo91\n");
+    printf("67 - Metodo67     92 - Metodo92\n");
+    printf("68 - Metodo68     93 - Metodo93\n");
+    printf("69 - Metodo09     94 - Metodo94\n");
+    printf("70 - Metodo71     95 - Metodo95\n");
+    printf("71 - Metodo71     96 - Metodo96\n");
+    printf("72 - Metodo72     97 - Metodo97\n");
+    printf("73 - Metodo73     98 - Metodo98\n");
+    printf("74 - Metodo74     99 - Metodo99\n");
+    printf("75 - Metodo75    100 - Metodo100\n");
+    printf("     0 - Encerrar programa "      );
 }
 /*
  Funcao principal
@@ -1647,6 +1648,12 @@ int main()
             printf("\nERRO: Opcao invalida.\n");
             break;
         } // end switch
+        
+        if(opcao == 0)
+        {
+            printf("Programa Encerrado!\n");
+        } // end if
+
         printf("\n============ %s %d ============\n\n", "Fim Opcao", opcao);
     } while (opcao != 0);
     // encerrar
