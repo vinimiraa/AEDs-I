@@ -923,7 +923,7 @@ void P1_7(int X)
     printf("\nRETORNANDO AO PROCEDIMENTO P1 PARA A CHAMADA COM X = %d\n", X);
     getchar(); // para esperar
 } // fim do procedimento P1( )
-void P2_2(int X)
+void P2_1(int X)
 {
     printf("CHAMADO O PROCEDIMENTO P2 COM X = %d\n", X);
     if (X > 1)
@@ -973,16 +973,16 @@ void identificacao()
 void menu()
 {
     // para mostrar opcoes
-    printf("Escolha alguma das opcoes a seguir:\n");
-    printf("01 - M01     26 - M26\n");
-    printf("02 - M01     27 - M27\n");
-    printf("03 - M01     28 - M28\n");
-    printf("04 - M01     29 - M29\n");
-    printf("05 - M01     30 - M30\n");
-    printf("06 - M01     31 - M31\n");
-    printf("07 - M01     32 - M32\n");
-    printf("08 - M01     33 - M33\n");
-    printf("09 - M01     34 - M34\n");
+    printf("Escolha alguma das opcoes a seguir:\n\n");
+    printf(" 1 - M01     26 - M26\n");
+    printf(" 2 - M01     27 - M27\n");
+    printf(" 3 - M01     28 - M28\n");
+    printf(" 4 - M01     29 - M29\n");
+    printf(" 5 - M01     30 - M30\n");
+    printf(" 6 - M01     31 - M31\n");
+    printf(" 7 - M01     32 - M32\n");
+    printf(" 8 - M01     33 - M33\n");
+    printf(" 9 - M01     34 - M34\n");
     printf("10 - M01     35 - M35\n");
     printf("11 - M01     36 - M36\n");
     printf("12 - M01     37 - M37\n");
@@ -1007,10 +1007,10 @@ int main()
 {
     int opcao = 0;
 
-    void identificacao();
+    identificacao();
 
     do
-    {   
+    {
         // para mostrar opcoes
         menu();
         // ler a opcao do teclado
@@ -1018,7 +1018,7 @@ int main()
         scanf("%d", &opcao);
         getchar(); // para limpar a entrada de dados
         // para mostrar a opcao lida
-        printf("\n%s%d", "Opcao = ", opcao);
+        printf("\n============   %s %d   ============\n\n", "Opcao", opcao);
         // escolher acao dependente da opcao
         switch (opcao)
         {
@@ -1175,6 +1175,7 @@ int main()
             printf("\nERRO: Opcao invalida.\n");
             break;
         } // end switch
+        printf("\n============ %s %d ============\n\n", "Fim Opcao", opcao);
     } while (opcao != 0);
     // encerrar
     printf("\n\nApertar ENTER para terminar.");
