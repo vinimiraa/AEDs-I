@@ -14,8 +14,9 @@
 #include <stdlib.h>  // para outras funcoes de uso geral
 #include <math.h>    // para operacoes matematicas
 #include <stdbool.h> // para definicoes booleanas
-#include <ctype.h>   // para definicoes com strings 
+#include <ctype.h>   // para definicoes com strings
 #include <string.h>  // para definicoes com strings
+#include <fcntl.h>   // para arquivos
 #include "my_lib.h"  // para funcoes proprias
 #include "my_def.h"  // para definicoes globais, constantes ...
 
@@ -49,14 +50,15 @@ void metodo52()
 }
 void PARES_1(int X)
 {
-    if (X > 0){
-       if (X % 2 == 0)
+    if (X > 0)
+    {
+        if (X % 2 == 0)
         {
             PARES_1(X - 2);
             printf("\n%d\n", X);
         }
         else
-            PARES_1(X - 1); 
+            PARES_1(X - 1);
     }
 } // fim procedimento PARES_1 ( )
 void metodo53()
@@ -74,7 +76,7 @@ void PARES_2(int X)
     if (X > 0)
     {
         PARES_2(X - 1);
-        printf("\n%d%c%d\n", X, " ", 2 * X);
+        printf("\n%d %c %d\n", X, " ", 2 * X);
     }
 } // fim procedimento PARES_2 ( )
 void metodo54()
@@ -506,7 +508,7 @@ void metodo69()
 }
 void metodo70()
 {
-    #define ORDEM 3
+#define ORDEM 3
     typedef int MATRIZ[ORDEM][ORDEM];
     // PROGRAMA PARA MOSTRAR A DIAGONAL DE UMA MATRIZ
     // VARIAVEIS :
@@ -540,626 +542,898 @@ void metodo70()
 }
 void metodo71()
 {
-    // PROGRAMA PARA LER UM VALOR INTEIRO E VERIFICAR SE E' ZERO
-    // VARIAVEL:
-    int X = 0;
-    printf("EXEMPLO301 - LER E TESTAR UM VALOR INTEIRO");
-    printf("\nFORNECER UM VALOR INTEIRO QUALQUER: ");
-    scanf("%d", &X);
-    getchar(); // limpar a entrada de dados
-    if (X == 0)
-        printf("\nO VALOR DIGITADO FOI ZERO");
-    else
-        printf("\nO VALOR DIGITADO NAO FOI ZERO");
-    printf("\nPRESSIONAR <Enter> PARA TERMINAR.");
+    typedef struct SPONTOS
+    {
+        double X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA CALCULAR A DISTANCIA ENTRE PONTOS
+    // DADOS:
+    PONTOS P1, P2, P3;
+    double D = 0.0;
+    // identificar
+    printf("EXEMPLO0801 - DISTANCIA ENTRE PONTOS\n");
+    printf("\n ENTRE COM O PRIMEIRO PONTO : \n ");
+    scanf("%lf %lf %lf", &P1.X, &P1.Y, &P1.Z);
+    getchar(); // para limpar a entrada de dados
+    printf("\n ENTRE COM O SEGUNDO PONTO : \n ");
+    scanf("%lf %lf %lf", &P2.X, &P2.Y, &P2.Z);
+    getchar(); // para limpar a entrada de dados
+    P3.X = P2.X - P1.X;
+    P3.Y = P2.Y - P1.Y;
+    P3.Z = P2.Z - P1.Z;
+    D = sqrt(pow(P3.X, 2.0) +
+             pow(P3.Y, 2.0) +
+             pow(P3.Z, 2.0));
+    printf("\n DISTANCIA = %lf", D);
+    // encerrar
+    printf("\n\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo72()
 {
-    // PROGRAMA PARA LER UM REAL E TESTAR SE DIFERENTE DE ZERO
-    // VARIAVEL:
-    float X = 0.0;
-    printf("EXEMPLO302 - LER E TESTAR UM VALOR REAL");
-    printf("\nFORNECER UM VALOR REAL DIFERENTE DE ZERO: ");
-    scanf("%f", &X);
-    getchar(); // limpar a entrada de dados
-    if (X != 0.0)
-        printf("\nO VALOR DIGITADO FOI DIFERENTE DE ZERO");
-    printf("\nPRESSIONAR <Enter> PARA TERMINAR.");
+    typedef struct SPONTOS
+    {
+        float X, Y, Z;
+    } PONTOS;
+    // PROGRAM PARA CALCULAR A DISTANCIA ENTRE PONTOS
+    // DADOS:
+    PONTOS P1, P2;
+    double D = 0.0;
+    // identificar
+    printf("EXEMPLO0802 - DISTANCIA ENTRE PONTOS\n");
+    printf("\n ENTRE COM O PRIMEIRO PONTO : \n ");
+    scanf("%lf %lf %lf", &P1.X, &P1.Y, &P1.Z);
+    getchar(); // para limpar a entrada de dados
+    printf("\n ENTRE COM O SEGUNDO PONTO : \n ");
+    scanf("%lf %lf %lf", &P2.X, &P2.Y, &P2.Z);
+    getchar(); // para limpar a entrada de dados
+    D = sqrt(pow(P2.X - P1.X, 2.0) +
+             pow(P2.Y - P1.Y, 2.0) +
+             pow(P2.Z - P1.Z, 2.0));
+    printf("\n DISTANCIA = %lf", D);
+    // encerrar
+    printf("\n\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo73()
 {
-    // PROGRAMA PARA LER CARACTERE E VERIFICAR SE E' UM ALGARISMO
-    // VARIAVEL:
-    char X = '0';
-    printf("EXEMPLO303 - LER E TESTAR UM CARACTERE");
-    printf("\nFORNECER UM ALGARISMO QUALQUER: ");
-    scanf("%c", &X);
-    getchar(); // limpar a entrada de dados
-    if (X >= '0' && X <= '9')
+    typedef struct SPONTOS
     {
-        printf("\nO VALOR DIGITADO FOI UM ALGARISMO");
-        printf("\nO ALGARISMO DIGITADO FOI: %c", X);
-    } // if ALGARISMO
-    printf("\nPRESSIONAR <Enter> PARA TERMINAR.");
+        float X, Y, Z;
+    } PONTOS;
+    typedef PONTOS VETOR[2];
+    // PROGRAMA PARA CALCULAR A DISTANCIA ENTRE PONTOS
+    // DADOS:
+    VETOR V;
+    double D = 0.0;
+    // identificar
+    printf("EXEMPLO0803 - DISTANCIA ENTRE PONTOS\n");
+    printf("\n ENTRE COM O PRIMEIRO PONTO : \n ");
+    scanf("%lf %lf %lf", &V[0].X, &V[0].Y, &V[0].Z);
+    getchar(); // para limpar a entrada de dados
+    printf("\n ENTRE COM O SEGUNDO PONTO : \n ");
+    scanf("%lf %lf %lf", &V[1].X, &V[1].Y, &V[1].Z);
+    getchar(); // para limpar a entrada de dados
+    D = sqrt(pow(V[1].X - V[0].X, 2.0) +
+             pow(V[1].Y - V[0].Y, 2.0) +
+             pow(V[1].Z - V[0].Z, 2.0));
+    printf("\n DISTANCIA = %lf", D);
+    // encerrar
+    printf("\n\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo74()
 {
-    // PROGRAMA PARA LER CARACTERE E TESTAR SE NAO E' ALGARISMO
-    // VARIAVEL:
-    char X = '0';
-    printf("EXEMPLO304 - LER E TESTAR CARACTERE");
-    printf("\nFORNECER UM CARACTERE QUALQUER: ");
-    scanf("%c", &X);
-    getchar(); // limpar a entrada de dados
-    if (!(X >= '0' && X <= '9'))
+    typedef double PONTOS[3]; // X, Y, Z
+    typedef struct SVETOR
     {
-        printf("\nNAO FOI DIGITADO UM ALGARISMO");
-        printf("\nFOI DIGITADO O CARACTERE: %c", X);
-    } // if NAO ALGARISMO
-    printf("\nPRESSIONAR <Enter> PARA TERMINAR.");
+        PONTOS P1, P2;
+    } VETOR;
+    // PROGRAMA PARA CALCULAR A DISTANCIA ENTRE PONTOS
+    // DADOS:
+    VETOR V;
+    double D = 0.0;
+    // identificar
+    printf("EXEMPLO0804 - DISTANCIA ENTRE PONTOS\n");
+    printf("\n ENTRE COM O PRIMEIRO PONTO : \n ");
+    scanf("%lf %lf %lf", &V.P1[0], &V.P1[1], &V.P1[2]);
+    getchar(); // para limpar a entrada de dados
+    printf("\n ENTRE COM O SEGUNDO PONTO : \n ");
+    scanf("%lf %lf %lf", &V.P2[0], &V.P2[1], &V.P2[2]);
+    getchar(); // para limpar a entrada de dados
+    D = sqrt(pow(V.P2[0] - V.P1[0], 2.0) +
+             pow(V.P2[1] - V.P1[1], 2.0) +
+             pow(V.P2[2] - V.P1[2], 2.0));
+    printf("\n DISTANCIA = %lf", D);
+    // encerrar
+    printf("\n\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo75()
 {
-    // PROGRAMA PARA LER E TESTAR A IGUALDADE DE DOIS INTEIROS
-    // VARIAVEIS:
-    int X = 0, Y = 0;
-    printf("EXEMPLO305 - LER E TESTAR DOIS VALORES INTEIROS");
-    printf("\nFORNECER UM VALOR INTEIRO QUALQUER: ");
-    scanf("%d", &X);
-    getchar(); // limpar a entrada de dados
-    printf("\nFORNECER OUTRO VALOR INTEIRO QUALQUER: ");
-    scanf("%d", &Y);
-    getchar(); // limpar a entrada de dados
-    if (X == Y)
-        printf("\nDOIS VALORES IGUAIS");
-    else
+    typedef struct SPONTO
     {
-        printf("\n%d", X);
-        printf(" DIFERENTE DE ");
-        printf("%d", Y);
-    }
-    printf("\nPRESSIONAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTO;
+    typedef struct SPONTOS
+    {
+        PONTO P1, P2;
+    } PONTOS;
+    // PROGRAMA PARA CALCULAR A DISTANCIA ENTRE PONTOS
+    // DADOS:
+    PONTOS P;
+    double D = 0.0;
+    // identificar
+    printf("EXEMPLO0805 - DISTANCIA ENTRE PONTOS\n");
+    printf("\n ENTRE COM O PRIMEIRO PONTO : \n ");
+    scanf("%lf %lf %lf", &P.P1.X, &P.P1.Y, &P.P1.Z);
+    getchar(); // para limpar a entrada de dados
+    printf("\n ENTRE COM O SEGUNDO PONTO : \n ");
+    scanf("%lf %lf %lf", &P.P2.X, &P.P2.Y, &P.P2.Z);
+    getchar(); // para limpar a entrada de dados
+    D = sqrt(pow(P.P2.X - P.P1.X, 2.0) +
+             pow(P.P2.Y - P.P1.Y, 2.0) +
+             pow(P.P2.Z - P.P1.Z, 2.0));
+    printf("\n DISTANCIA = %lf", D);
+    // encerrar
+    printf("\n\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo76()
 {
-    // PROGRAMA PARA LER E TESTAR DOIS VALORES REAIS
-    // VARIAVEIS:
-    double X = 0.0, Y = 0.0;
-    printf("EXEMPLO306 - LER E TESTAR DOIS VALORES REAIS");
-    printf("\nFORNECER UM VALOR REAL QUALQUER: ");
-    scanf("%lf", &X);
-    getchar(); // limpar a entrada de dados
-    printf("\nFORNECER OUTRO VALOR REAL QUALQUER: ");
-    scanf("%lf", &Y);
-    getchar(); // limpar a entrada de dados
-    if (!(X == Y))
+    typedef struct SPONTO
     {
-        printf("\n%lf", X);
-        printf(" DIFERENTE DE ");
-        printf("%lf", Y);
-    }
-    else
+        double X, Y, Z;
+    } PONTO;
+    typedef double VETOR[3]; // X, Y, Z
+    typedef struct SPONTOS
     {
-        printf("VALORES IGUAIS");
-    } // if VALORES DIFERENTES
-    printf("\nPRESSIONAR <Enter> PARA TERMINAR.");
+        PONTO P1;
+        VETOR P2;
+    } PONTOS;
+    // PROGRAMA PARA CALCULAR A DISTANCIA ENTRE PONTOS
+    // DADOS:
+    PONTOS P;
+    double D = 0.0;
+    // identificar
+    printf("EXEMPLO0806 - DISTANCIA ENTRE PONTOS\n");
+    printf("\n ENTRE COM O PRIMEIRO PONTO : \n ");
+    scanf("%lf %lf %lf", &P.P1.X, &P.P1.Y, &P.P1.Z);
+    getchar(); // para limpar a entrada de dados
+    printf("\n ENTRE COM O SEGUNDO PONTO : \n ");
+    scanf("%lf %lf %lf", &P.P2[0], &P.P2[1], &P.P2[2]);
+    getchar(); // para limpar a entrada de dados
+    D = sqrt(pow(P.P2[0] - P.P1.X, 2.0) +
+             pow(P.P2[1] - P.P1.Y, 2.0) +
+             pow(P.P2[2] - P.P1.Z, 2.0));
+    printf("\n DISTANCIA = %lf", D);
+    // encerrar
+    printf("\n\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo77()
 {
-    // PROGRAMA PARA TRATAR ALTERNATIVAS COM VALORES LOGICOS
-    // VARIAVEIS:
-    int X = 0, Y = 0;
-    bool Z = false;
-    printf("EXEMPLO307 - TRATAR VALORES LOGICOS");
-    printf("\nFORNECER UM VALOR INTEIRO QUALQUER: ");
-    scanf("%d", &X);
-    getchar(); // limpar a entrada de dados
-    printf("\nFORNECER OUTRO VALOR INTEIRO QUALQUER: ");
-    scanf("%d", &Y);
-    getchar(); // limpar a entrada de dados
-    Z = (X == Y);
-    if (Z)
-        printf("VALORES IGUAIS");
-    else
-        printf("VALORES DIFERENTES");
-    printf("\nPRESSIONAR <Enter> PARA TERMINAR.");
+    typedef double VETOR[3]; // X, Y, Z
+    typedef VETOR PONTOS[2];
+    // PROGRAMA PARA CALCULAR
+    // A DISTANCIA ENTRE PONTOS
+    // DADOS:
+    PONTOS P;
+    double D = 0.0;
+    // identificar
+    printf("EXEMPLO0807 - DISTANCIA ENTRE PONTOS\n");
+    printf("\n ENTRE COM O PRIMEIRO PONTO : \n ");
+    scanf("%lf %lf %lf", &P[0][0], &P[0][1], &P[0][2]);
+    getchar(); // para limpar a entrada de dados
+    printf("\n ENTRE COM O SEGUNDO PONTO : \n ");
+    scanf("%lf %lf %lf", &P[1][0], &P[1][1], &P[1][2]);
+    getchar(); // para limpar a entrada de dados
+    D = sqrt(pow(P[1][0] - P[0][0], 2.0) +
+             pow(P[1][1] - P[0][1], 2.0) +
+             pow(P[1][2] - P[0][2], 2.0));
+    printf("\n DISTANCIA = %lf", D);
+    // encerrar
+    printf("\n\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo78()
 {
-    // PROGRAMA PARA LER E TESTAR UMA LETRA
-    // VARIAVEL:
-    char X = '0';
-    printf("EXEMPLO308 - LER E TESTAR UMA LETRA");
-    printf("\nFORNECER UMA LETRA QUALQUER: ");
-    scanf("%c", &X);
-    getchar(); // limpar a entrada de dados
-    if (X >= 'A' && X <= 'Z')
-        printf("FOI DIGITADA UMA LETRA MAIUSCULA");
-    else if (X >= 'a' && X <= 'z')
-        printf("FOI DIGITADA UMA LETRA MINUSCULA");
-    else
-        printf("NAO FOI DIGITADA UMA LETRA");
-    printf("\nPRESSIONAR <Enter> PARA TERMINAR.");
+    typedef double VETOR1[3]; // X, Y, Z
+    typedef VETOR1 VETOR[2];
+    // PROGRAMA PARA CALCULAR A DISTANCIA ENTRE PONTOS
+    // DADOS:
+    VETOR P;
+    double D = 0.0;
+    printf("EXEMPLO0808 - DISTANCIA ENTRE PONTOS\n");
+    printf("\n ENTRE COM O PRIMEIRO PONTO : \n ");
+    scanf("%lf %lf %lf", &P[0][0], &P[0][1], &P[0][2]);
+    getchar(); // para limpar a entrada de dados
+    printf("\n ENTRE COM O SEGUNDO PONTO : \n ");
+    getchar(); // para limpar a entrada de dados
+    scanf("%lf %lf %lf", &P[1][0], &P[1][1], &P[1][2]);
+    D = sqrt(pow(P[1][0] - P[0][0], 2.0) +
+             pow(P[1][1] - P[0][1], 2.0) +
+             pow(P[1][2] - P[0][2], 2.0));
+    printf("\n DISTANCIA = %lf", D);
+    // encerrar
+    printf("\n\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo79()
 {
-    // PROGRAMA PARA COMPARAR CARACTERES < , = , >
-    // VARIAVEL:
-    char X = '0';
-    printf("EXEMPLO309 - COMPARAR CARACTERES < , = , >");
-    printf("\nFORNECER UM DOS CARACTERES CITADOS: ");
-    scanf("%c", &X);
-    getchar(); // limpar a entrada de dados
-    switch (X)
+    typedef struct SPONTO
     {
-    case '>':
-        printf("FOI DIGITADO O SINAL DE MAIOR");
-        break;
-    case '=':
-        printf("FOI DIGITADO O SINAL DE IGUAL");
-        break;
-    case '<':
-        printf("FOI DIGITADO O SINAL DE MENOR");
-        break;
-    default:
-        printf("FOI DIGITADO UM OUTRO CARACTERE QUALQUER");
-    } // COMPARACAO DE X COM < , = , >
-    printf("\nPRESSIONAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTO;
+    typedef PONTO VETOR[2]; // X, Y, Z
+                            // PROGRAMA PARA CALCULAR A DISTANCIA ENTRE PONTOS
+                            // DADOS:
+    VETOR P;
+    double D = 0.0;
+    // identificar
+    printf("EXEMPLO0809 - DISTANCIA ENTRE PONTOS\n");
+    printf("\n ENTRE COM O PRIMEIRO PONTO : \n ");
+    scanf("%lf%lf%lf", &(P[0].X), &(P[0].Y), &(P[0].Z));
+    getchar(); // para limpar a entrada de dados
+    printf("\n ENTRE COM O SEGUNDO PONTO : \n ");
+    scanf("%lf%lf%lf", &(P[1].X), &(P[1].Y), &(P[1].Z));
+    getchar(); // para limpar a entrada de dados
+    D = sqrt(pow(P[1].X - P[0].X, 2.0) +
+             pow(P[1].Y - P[0].Y, 2.0) +
+             pow(P[1].Z - P[0].Z, 2.0));
+    printf("\n DISTANCIA = %lf", D);
+    // encerrar
+    printf("\n\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo80()
 {
-    // PROGRAMA PARA IDENTIFICAR CARACTERES
-    // VARIAVEL
-    char X = '0';
-    printf("EXEMPLO310 - IDENTIFICAR CARACTERES");
-    printf("\nFORNECER UM CARACTERE QUALQUER: ");
-    scanf("%c", &X);
-    getchar(); // limpar a entrada de dados
-    switch (X)
+    typedef struct SPONTO
     {
-    case 'A':
-    case 'E':
-    case 'I':
-    case 'O':
-    case 'U':
-        printf("FOI DIGITADO UMA VOGAL");
-        break;
-    case '0':
-    case '1':
-    case '2':
-    case '3':
-    case '4':
-    case '5':
-    case '6':
-    case '7':
-    case '8':
-    case '9':
-        printf("FOI DIGITADO UM ALGARISMO");
-        printf("\nO NUMERO CORRESPONDENTE = %d", (X - 48));
-        break;
-    default:
-        printf("FOI DIGITADO UM OUTRO CARACTERE QUALQUER");
-    } // IDENTIFICACAO DE UM CARACTERE
-    printf("\nPRESSIONAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTO;
+    typedef struct SPONTOS
+    {
+        PONTO P1, P2;
+    } PONTOS;
+    // PROGRAMA PARA CALCULAR A DISTANCIA ENTRE PONTOS
+    // DADOS:
+    PONTOS P;
+    double D = 0.0;
+    // identificar
+    printf("EXEMPLO0810 - DISTANCIA ENTRE PONTOS\n");
+    printf("\n ENTRE COM O PRIMEIRO PONTO : \n ");
+    scanf("%lf%lf%lf", &(P.P1.X), &(P.P1.Y), &(P.P1.Z));
+    getchar(); // para limpar a entrada de dados
+    printf("\n ENTRE COM O SEGUNDO PONTO : \n ");
+    scanf("%lf%lf%lf", &(P.P2.X), &(P.P2.Y), &(P.P2.Z));
+    getchar(); // para limpar a entrada de dados
+    D = sqrt(pow(P.P2.X - P.P1.X, 2.0) +
+             pow(P.P2.Y - P.P1.Y, 2.0) +
+             pow(P.P2.Z - P.P1.Z, 2.0));
+    printf("\n DISTANCIA = %lf", D);
+    // encerrar
+    printf("\n\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo81()
 {
-    // PROGRAMA PARA LER E IMPRIMIR 03 VALORES INTEIROS
-    // VARIAVEIS :
-    int X = 0,
-        CONTADOR = 0;
-    // identificar
-    printf("EXEMPLO0401 - LER E IMPRIMIR 03 VALORES INTEIROS");
-    printf("\n"); // mudar de linha
-    CONTADOR = 1;
-    while (CONTADOR <= 3) // REPETIR
+    typedef struct SPONTOS
     {
-        printf("\n"); // mudar de linha
-        printf("%d. FORNECER UM VALOR INTEIRO : ", CONTADOR);
-        scanf("%d", &X);
-        getchar(); // limpar a entrada de dados
-        printf("\nO VALOR DIGITADO FOI : %d\n", X);
-        CONTADOR = CONTADOR + 1;
-    } // ENQUANTO ( CONTADOR <= 3 )
-      // encerrar
-    printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA GRAVAR COORDENADAS DE PONTOS
+    // DADOS:
+    PONTOS P;
+    int X = 0;
+    FILE *A;
+    // identificar
+    printf("EXEMPLO0901 - GRAVAR COORDENADAS DE PONTOS \n");
+    A = fopen("PONTOS1.TXT", "wt");
+    for (X = 1; X <= 2; X++)
+    {
+        printf("\nENTRE COM AS COORDENADAS DE UM PONTO : \n");
+        scanf("%lf%lf%lf", &P.X, &P.Y, &P.Z);
+        getchar(); // para limpar a entrada de dados
+        fprintf(A, "%lf %lf %lf\n", P.X, P.Y, P.Z);
+    } // FIM REPETIR
+    fclose(A);
+    // encerrar
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo82()
 {
-    // PROGRAMA PARA LER E IMPRIMIR (N) VALORES INTEIROS
-    // VARIAVEIS :
-    int X = 0, N = 0, CONTADOR = 0;
-    // identificar
-    printf("EXEMPLO0402 - LER E IMPRIMIR (N) VALORES INTEIROS\n");
-    printf("\nFORNECER O NUMERO DE VEZES (N) : ");
-    scanf("%d", &N);
-    getchar(); // limpar a entrada de dados
-    CONTADOR = 1;
-    while (CONTADOR <= N)
+    typedef struct SPONTOS
     {
-        printf("\n%d", CONTADOR);
-        printf(" FORNECER UM VALOR INTEIRO QUALQUER : ");
-        scanf("%d", &X);
-        getchar(); // limpar a entrada de dados
-        printf("\nO VALOR DIGITADO FOI : %d\n", X);
-        CONTADOR = CONTADOR + 1;
-    } // ENQUANTO ( CONTADOR <= N )
-      // encerrar
-    printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA LER ARQUIVO DE PONTOS
+    // VARIAVEIS :
+    PONTOS P;
+    int X = 0;
+    FILE *A;
+    // identificar
+    printf("EXEMPLO0902 - LER ARQUIVO DE PONTOS \n");
+    A = fopen("PONTOS1.TXT", "rt");
+    for (X = 1; X <= 2; X++)
+    {
+        fscanf(A, "%lf%lf%lf", &P.X, &P.Y, &P.Z);
+        printf("\nPONTO %d : %lf %lf %lf", X, P.X, P.Y, P.Z);
+    } // FIM REPETIR
+    fclose(A);
+    // encerrar
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo83()
 {
-    // PROGRAMA PARA LER E IMPRIMIR (N) VALORES INTEIROS
-    // VARIAVEIS :
-    int X = 0, N = 0;
-    // identificar
-    printf("EXEMPLO0403 - LER E IMPRIMIR (N) VALORES INTEIROS\n");
-    printf("\nFORNECER O NUMERO DE VEZES (N) : ");
-    scanf("%d", &N);
-    getchar();    // limpar a entrada de dados
-    while (N > 0) // REPETIR
+    typedef struct SPONTOS
     {
-        printf("\n%d", N);
-        printf(" FORNECER UM VALOR INTEIRO QUALQUER : ");
-        scanf("%d", &X);
-        getchar(); // limpar a entrada de dados
-        printf("\nO VALOR DIGITADO FOI : %d\n", X);
-        N = N - 1;
-    } // ENQUANTO N > 0
-      // encerrar
-    printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA GRAVAR COORDENADAS DE PONTOS
+    // DADOS:
+    PONTOS P;
+    int X = 0;
+    FILE *A;
+    // identificar
+    printf("EXEMPLO0903 - GRAVAR COORDENADAS DE PONTOS \n");
+    A = fopen("PONTOS2.DAT", "wb");
+    for (X = 1; X <= 2; X++)
+    {
+        printf("\nENTRE COM AS COORDENADAS DE UM PONTO : \n");
+        scanf("%lf%lf%lf", &P.X, &P.Y, &P.Z);
+        getchar(); // para limpar a entrada de dados
+        fwrite(&P, sizeof(PONTOS), 1, A);
+    } // FIM REPETIR
+    fclose(A);
+    // encerrar
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo84()
 {
-    // PROGRAMA PARA LER E IMPRIMIR 03 VALORES INTEIROS
-    // VARIAVEIS :
-    int X = 0,
-        CONTADOR = 0;
-    // identificar
-    printf("EXEMPLO0404 - LER E IMPRIMIR 03 VALORES INTEIROS\n");
-    for (CONTADOR = 1; CONTADOR <= 3; CONTADOR = CONTADOR + 1)
+    typedef struct SPONTOS
     {
-        printf("\n%d. FORNECER UM VALOR INTEIRO : ", CONTADOR);
-        scanf("%d", &X);
-        getchar(); // limpar a entrada de dados
-        printf("\nO VALOR DIGITADO FOI : %d\n", X);
-    } // PARA CONTADOR EM [1:3]
-      // encerrar
-    printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA LER ARQUIVO DE PONTOS
+    // DADOS:
+    PONTOS P;
+    int X = 0;
+    FILE *A;
+    // identificar
+    printf("EXEMPLO0904 - LER ARQUIVO DE PONTOS \n");
+    A = fopen("PONTOS2.DAT", "rb");
+    for (X = 1; X <= 2; X++)
+    {
+        fread(&P, sizeof(PONTOS), 1, A);
+        printf("\nPONTO %d : %6.2lf %6.2lf %6.2lf\n", X, P.X, P.Y, P.Z);
+    } // FIM REPETIR
+    fclose(A);
+    // encerrar
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo85()
 {
-    // PROGRAMA PARA LER E IMPRIMIR (N) VALORES INTEIROS
-    // VARIAVEIS :
-    int X = 0,
-        N = 0,
-        CONTADOR = 0;
-    // identificar
-    printf("EXEMPLO0405 - LER E IMPRIMIR (N) VALORES INTEIROS\n");
-    printf("\nFORNECER O NUMERO DE VEZES (N) : ");
-    scanf("%d", &N);
-    getchar(); // limpar a entrada de dados
-    for (CONTADOR = 1; CONTADOR <= N; CONTADOR++)
+    typedef struct SPONTOS
     {
-        printf("\n%d. FORNECER UM VALOR INTEIRO : ", CONTADOR);
-        scanf("%d", &X);
-        getchar(); // limpar a entrada de dados
-        printf("\nO VALOR DIGITADO FOI : %d", X);
-    } // PARA CONTADOR EM [1:N]
-      // encerrar
-    printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA COPIAR O ARQUIVO COM COORDENADAS DE PONTOS
+    // DADOS:
+    PONTOS P;
+    int X = 0;
+    FILE *A1, *A2;
+    // identificar
+    printf("EXEMPLO0905 - COPIAR COORDENADAS DE PONTOS \n");
+    A1 = fopen("PONTOS1.TXT", "rt");
+    A2 = fopen("NOVO1.DAT", "wb");
+    for (X = 1; X <= 2; X++)
+    {
+        fscanf(A1, "%lf%lf%lf\n", &P.X, &P.Y, &P.Z);
+        fwrite(&P, sizeof(PONTOS), 1, A2);
+        printf("\nCOPIADO %d : %6.2lf %6.2lf %6.2lf\n", X, P.X, P.Y, P.Z);
+    } // FIM REPETIR
+    fclose(A1);
+    fclose(A2);
+    // encerrar
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo86()
 {
-    // PROGRAMA PARA LER E IMPRIMIR 03 VALORES INTEIROS
-    // VARIAVEIS :
-    int X = 0,
-        CONTADOR = 0;
-    // identificar
-    printf("EXEMPLO0406 - LER E IMPRIMIR 03 VALORES INTEIROS\n");
-    CONTADOR = 1;
-    do // REPETIR
+    typedef struct SPONTOS
     {
-        printf("\n%d. FORNECER UM VALOR INTEIRO : ", CONTADOR);
-        scanf("%d", &X);
-        getchar(); // limpar a entrada de dados
-        printf("\nO VALOR DIGITADO FOI : %d\n", X);
-        CONTADOR = CONTADOR + 1;
-    } while (CONTADOR <= 3); // ATE' ( CONTADOR > 3 )
-                             // encerrar
-    printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA ACRESCENTAR COORDENADAS DE PONTOS
+    // DADOS:
+    PONTOS P;
+    int X = 0;
+    FILE *A;
+    // identificar
+    printf("EXEMPLO0906 - ACRESCENTAR COORDENADAS DE PONTOS \n");
+    A = fopen("PONTOS2.DAT", "r+b");
+    while (!feof(A))
+        fread(&P, sizeof(PONTOS), 1, A); // LER ATE' O FIM DE ARQUIVO
+    fseek(A, 0L, SEEK_CUR);              // MARCAR A POSICAO
+    for (X = 3; X <= 4; X++)
+    {
+        printf("\nENTRE COM AS COORDENADAS DE OUTRO PONTO (%d): \n", X);
+        scanf("%lf%lf%lf", &P.X, &P.Y, &P.Z);
+        getchar(); // para limpar a entrada de dados
+        fwrite(&P, sizeof(PONTOS), 1, A);
+    }                                // FIM REPETIR
+    fseek(A, 0L, SEEK_SET);          // VOLTAR AO INICIO
+    fread(&P, sizeof(PONTOS), 1, A); // LER O PRIMEIRO DO ARQUIVO
+    while (!feof(A))
+    {
+        printf("\nPONTO %d : %6.2lf %6.2lf %6.2lf\n", X, P.X, P.Y, P.Z);
+        fread(&P, sizeof(PONTOS), 1, A); // LER ATE' O FIM DE ARQUIVO
+    }                                    // FIM REPETIR
+    fclose(A);
+    // encerrar
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo87()
 {
-    // PROGRAMA PARA LER E IMPRIMIR (N) VALORES INTEIROS
-    // VARIAVEIS :
-    int X = 0,
-        CONTADOR = 0;
-    // identificar
-    printf("EXEMPLO0407 - LER E IMPRIMIR (N) VALORES INTEIROS\n");
-    printf("\nFORNECER O NUMERO DE VEZES (N) : ");
-    scanf("%d", &CONTADOR);
-    getchar(); // limpar a entrada de dados
-    do         // REPETIR
+    typedef struct SPONTOS
     {
-        printf("\n%d. FORNECER UM VALOR INTEIRO : ", CONTADOR);
-        scanf("%d", &X);
-        printf("\nO VALOR DIGITADO FOI : %d\n", X);
-        CONTADOR = CONTADOR - 1;
-    } while (CONTADOR > 0); // ATE' ( CONTADOR <= 3 )
-                            // encerrar
-    printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA ACRESCENTAR COORDENADAS DE PONTOS
+    // DADOS:
+    PONTOS P;
+    int X = 0;
+    FILE *A;
+    // identificar
+    printf("EXEMPLO0907 - ACRESCENTAR COORDENADAS DE PONTOS \n");
+    A = fopen("PONTOS1.TXT", "at");
+    for (X = 1; X <= 2; X++)
+    {
+        printf("\nENTRE COM AS COORDENADAS DE OUTRO PONTO : \n");
+        scanf("%lf%lf%lf", &P.X, &P.Y, &P.Z);
+        getchar(); // para limpar a entrada de dados
+        fprintf(A, "%Lf %Lf %Lf", P.X, P.Y, P.Z);
+        fprintf(A, "%s", "\n");
+    } // FIM REPETIR
+    fclose(A);
+    // encerrar
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo88()
 {
-    // PROGRAMA PARA LER E IMPRIMIR INTEIROS DIFERENTES DE ZERO
-    // VARIAVEL :
-    int X = 0;
-    // identificar
-    printf("EXEMPLO0408 - LER E IMPRIMIR INTEIROS NAO NULOS\n");
-    printf("\nFORNECER UM VALOR INTEIRO (0 = PARAR) : ");
-    scanf("%d", &X);
-    getchar();     // limpar a entrada de dados
-    while (X != 0) // REPETIR
+    typedef struct SPONTOS
     {
-        printf("\nO VALOR DIGITADO FOI : %d\n", X);
-        printf("\nDIGITE UM VALOR INTEIRO QUALQUER : ");
-        scanf("%d", &X);
-    } // ENQUANTO X DIFERENTE DE ZERO
-      // encerrar
-    printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
+        double X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA PROCURAR COORDENADAS DE PONTOS
+    // DADOS:
+    PONTOS P,
+        PROCURADO;
+    bool ACHAR = false;
+    FILE *A;
+    // identificar
+    printf("EXEMPLO0908 - PROCURAR COORDENADAS DE PONTOS \n");
+    printf("\nENTRE COM AS COORDENADAS DO PONTO A PROCURAR : \n");
+    scanf("%lf%lf%lf", &PROCURADO.X, &PROCURADO.Y, &PROCURADO.Z);
+    ACHAR = false;
+    A = fopen("PONTOS1.TXT", "rt");
+    fscanf(A, "%lf %lf %lf", &P.X, &P.Y, &P.Z);
+    while (!feof(A) && !ACHAR)
+    {
+        if (P.X == PROCURADO.X && P.Y == PROCURADO.Y && P.Z == PROCURADO.Z)
+            ACHAR = true;
+        fscanf(A, "%lf%lf%lf", &P.X, &P.Y, &P.Z);
+    } // FIM REPETIR
+    fclose(A);
+    if (ACHAR)
+        printf("\nCOORDENADAS ENCONTRADAS");
+    else
+        printf("\nCOORDENADAS NAO ENCONTRADAS");
+    // encerrar
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo89()
 {
-    // PROGRAMA PARA LER UM INTEIRO DIFERENTE DE ZERO
-    // VARIAVEL :
-    int X = 0;
-    // identificar
-    printf("EXEMPLO0409 - PARA LER UM INTEIRO NAO NULO\n");
-    printf("\nFORNECER UM VALOR DIFERENTE DE ZERO : ");
-    scanf("%d", &X);
-    getchar();     // limpar a entrada de dados
-    while (X == 0) // REPETIR
+    typedef struct SPONTOS
     {
-        printf("\nFORNECER UM VALOR DIFERENTE DE ZERO : ");
-        scanf("%d", &X);
-        getchar(); // limpar a entrada de dados
-    }              // ENQUANTO X IGUAL A ZERO
-    printf("\nDIGITADO UM NUMERO DIFERENTE DE ZERO\n");
+        float X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA ALTERAR COORDENADAS DE PONTOS
+    // DADOS:
+    PONTOS P;
+    int X = 0;
+    FILE *A;
+    // identificar
+    printf("EXEMPLO0909 - ALTERAR COORDENADAS DE PONTOS \n");
+    A = fopen("PONTOS2.DAT", "r+b");
+    for (X = 1; X <= 2; X++)
+    {
+        fseek(A, (X - 1) * sizeof(PONTOS), SEEK_SET); // o primeiro e' zero
+        fread(&P, sizeof(PONTOS), 1, A);
+        printf("\nATUAL %d : %6.2Lf %6.2Lf %6.2Lf\n", X, P.X, P.Y, P.Z);
+        printf("\nENTRE COM AS NOVAS COORDENADAS DO PONTO : \n");
+        scanf("%lf%lf%lf", &P.X, &P.Y, &P.Z);
+        getchar(); // para limpar a entrada de dados
+        fseek(A, (X - 1) * sizeof(PONTOS), SEEK_SET);
+        fwrite(&P, sizeof(PONTOS), 1, A);
+    } // FIM REPETIR
+    fclose(A);
     // encerrar
-    printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo90()
 {
-    // PROGRAMA PARA LER UM INTEIRO DIFERENTE DE ZERO
-    // VARIAVEL :
-    int X = 0;
-    // identificar
-    printf("EXEMPLO0410 - LER UM INTEIRO NAO NULO\n");
-    do // REPETIR
+    typedef struct SPONTOS
     {
-        printf("\nFORNECER UM VALOR DIFERENTE DE ZERO : ");
-        scanf("%d", &X);
-        getchar();    // limpar a entrada de dados
-    } while (X == 0); // ATE' X DIFERENTE DE ZERO
-    printf("\nDIGITADO UM NUMERO DIFERENTE DE ZERO\n");
+        double X, Y, Z;
+    } PONTOS;
+    // PROGRAMA PARA LER ARQUIVO DE PONTOS DIRETAMENTE
+    // DADOS:
+    PONTOS P;
+    int X = 0;
+    FILE *A;
+    // identificar
+    printf("EXEMPLO0910 - LER ARQUIVO DE PONTOS DIRETAMENTE \n");
+    A = fopen("PONTOS2.DAT", "r");
+    for (X = 2; X > 0; X--)
+    {
+        fseek(A, (X - 1) * sizeof(PONTOS), SEEK_SET); // o primeiro e' zero
+        fread(&P, sizeof(PONTOS), 1, A);
+        printf("\nPONTO %d : %6.2lf %6.2lf %6.2lf\n", X, P.X, P.Y, P.Z);
+    } // FIM REPETIR
+    fclose(A);
     // encerrar
-    printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
-void P1(void)
-{
-    printf("\n");
-    printf("\nCHAMADO O PROCEDIMENTO P1 SEM PARAMETROS");
-    printf("\n");
-} // fim procedimento P1( )
 void metodo91()
 {
-    // PROGRAMA PARA CHAMADA DE PROCEDIMENTO SEM PARAMETROS
+    typedef struct S_CELULA
+    {
+        int VALOR;
+        struct S_CELULA *LINK;
+    } CELULA;
+    // PROGRAMA PARA DEFINIR E MONTAR CELULA DE DADOS
+    // DADOS:
+    CELULA P;
+    P.VALOR = 0;
+    P.LINK = NULL;
     // identificar
-    printf("EXEMPLO0501 - CHAMADA A UM PROCEDIMENTO");
-    P1(); // chamada ao procedimento
+    printf("EXEMPLO1001 - MONTAR CELULA \n");
+    printf("VALOR = ");
+    scanf("%d", &P.VALOR);
+    getchar();
+    printf("VALOR = %d LINK = %p\n", P.VALOR, P.LINK);
     printf("\n");
     // encerrar
-    printf("\nAPERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo92()
 {
-    // PROGRAMA PARA MOSTRAR PASSAGENS DE PARAMETROS
+    typedef struct S_CELULA
+    {
+        int VALOR;
+        struct S_CELULA *LINK;
+    } CELULA;
+    // PROGRAMA PARA DEFINIR E MONTAR CELULA DE DADOS
+    // DADOS:
+    CELULA *P;                      // APONTADOR PARA CELULA
+    P = malloc(1 * sizeof(CELULA)); // RESERVAR ESPACO
+    (*P).VALOR = 0;
+    (*P).LINK = NULL;
     // identificar
-    printf("EXEMPLO0502 - CHAMADA COM VARIAVEL GLOBAL\n");
-    for (int X = 1; X <= 5; X = X + 1)
-        P1(); // chamar 5 vezes
+    printf("EXEMPLO1002 - MONTAR CELULA \n");
+    printf("VALOR = ");
+    scanf("%d", &(*P).VALOR);
+    getchar();
+    printf("VALOR = %d LINK = %p\n", (*P).VALOR, (*P).LINK);
     printf("\n");
     // encerrar
-    printf("\nAPERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
-void P1_2(void)
-{
-    int X = 0;
-    X = X + 1; // AVANCAR O CONTEXTO
-    printf("\nCHAMADO O PROCEDIMENTO P1 %d VEZ(ES)", X);
-    printf("\n");
-    if (X < 5)
-        P1_2(); // CHAMAR O PROCEDIMENTO RECURSIVAMENTE
-    printf("\nRETORNANDO AO PROCEDIMENTO P1 PARA A CHAMADA %d", X);
-    X = X - 1; // RETORNAR AO CONTEXTO ANTERIOR
-    getchar(); // para esperar
-} // fim procedimento P1( )
+
 void metodo93()
 {
-    // PROGRAMA PARA MOSTRAR PASSAGENS DE PARAMETROS
+    typedef struct S_CELULA
+    {
+        int VALOR;
+        struct S_CELULA *LINK;
+    } CELULA;
+    // PROGRAMA PARA DEFINIR E MONTAR CELULA DE DADOS
+    // DADOS:
+    CELULA *P;                      // APONTADOR PARA CELULA
+    P = malloc(1 * sizeof(CELULA)); // RESERVAR ESPACO
+    P->VALOR = 0;                   // OUTRA NOTACAO
+    P->LINK = NULL;
     // identificar
-    printf("EXEMPLO0503 - CHAMADA/RETORNO COM VARIAVEL GLOBAL\n");
-    P1_2(); // OBSERVAR A RECURSIVIDADE !
+    printf("EXEMPLO1003 - MONTAR CELULA \n");
+    printf("VALOR = ");
+    scanf("%d", &P->VALOR);
+    getchar();
+    printf("VALOR = %d LINK = %p\n", P->VALOR, P->LINK);
     printf("\n");
     // encerrar
-    printf("\nAPERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
-void P1_3(int X)
-{
-    printf("\nCHAMADO O PROCEDIMENTO P1 %d VEZ(ES)\n", X);
-    if (X < 5)
-        P1_3(X + 1); // chamar recursivamente com parametro
-    printf("\nRETORNANDO AO PROCEDIMENTO P1 PARA A CHAMADA %d", X);
-    getchar(); // para esperar
-} // fim procedimento P1( )
+
 void metodo94()
 {
-    // PROGRAMA PARA MOSTRAR PASSAGENS DE PARAMETROS
+    typedef struct S_CELULA
+    {
+        int VALOR;
+        struct S_CELULA *LINK;
+    } CELULA;
+    // PROGRAMA PARA DEFINIR E MONTAR CELULA DE DADOS
+    // DADOS:
+    CELULA *P;                     // APONTADOR PARA CELULA
+    P = calloc(1, sizeof(CELULA)); // OUTRA FORMA DE RESERVAR
+    P->VALOR = 0;                  // OUTRA NOTACAO
+    P->LINK = NULL;
     // identificar
-    printf("EXEMPLO0904 - CHAMADA/RETORNO COM PARAMETRO\n");
-    P1_3(1); // OBSERVAR REPETICAO FINITA, SEM VARIAVEL GLOBAL !
+    printf("EXEMPLO1004 - MONTAR CELULA \n");
+    printf("VALOR = ");
+    scanf("%d", &P->VALOR);
+    getchar();
+    printf("VALOR = %d LINK = %p\n", P->VALOR, P->LINK);
     printf("\n");
     // encerrar
-    printf("\nAPERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
-void P1_4(int X)
-{
-    printf("\nCHAMADO O PROCEDIMENTO P1 %d VEZ(ES)\n", X);
-    if (X > 1)
-        P1_4(X - 1);
-    printf("\nRETORNANDO AO PROCEDIMENTO P1 PARA A CHAMADA %d", X);
-    getchar(); // para esperar
-} // fim procedimento P1( )
+
 void metodo95()
 {
-    // PROGRAMA PARA MOSTRAR PASSAGEM DE PARAMETRO POR VALOR
+    typedef struct S_CELULA
+    {
+        int VALOR;
+        struct S_CELULA *LINK;
+    } CELULA;
+    typedef struct S_CELULA *
+        REF_CELULA;
+    // PROGRAMA PARA DEFINIR E MONTAR CELULA DE DADOS
+    // DADOS:
+    REF_CELULA P;                  // APONTADOR PARA CELULA
+    P = calloc(1, sizeof(CELULA)); // OUTRA FORMA DE RESERVAR
+    P->VALOR = 0;                  // OUTRA NOTACAO
+    P->LINK = NULL;
     // identificar
-    printf("EXEMPLO0505 - CHAMADA/RETORNO COM PARAMETRO\n");
-    P1_4(5); // OBSERVAR REPETICAO FINITA, SEM VARIAVEL GLOBAL !
+    printf("EXEMPLO1005 - MONTAR CELULA \n");
+    printf("VALOR = ");
+    scanf("%d", &P->VALOR);
+    getchar();
+    printf("VALOR = %d LINK = %p\n", P->VALOR, P->LINK);
     printf("\n");
     // encerrar
-    printf("\nAPERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
-void P2(int X); // PROTOTIPO DE PROCEDIMENTO
-void P1_5(int X)
-{
-    printf("CHAMADO O PROCEDIMENTO P1 COM X = %d\n", X);
-    if (X < 5)
-        P2(X);
-    printf("RETORNANDO AO PROCEDIMENTO P1 PARA A CHAMADA COM X = %d\n", X);
-    getchar(); // para esperar
-} // fim do procedimento P1( )
-void P2(int X)
-{
-    printf("CHAMADO O PROCEDIMENTO P2 COM X = %d\n", X);
-    X = X + 1;
-    printf("RETORNANDO AO PROCEDIMENTO P2 PARA A CHAMADA COM X = %d\n", X);
-    getchar(); // para esperar
-    P1_5(X);
-} // fim do procedimento P2( )
+
 void metodo96()
 {
-    // PROGRAMA PARA MOSTRAR PASSAGENS DE PARAMETROS
-    // identificar
-    printf("EXEMPLO0506 - CHAMADA/RETORNO COM PARAMETRO\n\n");
-    P1_5(1); // OBSERVAR RECURSIVIDADE INDIRETA !
+    typedef struct S_CELULA
+    {
+        int VALOR;
+        struct S_CELULA *LINK;
+    } CELULA;
+    typedef struct S_CELULA *
+        REF_CELULA;
+    REF_CELULA NEW_CELULA1(int INICIAL)
+    {
+        REF_CELULA P;                  // APONTADOR PARA CELULA
+        P = calloc(1, sizeof(CELULA)); // OUTRA FORMA DE RESERVAR
+        P->VALOR = INICIAL;            // OUTRA NOTACAO
+        P->LINK = NULL;
+        return (P);
+    }                              // fim funcao NEW_CELULA ( )
+                                   // PROGRAMA PARA DEFINIR E MONTAR CELULA DE DADOS
+                                   // DADOS:
+    REF_CELULA P = NEW_CELULA1(0); // APONTADOR PARA CELULA
+                                   // identificar
+    printf("EXEMPLO1006 - MONTAR CELULA \n");
+    printf("VALOR = ");
+    scanf("%d", &P->VALOR);
+    getchar();
+    printf("VALOR = %d LINK = %p\n", P->VALOR, P->LINK);
     printf("\n");
     // encerrar
-    printf("\nAPERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
-void P1_6(int *X)
-{
-    *X = *X + 1; // AVANCAR O CONTEXTO NA REFERENCIA
-    printf("\nCHAMADO O PROCEDIMENTO P1 %d VEZ(ES)\n", *X);
-    if (*X < 5)
-        P1_6(X);
-    printf("\nRETORNANDO AO PROCEDIMENTO P1 PARA A CHAMADA %d", *X);
-    *X = *X - 1; // RETORNAR AO CONTEXTO DA REFERENCIA ANTERIOR
-    getchar();   // para esperar
-} // fim procedimento P1( )
+
 void metodo97()
 {
-    // PROGRAMA PARA MOSTRAR PASSAGEM DE PARAMETRO POR REFERENCIA
-    // VARIAVEL LOCAL
-    int X;
-    // identificar
-    printf("EXEMPLO0507 - CHAMADA/RETORNO COM REFERENCIA\n");
-    X = 0;
-    P1_6(&X); // OBSERVAR REPETICAO FINITA !
+    typedef struct S_CELULA
+    {
+        int VALOR;
+        struct S_CELULA *LINK;
+    } CELULA;
+    typedef struct S_CELULA *REF_CELULA;
+    REF_CELULA NEW_CELULA2(int INICIAL)
+    {
+        REF_CELULA P;                  // APONTADOR PARA CELULA
+        P = calloc(1, sizeof(CELULA)); // OUTRA FORMA DE RESERVAR
+        P->VALOR = INICIAL;            // OUTRA NOTACAO
+        P->LINK = NULL;
+        return (P);
+    }                               // fim funcao NEW_CELULA ( )
+                                    // PROGRAMA PARA DEFINIR E MONTAR CELULAS DE DADOS
+                                    // DADOS:
+    REF_CELULA P1 = NEW_CELULA2(0); // APONTADOR PARA CELULA
+    REF_CELULA P2 = NEW_CELULA2(0); // APONTADOR PARA CELULA
+                                    // identificar
+    printf("EXEMPLO1007 - MONTAR CELULAS \n");
+    printf("P1: VALOR = ");
+    scanf("%d", &P1->VALOR);
+    getchar();
+    printf("P2: VALOR = ");
+    scanf("%d", &P2->VALOR);
+    getchar();
+    printf("P1: VALOR = %d LINK = %p\n", P1->VALOR, P1->LINK);
+    printf("P2: VALOR = %d LINK = %p\n", P2->VALOR, P2->LINK);
+    P1->LINK = P2; // ligar uma celula a outra
+    printf("P1: VALOR = %d LINK = %p\n", P1->VALOR, P1->LINK);
+    printf("P2: VALOR = %d LINK = %p\n",
+           P1->LINK->VALOR, P1->LINK->LINK);
     printf("\n");
     // encerrar
-    printf("\nAPERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
-void P2_1(int X); // PROTOTIPO DE PROCEDIMENTO
-void P1_7(int X)
-{
-    X = X + 1;
-    printf("CHAMADO O PROCEDIMENTO P1 COM X = %d\n", X);
-    if (X < 4)
-    {
-        P1_7(X);
-        P2_1(X);
-    }
-    printf("\nRETORNANDO AO PROCEDIMENTO P1 PARA A CHAMADA COM X = %d\n", X);
-    getchar(); // para esperar
-} // fim do procedimento P1( )
-void P2_2(int X)
-{
-    printf("CHAMADO O PROCEDIMENTO P2 COM X = %d\n", X);
-    if (X > 1)
-        P2_1(X - 1);
-    printf("RETORNANDO AO PROCEDIMENTO P2 PARA A CHAMADA COM X = %d", X);
-    getchar(); // para esperar
-} // fim procedimento P2( )
 void metodo98()
 {
-    // PROGRAMA PARA MOSTRAR PASSAGENS DE PARAMETROS
-    // identificar
-    printf("EXEMPLO0508 - MULTIPLAS CHAMADAS/RETORNOS\n\n");
-    P1_7(1);
+    typedef struct S_CELULA
+    {
+        int VALOR;
+        struct S_CELULA *LINK;
+    } CELULA;
+    typedef struct S_CELULA *REF_CELULA;
+    REF_CELULA NEW_CELULA3(int INICIAL)
+    {
+        REF_CELULA P;                  // APONTADOR PARA CELULA
+        P = calloc(1, sizeof(CELULA)); // OUTRA FORMA DE RESERVAR
+        P->VALOR = INICIAL;            // OUTRA NOTACAO
+        P->LINK = NULL;
+        return (P);
+    }                               // fim funcao NEW_CELULA ( )
+                                    // PROGRAMA PARA DEFINIR E MONTAR CELULAS DE DADOS
+                                    // DADOS:
+    REF_CELULA P1 = NEW_CELULA3(0); // APONTADOR PARA CELULA
+    REF_CELULA P2 = NEW_CELULA3(0); // APONTADOR PARA CELULA
+                                    // identificar
+    printf("EXEMPLO1008 - MONTAR CELULAS \n");
+    printf("P1: VALOR = ");
+    scanf("%d", &P1->VALOR);
+    getchar();
+    printf("P2: VALOR = ");
+    scanf("%d", &P2->VALOR);
+    getchar();
+    printf("P1: VALOR = %d LINK = %p\n", P1->VALOR, P1->LINK);
+    printf("P2: VALOR = %d LINK = %p\n", P2->VALOR, P2->LINK);
+    P1->LINK = P2; // ligar uma celula a outra
+    P2 = NEW_CELULA3(0);
+    printf("P3: VALOR = ");
+    scanf("%d", &P2->VALOR);
+    getchar();
+    P1->LINK->LINK = P2; // ligar 'a terceira
+    printf("P1: VALOR = %d LINK = %p\n", P1->VALOR, P1->LINK);
+    printf("P2: VALOR = %d LINK = %p\n",
+           P1->LINK->VALOR, P1->LINK->LINK);
+    printf("P3: VALOR = %d LINK = %p\n",
+           P1->LINK->LINK->VALOR, P1->LINK->LINK->LINK);
     printf("\n");
     // encerrar
-    printf("\nAPERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR<Enter> PARA TERMINAR");
     getchar(); // para esperar
 }
 void metodo99()
 {
-    // PROGRAMA PARA MOSTRAR O USO DE MODULOS
-    // identificar
-    println("EXEMPLO0509 - USO DE MODULOS");
+    typedef struct S_CELULA
+    {
+        int VALOR;
+        struct S_CELULA *LINK;
+    } CELULA;
+    typedef struct S_CELULA *REF_CELULA;
+    REF_CELULA NEW_CELULA4(int INICIAL)
+    {
+        REF_CELULA P;                  // APONTADOR PARA CELULA
+        P = calloc(1, sizeof(CELULA)); // OUTRA FORMA DE RESERVAR
+        P->VALOR = INICIAL;            // OUTRA NOTACAO
+        P->LINK = NULL;
+        return (P);
+    }                               // fim funcao NEW_CELULA ( )
+                                    // PROGRAMA PARA DEFINIR E MONTAR CELULAS DE DADOS
+                                    // DADOS:
+    REF_CELULA P1 = NEW_CELULA4(0); // APONTADOR PARA CELULA
+    REF_CELULA P2 = NEW_CELULA4(0); // APONTADOR PARA CELULA
+                                    // identificar
+    printf("EXEMPLO1009 - MONTAR CELULAS \n");
+    printf("P1: VALOR = ");
+    scanf("%d", &P1->VALOR);
+    getchar();
+    printf("P2: VALOR = ");
+    scanf("%d", &P2->VALOR);
+    getchar();
+    printf("P1: VALOR = %d LINK = %p\n", P1->VALOR, P1->LINK);
+    printf("P2: VALOR = %d LINK = %p\n", P2->VALOR, P2->LINK);
+    P1->LINK = P2; // ligar uma celula a outra
+    P2 = NEW_CELULA4(0);
+    printf("P3: VALOR = ");
+    scanf("%d", &P2->VALOR);
+    getchar();
+    P1->LINK->LINK = P2; // ligar 'a terceira
+    P2 = P1;             // comecar no primeiro
+    while (P2 != NULL)
+    { // mostrar valor
+        printf("VALOR = %d LINK = %p\n", P2->VALOR, P2->LINK);
+        P2 = P2->LINK; // passar ao proximo
+    }                  // end while
+    printf("\n");
     // encerrar
-    pause("APERTAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
+    getchar(); // para esperar
 }
 void metodo100()
 {
-    // PROGRAMA PARA MOSTRAR O USO DE MODULOS
-    // VARIAVEIS :
-    chars text = "MUDAR DE LINHA";
+    typedef struct S_CELULA
+    {
+        int VALOR;
+        struct S_CELULA *LINK;
+    } CELULA;
+    typedef struct S_CELULA *REF_CELULA;
+    REF_CELULA NEW_CELULA(int INICIAL)
+    {
+        REF_CELULA P;                  // APONTADOR PARA CELULA
+        P = calloc(1, sizeof(CELULA)); // OUTRA FORMA DE RESERVAR
+        P->VALOR = INICIAL;            // OUTRA NOTACAO
+        P->LINK = NULL;
+        return (P);
+    }                     // fim funcao NEW_CELULA ( )
+                          // PROGRAMA PARA DEFINIR E MONTAR CELULAS DE DADOS
+                          // DADOS:
+    REF_CELULA P1 = NULL; // APONTADOR ESTRUTURAL
+    REF_CELULA P2 = NULL; // APONTADOR DE SERVICO
+    int x = 0, y = 0;
     // identificar
-    println("EXEMPLO0510 - USO DE MODULOS");
-    printf("%c", EOL);
-    printf("%s%c", text, EOL);
+    printf("EXEMPLO1010 - MONTAR CELULAS \n");
+    printf("VALOR = ");
+    scanf("%d", &x);
+    getchar();
+    P1 = NEW_CELULA(x); // montar o primeiro
+    for (y = 0; y < 4; y = y + 1)
+    {
+        printf("VALOR = ");
+        scanf("%d", &x);
+        getchar();
+        P2 = P1;                 // comecar no primeiro
+        while (P2->LINK != NULL) // procurar o ultimo
+            P2 = P2->LINK;
+        P2->LINK = NEW_CELULA(x); // anexar mais outro
+    }                             // end for
+    P2 = P1;                      // comecar no primeiro
+    while (P2 != NULL)
+    { // mostrar valor
+        printf("VALOR = %d LINK = %p\n", P2->VALOR, P2->LINK);
+        P2 = P2->LINK; // passar ao proximo
+    }                  // end while
+    printf("\n");
     // encerrar
-    pause("PRESSIONAR <Enter> PARA TERMINAR.");
+    printf("\nAPERTAR <Enter> PARA TERMINAR");
+    getchar(); // para esperar
 }
+
+// ------------------------------------------------ fim metodos principais
 
 void identificacao()
 {
@@ -1171,7 +1445,7 @@ void identificacao()
 void menu()
 {
     // para mostrar opcoes
-    printf("Escolha alguma das opcoes a seguir:\n");
+    printf("Escolha alguma das opcoes a seguir:\n\n");
     printf("51 - M01     76 - M26\n");
     printf("52 - M01     77 - M27\n");
     printf("53 - M01     78 - M28\n");
@@ -1205,7 +1479,7 @@ int main()
 {
     int opcao = 0;
 
-    void identificacao();
+    identificacao();
 
     do
     {
@@ -1216,7 +1490,7 @@ int main()
         scanf("%d", &opcao);
         getchar(); // para limpar a entrada de dados
         // para mostrar a opcao lida
-        printf("\n%s%d", "Opcao = ", opcao);
+        printf("\n============   %s %d   ============\n\n", "Opcao", opcao);
         // escolher acao dependente da opcao
         switch (opcao)
         {
@@ -1373,6 +1647,7 @@ int main()
             printf("\nERRO: Opcao invalida.\n");
             break;
         } // end switch
+        printf("\n============ %s %d ============\n\n", "Fim Opcao", opcao);
     } while (opcao != 0);
     // encerrar
     printf("\n\nApertar ENTER para terminar.");
