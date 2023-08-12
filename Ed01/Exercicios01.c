@@ -1,19 +1,21 @@
 /*
- exercicios - v0.0. - 11 / 08 / 2023
+ Exercicios01 - v0.0. - 11 / 08 / 2023
  Author: Vinicius Miranda de Araujo
 
  Para compilar em terminal (janela de comandos):
- Linux : gcc -o exercicios exercicios.c
- Windows: gcc -o exercicios exercicios.c
+ Linux : gcc -o Exercicios01 Exercicios01.c
+ Windows: gcc -o Exercicios01 Exercicios01.c
  Para executar em terminal (janela de comandos):
- Linux : ./exercicios
- Windows: exercicios
+ Linux : ./Exercicios01
+ Windows: Exercicios01
 */
 
 // dependencias
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
+#define PI ( 3.14159265358979323846 )
 
 // declaracao das funcoes secundarias
 void identificacao();
@@ -70,10 +72,10 @@ int main (void)
         } // fim switch
         
         if( opcao == 0 ){
-            printf("\n     Programa Encerrado     \n");
+            printf("\n     Programa Encerrado     \n\n");
         }
 
-        printf( "\n====== Fim Opcao %d ======\n\n", opcao );
+        printf( "====== Fim Opcao %d ======\n\n", opcao );
 
     }while (opcao != 0);
 
@@ -89,7 +91,7 @@ int main (void)
 void identificacao()
 {
     printf("\n");
-    printf("%s\n", "Exercicios - Programa - v0.0");
+    printf("%s\n", "Exercicios01 - Programa - v0.0");
     printf("%s\n", "Autor: Vinicius Miranda de Araujo - 812839");
     printf("\n");
 } // fim identificacao()
@@ -118,19 +120,14 @@ void exercicio0111()
     printf( "\nExercicio 0111:\n\n" );
 
     // programa
-    int x = 0, y = 0, a = 0;
+    int lado = 0, a = 0;
 
-    printf( "Digite um numero: " );
-    scanf( "%d" , &x );
+    printf( "Insira o valor do lado de um quadrado: " );
+    scanf( "%d" , &lado );
     getchar();
     printf( "\n" );
 
-    printf( "Lado de um quadrado qualquer: %d\n" , x );
-    y = 6 * x;
-
-    printf( "Lado de um quadrado 6x maior: %d\n" , y);
-
-    a = pow(y,2);
+    a = pow( (lado * 6) ,2);
 
     printf( "Area de um quadrado com lado 6x maior: %d\n" , a );
 
@@ -144,26 +141,22 @@ void exercicio0112()
     printf( "\nExercicio 0112:\n\n" );
 
     // programa
-    int x = 0;
-    double y = 0, p = 0, a = 0;
+    int lado = 0;
+    double ladoNovo = 0.0, perimetro = 0.0, area = 0.0;
 
-    printf( "Digite um numero: " );
-    scanf( "%d", &x );
+    printf( "Insira o valor do lado de um quadrado: " );
+    scanf( "%d", &lado );
     getchar();
     printf( "\n" );
 
-    printf( "Lado de um quadrado qualquer: %d\n" , x );
+    ladoNovo = lado / 3.0;
 
-    y = x / 3.0;
+    perimetro = 4.0 * ladoNovo;
 
-    printf( "Lado de um quadrado com 1/3 do tamanho do lado: %lf\n" , y );
+    area = pow(ladoNovo, 2.0);
 
-    p = 4.0 * y;
-
-    a = pow(y, 2.0);
-
-    printf( "Perimetro de um quadrado com 1/3 do tamanho do lado: %lf\n" , p );
-    printf( "Area de um quadrado com 1/3 do tamanho do lado: %lf\n" , a );
+    printf( "Perimetro de um quadrado com 1/3 do tamanho do lado: %lf\n" , perimetro );
+    printf( "Area de um quadrado com 1/3 do tamanho do lado: %lf\n" , area );
 
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
@@ -175,25 +168,23 @@ void exercicio0113()
     printf( "\nExercicio 0113:\n\n" );
 
     // programa
-    int x = 0, y = 0;
-    double a1 = 0, a2 = 0;
+    int base = 0, altura = 0;
+    double r1 = 0.0, r2 = 0.0;
 
-    printf( "Digite um numero: " );
-    scanf( "%d", &x );
+    printf( "Insira o valor da base de um retangulo: " );
+    scanf( "%d", &base );
     getchar();
 
-    printf( "Digite outro numero: " );
-    scanf( "%d", &y );
+    printf( "Insira o valor da altura de um retangulo: " );
+    scanf( "%d", &altura );
     getchar();
     printf( "\n" );
 
-    a1 = (double)x * y;
+    r1 = (double)base * altura;
 
-    printf( "Area de um retangulo qualquer: %lf\n" , a1 );
-
-    a2 = a1 * 4;
+    r2 = r1 * 4;
     
-    printf( "Area de um retangulo 4x maior: %lf\n" , a2 );
+    printf( "Area de um retangulo 4x maior: %lf\n" , r2 );
     
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
@@ -205,30 +196,25 @@ void exercicio0114()
     printf( "\nExercicio 0114:\n\n" );
 
     // programa
-    int x1 = 0, y1 = 0;
-    double x2 = 0, y2 = 0, a = 0, p = 0;
+    int base = 0, altura = 0;
+    double area = 0.0, perimetro = 0.0;
 
-    printf( "Digite um numero: " );
-    scanf( "%d", &x1 );
+    printf( "Insira o valor da base de um retangulo: " );
+    scanf( "%d", &base );
     getchar();
 
-    printf( "Digite outro numero: " );
-    scanf( "%d", &y1 );
+    printf( "Insira o valor da altura de um retangulo: " );
+    scanf( "%d", &altura );
     getchar();
     printf( "\n" );
 
-    printf( "Area de um rentangulo: %d\n" , x1 * y1 );
-    printf( "Perimetro de um rentangulo: %d\n" , 2 * x1 + 2 * y1 );
+    area = ( base / 5.0 ) * ( altura / 5.0 );
 
-    x2 = (double)x1 / 5;
-    y2 = (double)y1 /5;
+    perimetro = 2.0 * ( base / 5.0 ) + 2.0 * ( altura / 5.0 );
 
-    a = x2 * y2;
-    p = 2 * x2 + 2 * y2;
+    printf( "Area de um retangulo com 1/5 dos lados: %lf\n", area );
 
-    
-    printf( "Area de um retangulo com 1/5 dos lados: %lf\n", a );
-    printf( "Perimetro de um retangulo com 1/5 dos lados: %lf\n" , p );
+    printf( "Perimetro de um retangulo com 1/5 dos lados: %lf\n" , perimetro );
 
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
@@ -240,24 +226,20 @@ void exercicio0115()
     printf( "\nExercicio 0115:\n\n" );
 
     // programa
-    double x = 0, y = 0, a = 0; // x = base, y = altura
+    double base = 0.0, altura = 0.0, area = 0.0; 
 
-    printf( "Digite um numero: " );
-    scanf( "%lf", &x );
+    printf( "Insira o valor da base de um triangulo: " );
+    scanf( "%lf", &base );
     getchar();
 
-    printf( "Digite outro numero: " );
-    scanf( "%lf", &y );
+    printf( "Insira o valor da altura de um triangulo: " );
+    scanf( "%lf", &altura );
     getchar();
     printf( "\n" );
 
-    printf( "Area de um triangulo qualquer: %lf\n" , (x * y) / 2 );
-    
-    y = y / 2;
+    area = ( base * ( altura / 2 ) ) / 2;
 
-    a = (x * y) / 2;
-
-    printf( "Area de um trianguo com metade da altura: %lf\n" , a );
+    printf( "Area de um trianguo com metade da altura: %lf\n" , area );
 
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
@@ -269,22 +251,22 @@ void exercicio0116()
     printf( "\nExercicio 0116:\n\n" );
 
     // programa
-    double x1 = 0, x2 = 0, a = 0, p = 0, h = 0;
+    double lado = 0.0, ladoNovo = 0.0, area = 0.0, perimetro = 0.0, altura = 0.0;
 
-    printf( "Digite um numero: " );
-    scanf( "%lf" , &x1 );
+    printf( "Insira o valor do lado de um triangulo equilatero: " );
+    scanf( "%lf" , &lado );
     getchar();
     printf( "\n" );
 
-    x2 = 2 * x1;
+    ladoNovo = 2 * lado;
 
-    h = (x2 * sqrt(3))/2;
+    altura = ( ladoNovo * sqrt(3) )/2;
 
-    a = (pow(x2,2) * sqrt(3))/4;
+    area = ( pow(ladoNovo,2) * sqrt(3) )/4;
     
-    p = x2 * 3;
+    perimetro = ladoNovo * 3;
 
-    printf( "A altura, área e o perímetro do triângulo com o dobro do lado: h = %lf, a = %lf, p = %lf\n" , h , a , p );
+    printf( "A altura, area e o perimetro do triangulo com o dobro do lado: altura = %lf, area = %lf, perimetro = %lf\n" , altura , area , perimetro );
 
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
@@ -296,21 +278,16 @@ void exercicio0117()
     printf( "\nExercicio 0117:\n\n" );
 
     // programa
-    double x1 = 0, x2 = 0,  v = 0;
+    double lado = 0.0, volume = 0.0;
 
-    printf( "Digite um numero: " );
-    scanf( "%lf" , &x1 );
+    printf( "Insira o valor de um lado de um cubo: " );
+    scanf( "%lf" , &lado );
     getchar();
     printf( "\n" );
 
-    printf( "O lado de um cubo qualquer e: %lf\n" , x1 );
-    printf( "O volume do cubo e: %lf\n" , pow( x1 , 3 ) );
+    volume = pow( ( lado * 7 ) , 3 );
 
-    x2 = 7 * x1;
-
-    v = pow( x2 , 3 );
-
-    printf( "O volume de um cubo com 7x a medida do lado: %lf\n" , v );
+    printf( "O volume de um cubo com 7x a medida do lado: %lf\n" , volume );
 
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
@@ -322,19 +299,45 @@ void exercicio0118()
     printf( "\nExercicio 0118:\n\n" );
 
     // programa
+    double comprimento = 0.0, largura = 0.0, altura = 0.0, volume = 0.0;
 
+    printf( "Insira o valor do comprimento do paralelepipedo: " );
+    scanf( "%lf" , &comprimento );
+    getchar();
+
+    printf( "Insira o valor da largura do paralelepipedo: " );
+    scanf( "%lf" , &largura );
+    getchar();
+
+    printf( "Insira o valor da altura do paralelepipedo: " );
+    scanf( "%lf" , &altura );
+    getchar();
+    printf( "\n" );
+
+    volume = ( comprimento / 6 ) * ( largura / 6 ) * ( altura / 6 );
+
+    printf( "O volume do solido com 1/6 desses valores e: %lf\n" , volume );
 
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
 }
 void exercicio0119()
-{
+{   
     // identificacao
     printf( "\nExercicio 0119:\n\n" );
 
     // programa
+    double raio = 0.0, area = 0.0;
 
+    printf( "Insira o valor do raio de um circulo: " );
+    scanf( "%lf" , &raio );
+    getchar();
+    printf( "\n" );
+
+    area = ( PI * ( ( pow( raio,2 ) / 2 ) ) ) / 2;
+
+    printf( "A area de um semicirculo com metade do raio e: %lf\n" , area );
 
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
@@ -346,7 +349,16 @@ void exercicio0120()
     printf( "\nExercicio 0120:\n\n" );
 
     // programa
+    double raio = 0.0, volume = 0.0;
 
+    printf( "Insira o valor do raio de uma esfera: " );
+    scanf( "%lf" , &raio );
+    getchar();
+    printf( "\n" );
+    
+    volume = PI * pow(((3*raio)/8), 3) * 4/3;
+
+    printf( "O volume de uma esfera com 3/8 do raio e: %lf\n" , volume );
 
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
@@ -358,7 +370,16 @@ void exercicio01E1()
     printf( "\nExercicio 01E1:\n\n" );
 
     // programa
+    double area = 0.0, raio = 0.0;
 
+    printf( "Insira o valor da area de uma circunferencia: " );
+    scanf( "%lf" , &area );
+    getchar();
+    printf( "\n" );
+
+    raio = sqrt( (area / 3 ) / PI );
+
+    printf( "O raio de uma circunferencia com 1/3 dessa area e: %lf\n" , raio );
 
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
@@ -370,7 +391,22 @@ void exercicio01E2()
     printf( "\nExercicio 01E2:\n\n" );
 
     // programa
+    double volume = 0.0, volumeNovo = 0.0, raio = 0.0, area = 0.0;
 
+    printf( "Insira o valor do volume de uma esfera: " );
+    scanf( "%lf" , &volume );
+    getchar();
+    printf( "\n" );
+
+    volumeNovo = ( 3 * volume ) / 4;
+
+    raio = cbrt( (volumeNovo * 3 * PI) / 4 );
+
+    area = 4 * PI * pow( raio, 2 );
+
+    printf( "O raio de 3/4 do volume da esfera e: %lf\n" , raio ); 
+
+    printf( "A area da superficie da esfera e: %lf\n" , area ); 
 
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
