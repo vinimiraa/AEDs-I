@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+// definicao de PI
 #define PI ( 3.14159265358979323846 )
 
 // declaracao das funcoes secundarias
@@ -49,8 +50,10 @@ int main (void)
         scanf( "%d" , &opcao ); 
         getchar(); // limpar entrada de dados
 
+        // estetica
         printf( "\n======== Opcao %d ========\n", opcao );
 
+        // executar a opcao escolhida
         switch (opcao)
         {
         case  0:                  break;
@@ -71,10 +74,12 @@ int main (void)
             break;
         } // fim switch
         
+        // estetica
         if( opcao == 0 ){
             printf("\n     Programa Encerrado     \n\n");
         }
 
+        // estetica
         printf( "====== Fim Opcao %d ======\n\n", opcao );
 
     }while (opcao != 0);
@@ -112,7 +117,7 @@ void menuOpcoes()
     printf(" 10 - Exercicio 0120\n");
     printf(" 11 - Exercicio 01E1\n");
     printf(" 12 - Exercicio 01E2\n");
-}
+} // fim menuOpcoes()
 
 void exercicio0111()
 {
@@ -134,7 +139,8 @@ void exercicio0111()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio0111
+
 void exercicio0112()
 {
     // identificacao
@@ -161,7 +167,8 @@ void exercicio0112()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio0112
+
 void exercicio0113()
 {
     // identificacao
@@ -189,7 +196,8 @@ void exercicio0113()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio0113
+
 void exercicio0114()
 {
     // identificacao
@@ -219,7 +227,8 @@ void exercicio0114()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio0114
+
 void exercicio0115()
 {
     // identificacao
@@ -244,7 +253,8 @@ void exercicio0115()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio0115
+
 void exercicio0116()
 {
     // identificacao
@@ -271,7 +281,8 @@ void exercicio0116()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio0116
+
 void exercicio0117()
 {
     // identificacao
@@ -292,7 +303,8 @@ void exercicio0117()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio0117
+
 void exercicio0118()
 {
     // identificacao
@@ -321,7 +333,8 @@ void exercicio0118()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio0118
+
 void exercicio0119()
 {   
     // identificacao
@@ -342,7 +355,8 @@ void exercicio0119()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio0119
+
 void exercicio0120()
 {
     // identificacao
@@ -363,7 +377,8 @@ void exercicio0120()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio0120
+
 void exercicio01E1()
 {
     // identificacao
@@ -384,7 +399,8 @@ void exercicio01E1()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio01E1
+
 void exercicio01E2()
 {
     // identificacao
@@ -411,4 +427,4 @@ void exercicio01E2()
     // encerrar
     printf( "\nAperte ENTER para terminar!\n" );
     getchar();
-}
+} // fim exercicio01E2
