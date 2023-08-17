@@ -69,7 +69,7 @@ int main (void)
         case 11: exercicio02E1(); break;
         case 12: exercicio02E2(); break;
         default:
-            printf( "\nERRO: OPCAO INVALIDA\n" );
+            printf( "\nERRO: OPCAO INVALIDA\n\n" );
             break;
         } // fim switch
         
@@ -124,6 +124,19 @@ void exercicio0211()
     printf( "\nExercicio 0211:\n\n" );
 
     // programa
+    int x = 0;
+
+    printf( "Digite um numero: " );
+    scanf( "%d" , &x );
+    getchar();
+    printf( "\n" );
+
+    if( x % 2 == 0 )
+    {
+        printf( "O numero %d e par\n" , x );
+    } else {
+        printf( "O numero %d e impar\n" , x );
+    }
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
@@ -136,6 +149,28 @@ void exercicio0212()
     printf( "\nExercicio 0212:\n\n" );
 
     // programa
+    int x = 0;
+
+    printf( "Digite um numero: " );
+    scanf( "%d" , &x );
+    getchar();
+    printf( "\n" );
+
+    if( x % 2 == 0 && x > 15)
+    { 
+        printf( "O numero %d e par e maior que 15\n" , x );
+    } else if( x % 2 == 0 && x < 15 )
+    {
+       printf( "O numero %d e par e menor que 15 \n" , x ); 
+    }
+    
+    if ( x % 2 == 1 && x < -15 ) 
+    {
+        printf( "O numero %d e impar e menor que -15\n" , x );
+    } else if( x % 2 == 1 && x > -15 )
+    {
+        printf( "O numero %d e impar e maior que -15\n" , x );
+    }
     
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
@@ -148,7 +183,22 @@ void exercicio0213()
     printf( "\nExercicio 0213:\n\n" );
 
     // programa
-   
+    int x = 0;
+
+    printf( "Digite um numero: " );
+    scanf( "%d" , &x );
+    getchar();
+    printf( "\n" );
+
+    if( 25 < x && x < 65 )
+    {
+        printf( "O numero (%d) esta dentro do intervalo (25:65)\n", x );
+    }
+    else
+    {
+        printf( "O numero (%d) esta fora do intervalo (25:65)\n" , x );
+    }
+
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
     getchar();
@@ -160,7 +210,20 @@ void exercicio0214()
     printf( "\nExercicio 0214:\n\n" );
 
     // programa
-   
+    int x = 0;
+
+    printf( "Digite um numero: " );
+    scanf( "%d" , &x );
+    getchar();
+    printf( "\n" );
+
+    if( 20 <= x && x <= 60 )
+    {
+        printf( "O numero (%d) esta dentro do intervalo [20:60]\n" , x );
+    } else {
+        printf( "O numero (%d) esta fora do intervalo [20:60]\n" , x);
+    }
+
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
     getchar();
@@ -172,6 +235,31 @@ void exercicio0215()
     printf( "\nExercicio 0215:\n\n" );
 
     // programa
+    int x = 0;
+
+    printf( "Digite um numero: " );
+    scanf( "%d" , &x );
+    getchar();
+    printf( "\n" );
+
+    if ( 25 < x && x < 50 )
+    {
+        if( 15 <= x && x <= 30 )
+        {
+        printf( "O numero (%d) esta dentro do intervalo (25:50) e do intervalo [15:30]\n" , x );
+        } else
+        {
+        printf( "O numero (%d) esta dentro do intervalo (25:50)\n" , x );
+        }
+    } else
+    {
+        if ( 15 <= x && x <= 30 )
+        {
+        printf( "O numero (%d) esta dentro do intervalo [15:30]\n" , x );
+        } else {
+            printf( "O numero (%d) nao esta dentro de nenhum intervalo\n" , x );
+        }
+    } 
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
@@ -184,6 +272,39 @@ void exercicio0216()
     printf( "\nExercicio 0216:\n\n" );
 
     // programa
+    int x = 0, y = 0;
+
+    printf( "Digite o primeiro numero: " );
+    scanf( "%d" , &x );
+    getchar();
+
+    printf( "Digite o segundo numero: " );
+    scanf( "%d" , &y );
+    getchar();
+    printf( "\n" );
+
+    if( x % 2 == 0 )
+    {
+        if( y % 2 == 1 )
+        {
+            printf( "O (%d) e par e (%d) e impar\n" , x , y );
+        }
+        else 
+        {
+            printf( "O (%d) e par e (%d) e par\n" , x , y );
+        }
+    } 
+    else
+    {
+        if( y % 2 == 1 )
+        {
+            printf( "O (%d) e impar e (%d) e impar\n" , x , y );
+        }
+        else 
+        {
+            printf( "O (%d) e impar e (%d) e par\n" , x , y );
+        }
+    }
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
@@ -196,7 +317,63 @@ void exercicio0217()
     printf( "\nExercicio 0217:\n\n" );
 
     // programa
-  
+    int x = 0, y = 0;
+
+    printf( "Digite o primeiro numero: " );
+    scanf( "%d" , &x );
+    getchar();
+
+    printf( "Digite o segundo numero: " );
+    scanf( "%d" , &y );
+    getchar();
+    printf( "\n" );
+    // primeiro numero
+    if( x % 2 != 0 )
+    {
+        if( x < 0 )
+        {
+            printf("O numero (%d) impar e negativo\n" , x );
+        }
+        else
+        {
+            printf("O numero (%d) impar e positivo\n" , x );
+        }
+    }
+    else
+    {
+        if( x < 0 )
+        {
+            printf("O numero (%d) par e negativo\n" , x );
+        }
+        else
+        {
+            printf("O numero (%d) par e positivo\n" , x );
+        }
+    }
+    // segundo numero
+    if( y % 2 == 0 )
+    {
+        if( y > 0 )
+        {
+            printf("O numero (%d) par e positivo\n" , y);
+        }
+        else
+        {
+            printf("O numero (%d) par e negativo\n" , y);
+        }
+    }
+    else
+    {
+        if( y > 0 )
+        {
+            printf("O numero (%d) impar e positivo\n" , y);
+        }
+        else
+        {
+            printf("O numero (%d) impar e negativo\n" , y);
+        }
+    }
+
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
     getchar();
@@ -208,6 +385,26 @@ void exercicio0218()
     printf( "\nExercicio 0218:\n\n" );
 
     // programa
+    double x = 0, y = 0;
+
+    printf( "Digite o primeiro numero: " );
+    scanf( "%lf" , &x );
+    getchar();
+
+    printf( "Digite o segundo numero: " );
+    scanf( "%lf" , &y );
+    getchar();
+    printf( "\n" );
+
+    if( ( y < x ) || ( y == x ) || ( y > (2 * x) ) )
+    {
+        if( y < x )
+            printf( "(%lf) e menor que (%lf)\n" , y , x );
+        else if( y == x )
+            printf( "(%lf) e igual a (%lf)\n" , y , x );
+        else
+            printf( "(%lf) e maior que o dobro de (%lf)\n" , y , x );
+    }
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
@@ -220,7 +417,35 @@ void exercicio0219()
     printf( "\nExercicio 0219:\n\n" );
 
     // programa
+    double x = 0, y = 0, z = 0;
 
+    printf( "Digite o primeiro numero: " );
+    scanf( "%lf" , &x );
+    getchar();
+
+    printf( "Digite o segundo numero: " );
+    scanf( "%lf" , &y );
+    getchar();
+
+    printf( "Digite o terceiro numero: " );
+    scanf( "%lf" , &z );
+    getchar();
+    printf( "\n" );
+
+    if( x != y)
+    {
+        if( (x < z) && (z < y) )
+        {
+            printf( "(%lf) esta entre (%lf) e (%lf)\n" , z , x , y );
+        } else
+        {
+            printf( "(%lf) nao esta entre (%lf) e (%lf)\n" , z , x , y );
+        }
+    } else
+    {
+        printf( "(%lf) e (%lf) sao iguais logo (%lf) nao esta entre esses valores\n" , x , y , z );
+    }
+    
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
     getchar();
@@ -232,6 +457,37 @@ void exercicio0220()
     printf( "\nExercicio 0220:\n\n" );
 
     // programa
+    double x = 0, y = 0, z = 0;
+
+    printf( "Digite o primeiro numero: " );
+    scanf( "%lf" , &x );
+    getchar();
+
+    printf( "Digite o segundo numero: " );
+    scanf( "%lf" , &y );
+    getchar();
+
+    printf( "Digite o terceiro numero: " );
+    scanf( "%lf" , &z );
+    getchar();
+    printf( "\n" );
+
+    if( (x != y) && (x != z) && (z!=y) )
+    {
+        if( !( (x < z) && (z < y) ) )
+        {
+            printf( "(%lf) nao esta entre (%lf) e (%lf)\n" , z , x , y );
+        } 
+        else
+        {
+            printf( "(%lf) esta entre (%lf) e (%lf)\n" , z , x , y );
+        }
+    } 
+    else
+    {
+        if( (x == y) || (y == z) )
+            printf( "Dois numeros sao iguais\n" );
+    }
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
@@ -244,6 +500,35 @@ void exercicio02E1()
     printf( "\nExercicio 02E1:\n\n" );
 
     // programa
+    char a, b, c;
+
+    printf( "Digite o primeiro caracter: " );
+    scanf( "%c" , &a );
+    getchar();
+
+    printf( "Digite o segundo caracter: " );
+    scanf( "%c" , &b );
+    getchar();
+
+    printf( "Digite o terceiro caracter: " );
+    scanf( "%c" , &c );
+    getchar();
+    printf( "\n" );
+
+    if( (a == b) || (a == c) )
+    {
+        printf( "O primeiro caracter e igual a outro\n" );
+    }
+    else
+    {
+        if( ( (b < a) && (a < c) ) || ( (b > a) && ( a > c) ) )
+        {
+            printf("O caracter (%c) esta entre (%c) e (%c)\n" , a , b , c );
+        } else
+        {
+            printf( "O caracter (%c) nao esta entre (%c) e (%c)\n" , a , b , c );
+        }
+    } 
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
@@ -256,6 +541,35 @@ void exercicio02E2()
     printf( "\nExercicio 02E2:\n\n" );
 
     // programa
+    char a, b, c;
+
+    printf( "Digite o primeiro caracter: " );
+    scanf( "%c" , &a );
+    getchar();
+
+    printf( "Digite o segundo caracter: " );
+    scanf( "%c" , &b );
+    getchar();
+
+    printf( "Digite o terceiro caracter: " );
+    scanf( "%c" , &c );
+    getchar();
+    printf( "\n" );
+
+    if( b != c )
+    {
+        if( !( ( (b < a) && (a < c) ) || ( (b > a) && ( a > c) ) ) )
+        {
+            printf("O caracter (%c) esta fora do intervalo ( %c : %c )\n" , a , b , c );
+        } else
+        {
+            printf( "O caracter (%c) esta dentro do intervalo ( %c : %c )\n" , a , b , c );
+        }
+    }
+    else
+    {
+        printf( "Ha dois caracteres iguais\n" );
+    }
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
