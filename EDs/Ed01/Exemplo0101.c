@@ -87,6 +87,7 @@ int main()
     getchar();  // aguardar por ENTER
     return (0); // voltar ao SO (sem erros)
 } // end main ( )
+
 /*
 ---------------------------------------------- documentacao complementar
 ---------------------------------------------- notas / observacoes / comentarios

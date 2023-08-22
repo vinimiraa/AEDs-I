@@ -166,7 +166,7 @@ int main()
     // definir dado
     int opcao = 0;
     // identificar
-    printf("%s\n", "Exemplo0100 - Programa = v0.0");
+    printf("%s\n", "Exemplo0105 - Programa = v0.0");
     printf("%s\n", "Autor: Vinicius Miranda de Araujo");
     printf("\n"); // mudar de linha
                   // acoes
