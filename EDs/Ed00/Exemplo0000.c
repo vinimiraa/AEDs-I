@@ -9,6 +9,7 @@
  Linux : ./exemplo0000
  Windows: exemplo0000
 */
+
 // dependencias
 #include <stdio.h> // para as entradas e saidas
 /*

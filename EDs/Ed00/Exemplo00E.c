@@ -9,7 +9,7 @@
  Linux : ./exemplo00E
  Windows: exemplo00E
 */
-
+// dependencias
 #include <stdio.h>   // para as entradas e saidas
 #include <stdlib.h>  // para outras funcoes de uso geral
 #include <math.h>    // para operacoes matematicas

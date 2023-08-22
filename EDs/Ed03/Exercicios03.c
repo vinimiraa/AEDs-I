@@ -290,6 +290,7 @@ void exercicio0315()
             count++;
         }
     }
+
     printf( "\nEm \"%s\" %d caracteres sao digitos\n", palavra, count );
     // isdigit => if( '0' <= palavra[i] && palavra[i] <= '9' )
     // encerrar
@@ -321,6 +322,7 @@ void exercicio0316()
             count++;
         }
     }
+
     printf( "\nEm \"%s\" %d caracteres nao sao digitos nem letras\n", palavra, count );
     // isdigit => if( '0' <= palavra[i] && palavra[i] <= '9' )
     // encerrar
@@ -335,7 +337,7 @@ void exercicio0317()
 
     // programa
     int a = 0, b = 0, n = 0, i = 0;
-    int x[n];
+    int count = 0;
 
     printf( "Insira o primeiro valor do intervalo: " );
     scanf( "%d" , &a ); 
@@ -350,6 +352,7 @@ void exercicio0317()
     getchar();
     printf( "\n" );
 
+    int x[n]; // vetor
     for( i = 0; i < n; i=i+1 )
     {
         printf( "Digite o valor: " );
@@ -362,9 +365,12 @@ void exercicio0317()
         if( (x[i] % 5 == 0) && (a <= x[i] && x[i] <= b) )
         {
             printf( "O numero (%d) e multiplo de 5 e esta dento do intervalo [ %d : %d ]\n" , x[i], a, b );
+            count++;
         }
     }
-    
+
+    printf( "\n(%d) valores sao multiplos de 5 e pertecema ao intervalo\n", count );
+
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
     getchar();
@@ -376,7 +382,40 @@ void exercicio0318()
     printf( "\nExercicio 0318:\n\n" );
 
     // programa
+    int a = 0, b = 0, n = 0, i = 0;
+    int count = 0;
 
+    printf( "Insira o primeiro valor do intervalo: " );
+    scanf( "%d" , &a ); 
+    getchar();
+
+    printf( "Insira o valor final do intervalo: " );
+    scanf( "%d" , &b ); 
+    getchar();
+
+    printf( "Insira a quantidade de valores: " );
+    scanf( "%d" , &n );
+    getchar();
+    printf( "\n" );
+
+    int x[n]; // vetor
+
+    for( i = 0; i < n; i=i+1 )
+    {
+        printf( "Digite o valor: " );
+        scanf( "%d" , &x[i] );
+        getchar();
+    }
+    printf( "\n" );
+    for( i = 0; i < n; i++ )
+    {
+        if( (x[i] % 3 == 0) && !(x[i] % 5 == 0) && (a <= x[i] && x[i] <= b) )
+        {
+            printf( "O numero (%d) e multiplo de 3, nao e multiplo de 5 e esta dento do intervalo [ %d : %d ]\n" , x[i], a, b );
+            count++;
+        }
+    }
+    printf( "\n(%d) valores sao multiplos de 3, nao sao multiplos de 5 e pertecema ao intervalo\n", count );
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
     getchar();
@@ -388,6 +427,47 @@ void exercicio0319()
     printf( "\nExercicio 0319:\n\n" );
 
     // programa
+    double a = 0, b = 0;
+    int n = 0, i = 0, count = 0;
+    
+    printf( "Insira o primeiro valor do intervalo: " );
+    scanf( "%lf" , &a ); 
+    getchar();
+
+    printf( "Insira o valor final do intervalo: " );
+    scanf( "%lf" , &b ); 
+    getchar();
+
+    if( a >= b )
+    {
+        printf( "\nERRO: A valor inicial o intervalo e maior que o valor final!\n" );
+    }
+    else
+    {
+        printf( "Insira a quantidade de valores: " );
+        scanf( "%d" , &n );
+        getchar();
+        printf( "\n" );
+
+        double x[n];
+
+        for( i = 0; i < n; i=i+1 )
+        {
+            printf( "Digite o valor: " );
+            scanf( "%lf" , &x[i] );
+            getchar();
+        }
+        for ( i = 0; i < n; i++)
+        {
+            if( ( (int)x[i]%2 == 1 ) && ( a < x[i] && x[i] < b ) )
+            {
+                printf( "(%lf) e impar e pertece ao intervalo\n" , x[i] );
+            }
+            count++;
+        }
+        
+        printf( "\n%d valores sao impares e pertencem ao intervalo\n" , count );
+    }
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
@@ -400,6 +480,49 @@ void exercicio0320()
     printf( "\nExercicio 0320:\n\n" );
 
     // programa
+    double a = 0, b = 0;
+    int i = 0, n = 0, count = 0;
+
+    printf( "Insira o primeiro valor do intervalo: " );
+    scanf( "%lf" , &a ); 
+    getchar();
+
+    printf( "Insira o valor final do intervalo: " );
+    scanf( "%lf" , &b ); 
+    getchar();
+
+
+    if( !( (0 < a && a < 1) && (0 < b && b < 1) ) )
+    {
+        printf( "ERRO: O valor e inicial e final nao sao maiores que 0 e menores que 1" );
+    }
+    else
+    {
+        printf( "Insira a quantidade de valores: " );
+        scanf( "%d" , &n );
+        getchar();
+        printf( "\n" );
+
+        double x[n];
+
+        for( i = 0; i < n; i=i+1 )
+        {
+            printf( "Digite o valor: " );
+            scanf( "%lf" , &x[i] );
+            getchar();
+        } 
+
+        for ( i = 0; i < n; i++)
+        {
+            if( !( a < x[i] && x[i] < b ) )
+            {
+                printf( "(%lf) nao pertece ao intervalo\n" , x[i] );
+            }
+            count++;
+        }
+        
+        printf( "\n%d valores nao pertencem ao intervalo\n" , count );
+    }
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );

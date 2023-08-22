@@ -128,7 +128,6 @@ int main()
 
     return (0); // voltar ao SO (sem erros)
 } // end main ( )
-
 /*
   ---------------------------------------------- documentacao complementar
   ---------------------------------------------- notas / observacoes / comentarios

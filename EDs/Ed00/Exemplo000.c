@@ -45,7 +45,7 @@ void metodo03()
     printf("\n%s\n", "EXEMPLO0103 - PRIMEIRO EXEMPLO EM C");
     // (dependente do sistema operacional)
     clrscr(); // para limpar a tela
-    printf("\n%s\n", "MATRICULA: ______ ALUNO : __________________");
+    printf("\n%s\n", "MATRICULA: 812839 ALUNO : Vinicius Miranda de Araujo");
     // encerrar
     printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
     getchar(); // para esperar
@@ -55,7 +55,7 @@ void metodo04()
     // identificar
     printf("\n%s\n", "EXEMPLO0104 - PRIMEIRO EXEMPLO EM C");
     printf("\n"); // para mudar de linha (="\n")
-    printf("\n%s\n", "MATRICULA: ______ ALUNO : __________________");
+    printf("\n%s\n", "MATRICULA: 812839 ALUNO : Vinicius Miranda de Araujo");
     printf("\n"); // para mudar de linha
                   // encerrar
     printf("\n%s\n", "APERTAR <Enter> PARA TERMINAR.");
@@ -65,7 +65,7 @@ void metodo05()
 {
     // identificar
     printf("\n%s\n", "EXEMPLO0105 - PRIMEIRO EXEMPLO EM C");
-    printf("\n%s\n", "MATRICULA: ______ ALUNO : __________________");
+    printf("\n%s\n", "MATRICULA: 812839 ALUNO : Vinicius Miranda de Araujo");
     printf("\nEXEMPLOS DE VALORES : ");
     printf("\nCARACTERE : %c", 'A'); // letra ou simbolo
     printf("\nINTEIRO : %d", 10);    // valor sem parte fracionaria
@@ -79,7 +79,7 @@ void metodo06()
     double PI = 3.1415;
     // identificar
     printf("\n%s\n", "EXEMPLO0106 - PRIMEIRO EXEMPLO EM C");
-    printf("\n%s\n", "MATRICULA: ______ ALUNO : __________________");
+    printf("\n%s\n", "MATRICULA: 812839 ALUNO : Vinicius Miranda de Araujo");
     printf("\nEXEMPLOS DE VALORES : ");
     printf("\nCARACTERE : %c", 'A'); // letra ou simbolo
     printf("\nINTEIRO : %d", 10);    // valor sem parte fracionaria
@@ -94,7 +94,7 @@ void metodo07()
     const float PI = 3.14; // com nome e tipo (melhor)
                            // identificar
     printf("\n%s\n", "EXEMPLO0107 - PRIMEIRO EXEMPLO EM C");
-    printf("\n%s\n", "MATRICULA: ______ ALUNO : __________________");
+    printf("\n%s\n", "MATRICULA: 812839 ALUNO : Vinicius Miranda de Araujo");
     printf("\nEXEMPLOS DE VALORES : ");
     printf("\nCARACTERE : %c", 'A'); // letra ou simbolo
     printf("\nINTEIRO : %d", 10);    // valor sem parte fracionaria
@@ -111,7 +111,7 @@ void metodo08()
     float X = 10.01;       // com atribuicao de valor inicial
                            // identificar
     printf("\n%s\n", "EXEMPLO0108 - PRIMEIRO EXEMPLO EM C");
-    printf("\n%s\n", "MATRICULA: ______ ALUNO : __________________");
+    printf("\n%s\n", "MATRICULA: 812839 ALUNO : Vinicius Miranda de Araujo");
     printf("\nEXEMPLOS DE VALORES : ");
     printf("\nCARACTERE : %c", 'A'); // letra ou simbolo
     printf("\nINTEIRO : %d", 10);    // valor sem parte fracionaria
@@ -131,7 +131,7 @@ void metodo09()
     int I = 10;
     // identificar
     printf("\n%s\n", "EXEMPLO0109 - PRIMEIRO EXEMPLO EM C");
-    printf("\n%s\n", "MATRICULA: ______ ALUNO : __________________");
+    printf("\n%s\n", "MATRICULA: 812839 ALUNO : Vinicius Miranda de Araujo");
     printf("\nEXEMPLOS DE VALORES : ");
     printf("\nINTEIRO : %i", I);
     printf("\nREAL : %f", X);
@@ -152,7 +152,7 @@ void metodo10()
     char N = '\n'; // mudar de linha
                    // identificar
     printf("\n%s\n", "EXEMPLO0106 - PRIMEIRO EXEMPLO EM C");
-    printf("\n%s\n", "MATRICULA: ______ ALUNO : __________________");
+    printf("\n%s\n", "MATRICULA: 812839 ALUNO : __________________");
     printf("%c%s", N, "EXEMPLOS DE VALORES : ");
     printf("%c%s%i", N, "INTEIRO : ", I);
     printf("%c%s%f", N, "REAL : ", X);
