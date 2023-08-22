@@ -1,23 +1,39 @@
 /*
- Exercicios0X - v0.0. - 11 / 08 / 2023
- Author: Vinicius Miranda de Araujo
-
- Para compilar em terminal (janela de comandos):
- Linux : gcc -o Exercicios0X Exercicios0X.c
- Windows: gcc -o Exercicios0X Exercicios0X.c
- Para executar em terminal (janela de comandos):
- Linux : ./Exercicios0X
- Windows: Exercicios0X
+ * -------------------------- Documentacao
+ * Pontificia Universidade Catolica de Minas Gerais
+ * Curso de Ciencia da Computacao
+ * Algoritmos e Estruturas de Dados I
+ * 
+ * Exercicios0X - v0.0. - __ / __ / ____
+ * Author: Vinicius Miranda de Araujo
+ * 
+ * Para compilar em terminal (janela de comandos):
+ *      Linux : gcc -o Exercicios0X Exercicios0X.c
+ *      Windows: gcc -o Exercicios0X Exercicios0X.c
+ * 
+ * Para executar em terminal (janela de comandos):
+ *      Linux : ./Exercicios0X
+ *      Windows: Exercicios0X
+ * 
 */
 
-// dependencias
+// -------------------------- lista de dependencias
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 
-// declaracao das funcoes secundarias
+// -------------------------- tratamento de erro
+
+// -------------------------- definicao de constantes
+
+// -------------------------- definicao de variaveis globais
+
+// -------------------------- definicao de prototipos
+
 void identificacao();
 void menuOpcoes();
 void exercicio0X11();
@@ -33,7 +49,8 @@ void exercicio0X20();
 void exercicio0XE1();
 void exercicio0XE2();
 
-// funcao principal
+// -------------------------- definicao do metodo principal
+
 int main (void)
 {
     int opcao = 0;
@@ -90,8 +107,11 @@ int main (void)
     return (0);
 }
 
-// definicao das funcoes secundarias
+// -------------------------- definicao de metodos
 
+/**
+  * Identificacao do Autor e Programa
+  */
 void identificacao()
 {
     printf("\n");
@@ -100,6 +120,9 @@ void identificacao()
     printf("\n");
 } // fim identificacao()
 
+/**
+  * Menu de opcoes
+  */
 void menuOpcoes()
 {
     printf( "%s\n\n" , "Escolha alguma das opcoes a seguir:");
@@ -118,6 +141,9 @@ void menuOpcoes()
     printf( "%s\n" , " 12 - Exercicio 0XE2");
 } // fim menuOpcoes()
 
+/**
+  * Metodo01.
+  */
 void exercicio0X11()
 {
     // identificacao
@@ -130,6 +156,9 @@ void exercicio0X11()
     getchar();
 } // fim exercicio0X11
 
+/**
+  * Metodo02.
+  */
 void exercicio0X12()
 {
     // identificacao
@@ -142,6 +171,9 @@ void exercicio0X12()
     getchar();
 } // fim exercicio0X12
 
+/**
+  * Metodo03.
+  */
 void exercicio0X13()
 {
     // identificacao
@@ -154,6 +186,9 @@ void exercicio0X13()
     getchar();
 } // fim exercicio0X13
 
+/**
+  * Metodo04.
+  */
 void exercicio0X14()
 {
     // identificacao
@@ -166,6 +201,9 @@ void exercicio0X14()
     getchar();
 } // fim exercicio0X14
 
+/**
+  * Metodo05.
+  */
 void exercicio0X15()
 {
     // identificacao
@@ -178,6 +216,9 @@ void exercicio0X15()
     getchar();
 } // fim exercicio0X15
 
+/**
+  * Metodo06.
+  */
 void exercicio0X16()
 {
     // identificacao
@@ -190,6 +231,9 @@ void exercicio0X16()
     getchar();
 } // fim exercicio0X16
 
+/**
+  * Metodo07.
+  */
 void exercicio0X17()
 {
     // identificacao
@@ -202,6 +246,9 @@ void exercicio0X17()
     getchar();
 } // fim exercicio0X17
 
+/**
+  * Metodo08.
+  */
 void exercicio0X18()
 {
     // identificacao
@@ -214,6 +261,9 @@ void exercicio0X18()
     getchar();
 } // fim exercicio0X18
 
+/**
+  * Metodo09.
+  */
 void exercicio0X19()
 {   
     // identificacao
@@ -226,6 +276,9 @@ void exercicio0X19()
     getchar();
 } // fim exercicio0X19
 
+/**
+  * Metodo10.
+  */
 void exercicio0X20()
 {
     // identificacao
@@ -238,6 +291,9 @@ void exercicio0X20()
     getchar();
 } // fim exercicio0X20
 
+/**
+  * Metodo11.
+  */
 void exercicio0XE1()
 {
     // identificacao
@@ -250,6 +306,9 @@ void exercicio0XE1()
     getchar();
 } // fim exercicio0XE1
 
+/**
+  * Metodo12.
+  */
 void exercicio0XE2()
 {
     // identificacao
