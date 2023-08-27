@@ -149,13 +149,13 @@ void printArray(int vetor[], int n)
     print("\n%s\n", "Vetor: ");
     for (i = 0; i < n; i = i + 1)
     {
-        print(" [ %2d ] ", vetor[i]);
+        print("[ %2d ] ", vetor[i]);
     }
     print("\n");
 } // end printArray()
 
 /**
-    Funcao inverter as posicoes de um vetor.
+    Funcao para inverter as posicoes de um vetor.
     @param  array Vetor.
     @param  size Quantidade de elementos do vetor.
 */
@@ -164,19 +164,57 @@ void reverseArray(int vetor[], int n)
     int i = 0;
     for (i = 0; i < n / 2; i++)
     {
-        int temp = vetor[i];
+        int aux = vetor[i];
         vetor[i] = vetor[n - 1 - i];
-        vetor[n - 1 - i] = temp;
+        vetor[n - 1 - i] = aux;
     }
-} // end reverseArray
+} // end reverseArray()
+
+/**
+    Funcao para retornar o maior elemento de um vetor.
+    @param  array Vetor.
+    @param  size Quantidade de elementos do vetor.
+*/
+int maxArray(int vetor[], int n)
+{
+    int i = 0, maior = 0;
+    maior = vetor[0];
+    for (i = 0; i < n; i++)
+    {
+        if (vetor[i] > maior)
+        {
+            maior = vetor[i];
+        }
+    }
+    return (maior);
+} // end maxArray()
+
+/**
+    Funcao para retornar o menor elemento de um vetor.
+    @param  array Vetor.
+    @param  size Quantidade de elementos do vetor.
+*/
+int minArray(int vetor[], int n)
+{
+    int i = 0, menor = 0;
+    menor = vetor[0];
+    for (i = 0; i < n; i++)
+    {
+        if (vetor[i] < menor)
+        {
+            menor = vetor[i];
+        }
+    }
+    return (menor);
+} // end maxArray()
 
 /**
     Funcao para mostrar na tela uma matriz de inteiros.
-    @param  lin Numero de linhas da matriz.
+    @param  row Numero de linhas da matriz.
     @param  col Numero de colunas da matriz.
-    @param  matrix Matriz .
+    @param  matrix Matriz.
 */
-void printMatriz(int nLin, int nCol, const int matriz[][nCol])
+void printMatrix(int nLin, int nCol, const int matriz[][nCol])
 {
     int i = 0, j = 0;
     print("\n%s\n", "Matriz: ");
@@ -184,11 +222,118 @@ void printMatriz(int nLin, int nCol, const int matriz[][nCol])
     {
         for (j = 0; j < nCol; j = j + 1)
         {
-            print(" [ %2d ] ", matriz[i][j]);
+            print("[ %2d ] ", matriz[i][j]);
         }
         print("\n");
     }
-    print("\n");
 } // end printMatriz()
+
+/**
+    Funcao para mostrar os valores da diagonal principal de uma matriz.
+    @param  row Numero de linhas da matriz.
+    @param  col Numero de colunas da matriz.
+    @param  matrix Matriz.
+*/
+void leadingMatrix(int nLin, int nCol, int matriz[][nCol])
+{
+    int i = 0;
+    print("\n%s\n", "Diagonal Principal da Matrix: ");
+    if (nLin != nCol)
+    {
+        print("\n%s\n", " ERRO: a matriz nao e quadrada!");
+    }
+    else
+    {   
+        for (i = 0; i < nLin; i = i + 1)
+        {
+            print("[ %2d ] " , matriz[i][i]);
+        } // end for
+        print( "\n" );
+    }     // end else
+} // end leadingMatrix()
+
+/**
+    Funcao para mostrar os valores da diagonal principal de uma matriz.
+    @param  row Numero de linhas da matriz.
+    @param  col Numero de colunas da matriz.
+    @param  matrix Matriz.
+*/
+void secondaryMatrix(int nLin, int nCol, int matriz[][nCol])
+{
+    int i = 0;
+    print("\n%s\n", "Diagonal Secundaria da Matrix: ");
+    if (nLin != nCol)
+    {
+        print("\n%s\n", " ERRO: a matriz nao e quadrada!");
+    }
+    else
+    {   
+        for (i = 0; i < nLin; i = i + 1)
+        {
+            print("[ %2d ] " , matriz[i][nLin - 1 - i]);
+        } // end for
+        print( "\n" );
+    }     // end else
+} // end secondaryMatrix()
+
+/**
+    Funcao para mostrar os valores abaixo da diagonal principal de uma matriz.
+    @param  row Numero de linhas da matriz.
+    @param  col Numero de colunas da matriz.
+    @param  matrix Matriz.
+*/
+void inferiorMatrix(int nLin, int nCol, int matriz[][nCol])
+{
+    int i = 0, j = 0;
+    print("\n%s\n", "Elementos Abaixo da Diagonal Principal da Matrix: ");
+    if (nLin != nCol)
+    {
+        print("\n%s\n", " ERRO: a matriz nao e quadrada!");
+    }
+    else
+    {   
+        for (i = 0; i < nLin; i = i + 1)
+        {
+            for (j = 0; j < nCol; j = j + 1)
+            {
+                if( i > j )
+                {
+                    print("[ %2d ] " , matriz[i][j]);
+                } // end if
+            }     // end for
+        }         // end for
+        print( "\n" );
+    }             // end else
+} // end inferiorMatrix()
+
+/**
+    Funcao para mostrar os valores acima da diagonal principal de uma matriz.
+    @param  row Numero de linhas da matriz.
+    @param  col Numero de colunas da matriz.
+    @param  matrix Matriz.
+*/
+void superiorMatrix(int nLin, int nCol, int matriz[][nCol])
+{
+    int i = 0, j = 0;
+    print("\n%s\n", "Elementos Acima da Diagonal Principal da Matrix: ");
+    if (nLin != nCol)
+    {
+        print("\n%s\n", " ERRO: a matriz nao e quadrada!");
+    }
+    else
+    {   
+        for (i = 0; i < nLin; i = i + 1)
+        {
+            for (j = 0; j < nCol; j = j + 1)
+            {
+                if( i < j )
+                {
+                    print("[ %2d ] " , matriz[i][j]);
+                } // end if
+            }     // end for
+        }         // end for
+        print( "\n" );
+    }             // end else
+} // end superiorMatrix()
 
 #endif
