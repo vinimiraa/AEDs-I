@@ -240,22 +240,22 @@ void exercicio0314()
     
     for( i = 0; i < tamanho; i=i+1 )
     {
-            if( isalpha(palavra[i] ) ) 
-               {
-                   if( islower(palavra[i]) )
-                   {
-                       printf( "O caracter (%c) e minusculo\n" , palavra[i] );
-                   }
-                   else
-                   {
-                       printf( "O caracter (%c) e MAIUSCULO\n" , palavra[i] );
-                   }
-                   count++;
-               }
-               else
-               {
-                   printf( "O caracter (%c) e um simbolo\n" , palavra[i] );
-               }      
+        if( isalpha(palavra[i] ) ) 
+        {
+            if( islower(palavra[i]) )
+            {
+                printf( "O caracter (%c) e minusculo\n" , palavra[i] );
+            }
+            else
+            {
+                printf( "O caracter (%c) e MAIUSCULO\n" , palavra[i] );
+            }
+            count++;
+        }
+        else
+        {
+            printf( "O caracter (%c) e um simbolo\n" , palavra[i] );
+        }      
     }
 
     printf( "\nEm \"%s\" %d caracteres sao letras\n", palavra, count );
@@ -407,9 +407,10 @@ void exercicio0318()
         getchar();
     }
     printf( "\n" );
+
     for( i = 0; i < n; i++ )
     {
-        if( (x[i] % 3 == 0) && !(x[i] % 5 == 0) && (a <= x[i] && x[i] <= b) )
+        if( (x[i] % 3 == 0) && (x[i] % 5 != 0) && (a <= x[i] && x[i] <= b) )
         {
             printf( "O numero (%d) e multiplo de 3, nao e multiplo de 5 e esta dento do intervalo [ %d : %d ]\n" , x[i], a, b );
             count++;
@@ -427,7 +428,7 @@ void exercicio0319()
     printf( "\nExercicio 0319:\n\n" );
 
     // programa
-    double a = 0, b = 0;
+    double a = 0.0, b = 0.0;
     int n = 0, i = 0, count = 0;
     
     printf( "Insira o primeiro valor do intervalo: " );
@@ -440,7 +441,7 @@ void exercicio0319()
 
     if( a >= b )
     {
-        printf( "\nERRO: A valor inicial o intervalo e maior que o valor final!\n" );
+        printf( "\nERRO: A valores invalidos! Certifique-se de que a < b! \n" );
     }
     else
     {
@@ -457,13 +458,20 @@ void exercicio0319()
             scanf( "%lf" , &x[i] );
             getchar();
         }
+        printf( "\n" );
+
         for ( i = 0; i < n; i++)
         {
-            if( ( (int)x[i]%2 == 1 ) && ( a < x[i] && x[i] < b ) )
+            if( a < x[i] && x[i] < b )
             {
-                printf( "(%lf) e impar e pertece ao intervalo\n" , x[i] );
+                int inteiro = (int)x[i];
+                if( inteiro % 2 == 1 )
+                {
+                    printf( "(%.2lf) e impar e pertece ao intervalo\n" , x[i] );
+                    count++;
+                }
+                
             }
-            count++;
         }
         
         printf( "\n%d valores sao impares e pertencem ao intervalo\n" , count );
@@ -480,7 +488,7 @@ void exercicio0320()
     printf( "\nExercicio 0320:\n\n" );
 
     // programa
-    double a = 0, b = 0;
+    double a = 0.0, b = 0.0;
     int i = 0, n = 0, count = 0;
 
     printf( "Insira o primeiro valor do intervalo: " );
@@ -492,9 +500,9 @@ void exercicio0320()
     getchar();
 
 
-    if( !( (0 < a && a < 1) && (0 < b && b < 1) ) )
+    if( a <= 0 || a >= 1 || b <= 0 || b >= 1 || a >= b ) //
     {
-        printf( "ERRO: O valor e inicial e final nao sao maiores que 0 e menores que 1" );
+        printf( "\n%s\n" , "ERRO: O valor e inicial e final nao sao maiores que 0 e menores que 1" );
     }
     else
     {
@@ -511,14 +519,20 @@ void exercicio0320()
             scanf( "%lf" , &x[i] );
             getchar();
         } 
+        printf( "\n" );
+
+        for( i = 0; i < n; i=i+1 )
+        {
+            x[i] = x[i] - (int)x[i];
+        }
 
         for ( i = 0; i < n; i++)
         {
-            if( !( a < x[i] && x[i] < b ) )
+            if( x[i] < a || x[i] > b ) // nao pertence ao intervalo
             {
-                printf( "(%lf) nao pertece ao intervalo\n" , x[i] );
+                printf( "(%.2lf) nao pertece ao intervalo\n" , x[i] );
+                count++;
             }
-            count++;
         }
         
         printf( "\n%d valores nao pertencem ao intervalo\n" , count );
@@ -535,6 +549,19 @@ void exercicio03E1()
     printf( "\nExercicio 03E1:\n\n" );
 
     // programa
+    char linha[STR_SIZE];
+    int i = 0;
+
+    printf( "Digite uma linha:\n" );
+    fgets(linha, sizeof(linha), stdin);
+
+    for( i = 0; linha[i] != '\0'; i++ )
+    {
+        if( !(isalnum(linha[i])) && !(isspace(linha[i])) )
+        {
+            printf( "%c%s\n" , linha[i], " nao e alfanumerico." );
+        }
+    }
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
@@ -547,6 +574,34 @@ void exercicio03E2()
     printf( "\nExercicio 03E2:\n\n" );
 
     // programa
+    char palavra[STR_SIZE];
+    int i = 0, tam = 0, var = 0;
+
+    printf( "Digite uma sequencia de caracteres:\n" );
+    scanf( "%s" , palavra );
+
+    tam = strlen(palavra);
+
+    for( i = 0; i < tam; i++ )
+    {
+        if( isalpha(palavra[i]) )
+        {
+            var = 0;
+        }
+        else
+        {
+            var = 1;
+        }
+    }
+
+    if(var)
+    {
+        printf("\nA cadeia de caracteres \"%s\" so tem simbolos\n" , palavra);
+    }
+    else
+    {
+        printf("\nA cadeia de caracteres \"%s\" tem letra(s)\n" , palavra);
+    }
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );

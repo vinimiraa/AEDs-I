@@ -146,7 +146,7 @@ void menuOpcoes()
 /**
   * Metodo01.
   */
-void exercicio0411()
+void exercicio0411(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0411:" );
@@ -202,7 +202,7 @@ void exercicio0411()
 /**
   * Metodo02.
   */
-void exercicio0412()
+void exercicio0412(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0412:" );
@@ -255,7 +255,7 @@ void maiorK(const char * text)
   
   printf( "\n(%d) letras maiusculas sao maiores do que \'K\'\n", count );
 }
-void exercicio0413()
+void exercicio0413(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0413:" );
@@ -277,7 +277,7 @@ void exercicio0413()
 /**
   * Metodo04.
   */
-void exercicio0414()
+void exercicio0414(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0414:" );
@@ -297,7 +297,7 @@ void exercicio0414()
 /**
   * Metodo05.
   */
-void exercicio0415()
+void exercicio0415(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0415:" );
@@ -312,7 +312,7 @@ void exercicio0415()
 /**
   * Metodo06.
   */
-void exercicio0416()
+void exercicio0416(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0416:" );
@@ -327,7 +327,7 @@ void exercicio0416()
 /**
   * Metodo07.
   */
-void exercicio0417()
+void exercicio0417(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0417:" );
@@ -342,7 +342,7 @@ void exercicio0417()
 /**
   * Metodo08.
   */
-void exercicio0418()
+void exercicio0418(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0418:" );
@@ -357,7 +357,7 @@ void exercicio0418()
 /**
   * Metodo09.
   */
-void exercicio0419()
+void exercicio0419(void)
 {   
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0419:" );
@@ -372,7 +372,7 @@ void exercicio0419()
 /**
   * Metodo10.
   */
-void exercicio0420()
+void exercicio0420(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0420:" );
@@ -387,7 +387,7 @@ void exercicio0420()
 /**
   * Metodo11.
   */
-void exercicio04E1()
+void exercicio04E1(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 04E1:" );
@@ -402,7 +402,7 @@ void exercicio04E1()
 /**
   * Metodo12.
   */
-void exercicio04E2()
+void exercicio04E2(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 04E2:" );

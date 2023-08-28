@@ -156,20 +156,29 @@ void exercicio0212()
     getchar();
     printf( "\n" );
 
-    if( x % 2 == 0 && x > 15)
-    { 
-        printf( "O numero %d e par e maior que 15\n" , x );
-    } else if( x % 2 == 0 && x < 15 )
-    {
-       printf( "O numero %d e par e menor que 15 \n" , x ); 
-    }
     
-    if ( x % 2 == 1 && x < -15 ) 
+    if( x % 2 == 0 ) // par
     {
-        printf( "O numero %d e impar e menor que -15\n" , x );
-    } else if( x % 2 == 1 && x > -15 )
+        if( x > 15 ) 
+        {
+            printf( "O numero %d e par e maior que 15\n" , x );
+        }
+        else
+        {
+            printf( "O numero %d e par e menor que 15 \n" , x ); 
+        }
+    }
+
+    if( x % 2 != 0 ) // impar
     {
-        printf( "O numero %d e impar e maior que -15\n" , x );
+        if( x < -15 )
+        {
+            printf( "O numero %d e impar e menor que -15\n" , x );
+        }
+        else
+        {
+            printf( "O numero %d e impar e maior que -15\n" , x );
+        }
     }
     
     // encerrar
@@ -242,24 +251,18 @@ void exercicio0215()
     getchar();
     printf( "\n" );
 
-    if ( 25 < x && x < 50 )
-    {
-        if( 15 <= x && x <= 30 )
-        {
-        printf( "O numero (%d) esta dentro do intervalo (25:50) e do intervalo [15:30]\n" , x );
-        } else
-        {
-        printf( "O numero (%d) esta dentro do intervalo (25:50)\n" , x );
-        }
-    } else
-    {
-        if ( 15 <= x && x <= 30 )
-        {
-        printf( "O numero (%d) esta dentro do intervalo [15:30]\n" , x );
-        } else {
-            printf( "O numero (%d) nao esta dentro de nenhum intervalo\n" , x );
-        }
-    } 
+    if ((x >= 15 && x <= 30) && (x > 25 && x < 50)) {
+        printf( "O x pertence à interseção dos intervalos [15:30] e (25:50).\n" );
+    }
+    else if ( x >= 15 && x <= 30 ) {
+        printf("O x pertence apenas ao intervalo [15:30].\n");
+    }
+    else if ( x > 25 && x < 50 ) {
+        printf("O x pertence apenas ao intervalo (25:50).\n");
+    }
+    else {
+        printf( "O x não pertence a nenhum dos intervalos.\n" );
+    }
 
     // encerrar
     printf( "\nAperte ENTER para continuar!\n" );
@@ -285,7 +288,7 @@ void exercicio0216()
 
     if( x % 2 == 0 )
     {
-        if( y % 2 == 1 )
+        if( y % 2 != 0 )
         {
             printf( "O (%d) e par e (%d) e impar\n" , x , y );
         }
@@ -296,7 +299,7 @@ void exercicio0216()
     } 
     else
     {
-        if( y % 2 == 1 )
+        if( y % 2 != 0 )
         {
             printf( "O (%d) e impar e (%d) e impar\n" , x , y );
         }
@@ -443,7 +446,7 @@ void exercicio0219()
         }
     } else
     {
-        printf( "(%lf) e (%lf) sao iguais logo (%lf) nao esta entre esses valores\n" , x , y , z );
+        printf( "(%lf) e (%lf) sao iguais logo (%lf) nao esta entre eles\n" , x , y , z );
     }
     
     // encerrar
