@@ -57,7 +57,8 @@ int main (void)
   // mostrar identificacao do autor e programa
   identificacao();
 
-  do{
+  do
+  {
     // mostrar menu de opcoes
     menuOpcoes();
     // ler opcao do teclado
@@ -69,29 +70,26 @@ int main (void)
     // executar a opcao escolhida
     switch (opcao)
     {
-    case  0:                  break;
-    case  1: exercicio0X11(); break;
-    case  2: exercicio0X12(); break;
-    case  3: exercicio0X13(); break;
-    case  4: exercicio0X14(); break;
-    case  5: exercicio0X15(); break;
-    case  6: exercicio0X16(); break;
-    case  7: exercicio0X17(); break;
-    case  8: exercicio0X18(); break;
-    case  9: exercicio0X19(); break;
-    case 10: exercicio0X20(); break;
-    case 11: exercicio0XE1(); break;
-    case 12: exercicio0XE2(); break;
-    default:
+      case  0:
+        printf( "\n%s\n\n" , "    Programa Encerrado");
+        break;
+      case  1: exercicio0X11(); break;
+      case  2: exercicio0X12(); break;
+      case  3: exercicio0X13(); break;
+      case  4: exercicio0X14(); break;
+      case  5: exercicio0X15(); break;
+      case  6: exercicio0X16(); break;
+      case  7: exercicio0X17(); break;
+      case  8: exercicio0X18(); break;
+      case  9: exercicio0X19(); break;
+      case 10: exercicio0X20(); break;
+      case 11: exercicio0XE1(); break;
+      case 12: exercicio0XE2(); break;
+      default:
         printf( "\n   %s\n\n" , "ERRO: opcao invalida" );
         break;
     } // fim switch
-      
-    // estetica
-    if( opcao == 0 ){
-        printf( "\n%s\n\n" , "     Programa Encerrado     ");
-    }
-
+    
     // estetic
     printf( "====== Fim Opcao %d ======\n\n", opcao );
 
@@ -177,7 +175,7 @@ void exercicio0X13()
   printf( "\n%s\n\n" , "Exercicio 0X13:" );
 
   // programa
-   
+
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
@@ -224,7 +222,7 @@ void exercicio0X16()
   // programa
 
   // encerrar
-   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
+  printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
 } // fim exercicio0X16
 
