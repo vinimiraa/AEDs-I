@@ -139,7 +139,7 @@ char readchar(const char *const text)
 } // end readchar ( )
 
 /**
-    Funcao para mostrar na tela uma matriz de inteiros.
+    Funcao para mostrar na tela um vetor.
     @param  array Vetor.
     @param  size Quantidade de elementos do vetor.
 */
@@ -153,6 +153,22 @@ void printArray(int vetor[], int n)
     }
     print("\n");
 } // end printArray()
+
+/**
+    Funcao para mostrar na tela um vetor invertido.
+    @param  array Vetor.
+    @param  size Quantidade de elementos do vetor.
+*/
+void printReArray(int vetor[], int n)
+{
+    int i = 0;
+    print("\n%s\n", "Vetor Invertido: ");
+    for (i = n-1; i >= 0; i--)
+    {
+        print("[ %2d ] ", vetor[i]);
+    }
+    print("\n");
+} // end printReArray()
 
 /**
     Funcao para inverter as posicoes de um vetor.
@@ -209,7 +225,7 @@ int minArray(int vetor[], int n)
 } // end maxArray()
 
 /**
-    Funcao para mostrar na tela uma matriz de inteiros.
+    Funcao para mostrar na tela uma matriz.
     @param  row Numero de linhas da matriz.
     @param  col Numero de colunas da matriz.
     @param  matrix Matriz.
@@ -229,7 +245,7 @@ void printMatrix(int nLin, int nCol, const int matriz[][nCol])
 } // end printMatriz()
 
 /**
-    Funcao para mostrar os valores da diagonal principal de uma matriz.
+    Funcao para mostrar os elementos da diagonal principal de uma matriz.
     @param  row Numero de linhas da matriz.
     @param  col Numero de colunas da matriz.
     @param  matrix Matriz.
@@ -237,7 +253,7 @@ void printMatrix(int nLin, int nCol, const int matriz[][nCol])
 void leadingMatrix(int nLin, int nCol, int matriz[][nCol])
 {
     int i = 0;
-    print("\n%s\n", "Diagonal Principal da Matrix: ");
+    print("\n%s\n", "Diagonal Principal da Matriz: ");
     if (nLin != nCol)
     {
         print("\n%s\n", " ERRO: a matriz nao e quadrada!");
@@ -253,7 +269,7 @@ void leadingMatrix(int nLin, int nCol, int matriz[][nCol])
 } // end leadingMatrix()
 
 /**
-    Funcao para mostrar os valores da diagonal principal de uma matriz.
+    Funcao para mostrar os elementos da diagonal secundaria de uma matriz.
     @param  row Numero de linhas da matriz.
     @param  col Numero de colunas da matriz.
     @param  matrix Matriz.
@@ -261,7 +277,7 @@ void leadingMatrix(int nLin, int nCol, int matriz[][nCol])
 void secondaryMatrix(int nLin, int nCol, int matriz[][nCol])
 {
     int i = 0;
-    print("\n%s\n", "Diagonal Secundaria da Matrix: ");
+    print("\n%s\n", "Diagonal Secundaria da Matriz: ");
     if (nLin != nCol)
     {
         print("\n%s\n", " ERRO: a matriz nao e quadrada!");
@@ -277,7 +293,7 @@ void secondaryMatrix(int nLin, int nCol, int matriz[][nCol])
 } // end secondaryMatrix()
 
 /**
-    Funcao para mostrar os valores abaixo da diagonal principal de uma matriz.
+    Funcao para mostrar os elementos abaixo da diagonal principal de uma matriz.
     @param  row Numero de linhas da matriz.
     @param  col Numero de colunas da matriz.
     @param  matrix Matriz.
@@ -285,7 +301,7 @@ void secondaryMatrix(int nLin, int nCol, int matriz[][nCol])
 void inferiorMatrix(int nLin, int nCol, int matriz[][nCol])
 {
     int i = 0, j = 0;
-    print("\n%s\n", "Elementos Abaixo da Diagonal Principal da Matrix: ");
+    print("\n%s\n", "Elementos Abaixo da Diagonal Principal da Matriz: ");
     if (nLin != nCol)
     {
         print("\n%s\n", " ERRO: a matriz nao e quadrada!");
@@ -307,7 +323,7 @@ void inferiorMatrix(int nLin, int nCol, int matriz[][nCol])
 } // end inferiorMatrix()
 
 /**
-    Funcao para mostrar os valores acima da diagonal principal de uma matriz.
+    Funcao para mostrar os elementos acima da diagonal principal de uma matriz.
     @param  row Numero de linhas da matriz.
     @param  col Numero de colunas da matriz.
     @param  matrix Matriz.
@@ -315,7 +331,7 @@ void inferiorMatrix(int nLin, int nCol, int matriz[][nCol])
 void superiorMatrix(int nLin, int nCol, int matriz[][nCol])
 {
     int i = 0, j = 0;
-    print("\n%s\n", "Elementos Acima da Diagonal Principal da Matrix: ");
+    print("\n%s\n", "Elementos Acima da Diagonal Principal da Matriz: ");
     if (nLin != nCol)
     {
         print("\n%s\n", " ERRO: a matriz nao e quadrada!");

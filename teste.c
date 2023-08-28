@@ -2,6 +2,20 @@
 
 int main(void)
 {
+    int n = 7;
+    int v[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        v[i] = rand() % 100;
+    }
+
+    printArray(v, n);  //mostrar o vetor
+    printReArray(v,n); //mostrar o vetor invertido
+    reverseArray(v,n); //inverter o vetor
+    printArray(v,n);   //mostrar o vetor 
+    printReArray(v,n); //mostrar o vetor invertido
+    /*
     int nLin = 0, nCol = 0;
 
     nLin = readint("Digite o numero de linhas da matrix: ");
@@ -45,6 +59,6 @@ int main(void)
     secondaryMatrix(nLin, nCol, matriz);
     inferiorMatrix(nLin, nCol, matriz);
     superiorMatrix(nLin, nCol, matriz);
-
+    */
     return (0);
 }
