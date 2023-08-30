@@ -35,9 +35,9 @@ void method_01()
 } // end method_01 ( )
 
 /**
-Funcao para determinar se valor inteiro e' positivo.
-@return true, se positivo; false, caso contrario
-@param x - valor a ser testado
+    Funcao para determinar se valor inteiro e' positivo.
+    @return true, se positivo; false, caso contrario
+    @param x - valor a ser testado
 */
 bool positive(int x)
 {
@@ -89,10 +89,10 @@ void method_02()
 
 /**
 Funcao para determinar se valor inteiro pertence a intervalo aberto.
-@return true, se pertencer; false, caso contrario
-@param x - valor a ser testado
-@param inferior - limite inferior do intervalo
-@param superior - limite superior do intervalo
+    @return true, se pertencer; false, caso contrario
+    @param x - valor a ser testado
+    @param inferior - limite inferior do intervalo
+    @param superior - limite superior do intervalo
 */
 bool belongsTo(int x, int inferior, int superior)
 {
@@ -144,8 +144,8 @@ void method_03()
 
 /**
 Funcao para determinar se valor inteiro e' par.
-@return true, se par; false, caso contrario
-@param x - valor a ser testado
+    @return true, se par; false, caso contrario
+    @param x - valor a ser testado
 */
 bool even(int x)
 {
@@ -235,9 +235,9 @@ void method_05()
 } // end method_05 ( )
 
 /**
-Funcao para determinar se caractere e' letra minuscula.
-@return true, se par; false, caso contrario
-@param x - valor a ser testado
+    Funcao para determinar se caractere e' letra minuscula.
+    @return true, se par; false, caso contrario
+    @param x - valor a ser testado
 */
 bool isLowerCase(char x)
 {
@@ -362,9 +362,9 @@ void method_08()
 } // end method_08 ( )
 
 /**
-Funcao para determinar se caractere e' digito.
-@return true, se par; false, caso contrario
-@param x - valor a ser testado
+    Funcao para determinar se caractere e' digito.
+    @return true, se par; false, caso contrario
+    @param x - valor a ser testado
 */
 bool isDigit(char x)
 {
@@ -416,9 +416,9 @@ void method_09()
 } // end method_09 ( )
 
 /**
-Funcao para determinar se caractere e' digito.
-@return true, se par; false, caso contrario
-@param x - valor a ser testado
+    Funcao para determinar se caractere e' digito.
+    @return true, se par; false, caso contrario
+    @param x - valor a ser testado
 */
 bool isADigit(char x)
 {
@@ -426,10 +426,10 @@ bool isADigit(char x)
 } // end isADigit ( )
 
 /**
-Funcao para concatenar 'a cadeia de caracteres mais um digito.
-@return cadeia de caracteres acrescida de mais um digito
-@param digits - cadeia de caracteres
-@param digit - simbolo a ser acrescentado 'a cadeia de caracteres
+    Funcao para concatenar 'a cadeia de caracteres mais um digito.
+    @return cadeia de caracteres acrescida de mais um digito
+    @param digits - cadeia de caracteres
+    @param digit - simbolo a ser acrescentado 'a cadeia de caracteres
 */
 chars concatADigit(chars string, char digit)
 {
@@ -475,8 +475,8 @@ void method_10()
 } // end method_10 ( )
 
 /*
- Funcao principal.
- @return codigo de encerramento
+    Funcao principal.
+    @return codigo de encerramento
 */
 int main()
 {

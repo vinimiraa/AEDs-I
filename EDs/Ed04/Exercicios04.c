@@ -236,7 +236,7 @@ void exercicio0412(void)
 /**
   * Metodo03.
   */
-void maiorK(const char * text)
+void metodo0413(const char *text)
 {
   int i = 0, count = 0;
 
@@ -267,7 +267,7 @@ void exercicio0413(void)
   scanf( "%s" , palavra );
   getchar();
 
-  maiorK(palavra);
+  metodo0413(palavra);
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
@@ -277,6 +277,25 @@ void exercicio0413(void)
 /**
   * Metodo04.
   */
+void metodo0414(const char *text)
+{
+  int i = 0;
+
+  int tamanho = strlen(text);
+  
+  printf( "\n%s\n\n", "Letras Maiusculas Maiores do que K:" );  
+    
+  for ( i = 0; i < tamanho; i++)
+  {
+    if( isupper(text[i]) )
+    {
+      if( text[i] > 'K' )
+      {
+        printf( "%c\n" , text[i] );
+      } // end if
+    }   // end if
+  }     // end for
+}
 void exercicio0414(void)
 {
   // identificacao
@@ -289,6 +308,8 @@ void exercicio0414(void)
   scanf( "%s" , palavra );
   getchar();
 
+  metodo0414(palavra);
+  
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
@@ -297,12 +318,47 @@ void exercicio0414(void)
 /**
   * Metodo05.
   */
+void metodo0415(const char * text)
+{
+  int count = 0, i = 0;
+  int tam = strlen(text);
+  
+  for( i = 0; i < tam; i=i+1 )
+  {
+    if( 'A' < text[i] && text[i] < 'Z')
+    { 
+      if( text[i] > 'K' )
+      {
+        count++;
+      } // end if
+    }   // end if
+    else
+    {
+      if( 'a' < text[i] && text[i] < 'z' )
+      {
+        if( text[i] > 'k' )
+        {
+          count++;
+        } // end if
+      }   // end if
+    }     // end else
+  } 
+  
+  printf ( "\n\"%s\" tem %d letras maiores que \"K\"\n" , text, count );
+}
 void exercicio0415(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0415:" );
 
   // programa
+  char palavra[STR_SIZE];  
+    
+  printf( "%s\n" , "Digite uma palavra:" );
+  scanf( "%s" , palavra );
+  getchar();
+    
+  metodo0415(palavra);
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
@@ -312,12 +368,47 @@ void exercicio0415(void)
 /**
   * Metodo06.
   */
+void metodo0416(const char * text)
+{
+  int i = 0;
+  int tam = strlen(text);
+  
+  printf( "\n%s\n\n", "Letras Maiores do que \"k\" e \"K\":" ); 
+  
+  for( i = 0; i < tam; i=i+1 )
+  {
+    if( 'A' < text[i] && text[i] < 'Z')
+    { 
+      if( text[i] > 'K' )
+      {
+        printf( "%c\n", text[i] );
+      } // end if
+    }   // end if
+    else
+    {
+      if( 'a' < text[i] && text[i] < 'z' )
+      {
+        if( text[i] > 'k' )
+        {
+          printf( "%c\n", text[i] );
+        } // end if
+      }   // end if
+    }     // end else
+  } 
+}
 void exercicio0416(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0416:" );
 
   // programa
+  char palavra[STR_SIZE];  
+    
+  printf( "%s\n" , "Digite uma palavra:" );
+  scanf( "%s" , palavra );
+  getchar();
+    
+  metodo0416(palavra);
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
@@ -327,13 +418,38 @@ void exercicio0416(void)
 /**
   * Metodo07.
   */
+void metodo0417(const char *text)
+{
+  int count = 0, i = 0;
+  int tam = strlen(text);
+    
+  for( i = 0; i < tam; i++ )
+  {
+    if( isdigit(text[i]) )
+    {
+      if( text[i] % 2 != 0 )
+      {
+        count++;
+      }
+    }
+  }
+  
+  printf( "\n(%d) digitos sao impares na cadeia de caracteres\n" , count );
+}
 void exercicio0417(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0417:" );
 
   // programa
-  
+  char palavra[STR_SIZE];  
+    
+  printf( "%s" , "Digite uma palavra:\n" );
+  scanf( "%s" , palavra );
+  getchar();
+    
+  metodo0417(palavra);
+
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
@@ -342,12 +458,34 @@ void exercicio0417(void)
 /**
   * Metodo08.
   */
+void metodo0418(const char *text)
+{
+  int i = 0;
+  int tam = strlen(text);  
+  
+  printf( "\n%s\n\n" , "Os simbolos que nao sao alfanumericos sao:" );
+    
+  for( i = 0; i < tam; i++ )
+  {
+    if( !isalnum(text[i]) )
+    {
+      printf("%c\n" , text[i] );
+    }
+  }
+}
 void exercicio0418(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0418:" );
 
   // programa
+  char palavra[STR_SIZE];  
+    
+  printf( "%s" , "Digite uma palavra:\n" );
+  scanf( "%s" , palavra );
+  getchar();
+    
+  metodo0418(palavra);
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
@@ -357,12 +495,34 @@ void exercicio0418(void)
 /**
   * Metodo09.
   */
+void metodo0419(const char *text)
+{
+  int i = 0;
+  int tam = strlen(text);  
+  
+  printf( "\n%s\n\n" , "Os simbolos que sao alfanumericos sao:" );
+    
+  for( i = 0; i < tam; i++ )
+  {
+    if( isalnum(text[i]) )
+    {
+      printf("%c\n" , text[i] );
+    }
+  }
+}
 void exercicio0419(void)
 {   
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0419:" );
 
   // programa
+  char palavra[STR_SIZE];  
+    
+  printf( "%s" , "Digite uma palavra:\n" );
+  scanf( "%s" , palavra );
+  getchar();
+    
+  metodo0419(palavra);
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
@@ -372,12 +532,54 @@ void exercicio0419(void)
 /**
   * Metodo10.
   */
+int nAlNum(const char *text)
+{
+  int count = 0;
+  int tam = strlen(text);
+
+  for( int i = 0; i < tam; i++ )
+  {
+    if( isalnum(text[i]) )
+    {
+      count++;
+    }
+  }
+  return (count);
+}
+void metodo0420(int n)
+{
+  char sequencia[STR_SIZE];
+  int i = 0, total = 0;
+  int alphanum = 0;
+
+  for( i = 0; i < n; i++ )
+  {
+    printf( "Sequencia %d: ", i+1 );
+    scanf( "%80[^\n]" , sequencia);
+    getchar();
+
+    alphanum = nAlNum(sequencia);
+    printf( "\nNa sequencia \"%s\" ha %d simbolos alfanumericos.\n\n", sequencia, alphanum );
+
+    total = total + alphanum;
+  }
+
+  printf( "Total acumulado de simbolos alfanumericos: %d\n", total );
+}
 void exercicio0420(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 0420:" );
 
   // programa
+  int n = 0;
+
+  printf( "%s" , "Digite a quantidade de sequencias a serem lidas: " );
+  scanf( "%d", &n );
+  getchar();
+  printf( "\n" );
+
+  metodo0420(n);
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
@@ -387,12 +589,53 @@ void exercicio0420(void)
 /**
   * Metodo11.
   */
+int isAlNum(const char *text)
+{
+  int count = 0;
+  int tam = strlen(text);
+
+  for( int i = 0; i < tam; i++ )
+  {
+    if( isalnum(text[i]) || isspace(text[i]) )
+    {
+      count++;
+    }
+  }
+  return (count);
+}
+void metodo04E1(int n)
+{
+  char sequencia[STR_SIZE];
+  int alphanum = 0;
+  int total = 0;
+
+  for( int i = 0; i < n; i++ )
+  {
+    printf( "%d: ", i+1 );
+    scanf( "%80[^\n]" , sequencia );
+    getchar();
+
+    alphanum = isAlNum(sequencia);
+    printf( "\nNa sequencia \"%s\" ha %d simbolos alfanumericos.\n\n", sequencia, alphanum );
+    total = total + alphanum;  
+  }
+  printf( "\n(%d) simbolos sao alfanumericos, incluindo espacos em branco\n" , total );
+}
 void exercicio04E1(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 04E1:" );
 
+
   // programa
+  int n;
+
+  printf( "%s", "Insira a quantidade de sequencias a serem lidas: " );
+  scanf( "%d", &n );
+  getchar();
+  printf( "\n" );
+
+  metodo04E1(n);
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
@@ -402,13 +645,53 @@ void exercicio04E1(void)
 /**
   * Metodo12.
   */
+void metodo04E2(const char *text1, const char *text2)
+{ 
+  int count1 = 0;
+  int tam1 = strlen(text1);
+  int count2 = 0;
+  int tam2 = strlen(text2);
+  for( int i = 0; i < tam1; i=i+1 )
+  {
+    if( isdigit(text1[i]) )
+    {
+      count1 = count1 + 1;
+    }
+  }
+  for( int j = 0; j < tam2; j=j+1 )
+  {
+    if( isdigit(text2[j]) )
+    {
+      count2 = count2 + 1;
+    }
+  }
+         if( count1 > count2 ) {
+    printf("%s\n" , "A primeira sequencia possui maior quantidade de digitos do que a segunda");
+  } else if( count2 > count1 ) {
+    printf("%s\n" , "A segunda sequencia possui maior quantidade de digitos do que a primeira");
+  } else {
+    printf("%s\n" , "A primeira e a segunda sequencia tem quantidades iguais de digitos");
+  }
+}
 void exercicio04E2(void)
 {
   // identificacao
   printf( "\n%s\n\n" , "Exercicio 04E2:" );
 
   // programa
+  char sequencia1[STR_SIZE];
+  char sequencia2[STR_SIZE];
+  
+  printf( "Digite a primeira sequencia: " );
+  scanf( "%80[^\n]" , sequencia1 );
+  getchar();
 
+  printf( "Digite a segunda sequencia: " );
+  scanf( "%80[^\n]" , sequencia2 );
+  getchar();
+  printf( "\n" );
+
+  metodo04E2(sequencia1, sequencia2);
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
