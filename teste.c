@@ -45,7 +45,7 @@ int main(void)
         switch (opcao)
         {
         case 0:
-            printf("\n%s\n\n", "    Programa Encerrado");
+            printf("\n%s\n\n", "Programa Encerrado");
             break;
         case 1:
             metodo01();
@@ -78,7 +78,7 @@ int main(void)
             metodo10();
             break;
         default:
-            printf("\n   %s\n\n", "ERRO: opcao invalida");
+            printf("\n%s\n\n", "ERRO: opcao invalida");
             break;
         } // fim switch
 
@@ -274,7 +274,10 @@ void metodo04()
     printf("\n%s\n\n", "Metodo 04:");
 
     // programa
+    char *palavra;
+    palavra = readstring("Digite uma cadeia de caracteres: ");
 
+    print("\n%s\n", palavra);
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();

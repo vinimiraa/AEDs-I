@@ -1,11 +1,11 @@
 /**
-   Biblioteca Show - IO - Console Input/Output library.
-   PUC-Minas - ICEI
-   @author  Vinícius Miranda de Araújo
-   @version 0.1 - 2023-1b
+    Biblioteca Show - IO - Console Input/Output library.
+    PUC-Minas - ICEI
+    @author  Vinícius Miranda de Araújo
+    @version 0.1 - 2023-2b
 
-   SHOW - v2023-1_0.1 - 22 / 08 / 2023
-   Author: Vinícius Miranda de Araújo
+    LIBSHOW - v2023-2_0.1 - 22 / 08 / 2023
+    Author: Vinícius Miranda de Araújo
 
 */
 
@@ -137,6 +137,20 @@ char readchar(const char *const text)
     flush();
     return (x);
 } // end readchar ( )
+
+/**
+    Funcao para ler cadeia de caracteres.
+    @return cadeia de caracteres
+    @param text - mensagem a ser exibida antes da leitura
+ */
+char* readstring ( const char * const text )
+{
+    char *word = (char*) malloc ( (STR_SIZE+1)*sizeof(char) );
+    print( "%s", text   );
+    scan( "%80[^\n]", word );  // ler cadeia de caracteres
+    flush( );
+    return ( word );
+} // fim readString ( )
 
 /**
     Funcao para mostrar na tela um vetor.
@@ -363,7 +377,7 @@ bool iseven(int x)
         return 1;
     else
         return 0;
-}
+} // end iseven()
 
 /**
     Funcao para ver se o numero e impar.
@@ -376,7 +390,7 @@ bool isodd(int x)
         return 1;
     else
         return 0;
-}
+} // end isodd()
 
 /**
     Funcao para ver se o numero e positivo.
@@ -389,7 +403,7 @@ bool ispositive(int x)
         return 1;
     else
         return 0;  
-}
+} // end ispositive()
 
 /**
     Funcao para ver se o numero e negativo.
@@ -402,6 +416,6 @@ bool isnegative(int x)
         return 1;
     else
         return 0;  
-}
+} // end isnegative()
 
 #endif
