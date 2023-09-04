@@ -352,4 +352,56 @@ void superiorMatrix(int nLin, int nCol, int matriz[][nCol])
     }             // end else
 } // end superiorMatrix()
 
+/**
+    Funcao para ver se o numero e par.
+    @return 1 se par e 0 se nao for par.
+    @param  number Numero a ser lido.
+*/
+bool iseven(int x)
+{
+    if( x % 2 == 0 )
+        return 1;
+    else
+        return 0;
+}
+
+/**
+    Funcao para ver se o numero e impar.
+    @return 1 se impar e 0 se nao for impar.
+    @param  number Numero a ser lido.
+*/
+bool isodd(int x)
+{
+    if( x % 2 != 0 )
+        return 1;
+    else
+        return 0;
+}
+
+/**
+    Funcao para ver se o numero e positivo.
+    @return 1 se positivo e 0 se nao for positivo.
+    @param  number Numero a ser lido.
+*/
+bool ispositive(int x)
+{
+    if( x >= 0 )
+        return 1;
+    else
+        return 0;  
+}
+
+/**
+    Funcao para ver se o numero e negativo.
+    @return 1 se negativo e 0 se nao for negativo.
+    @param  number Numero a ser lido.
+*/
+bool isnegative(int x)
+{
+    if( x < 0 )
+        return 1;
+    else
+        return 0;  
+}
+
 #endif
