@@ -143,10 +143,6 @@ void exercicio0311()
         {
             printf( "O caracter (%c) e MAIUSCULO\n" , palavra[i] );
         }
-        else
-        {
-            printf( "O caracter (%c) e minusculo\n" , palavra[i] );
-        }
     }
 
     // encerrar
@@ -209,10 +205,6 @@ void exercicio0313()
             printf( "O caracter (%c) e MAIUSCULO\n" , palavra[i] );
             count++;
         }
-        else
-        {
-            printf( "O caracter (%c) e minusculo\n" , palavra[i] );
-        }
     }
 
     printf( "\nHa em \"%s\" %d caracteres maiusculos\n", palavra, count );
@@ -242,20 +234,9 @@ void exercicio0314()
     {
         if( isalpha(palavra[i] ) ) 
         {
-            if( islower(palavra[i]) )
-            {
-                printf( "O caracter (%c) e minusculo\n" , palavra[i] );
-            }
-            else
-            {
-                printf( "O caracter (%c) e MAIUSCULO\n" , palavra[i] );
-            }
+            printf( "O caracter (%c) e uma letra\n" , palavra[i] );
             count++;
-        }
-        else
-        {
-            printf( "O caracter (%c) e um simbolo\n" , palavra[i] );
-        }      
+        }    
     }
 
     printf( "\nEm \"%s\" %d caracteres sao letras\n", palavra, count );
@@ -474,7 +455,7 @@ void exercicio0319()
             }
         }
         
-        printf( "\n%d valores sao impares e pertencem ao intervalo\n" , count );
+        printf( "\n%d valores com partes inteiras impares pertencem ao intervalo\n" , count );
     }
 
     // encerrar
@@ -535,7 +516,7 @@ void exercicio0320()
             }
         }
         
-        printf( "\n%d valores nao pertencem ao intervalo\n" , count );
+        printf( "\n%d valores tem partes fracionarias que nao pertencem ao intervalo\n" , count );
     }
 
     // encerrar
