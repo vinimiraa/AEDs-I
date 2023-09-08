@@ -31,9 +31,10 @@
 
 // ---------------------- definicoes de constantes
 
-#define PI 3.14159265358979323846
-#define E 2.71828182845904523536
-
+//#define PI 3.14159265358979323846
+//#define E 2.71828182845904523536
+const long double PI = 3.14159265358979323846; // definir valor de pi
+const long double E = 2.71828182845904523536;  // definir valor do numero de Euler
 const int STR_SIZE = 80; // definir tamanho padrao para caracteres
 
 // ---------------------- definicoes de variaveis globais
@@ -368,54 +369,34 @@ void superiorMatrix(int nLin, int nCol, int matriz[][nCol])
 
 /**
     Funcao para ver se o numero e par.
-    @return 1 se par e 0 se nao for par.
+    @return true se par.
     @param  number Numero a ser lido.
 */
 bool iseven(int x)
-{
-    if( x % 2 == 0 )
-        return 1;
-    else
-        return 0;
-} // end iseven()
+{ return ( x % 2 == 0 ); } // end iseven()
 
 /**
     Funcao para ver se o numero e impar.
-    @return 1 se impar e 0 se nao for impar.
+    @return true se impar.
     @param  number Numero a ser lido.
 */
 bool isodd(int x)
-{
-    if( x % 2 != 0 )
-        return 1;
-    else
-        return 0;
-} // end isodd()
+{ return ( x % 2 != 0 ); } // end isodd()
 
 /**
     Funcao para ver se o numero e positivo.
-    @return 1 se positivo e 0 se nao for positivo.
+    @return true se positivo.
     @param  number Numero a ser lido.
 */
 bool ispositive(int x)
-{
-    if( x >= 0 )
-        return 1;
-    else
-        return 0;  
-} // end ispositive()
+{ return ( x >= 0 ); } // end ispositive()
 
 /**
     Funcao para ver se o numero e negativo.
-    @return 1 se negativo e 0 se nao for negativo.
+    @return true se negativo.
     @param  number Numero a ser lido.
 */
 bool isnegative(int x)
-{
-    if( x < 0 )
-        return 1;
-    else
-        return 0;  
-} // end isnegative()
+{ return ( x < 0 ); } // end isnegative()
 
 #endif
