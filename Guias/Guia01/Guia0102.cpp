@@ -119,5 +119,4 @@ Versao Data Modificacao
 Versao Teste
  0.1 01. ( OK ) identificacao de programa
  0.2 01. ( OK ) teste da tarefa
-
 */
