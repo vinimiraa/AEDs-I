@@ -27,6 +27,8 @@ Vinícius Miranda de Araújo
     - [2023-2_aed1_guias](#2023-2_aed1_guias)
 - [Estudos Dirigidos(EDs)](#Estudos-Digiridos)
 - [Guias](#Guias)
+- [RRHs](#rrhs)
+- [Outros](#outros)
 
 # 2023-2_AED_1
 
@@ -79,3 +81,11 @@ Contém as minhas resoluções dos EDs.
 # Guias
 
 Contém as minhas resoluções dos Guias.
+
+# RRHs
+
+Contém resumos, anotações e alguns conteúdos sobre C.
+
+# Outros
+
+Contém a minha biblioteca, um template para realização dos EDs e um arquivo para testes.
