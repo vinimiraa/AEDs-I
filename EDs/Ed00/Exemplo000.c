@@ -999,7 +999,7 @@ void menu()
     printf("23 - Metodo23     48 - Metodo48\n");
     printf("24 - Metodo24     49 - Metodo49\n");
     printf("25 - Metodo25     50 - Metodo50\n");
-    printf("     0 - Encerrar programa "      );
+    printf("     0 - Encerrar programa ");
 }
 /*
  Funcao principal
@@ -1177,7 +1177,7 @@ int main()
             break;
         } // end switch
 
-        if(opcao == 0)
+        if (opcao == 0)
         {
             printf("Programa Encerrado!\n");
         } // end if
