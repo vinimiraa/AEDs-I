@@ -1,0 +1,73 @@
+PUC-Minas - ICEI - Ciência da Computação
+Algoritmos e Estruturas de Dados I - Aula 2023-2_006
+Anotações
+___
+
+Resumo da semana
+
+Introdução à linguagem de programação C
+
+
+Alternativas
+
+Exemplos de aplicações
+   
+1.) Identificar valores negativos, zeros e positivos
+
+      |                    |                   |
+      v                    v                   v
+  (x == 0)              (x > 0)	            (x < 0)	
+  V/    \F              V/   \F             V/   \F
+  /      \              /     \             /     \
+igual  diferente     maior  diferente    menor  diferente
+          |                    |                   |
+	  v          	       v       		   v
+      ( x > 0 )      	  ( x == 0 )           ( x > 0 )
+      V/     \F            V/     \F           V/     \F
+      /       \      	   /       \           /       \
+    maior    menor      igual     menor      maior    igual
+	
+
+      |                    |                   |
+      v                    v                   v
+  (x == 0)              (x > 0)	            (x < 0)	
+  V/    \F              V/   \F             V/   \F
+  /      \              /     \             /     \
+igual  diferente     maior  diferente    menor  diferente
+          |                    |                   |
+	  v          	       v        	   v
+      ( x < 0 )      	   ( x < 0 )           ( x == 0 )
+      V/     \F            V/     \F           V/      \F
+      /       \      	   /       \           /        \
+    menor    maior      menor     igual      igual     maior
+
+___
+	
+2.) Identificar valor relativo a um intervalo
+
+      |                     |                         |
+      v                     v                         v
+(1<=x && x<=10)       (1<=x && x<=10)       ( ! (1<=x && x<=10) )
+  V/      \F            V/      \F                V/      \F
+  /        \            /        \                /        \
+dentro    fora       dentro     fora            fora     dentro
+            |                     |               |
+	    v          	          v               v
+        ( x < 1 )      	     ( x > 10 )       ( x > 0 )
+        V/     \F            V/      \F       V/     \F
+        /       \      	     /        \       /       \
+      menor    maior	   maior     menor maior    menor
+
+___
+
+3.) Identificar valor relativo a um intervalo
+
+     dígitos              maiúsculas            minúsculas
+        |                     |                     |
+        v                     v                     v
+('0'<=x && x<='9')    ('A'<=x && x<='Z')    ('a'<=x && x<='z')
+    V/      \F           V/       \F           V/       \F
+    /        \           /         \           /         \
+ dentro     fora      dentro      fora       fora      dentro
+
+ 

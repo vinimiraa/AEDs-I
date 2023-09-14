@@ -1,0 +1,313 @@
+PUC-Minas - ICEI - Ciência da Computação
+Algoritmos e Estruturas de Dados I - Aula 2023-2_003
+Anotações
+___
+
+Resumo da semana
+
+Fases de um algoritmo / programa
+                                 dados externos
+ ____________     _______________     ____________
+|            |   |               |   |            |
+|   dados    |<==|   Entradas    |<==|            |
+|            |   |_______________|   |            |
+|            |    _______________    |            |
+|            |   |               |   | Interfaces |
+|  Memória   |<=>| Processamento |   |    com     |
+|            |   |_______________|   |  Ambiente  |
+|            |    _______________    |            |
+|            |   |               |   |            |
+| resultados |==>|     Saídas    |==>|            |
+|____________|   |_______________|   |____________|
+
+                              resultados externos
+___
+
+1.1 Dados primitivos
+
+                       Interpretação
+                             +
+                            / \
+                           /   \
+                          /     \
+                         / signo \
+                        /         \
+                       /           \
+                      +-------------+
+        Representação       -->        Objeto
+
+                           char
+                            'A'
+                             +
+                            / \
+                           /   \
+                       65 +-----+ 01000001 
+                      int           byte                          
+
+                      
+                          abstrato
+                             |
+               tipos de      |
+            dados  abstratos |     objetos
+                             |
+operação                     |                   representação
+            -----------------+----------------
+extensão                     |                   extensão
+               tipos de      |      ???
+            dados algébricos |
+                             | 
+                          concreto
+___
+
+1.2 Armazenador de dado na memória ( "variável" )
+
+variável = { endereço, tipo, tamanho, formato, nome, valor }
+
+
+Tipos de dados algébricos
+
+ponteiro    0      void       não contém dado, pode conter o endereço (&)
+
+definição   1    #define      pode conter relação de um nome com apenas um dado
+
+lógico     1+1  {false,true}  contém um dentre dois dados possíveis 
+
+número     1:n   int, float   contém um dentre (n) dados possíveis em um intervalo
+
+objeto     x+1    string      descreve um objeto (x) ou nada (nil=NULL=nullptr)
+
+opcional   x+y      ---       descreve um objeto (x) ou um valor opcional (y)
+
+tupla    (x,...)    ( )       compõe-se de uma lista de dados (x e y)
+
+___
+
+1.4 Tipos de dados primitivos em C/C++
+
+                     números
+                        |
+           +------------+-------------+
+           |                          |
+        inteiros               ponto flutuante
+           |                          |
+  +-----+-----+----+----+        +----+----+
+  |     |     |    |    |        |         |
+bool short  int  long char     float     double
+
+
+Caracteres
+
+'0' = 48 = 30h
+'A' = 65 = 41h
+'a' = 97 = 61h 
+
+Tipos de dados primitivos em C/C++ - Resumo
+
+tipo  bits  fmt	   valor mínimo	                  valor máximo
+
+bool   1/8  %d	   false / true
+
+char	 8  %c	   0	                          2**8  - 1 = 255
+
+short	16  %d    -2**15 = -32768                 2**15 - 1 = +32767
+int     32  %d,%i -2**31 = -2147483648            2**31 - 1 = +2147483647
+long	64  %ld	  -2**63 = -9223372036854775808L  2**63 - 1 = +9223372036854775807L
+
+float	32  %f	  -10**-38f     (IEEE-754)	  10**38f     (IEEE-754)
+double	64  %lf	  -10**-308     (IEEE-754)	  10**308     (IEEE-754)
+
+___
+
+
+Constantes reais (IEEE-754)
+
+ +inf = + infinito
+ -inf = - infinito
+  nan = not a number (representação inválida)
+
+___
+
+2. Operações sobre dados
+
+2.1 Operações lógicas
+
+Negação ( ! - NOT ("não") )
+
+lógico  resultado ( ! a )
+false               true
+true                false
+
+Exemplo:
+
+bool a = false;
+bool b = ! a;   // b = true;
+bool c = ! b;   // c = false = ! b = ! (!a) = a;
+
+___
+
+Conjunção ( && - AND ("e") )
+
+  a       b      resultado ( a && b = a AND b )
+false   false    false
+false   true     false
+true    false    false
+true    true     true
+
+Exemplo:
+
+bool a = false;
+bool b = true ;
+bool c = a && b;   // c = false;
+
+___
+
+Disjunção  ( || - OR ("ou") )
+
+  a       b       resultado ( a || b = a OR b )
+false   false     false
+false   true      true
+true    false     true
+true    true      true
+
+Exemplo:
+
+bool a = false;
+bool b = true ; 
+bool c = a || b;   // c = true;
+
+___
+
+Disjunção Exclusiva ( ^ - XOR ("ou_exclusivo") )
+
+  a      b      resultado ( a || b )
+false  false    false
+false  true     true
+true   false    true
+true   true     FALSE <- OBSERVAÇÃO !!!
+
+Exemplo:
+
+bool a = false;
+bool b = true ;
+bool c = a ^ b;   // c = true;
+     c = a ^ a;   // c = false;
+     c = b ^ b;   // c = FALSE;
+
+___
+
+2.2 Operações aritméticas
+
+Prioridades entre operadores
+
+ * / %    (multiplicação, divisão e resto inteiro)
+  + -     (adição, subtração)
+
+OBS.: 
+
+1. Parênteses podem ser usados para modificar a
+   ordem de avaliação das operações.
+2. As funções terão  prioridade superior  à dos
+   operadores citados acima.
+3. Além da prioridade também é preciso observar
+   a associatividade. A maioria dos  operadores
+   possui associatividade  à  esquerda, mas não
+   todos.
+
+Exemplos:
+
+int a = 2;
+int b = 3;
+
+int c = a + b;                      // c = 5
+int d = a * b;                      // d = 6
+int e = a / b;                      // e = 0
+int f = b / a;                      // f = 1
+int g = a % b;                      // g = 2
+int h = b % a;                      // h = 1
+int i = a % 2;                      // i = 0
+int j = b % 2;                      // j = 1
+
+int k = a + b * 2;                  // k = 2 + (3*2) = 2 + 6 =  8
+int l = (a+b) * 2;                  // l = (2+3) *2  = 5 * 2 = 10
+
+int m = a + 6 / 2 + 5;              // m = (2+(6/2))+5  = 10
+int n = a + 6 / 2 * 5;              // n =  2+((6/2)*5) = 17
+int o = a + 6 / (2*5);              // o =  2+(6/(2*5)) =  2
+int p = (a+6) / (2*5);              // p = (2+6)/(2*5)  =  0
+
+double q = a /  b;                  // q = (2/3) = 0.0
+double r = a / (b*1.0);             // r =  2/(3*1.0)   = 2   / 3.0 = 0.6666
+double s = 1.0 * a / b;             // s = (1.0*2)/ 3   = 2.0 / 3   = 0.6666
+double t = (double) a / b;          // t =  2.0   / 3   = 0.6666
+double u = a / (double) b;          // u =  2     / 3.0 = 0.6666
+double v = (double) a / (double) b; // v =  2.0   / 3.0 = 0.6666
+double w = 4 * 3 / (double) 2;      // w = (4*3)  / 2.0 = 6.0000
+
+___
+
+2.3 Operações relacionais
+
+Prioridades entre operadores
+
+< <=  >= >   (menor, menor ou igual, maior ou igual, maior)
+  ==  !=     (igualdade, diferença)
+
+OBS.:
+
+1. Operadores relacionais terão prioridade
+   menor que a dos operadores aritméticos.
+___
+
+Servidor de desenvolvimento
+
+URL    : https://dev.icei.pucminas.br
+
+login  : 999999            // #pessoa
+passwd : ********          // =Canvas
+
+system : UBUNTU 22.04
+shell  : bash
+
+prompt : _______-999999/~$
+                        ^
+                        |_ pasta do usuário
+
+commands:
+
+dir                                // mostrar conteudo local
+
+ls                                 // mostrar conteudo local
+                                   // (com cores)
+
+ls -l                              // mostrar conteudo local 
+                                   // (com cores e permissoes)
+                                   // r=ler; w=escrever; x-executar
+
+mkdir aed1                         // criar pasta
+
+cd aed1                            // deslocar-se para a pasta
+
+prompt: _______-999999/~/aed1$
+
+ls                                 // mostrar conteudo local
+
+touch exemplo_001.c                // criar/editar programa
+CTRL-S                             // salvar
+CTRL-Q                             // sair
+
+cp /opt/wor/aed1/io.h .            // copiar biblioteca io.h
+
+ls                                 // mostrar conteudo local
+
+exemplo_001.c io.h                 // programa fonte e biblioteca
+
+gcc -o exemplo_001 exemplo_001.c   // compilar
+
+./exemplo_001                      // testar
+
+cp exemplo_001.c exemplo_002.c     // copiar para modificar
+
+___
+
+
+
