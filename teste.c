@@ -274,10 +274,26 @@ void metodo04()
     printf("\n%s\n\n", "Metodo 04:");
 
     // programa
-    char *palavra;
-    palavra = readstring("Digite uma cadeia de caracteres: ");
+    char *palavra[5];
 
-    print("\n%s\n", palavra);
+    for( int i = 0; i < 5; i=i+1 )
+    {
+        palavra[i] = readstring("Digite um carro: "); 
+    }
+    print("\n");
+
+    for( int i = 0; i < 5; i=i+1 )
+    {
+        print("%d. %s\n" , i+1, palavra[i]);
+    }
+    print("\n");
+
+    for( int i = 0; i < 5; i=i+1 )
+    {
+        print("%d. %d\n" , i+1, (int)strlen(palavra[i]));
+    }
+    print("\n");
+
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();
@@ -292,7 +308,8 @@ void metodo05()
     printf("\n%s\n\n", "Metodo 05:");
 
     // programa
-
+    int x = 0;
+    x = readint("Digite um valor: ");
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();

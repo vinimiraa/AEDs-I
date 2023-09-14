@@ -31,11 +31,11 @@
 
 // ---------------------- definicoes de constantes
 
-//#define PI 3.14159265358979323846
-//#define E 2.71828182845904523536
+// #define PI 3.14159265358979323846
+// #define E 2.71828182845904523536
 const long double PI = 3.14159265358979323846; // definir valor de pi
 const long double E = 2.71828182845904523536;  // definir valor do numero de Euler
-const int STR_SIZE = 80; // definir tamanho padrao para caracteres
+const int STR_SIZE = 80;                       // definir tamanho padrao para caracteres
 
 // ---------------------- definicoes de variaveis globais
 
@@ -144,13 +144,13 @@ char readchar(const char *const text)
     @return cadeia de caracteres
     @param text - mensagem a ser exibida antes da leitura
  */
-char* readstring ( const char * const text )
+char *readstring(const char *const text)
 {
-    char *word = (char*) malloc ( (STR_SIZE+1)*sizeof(char) );
-    print( "%s", text   );
-    scan( "%80[^\n]", word );  // ler cadeia de caracteres
-    flush( );
-    return ( word );
+    char *word = (char *)malloc((STR_SIZE + 1) * sizeof(char));
+    print("%s", text);
+    scan("%80[^\n]", word); // ler cadeia de caracteres
+    flush();
+    return (word);
 } // fim readString ( )
 
 /**
@@ -165,7 +165,7 @@ void printArray(int vetor[], int n)
     for (i = 0; i < n; i = i + 1)
     {
         print("[ %2d ] ", vetor[i]);
-    }
+    } // end for
     print("\n");
 } // end printArray()
 
@@ -178,10 +178,10 @@ void printReArray(int vetor[], int n)
 {
     int i = 0;
     print("\n%s\n", "Vetor Invertido: ");
-    for (i = n-1; i >= 0; i--)
+    for (i = n - 1; i >= 0; i--)
     {
         print("[ %2d ] ", vetor[i]);
-    }
+    } // end for
     print("\n");
 } // end printReArray()
 
@@ -198,7 +198,7 @@ void reverseArray(int vetor[], int n)
         int aux = vetor[i];
         vetor[i] = vetor[n - 1 - i];
         vetor[n - 1 - i] = aux;
-    }
+    } // end for
 } // end reverseArray()
 
 /**
@@ -215,8 +215,8 @@ int maxArray(int vetor[], int n)
         if (vetor[i] > maior)
         {
             maior = vetor[i];
-        }
-    }
+        } // end if
+    }     // end for
     return (maior);
 } // end maxArray()
 
@@ -234,8 +234,8 @@ int minArray(int vetor[], int n)
         if (vetor[i] < menor)
         {
             menor = vetor[i];
-        }
-    }
+        } // end if
+    }     // end for
     return (menor);
 } // end maxArray()
 
@@ -254,9 +254,9 @@ void printMatrix(int nLin, int nCol, const int matriz[][nCol])
         for (j = 0; j < nCol; j = j + 1)
         {
             print("[ %2d ] ", matriz[i][j]);
-        }
+        } // end for
         print("\n");
-    }
+    } // end for
 } // end printMatriz()
 
 /**
@@ -272,15 +272,15 @@ void leadingMatrix(int nLin, int nCol, int matriz[][nCol])
     if (nLin != nCol)
     {
         print("\n%s\n", " ERRO: a matriz nao e quadrada!");
-    }
+    } // end if
     else
-    {   
+    {
         for (i = 0; i < nLin; i = i + 1)
         {
-            print("[ %2d ] " , matriz[i][i]);
+            print("[ %2d ] ", matriz[i][i]);
         } // end for
-        print( "\n" );
-    }     // end else
+        print("\n");
+    } // end else
 } // end leadingMatrix()
 
 /**
@@ -296,15 +296,15 @@ void secondaryMatrix(int nLin, int nCol, int matriz[][nCol])
     if (nLin != nCol)
     {
         print("\n%s\n", " ERRO: a matriz nao e quadrada!");
-    }
+    } // end if
     else
-    {   
+    {
         for (i = 0; i < nLin; i = i + 1)
         {
-            print("[ %2d ] " , matriz[i][nLin - 1 - i]);
+            print("[ %2d ] ", matriz[i][nLin - 1 - i]);
         } // end for
-        print( "\n" );
-    }     // end else
+        print("\n");
+    } // end else
 } // end secondaryMatrix()
 
 /**
@@ -320,21 +320,21 @@ void inferiorMatrix(int nLin, int nCol, int matriz[][nCol])
     if (nLin != nCol)
     {
         print("\n%s\n", " ERRO: a matriz nao e quadrada!");
-    }
+    } // end if
     else
-    {   
+    {
         for (i = 0; i < nLin; i = i + 1)
         {
             for (j = 0; j < nCol; j = j + 1)
             {
-                if( i > j )
+                if (i > j)
                 {
-                    print("[ %2d ] " , matriz[i][j]);
+                    print("[ %2d ] ", matriz[i][j]);
                 } // end if
             }     // end for
         }         // end for
-        print( "\n" );
-    }             // end else
+        print("\n");
+    } // end else
 } // end inferiorMatrix()
 
 /**
@@ -350,53 +350,109 @@ void superiorMatrix(int nLin, int nCol, int matriz[][nCol])
     if (nLin != nCol)
     {
         print("\n%s\n", " ERRO: a matriz nao e quadrada!");
-    }
+    } // end if
     else
-    {   
+    {
         for (i = 0; i < nLin; i = i + 1)
         {
             for (j = 0; j < nCol; j = j + 1)
             {
-                if( i < j )
+                if (i < j)
                 {
-                    print("[ %2d ] " , matriz[i][j]);
+                    print("[ %2d ] ", matriz[i][j]);
                 } // end if
             }     // end for
         }         // end for
-        print( "\n" );
-    }             // end else
+        print("\n");
+    } // end else
 } // end superiorMatrix()
 
 /**
     Funcao para ver se o numero e par.
-    @return true se par.
+    @return true se par; falso caso contrario.
     @param  number Numero a ser lido.
 */
 bool iseven(int x)
-{ return ( x % 2 == 0 ); } // end iseven()
+{
+    bool result = false;
+    if (x % 2 == 0)
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end iseven()
 
 /**
     Funcao para ver se o numero e impar.
-    @return true se impar.
+    @return true se impar; falso caso contrario.
     @param  number Numero a ser lido.
 */
 bool isodd(int x)
-{ return ( x % 2 != 0 ); } // end isodd()
+{
+    bool result = false;
+    if (x % 2 != 0)
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isodd()
 
 /**
     Funcao para ver se o numero e positivo.
-    @return true se positivo.
+    @return true se positivo; falso caso contrario.
     @param  number Numero a ser lido.
 */
 bool ispositive(int x)
-{ return ( x >= 0 ); } // end ispositive()
+{
+    bool result = false;
+    if (x >= 0)
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end ispositive()
 
 /**
     Funcao para ver se o numero e negativo.
-    @return true se negativo.
+    @return true se negativo; falso caso contrario.
     @param  number Numero a ser lido.
 */
 bool isnegative(int x)
-{ return ( x < 0 ); } // end isnegative()
+{
+    bool result = false;
+    if (x < 0)
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isnegative()
+
+/**
+    Funcao para ver os divisores e sua quantidade de divisores de um numero.
+    @param number Numero a ser lido.
+*/
+void dividers(int x)
+{
+    int divisor = 1;
+    int count = 0;
+    int result = 0;
+    if (x < 0)
+    {
+        x = (-1) * x;
+    } // end if
+    print("\n%s", "Divisores =");
+    while (divisor <= x)
+    {
+        if (x % divisor == 0)
+        {
+            print(" %d", divisor);
+            count = count + 1;
+        } // end if
+        divisor = divisor + 1;
+    } // end while
+    print("\n%s%d\n", "Quantidade de Divisores = ", count);
+    result = count;
+    return (result);
+}
 
 #endif
