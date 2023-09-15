@@ -67,6 +67,8 @@ void id(const char *const prog, const char *const autor)
     print("\n");
 } // end id ( )
 
+// ---------------------- para entrada e leitura de dados
+
 /**
     Funcao para ler valor inteiro do teclado.
     @return Valor lido.
@@ -151,7 +153,161 @@ char *readstring(const char *const text)
     scan("%80[^\n]", word); // ler cadeia de caracteres
     flush();
     return (word);
-} // fim readString ( )
+} // end readString ( )
+
+// ---------------------- para checar dados
+
+/**
+    Funcao para ver se o numero e par.
+    @return true se par; falso caso contrario.
+    @param  number Numero a ser lido.
+*/
+bool isEven(int x)
+{
+    bool result = false;
+    if (x % 2 == 0)
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isEven()
+
+/**
+    Funcao para ver se o numero e impar.
+    @return true se impar; falso caso contrario.
+    @param  number Numero a ser lido.
+*/
+bool isOdd(int x)
+{
+    bool result = false;
+    if (x % 2 != 0)
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isOdd()
+
+/**
+    Funcao para ver se o numero e positivo.
+    @return true se positivo; falso caso contrario.
+    @param  number Numero a ser lido.
+*/
+bool isPositive(int x)
+{
+    bool result = false;
+    if (x >= 0)
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isPositive()
+
+/**
+    Funcao para ver se o numero e negativo.
+    @return true se negativo; falso caso contrario.
+    @param  number Numero a ser lido.
+*/
+bool isNegative(int x)
+{
+    bool result = false;
+    if (x < 0)
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isNegative()
+
+/**
+    Funcao para ver se o numero e negativo.
+    @return true se maiuscula; falso caso contrario.
+    @param  char Caractere a ser lido.
+*/
+bool isUpper(char c)
+{
+    bool result = false;
+    if ( 'A' <= c && c <= 'Z' )
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isUpper()
+
+/**
+    Funcao para ver se o numero e negativo.
+    @return true se minuscula; falso caso contrario.
+    @param  char Caractere a ser lido.
+*/
+bool isLower(char c)
+{
+    bool result = false;
+    if ( 'a' <= c && c <= 'z' )
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isLower()
+
+/**
+    Funcao para ver se o numero e negativo.
+    @return true se digito; falso caso contrario.
+    @param  char Caractere a ser lido.
+*/
+bool isDigit(char c)
+{
+    bool result = false;
+    if ( '0' <= c && c <= '1' )
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isDigit()
+
+/**
+    Funcao para ver se o numero e negativo.
+    @return true se letra; falso caso contrario.
+    @param  char Caractere a ser lido.
+*/
+bool isAlpha(char c)
+{
+    bool result = false;
+    if ( isLower(c) || isUpper(c) )
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isAlpha()
+
+/**
+    Funcao para ver se o numero e negativo.
+    @return true se letra ou digito; falso caso contrario.
+    @param  char Caractere a ser lido.
+*/
+bool isAlnum(char c)
+{
+    bool result = false;
+    if ( isAlpha(c) || isDigit(c) )
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isAlnum()
+
+/**
+    Funcao para ver se o numero e negativo.
+    @return true se espaco; falso caso contrario.
+    @param  char Caractere a ser lido.
+*/
+bool isSpace(char c)
+{
+    bool result = false;
+    if ( c == ' ' )
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isSpace()
+
+// ---------------------- para estrutura de dados homogeneas
 
 /**
     Funcao para mostrar na tela um vetor.
@@ -168,22 +324,6 @@ void printArray(int vetor[], int n)
     } // end for
     print("\n");
 } // end printArray()
-
-/**
-    Funcao para mostrar na tela um vetor invertido.
-    @param  array Vetor.
-    @param  size Quantidade de elementos do vetor.
-*/
-void printReArray(int vetor[], int n)
-{
-    int i = 0;
-    print("\n%s\n", "Vetor Invertido: ");
-    for (i = n - 1; i >= 0; i--)
-    {
-        print("[ %2d ] ", vetor[i]);
-    } // end for
-    print("\n");
-} // end printReArray()
 
 /**
     Funcao para inverter as posicoes de um vetor.
@@ -216,7 +356,7 @@ int maxArray(int vetor[], int n)
         {
             maior = vetor[i];
         } // end if
-    }     // end for
+    } // end for
     return (maior);
 } // end maxArray()
 
@@ -235,7 +375,7 @@ int minArray(int vetor[], int n)
         {
             menor = vetor[i];
         } // end if
-    }     // end for
+    } // end for
     return (menor);
 } // end maxArray()
 
@@ -331,8 +471,8 @@ void inferiorMatrix(int nLin, int nCol, int matriz[][nCol])
                 {
                     print("[ %2d ] ", matriz[i][j]);
                 } // end if
-            }     // end for
-        }         // end for
+            } // end for
+        } // end for
         print("\n");
     } // end else
 } // end inferiorMatrix()
@@ -367,65 +507,7 @@ void superiorMatrix(int nLin, int nCol, int matriz[][nCol])
     } // end else
 } // end superiorMatrix()
 
-/**
-    Funcao para ver se o numero e par.
-    @return true se par; falso caso contrario.
-    @param  number Numero a ser lido.
-*/
-bool iseven(int x)
-{
-    bool result = false;
-    if (x % 2 == 0)
-    {
-        result = true;
-    } // end if
-    return (result);
-} // end iseven()
-
-/**
-    Funcao para ver se o numero e impar.
-    @return true se impar; falso caso contrario.
-    @param  number Numero a ser lido.
-*/
-bool isodd(int x)
-{
-    bool result = false;
-    if (x % 2 != 0)
-    {
-        result = true;
-    } // end if
-    return (result);
-} // end isodd()
-
-/**
-    Funcao para ver se o numero e positivo.
-    @return true se positivo; falso caso contrario.
-    @param  number Numero a ser lido.
-*/
-bool ispositive(int x)
-{
-    bool result = false;
-    if (x >= 0)
-    {
-        result = true;
-    } // end if
-    return (result);
-} // end ispositive()
-
-/**
-    Funcao para ver se o numero e negativo.
-    @return true se negativo; falso caso contrario.
-    @param  number Numero a ser lido.
-*/
-bool isnegative(int x)
-{
-    bool result = false;
-    if (x < 0)
-    {
-        result = true;
-    } // end if
-    return (result);
-} // end isnegative()
+// ---------------------- outros procedimentos
 
 /**
     Funcao para ver os divisores e sua quantidade de divisores de um numero.
@@ -435,7 +517,6 @@ void dividers(int x)
 {
     int divisor = 1;
     int count = 0;
-    int result = 0;
     if (x < 0)
     {
         x = (-1) * x;
@@ -451,8 +532,6 @@ void dividers(int x)
         divisor = divisor + 1;
     } // end while
     print("\n%s%d\n", "Quantidade de Divisores = ", count);
-    result = count;
-    return (result);
-}
+} // end dividers()
 
 #endif
