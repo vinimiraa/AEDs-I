@@ -119,6 +119,19 @@ void menuOpcoes()
     printf("\n");
 } // fim menuOpcoes()
 
+void multiplos0511(int n)
+{
+    int i = 0;
+    int mult = 7;
+
+    print("\n%s" , "Multplos de 7 =" );
+    for( i = 0; i < n; i = i + 1)
+    {
+        print(" %d", mult);
+        mult += 7;
+    } // end for
+    print("\n");
+}
 /**
  * Metodo01.
  */
@@ -128,6 +141,10 @@ void exercicio0X11()
     id("Exercicio 0X11:");
 
     // programa
+    int n = 0;
+    n = readint( "Digite uma quantidade: " );
+
+    multiplos0511(n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -135,6 +152,20 @@ void exercicio0X11()
     clear();
 } // fim exercicio0X11
 
+void multiplos0512(int n)
+{
+    int i = 0;
+    int mult = 12;
+    print("\n%s", "Multiplos de 3 e 4 =");
+    for( i = 0; i < n; i++ )
+    {
+        if( (mult % 3 == 0) && (mult % 4 == 0) ){
+            print(" %d", mult);
+        }
+        mult = mult + 12;
+    }
+    print("\n");
+}
 /**
  * Metodo02.
  */
@@ -144,6 +175,10 @@ void exercicio0X12()
     id("Exercicio 0X12:");
 
     // programa
+    int n = 0;
+    n = readint( "Digite uma quantidade: " );
+
+    multiplos0512(n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -151,6 +186,21 @@ void exercicio0X12()
     clear();
 } // fim exercicio0X12
 
+void potencia0513(int n)
+{
+    int p = n;
+    int i = 0;
+    int num = 0;
+
+    print( "\n%s", "Potencias de 5 =" );
+    for( i = p; i > 0; i = i - 1 )
+    {
+        num = pow(5, p);
+        print(" %d", num);
+        p = p - 1;
+    }
+    print("\n");
+}
 /**
  * Metodo03.
  */
@@ -160,6 +210,10 @@ void exercicio0X13()
     id("Exercicio 0X13:");
 
     // programa
+    int n = 0;
+    n = readint( "Digite uma quantidade: " );
+
+    potencia0513(n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
