@@ -60,7 +60,10 @@ void flush()
 */
 void id(const char *const name)
 {
-    print("\n%s\n", name);
+    print("\n");
+    print("%s\n", name);
+    print("%s\n", "Autor: Vinicius Miranda de Araujo - 812839");
+    print("\n");
 } // end id ( )
 
 /*

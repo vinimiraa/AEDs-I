@@ -52,9 +52,9 @@ int main (void)
   do
   {
     clear();
+    
     // mostrar identificacao do autor e programa
     id("Programa: Exercicios0X - v0.0");
-    id("Autor:   Vinicius Miranda de Araujo - 812839" );
 
     // mostrar menu de opcoes
     menuOpcoes();
@@ -66,7 +66,7 @@ int main (void)
     switch (opcao)
     {
       case  0:
-        printf( "\n%s\n" , "Programa Encerrado");
+        printf( "\n%s\n" , "Programa Encerrado...");
         break;
       case  1: exercicio0X11(); break;
       case  2: exercicio0X12(); break;
@@ -125,7 +125,7 @@ void menuOpcoes()
 void exercicio0X11()
 {
   // identificacao
-  id("Exercicio 0X11:"); print("\n");
+  id("Exercicio 0X11:");
 
   // programa
 
@@ -141,7 +141,7 @@ void exercicio0X11()
 void exercicio0X12()
 {
   // identificacao
-  id("Exercicio 0X12:"); print("\n");
+  id("Exercicio 0X12:");
 
   // programa
   
@@ -157,7 +157,7 @@ void exercicio0X12()
 void exercicio0X13()
 {
   // identificacao
-  id("Exercicio 0X13:"); print("\n");
+  id("Exercicio 0X13:");
 
   // programa
 
@@ -173,7 +173,7 @@ void exercicio0X13()
 void exercicio0X14()
 {
   // identificacao
-  id("Exercicio 0X14:"); print("\n");
+  id("Exercicio 0X14:");
 
   // programa
   
@@ -189,7 +189,7 @@ void exercicio0X14()
 void exercicio0X15()
 {
   // identificacao
-  id("Exercicio 0X15:"); print("\n");
+  id("Exercicio 0X15:");
 
   // programa
 
@@ -205,7 +205,7 @@ void exercicio0X15()
 void exercicio0X16()
 {
   // identificacao
-  id("Exercicio 0X16:"); print("\n");
+  id("Exercicio 0X16:");
 
   // programa
 
@@ -221,7 +221,7 @@ void exercicio0X16()
 void exercicio0X17()
 {
   // identificacao
-  id("Exercicio 0X17:"); print("\n");
+  id("Exercicio 0X17:");
 
   // programa
   
@@ -237,7 +237,7 @@ void exercicio0X17()
 void exercicio0X18()
 {
   // identificacao
-  id("Exercicio 0X18:"); print("\n");
+  id("Exercicio 0X18:");
   
   // programa
 
@@ -253,7 +253,7 @@ void exercicio0X18()
 void exercicio0X19()
 {   
   // identificacao
-  id("Exercicio 0X19:"); print("\n");
+  id("Exercicio 0X19:");
 
   // programa
 
@@ -269,7 +269,7 @@ void exercicio0X19()
 void exercicio0X20()
 {
   // identificacao
-  id("Exercicio 0X20:"); print("\n");
+  id("Exercicio 0X20:");
 
   // programa
 
@@ -285,7 +285,7 @@ void exercicio0X20()
 void exercicio0XE1()
 {
   // identificacao
-  id("Exercicio 0XE1:"); print("\n");
+  id("Exercicio 0XE1:");
 
   // programa
 
@@ -301,7 +301,7 @@ void exercicio0XE1()
 void exercicio0XE2()
 {
   // identificacao
-  id("Exercicio 0XE2:"); print("\n");
+  id("Exercicio 0XE2:");
 
   // programa
 
