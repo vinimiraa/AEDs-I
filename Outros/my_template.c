@@ -19,12 +19,7 @@
 
 // -------------------------- lista de dependencias
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <ctype.h>
-#include <math.h>
+#include "libshow.h"
 
 // -------------------------- tratamento de erro
 
@@ -34,7 +29,6 @@
 
 // -------------------------- definicao de prototipos
 
-void identificacao();
 void menuOpcoes();
 void exercicio0X11();
 void exercicio0X12();
@@ -54,24 +48,25 @@ void exercicio0XE2();
 int main (void)
 {
   int opcao = 0;
-  // mostrar identificacao do autor e programa
-  identificacao();
 
   do
   {
+    clear();
+    // mostrar identificacao do autor e programa
+    id("Programa: Exercicios0X - v0.0");
+    id("Autor:   Vinicius Miranda de Araujo - 812839" );
+
     // mostrar menu de opcoes
     menuOpcoes();
+
     // ler opcao do teclado
-    printf( "\n %s" , "Opcao = ");
-    scanf( "%d" , &opcao ); 
-    getchar(); // limpar entrada de dados
-    // estetica
-    printf( "\n======== Opcao %d ========\n", opcao );
+    opcao = readint("Opcao = "); 
+    
     // executar a opcao escolhida
     switch (opcao)
     {
       case  0:
-        printf( "\n%s\n\n" , "    Programa Encerrado");
+        printf( "\n%s\n" , "Programa Encerrado");
         break;
       case  1: exercicio0X11(); break;
       case  2: exercicio0X12(); break;
@@ -86,12 +81,9 @@ int main (void)
       case 11: exercicio0XE1(); break;
       case 12: exercicio0XE2(); break;
       default:
-        printf( "\n   %s\n\n" , "ERRO: opcao invalida" );
+        printf( "\n%s\n" , "ERRO: opcao invalida" );
         break;
     } // fim switch
-    
-    // estetic
-    printf( "====== Fim Opcao %d ======\n\n", opcao );
 
   }while (opcao != 0);
 
@@ -105,21 +97,11 @@ int main (void)
 // -------------------------- definicao de metodos
 
 /**
-  * Identificacao do Autor e Programa
-  */
-void identificacao()
-{
-  printf("\n");
-  printf("%s\n", "Exercicios0X - Programa - v0.0");
-  printf("%s\n", "Autor: Vinicius Miranda de Araujo - 812839");
-  printf("\n");
-} // fim identificacao()
-
-/**
   * Menu de opcoes
   */
 void menuOpcoes()
 {
+  printf( "\n" );
   printf( "%s\n\n" , "Escolha alguma das opcoes a seguir:");
   printf( "%s\n" , "  0 - Encerrar programa");
   printf( "%s\n" , "  1 - Exercicio 0X11");
@@ -134,6 +116,7 @@ void menuOpcoes()
   printf( "%s\n" , " 10 - Exercicio 0X20");
   printf( "%s\n" , " 11 - Exercicio 0XE1");
   printf( "%s\n" , " 12 - Exercicio 0XE2");
+  printf( "\n" );
 } // fim menuOpcoes()
 
 /**
@@ -142,13 +125,14 @@ void menuOpcoes()
 void exercicio0X11()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0X11:" );
+  id("Exercicio 0X11:"); print("\n");
 
   // programa
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0X11
 
 /**
@@ -157,13 +141,14 @@ void exercicio0X11()
 void exercicio0X12()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0X12:" );
+  id("Exercicio 0X12:"); print("\n");
 
   // programa
-    
+  
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0X12
 
 /**
@@ -172,13 +157,14 @@ void exercicio0X12()
 void exercicio0X13()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0X13:" );
+  id("Exercicio 0X13:"); print("\n");
 
   // programa
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0X13
 
 /**
@@ -187,13 +173,14 @@ void exercicio0X13()
 void exercicio0X14()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0X14:" );
+  id("Exercicio 0X14:"); print("\n");
 
   // programa
   
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0X14
 
 /**
@@ -202,13 +189,14 @@ void exercicio0X14()
 void exercicio0X15()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0X15:" );
+  id("Exercicio 0X15:"); print("\n");
 
   // programa
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0X15
 
 /**
@@ -217,13 +205,14 @@ void exercicio0X15()
 void exercicio0X16()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0X16:" );
+  id("Exercicio 0X16:"); print("\n");
 
   // programa
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0X16
 
 /**
@@ -232,13 +221,14 @@ void exercicio0X16()
 void exercicio0X17()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0X17:" );
+  id("Exercicio 0X17:"); print("\n");
 
   // programa
   
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0X17
 
 /**
@@ -247,13 +237,14 @@ void exercicio0X17()
 void exercicio0X18()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0X18:" );
+  id("Exercicio 0X18:"); print("\n");
   
   // programa
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0X18
 
 /**
@@ -262,13 +253,14 @@ void exercicio0X18()
 void exercicio0X19()
 {   
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0X19:" );
+  id("Exercicio 0X19:"); print("\n");
 
   // programa
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0X19
 
 /**
@@ -277,13 +269,14 @@ void exercicio0X19()
 void exercicio0X20()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0X20:" );
+  id("Exercicio 0X20:"); print("\n");
 
   // programa
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0X20
 
 /**
@@ -292,13 +285,14 @@ void exercicio0X20()
 void exercicio0XE1()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0XE1:" );
+  id("Exercicio 0XE1:"); print("\n");
 
   // programa
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0XE1
 
 /**
@@ -307,11 +301,12 @@ void exercicio0XE1()
 void exercicio0XE2()
 {
   // identificacao
-  printf( "\n%s\n\n" , "Exercicio 0XE2:" );
+  id("Exercicio 0XE2:"); print("\n");
 
   // programa
 
   // encerrar
   printf( "\n%s\n" , "Aperte ENTER para continuar!" );
   getchar();
+  clear();
 } // fim exercicio0XE2

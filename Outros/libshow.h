@@ -55,17 +55,20 @@ void flush()
 } // end flush ( )
 
 /**
-    Metodo para identificar o programa e a autoria.
-    @param prog Nome do programa.
-    @param autor Autor do programa.
+    Metodo para identificar o programa.
+    @param name Nome do programa.
 */
-void id(const char *const prog, const char *const autor)
+void id(const char *const name)
 {
-    print("\n");
-    print("%s\n", prog);
-    print("%s\n", autor);
-    print("\n");
+    print("\n%s\n", name);
 } // end id ( )
+
+/*
+    Metodo para limpar o terminal
+*/
+void clear() {
+	system("cls");  //only for windows
+} // end clear()
 
 // ---------------------- para entrada e leitura de dados
 
