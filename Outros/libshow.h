@@ -174,20 +174,38 @@ int dividers(int x)
     int divisor = 1;
     int count = 0;
     if (x < 0)
-    { x = (-1) * x; } // end if
+    {
+        x = (-1) * x;
+    } // end if
     while (divisor <= x)
     {
         if (x % divisor == 0)
         {
             count = count + 1;
         } // end if
-        divisor = divisor + 1; 
+        divisor = divisor + 1;
     } // end while
     return (count);
 } // end dividers ( )
 
-
 // ---------------------- checar dados
+
+/**
+    Funcao para verificar se o numero esta dentro do intervalo.
+    @return true se dentro do intervalo; falso caso contrario.
+    @param x numero a ser verificado.
+    @param a extrema esquerda do intervalo.
+    @param b extrema direita do intervalo.
+*/
+bool inInterval(double x, double a, double b)
+{
+    bool result = true;
+    if (a > x || x > b) // !inInterval(x) = (a <= x || x <= b)
+    {
+        result = false;
+    } // end if
+    return (result);
+} // end inInterval ( )
 
 /**
     Funcao para ver se o numero e par.
@@ -227,7 +245,7 @@ bool isOdd(int x)
 bool isPrime(int x)
 {
     bool result = false;
-    if( dividers(x) == 2 )
+    if (dividers(x) == 2)
     {
         result = true;
     } // end if
@@ -280,20 +298,6 @@ bool isUpper(char c)
 } // end isUpper ( )
 
 /**
-    Funcao para converter o caractere para maiusculo.
-    @return maiuscula se miniscula; maiuscula caso contrario.
-    @param  char Caractere a ser lido.
-*/
-char toUpper(char c)
-{
-    if( isLower(c) )
-    {
-        c = c + 32;
-    }
-    return (c);
-} // end toUpper ( )
-
-/**
     Funcao para ver se o caractere e minusculo.
     @return true se minuscula; falso caso contrario.
     @param  char Caractere a ser lido.
@@ -309,20 +313,6 @@ bool isLower(char c)
 } // end isLower ( )
 
 /**
-    Funcao para converter o caractere para maiusculo.
-    @return miniscula se maiuscula; miniscula caso contrario.
-    @param  char Caractere a ser lido.
-*/
-char toLower(char c)
-{
-    if( isLower(c) )
-    {
-        c = c - 32;
-    } // end if
-    return (c);
-} // end toLower ( )
-
-/**
     Funcao para ver se o caractere e numero.
     @return true se digito; falso caso contrario.
     @param  char Caractere a ser lido.
@@ -330,7 +320,7 @@ char toLower(char c)
 bool isDigit(char c)
 {
     bool result = false;
-    if ('0' <= c && c <= '1')
+    if ('0' <= c && c <= '9')
     {
         result = true;
     } // end if
@@ -396,6 +386,38 @@ bool isPunct(char c)
     } // end if
     return (result);
 } // end isPunct ( )
+
+/**
+    Funcao para converter o caractere para maiusculo.
+    @return maiuscula se miniscula; maiuscula caso contrario.
+    @param  char Caractere a ser lido.
+*/
+char toUpper(char c)
+{
+    char a = 0;
+    if (isLower(c))
+    {
+        c = c - 32;
+        return (c);
+    }
+    return (a);
+} // end toUpper ( )
+
+/**
+    Funcao para converter o caractere para maiusculo.
+    @return miniscula se maiuscula; miniscula caso contrario.
+    @param  char Caractere a ser lido.
+*/
+char toLower(char c)
+{
+    char a = 0;
+    if (isUpper(c))
+    {
+        c = c + 32;
+        return (c);
+    } // end if
+    return (a);
+} // end toLower ( )
 
 // ---------------------- estrutura de dados homogeneas
 
@@ -592,6 +614,5 @@ void transposedMatrix(int row, int col, int matrix[][col])
     } // end for
     print("\n");
 } // end transposedMatrix ( )
-
 
 #endif

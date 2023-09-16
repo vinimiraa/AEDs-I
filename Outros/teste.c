@@ -191,10 +191,10 @@ void metodo01()
 
         print("\n%s\n", "Elementos Acima da Diagonal Principal:");
         superiorMatrix(nLin, nCol, matriz);
-
     }
     print("\n%s\n", "Matriz Transposta:");
     transposedMatrix(nLin, nCol, matriz);
+
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();
@@ -240,7 +240,7 @@ void metodo02()
         }
     }
 
-    printArray(v, n); // mostrar o vetor
+    printArray(v, n);   // mostrar o vetor
     reverseArray(v, n); // inverter o vetor
     printArray(v, n);   // mostrar o vetor
 
@@ -329,9 +329,16 @@ void metodo05()
     printf("\n%s\n\n", "Metodo 05:");
 
     // programa
-    int x = 0;
-    x = readint("Digite um valor: ");
-    x += x;
+    double x = 0.0, a = 0.0, b = 0.0;
+    x = readdouble("Digite um numero: ");
+    a = readdouble("Digite o extremo esquerdo do intervalo: ");
+    b = readdouble("Digite o extremo direito do intervalo: ");
+
+    if (inInterval(x, a, b))
+        print("Dentro do Intervalo!");
+    else if (!inInterval(x, a, b))
+        print("Fora do intervalo!");
+
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();
@@ -346,6 +353,27 @@ void metodo06()
     printf("\n%s\n\n", "Metodo 06:");
 
     // programa
+    char c;
+
+    c = readchar("Digite um caractere: ");
+    if (isAlnum(c))
+        print("\nAlfanumerico");
+    if (isAlpha(c))
+        print("\nLetra");
+    if (isDigit(c))
+        print("\nDigito");
+    if (isPunct(c))
+        print("\nPontuacao");
+    if (isUpper(c))
+        print("\nMaisucula");
+    if (isLower(c))
+        print("\nMinuscula");
+    if(isSpace(c))
+        print("\nEspaco em branco");
+    c = toUpper(c);
+    print("\nto upper = %c",c);
+    c= toLower(c);
+    print("\nto lower = %c",c);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
