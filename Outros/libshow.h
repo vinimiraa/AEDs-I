@@ -69,11 +69,12 @@ void id(const char *const name)
 /*
     Metodo para limpar o terminal
 */
-void clear() {
-	system("cls");  //only for windows
-} // end clear()
+void clear()
+{
+    system("cls"); // only for windows
+} // end clear ( )
 
-// ---------------------- para entrada e leitura de dados
+// ---------------------- entrada e leitura de dados
 
 /**
     Funcao para ler valor inteiro do teclado.
@@ -161,7 +162,31 @@ char *readstring(const char *const text)
     return (word);
 } // end readString ( )
 
-// ---------------------- para checar dados
+// ---------------------- outros procedimentos
+
+/**
+    Funcao para ver a quantidade de divisores de um numero.
+    @return QUantidade de divisores.
+    @param number Numero a ser lido.
+*/
+int dividers(int x)
+{
+    int divisor = 1;
+    int count = 0;
+    if (x < 0)
+    { x = (-1) * x; } // end if
+    while (divisor <= x)
+    {
+        if (x % divisor == 0)
+        {
+            count = count + 1;
+        } // end if
+        divisor = divisor + 1; 
+    } // end while
+    return (count);
+} // end dividers()
+
+// ---------------------- checar dados
 
 /**
     Funcao para ver se o numero e par.
@@ -176,7 +201,7 @@ bool isEven(int x)
         result = true;
     } // end if
     return (result);
-} // end isEven()
+} // end isEven ( )
 
 /**
     Funcao para ver se o numero e impar.
@@ -191,7 +216,22 @@ bool isOdd(int x)
         result = true;
     } // end if
     return (result);
-} // end isOdd()
+} // end isOdd ( )
+
+/**
+    Funcao para ver se o numero e primo.
+    @return true se primo; falso caso contrario.
+    @param  number Numero a ser lido.
+*/
+bool isPrime(int x)
+{
+    bool result = false;
+    if( dividers(x) == 2 )
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isPrime ( )
 
 /**
     Funcao para ver se o numero e positivo.
@@ -206,7 +246,7 @@ bool isPositive(int x)
         result = true;
     } // end if
     return (result);
-} // end isPositive()
+} // end isPositive ( )
 
 /**
     Funcao para ver se o numero e negativo.
@@ -221,7 +261,7 @@ bool isNegative(int x)
         result = true;
     } // end if
     return (result);
-} // end isNegative()
+} // end isNegative ( )
 
 /**
     Funcao para ver se o numero e negativo.
@@ -231,12 +271,12 @@ bool isNegative(int x)
 bool isUpper(char c)
 {
     bool result = false;
-    if ( 'A' <= c && c <= 'Z' )
+    if ('A' <= c && c <= 'Z')
     {
         result = true;
     } // end if
     return (result);
-} // end isUpper()
+} // end isUpper ( )
 
 /**
     Funcao para ver se o numero e negativo.
@@ -246,12 +286,12 @@ bool isUpper(char c)
 bool isLower(char c)
 {
     bool result = false;
-    if ( 'a' <= c && c <= 'z' )
+    if ('a' <= c && c <= 'z')
     {
         result = true;
     } // end if
     return (result);
-} // end isLower()
+} // end isLower ( )
 
 /**
     Funcao para ver se o numero e negativo.
@@ -261,12 +301,12 @@ bool isLower(char c)
 bool isDigit(char c)
 {
     bool result = false;
-    if ( '0' <= c && c <= '1' )
+    if ('0' <= c && c <= '1')
     {
         result = true;
     } // end if
     return (result);
-} // end isDigit()
+} // end isDigit ( )
 
 /**
     Funcao para ver se o numero e negativo.
@@ -276,12 +316,12 @@ bool isDigit(char c)
 bool isAlpha(char c)
 {
     bool result = false;
-    if ( isLower(c) || isUpper(c) )
+    if (isLower(c) || isUpper(c))
     {
         result = true;
     } // end if
     return (result);
-} // end isAlpha()
+} // end isAlpha ( )
 
 /**
     Funcao para ver se o numero e negativo.
@@ -291,12 +331,12 @@ bool isAlpha(char c)
 bool isAlnum(char c)
 {
     bool result = false;
-    if ( isAlpha(c) || isDigit(c) )
+    if (isAlpha(c) || isDigit(c))
     {
         result = true;
     } // end if
     return (result);
-} // end isAlnum()
+} // end isAlnum ( )
 
 /**
     Funcao para ver se o numero e negativo.
@@ -306,14 +346,14 @@ bool isAlnum(char c)
 bool isSpace(char c)
 {
     bool result = false;
-    if ( c == ' ' )
+    if (c == ' ')
     {
         result = true;
     } // end if
     return (result);
-} // end isSpace()
+} // end isSpace ( )
 
-// ---------------------- para estrutura de dados homogeneas
+// ---------------------- estrutura de dados homogeneas
 
 /**
     Funcao para mostrar na tela um vetor.
@@ -323,13 +363,13 @@ bool isSpace(char c)
 void printArray(int vetor[], int n)
 {
     int i = 0;
-    print("\n%s\n", "Vetor: ");
+    print("\n");
     for (i = 0; i < n; i = i + 1)
     {
         print("[ %2d ] ", vetor[i]);
     } // end for
     print("\n");
-} // end printArray()
+} // end printArray ( )
 
 /**
     Funcao para inverter as posicoes de um vetor.
@@ -345,7 +385,7 @@ void reverseArray(int vetor[], int n)
         vetor[i] = vetor[n - 1 - i];
         vetor[n - 1 - i] = aux;
     } // end for
-} // end reverseArray()
+} // end reverseArray ( )
 
 /**
     Funcao para retornar o maior elemento de um vetor.
@@ -362,9 +402,9 @@ int maxArray(int vetor[], int n)
         {
             maior = vetor[i];
         } // end if
-    } // end for
+    }     // end for
     return (maior);
-} // end maxArray()
+} // end maxArray ( )
 
 /**
     Funcao para retornar o menor elemento de um vetor.
@@ -381,29 +421,30 @@ int minArray(int vetor[], int n)
         {
             menor = vetor[i];
         } // end if
-    } // end for
+    }     // end for
     return (menor);
-} // end maxArray()
+} // end maxArray ( )
 
 /**
-    Funcao para mostrar na tela uma matriz.
+    Funcao para mostrar uma matriz.
     @param  row Numero de linhas da matriz.
     @param  col Numero de colunas da matriz.
     @param  matrix Matriz.
 */
-void printMatrix(int nLin, int nCol, const int matriz[][nCol])
+void printMatrix(int row, int col, const int matrix[][col])
 {
-    int i = 0, j = 0;
-    print("\n%s\n", "Matriz: ");
-    for (i = 0; i < nLin; i = i + 1)
+    int L = 0, C = 0;
+    print("\n");
+    for (L = 0; L < row; L = L + 1)
     {
-        for (j = 0; j < nCol; j = j + 1)
+        for (C = 0; C < col; C = C + 1)
         {
-            print("[ %2d ] ", matriz[i][j]);
+            print("[ %2d ] ", matrix[L][C]);
         } // end for
         print("\n");
     } // end for
-} // end printMatriz()
+    print("\n");
+} // end printMatrix ( )
 
 /**
     Funcao para mostrar os elementos da diagonal principal de uma matriz.
@@ -411,23 +452,16 @@ void printMatrix(int nLin, int nCol, const int matriz[][nCol])
     @param  col Numero de colunas da matriz.
     @param  matrix Matriz.
 */
-void leadingMatrix(int nLin, int nCol, int matriz[][nCol])
+void leadingMatrix(int row, int col, int matriz[][col])
 {
-    int i = 0;
-    print("\n%s\n", "Diagonal Principal da Matriz: ");
-    if (nLin != nCol)
+    int L = 0;
+    print("\n");
+    for (L = 0; L < row; L = L + 1)
     {
-        print("\n%s\n", " ERRO: a matriz nao e quadrada!");
-    } // end if
-    else
-    {
-        for (i = 0; i < nLin; i = i + 1)
-        {
-            print("[ %2d ] ", matriz[i][i]);
-        } // end for
-        print("\n");
-    } // end else
-} // end leadingMatrix()
+        print("[ %2d ] ", matriz[L][L]);
+    } // end for
+    print("\n");
+} // end leadingMatrix ( )
 
 /**
     Funcao para mostrar os elementos da diagonal secundaria de uma matriz.
@@ -435,23 +469,16 @@ void leadingMatrix(int nLin, int nCol, int matriz[][nCol])
     @param  col Numero de colunas da matriz.
     @param  matrix Matriz.
 */
-void secondaryMatrix(int nLin, int nCol, int matriz[][nCol])
+void secondaryMatrix(int row, int col, int matrix[][col])
 {
-    int i = 0;
-    print("\n%s\n", "Diagonal Secundaria da Matriz: ");
-    if (nLin != nCol)
+    int L = 0;
+    print("\n");
+    for (L = 0; L < row; L = L + 1)
     {
-        print("\n%s\n", " ERRO: a matriz nao e quadrada!");
-    } // end if
-    else
-    {
-        for (i = 0; i < nLin; i = i + 1)
-        {
-            print("[ %2d ] ", matriz[i][nLin - 1 - i]);
-        } // end for
-        print("\n");
-    } // end else
-} // end secondaryMatrix()
+        print("[ %2d ] ", matrix[L][row - 1 - L]);
+    } // end for
+    print("\n");
+} // end secondaryMatrix ( )
 
 /**
     Funcao para mostrar os elementos abaixo da diagonal principal de uma matriz.
@@ -459,29 +486,22 @@ void secondaryMatrix(int nLin, int nCol, int matriz[][nCol])
     @param  col Numero de colunas da matriz.
     @param  matrix Matriz.
 */
-void inferiorMatrix(int nLin, int nCol, int matriz[][nCol])
+void inferiorMatrix(int row, int col, int matrix[][col])
 {
-    int i = 0, j = 0;
-    print("\n%s\n", "Elementos Abaixo da Diagonal Principal da Matriz: ");
-    if (nLin != nCol)
+    int L = 0, C = 0;
+    print("\n");
+    for (L = 0; L < row; L = L + 1)
     {
-        print("\n%s\n", " ERRO: a matriz nao e quadrada!");
-    } // end if
-    else
-    {
-        for (i = 0; i < nLin; i = i + 1)
+        for (C = 0; C < col; C = C + 1)
         {
-            for (j = 0; j < nCol; j = j + 1)
+            if (L > C)
             {
-                if (i > j)
-                {
-                    print("[ %2d ] ", matriz[i][j]);
-                } // end if
-            } // end for
-        } // end for
-        print("\n");
-    } // end else
-} // end inferiorMatrix()
+                print("[ %2d ] ", matrix[L][C]);
+            } // end if
+        }     // end for
+    }         // end for
+    print("\n");
+} // end inferiorMatrix ( )
 
 /**
     Funcao para mostrar os elementos acima da diagonal principal de uma matriz.
@@ -489,55 +509,45 @@ void inferiorMatrix(int nLin, int nCol, int matriz[][nCol])
     @param  col Numero de colunas da matriz.
     @param  matrix Matriz.
 */
-void superiorMatrix(int nLin, int nCol, int matriz[][nCol])
+void superiorMatrix(int row, int col, int matrix[][col])
 {
-    int i = 0, j = 0;
-    print("\n%s\n", "Elementos Acima da Diagonal Principal da Matriz: ");
-    if (nLin != nCol)
+    int L = 0, C = 0;
+    print("\n");
+    for (L = 0; L < row; L = L + 1)
     {
-        print("\n%s\n", " ERRO: a matriz nao e quadrada!");
-    } // end if
-    else
-    {
-        for (i = 0; i < nLin; i = i + 1)
+        for (C = 0; C < col; C = C + 1)
         {
-            for (j = 0; j < nCol; j = j + 1)
+            if (L < C)
             {
-                if (i < j)
-                {
-                    print("[ %2d ] ", matriz[i][j]);
-                } // end if
-            }     // end for
-        }         // end for
-        print("\n");
-    } // end else
-} // end superiorMatrix()
-
-// ---------------------- outros procedimentos
+                print("[ %2d ] ", matrix[L][C]);
+            } // end if
+        }     // end for
+    }         // end for
+    print("\n");
+} // end superiorMatrix ( )
 
 /**
-    Funcao para ver os divisores e sua quantidade de divisores de um numero.
-    @param number Numero a ser lido.
+    Funcao para mostrar uma matriz transposta.
+    @param  row Numero de linhas da matriz.
+    @param  col Numero de colunas da matriz.
+    @param  matrix Matriz.
 */
-void dividers(int x)
+void transposedMatrix(int row, int col, int matrix[][col])
 {
-    int divisor = 1;
-    int count = 0;
-    if (x < 0)
+    int L = 0, C = 0;
+    int transp[col][row];
+    print("\n");
+    for (C = 0; C < col; C = C + 1)
     {
-        x = (-1) * x;
-    } // end if
-    print("\n%s", "Divisores =");
-    while (divisor <= x)
-    {
-        if (x % divisor == 0)
+        for (L = 0; L < row; L = L + 1)
         {
-            print(" %d", divisor);
-            count = count + 1;
-        } // end if
-        divisor = divisor + 1;
-    } // end while
-    print("\n%s%d\n", "Quantidade de Divisores = ", count);
-} // end dividers()
+            transp[C][L] = matrix[L][C];
+            print("[ %2d ] ", transp[C][L]);
+        } // end for
+        print("\n");
+    } // end for
+    print("\n");
+} // end transposedMatrix ( )
+
 
 #endif

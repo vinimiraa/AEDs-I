@@ -133,14 +133,15 @@ void metodo01()
 
     // programa
     int nLin = 0, nCol = 0;
+    int opcao = 0;
 
     nLin = readint("Digite o numero de linhas da matrix: ");
     nCol = readint("Digite o numero de colunas da matrix: ");
 
     int matriz[nLin][nCol];
 
-    int opcao = 0;
     opcao = readint("\n1 - preencher a matriz, 2 - matriz aleatoria:\n");
+    print("\n");
 
     if (opcao == 1)
     {
@@ -170,12 +171,30 @@ void metodo01()
         }
     }
 
+    print("\n%s\n", "Matriz:");
     printMatrix(nLin, nCol, matriz);
-    leadingMatrix(nLin, nCol, matriz);
-    secondaryMatrix(nLin, nCol, matriz);
-    inferiorMatrix(nLin, nCol, matriz);
-    superiorMatrix(nLin, nCol, matriz);
 
+    if (nLin != nCol)
+    {
+        print("\n%s\n", "ERRO: Matriz nao e quadrada!");
+    }
+    else
+    {
+        print("\n%s\n", "Diagonal Principal:");
+        leadingMatrix(nLin, nCol, matriz);
+
+        print("\n%s\n", "Diagonal Secundaria:");
+        secondaryMatrix(nLin, nCol, matriz);
+
+        print("\n%s\n", "Elementos Abaixo da Diagonal Principal:");
+        inferiorMatrix(nLin, nCol, matriz);
+
+        print("\n%s\n", "Elementos Acima da Diagonal Principal:");
+        superiorMatrix(nLin, nCol, matriz);
+
+    }
+    print("\n%s\n", "Matriz Transposta:");
+    transposedMatrix(nLin, nCol, matriz);
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();
@@ -221,11 +240,9 @@ void metodo02()
         }
     }
 
-    printArray(v, n);   // mostrar o vetor
-    printReArray(v, n); // mostrar o vetor invertido
+    printArray(v, n); // mostrar o vetor
     reverseArray(v, n); // inverter o vetor
     printArray(v, n);   // mostrar o vetor
-    printReArray(v, n); // mostrar o vetor invertido
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -250,13 +267,17 @@ void metodo03()
     }
     for (int i = 0; i < n; i++)
     {
-        if (iseven(v[i]))
+        if (isEven(v[i]))
         {
             printf("%d%s", v[i], " e par\n");
         }
-        if (isodd(v[i]))
+        if (isOdd(v[i]))
         {
             printf("%d%s", v[i], " e impar\n");
+        }
+        if (isPrime(v[i]))
+        {
+            print("%d%s", v[i], " e primo\n");
         }
     }
 
@@ -276,21 +297,21 @@ void metodo04()
     // programa
     char *palavra[5];
 
-    for( int i = 0; i < 5; i=i+1 )
+    for (int i = 0; i < 5; i = i + 1)
     {
-        palavra[i] = readstring("Digite um carro: "); 
+        palavra[i] = readstring("Digite um carro: ");
     }
     print("\n");
 
-    for( int i = 0; i < 5; i=i+1 )
+    for (int i = 0; i < 5; i = i + 1)
     {
-        print("%d. %s\n" , i+1, palavra[i]);
+        print("%d. %s\n", i + 1, palavra[i]);
     }
     print("\n");
 
-    for( int i = 0; i < 5; i=i+1 )
+    for (int i = 0; i < 5; i = i + 1)
     {
-        print("%d. %d\n" , i+1, (int)strlen(palavra[i]));
+        print("%d. %d\n", i + 1, (int)strlen(palavra[i]));
     }
     print("\n");
 
@@ -310,6 +331,7 @@ void metodo05()
     // programa
     int x = 0;
     x = readint("Digite um valor: ");
+    x += x;
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();
