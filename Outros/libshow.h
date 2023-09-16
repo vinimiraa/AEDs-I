@@ -184,7 +184,8 @@ int dividers(int x)
         divisor = divisor + 1; 
     } // end while
     return (count);
-} // end dividers()
+} // end dividers ( )
+
 
 // ---------------------- checar dados
 
@@ -264,7 +265,7 @@ bool isNegative(int x)
 } // end isNegative ( )
 
 /**
-    Funcao para ver se o numero e negativo.
+    Funcao para ver se o caractere e maiusculo.
     @return true se maiuscula; falso caso contrario.
     @param  char Caractere a ser lido.
 */
@@ -279,7 +280,21 @@ bool isUpper(char c)
 } // end isUpper ( )
 
 /**
-    Funcao para ver se o numero e negativo.
+    Funcao para converter o caractere para maiusculo.
+    @return maiuscula se miniscula; maiuscula caso contrario.
+    @param  char Caractere a ser lido.
+*/
+char toUpper(char c)
+{
+    if( isLower(c) )
+    {
+        c = c + 32;
+    }
+    return (c);
+} // end toUpper ( )
+
+/**
+    Funcao para ver se o caractere e minusculo.
     @return true se minuscula; falso caso contrario.
     @param  char Caractere a ser lido.
 */
@@ -294,7 +309,21 @@ bool isLower(char c)
 } // end isLower ( )
 
 /**
-    Funcao para ver se o numero e negativo.
+    Funcao para converter o caractere para maiusculo.
+    @return miniscula se maiuscula; miniscula caso contrario.
+    @param  char Caractere a ser lido.
+*/
+char toLower(char c)
+{
+    if( isLower(c) )
+    {
+        c = c - 32;
+    } // end if
+    return (c);
+} // end toLower ( )
+
+/**
+    Funcao para ver se o caractere e numero.
     @return true se digito; falso caso contrario.
     @param  char Caractere a ser lido.
 */
@@ -309,7 +338,7 @@ bool isDigit(char c)
 } // end isDigit ( )
 
 /**
-    Funcao para ver se o numero e negativo.
+    Funcao para ver se o caractere e letra.
     @return true se letra; falso caso contrario.
     @param  char Caractere a ser lido.
 */
@@ -324,7 +353,7 @@ bool isAlpha(char c)
 } // end isAlpha ( )
 
 /**
-    Funcao para ver se o numero e negativo.
+    Funcao para ver se o caractere e letra ou numero.
     @return true se letra ou digito; falso caso contrario.
     @param  char Caractere a ser lido.
 */
@@ -339,7 +368,7 @@ bool isAlnum(char c)
 } // end isAlnum ( )
 
 /**
-    Funcao para ver se o numero e negativo.
+    Funcao para ver se o caractere e um espaco em branco.
     @return true se espaco; falso caso contrario.
     @param  char Caractere a ser lido.
 */
@@ -352,6 +381,21 @@ bool isSpace(char c)
     } // end if
     return (result);
 } // end isSpace ( )
+
+/**
+    Funcao para ver se o caractere e pontuacao.
+    @return true se pontuacao; falso caso contrario.
+    @param  char Caractere a ser lido.
+*/
+bool isPunct(char c)
+{
+    bool result = false;
+    if (('!' <= c && c <= '/') || (':' <= c && c <= '@') || ('[' <= c && c <= '`') || ('{' <= c && c <= '~'))
+    {
+        result = true;
+    } // end if
+    return (result);
+} // end isPunct ( )
 
 // ---------------------- estrutura de dados homogeneas
 
