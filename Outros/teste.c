@@ -334,11 +334,16 @@ void metodo05()
     a = readdouble("Digite o extremo esquerdo do intervalo: ");
     b = readdouble("Digite o extremo direito do intervalo: ");
 
-    if (inInterval(x, a, b))
-        print("Dentro do Intervalo!");
-    else if (!inInterval(x, a, b))
-        print("Fora do intervalo!");
+    if (inOpenInterval(x, a, b))
+        print("\nDentro do Intervalo Aberto!");
+    else if( (!inOpenInterval(x, a, b)) )
+        print("\nFora do Intervalo Aberto!");
 
+    if ( inClosedInterval(x, a, b))
+        print("\nDentro do Intervalo Fechado!");
+    else if( !inClosedInterval(x, a, b))
+        print("\nFora do Intervalo Fechado!");
+    print("\n");
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();

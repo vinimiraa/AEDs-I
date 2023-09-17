@@ -191,21 +191,38 @@ int dividers(int x)
 // ---------------------- checar dados
 
 /**
-    Funcao para verificar se o numero esta dentro do intervalo.
+    Funcao para verificar se o numero esta dentro do intervalo aberto.
     @return true se dentro do intervalo; falso caso contrario.
     @param x numero a ser verificado.
     @param a extrema esquerda do intervalo.
     @param b extrema direita do intervalo.
 */
-bool inInterval(double x, double a, double b)
+bool inOpenInterval(double x, double a, double b)
 {
     bool result = true;
-    if (a > x || x > b) // !inInterval(x) = (a <= x || x <= b)
+    if (a >= x || x >= b) // !inOpenInterval(x) = (a < x || x < b)
     {
         result = false;
     } // end if
     return (result);
-} // end inInterval ( )
+} // end inOpenInterval ( )
+
+/**
+    Funcao para verificar se o numero esta dentro do intervalo fechado.
+    @return true se dentro do intervalo; falso caso contrario.
+    @param x numero a ser verificado.
+    @param a extrema esquerda do intervalo.
+    @param b extrema direita do intervalo.
+*/
+bool inClosedInterval(double x, double a, double b)
+{
+    bool result = true;
+    if (a > x || x > b) // !inClosedInterval(x) = (a <= x || x <= b)
+    {
+        result = false;
+    } // end if
+    return (result);
+} // end inClosedInterval ( )
 
 /**
     Funcao para ver se o numero e par.
