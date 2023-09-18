@@ -124,11 +124,10 @@ void multiplos0511(int n)
     int i = 0;
     int mult = 7;
 
-    print("\n%s" , "Multplos de 7 =" );
     for( i = 0; i < n; i = i + 1)
     {
         print(" %d", mult);
-        mult += 7;
+        mult = mult + 7;
     } // end for
     print("\n");
 }
@@ -144,6 +143,7 @@ void exercicio0511()
     int n = 0;
     n = readint( "Digite uma quantidade: " );
 
+    print("\n%s" , "Multplos de 7 =" );
     multiplos0511(n);
 
     // encerrar
@@ -156,7 +156,7 @@ void multiplos0512(int n)
 {
     int i = 0;
     int mult = 12;
-    print("\n%s", "Multiplos de 3 e 4 =");
+
     for( i = 0; i < n; i++ )
     {
         if( (mult % 3 == 0) && (mult % 4 == 0) ){
@@ -178,6 +178,7 @@ void exercicio0512()
     int n = 0;
     n = readint( "Digite uma quantidade: " );
 
+    print("\n%s", "Multiplos de 3 e 4 =");
     multiplos0512(n);
 
     // encerrar
@@ -192,7 +193,6 @@ void potencia0513(int n)
     int i = 0;
     int num = 0;
 
-    print( "\n%s", "Potencias de 5 =" );
     for( i = p; i > 0; i = i - 1 )
     {
         num = pow(5, p);
@@ -213,6 +213,7 @@ void exercicio0513()
     int n = 0;
     n = readint( "Digite uma quantidade: " );
 
+    print( "\n%s", "Potencias de 5 =" );
     potencia0513(n);
 
     // encerrar
@@ -221,6 +222,19 @@ void exercicio0513()
     clear();
 } // fim exercicio0513
 
+void metodo0514(int n)
+{
+    double numerador = 1.0;
+    double denominador = 6.0;
+
+    int i = 0;
+    for(i = 0; i < n; i = i + 1)
+    {
+        printf("\n%.lf/%.lf = %.4lf", numerador, denominador, numerador/denominador);
+        denominador = denominador + 6.0;
+    }
+    print("\n");
+}
 /**
  * Metodo04.
  */
@@ -230,6 +244,11 @@ void exercicio0514()
     id("Exercicio 0514:");
 
     // programa
+    int n = 0;
+    n = readint("Digite uma quantidade: ");
+
+    print("\n%s\n", "Valores inversos multiplos de 6 =");
+    metodo0514(n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -237,6 +256,21 @@ void exercicio0514()
     clear();
 } // fim exercicio0514
 
+void metodo0515(int x, int n)
+{
+    int p = 1; // potencia
+    double numerador = 1.0;
+    double denominador = x;
+    int i = 0;
+    //mostrar a potencia par
+    print("\n%.lf/%.lf^%d = %.4lf", numerador, denominador, p-1, numerador/(pow(denominador,p-1)) );
+    for(i = 1; i < n; i = i + 1)
+    {   
+        print("\n%.lf/%.lf^%d = %.4lf", numerador, denominador, p, numerador/(pow(denominador,p)) );
+        p = p + 2; 
+    }
+    print("\n");
+}
 /**
  * Metodo05.
  */
@@ -246,13 +280,34 @@ void exercicio0515()
     id("Exercicio 0515:");
 
     // programa
+    double x = 0;
+    int    n = 0;
+    x = readdouble("Digite um numero: ");
+    n = readint("Digite uma quantidade: ");
 
+    metodo0515(x,n);
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();
     clear();
 } // fim exercicio0515
 
+void metodo0516(int n)
+{
+    int soma = 3; // soma comeca com o valor 3
+    int i    = 0; // ir incrementando se achar um valor par nao multiplo de 4  
+    int num  = 6; // menor valor par nao mutiplo de 4
+    while( n > i) // enquanto quantidade for maior que i
+    {   
+        if( num % 4 != 0 ) // testar se nao for multiplo de 4
+        { // se true:
+            soma = soma + num; // soma recebe soma mais o numero 
+            i = i + 1; // incrementa a variavel de parada
+        }
+        num = num + 2; // incrementar de 2 em 2 garantindo que o proximo valor sera par
+    }
+    print("\n%s%d\n", "Soma = ", soma); // soma  =  3 + 6 + 10 + 14 + 18 = 51 -> resultado esperado
+}
 /**
  * Metodo06.
  */
@@ -262,6 +317,10 @@ void exercicio0516()
     id("Exercicio 0516:");
 
     // programa
+    int n = 0;
+    n = readint("Digite uma quantidade: ");
+
+    metodo0516(n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
