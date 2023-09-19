@@ -29,7 +29,7 @@
 
 // -------------------------- definicao de prototipos
 
-void menuOpcoes();
+void menuOpcoes   ();
 void exercicio0511();
 void exercicio0512();
 void exercicio0513();
@@ -51,8 +51,6 @@ int main(void)
 
     do
     {
-        clear();
-
         // mostrar identificacao do autor e programa
         id("Programa: Exercicios05 - v0.0");
 
@@ -68,15 +66,15 @@ int main(void)
         case 0:
             printf("\n%s\n", "Programa Encerrado...");
             break;
-        case 1:  exercicio0511(); break;
-        case 2:  exercicio0512(); break;
-        case 3:  exercicio0513(); break;
-        case 4:  exercicio0514(); break;
-        case 5:  exercicio0515(); break;
-        case 6:  exercicio0516(); break;
-        case 7:  exercicio0517(); break;
-        case 8:  exercicio0518(); break;
-        case 9:  exercicio0519(); break;
+        case  1: exercicio0511(); break;
+        case  2: exercicio0512(); break;
+        case  3: exercicio0513(); break;
+        case  4: exercicio0514(); break;
+        case  5: exercicio0515(); break;
+        case  6: exercicio0516(); break;
+        case  7: exercicio0517(); break;
+        case  8: exercicio0518(); break;
+        case  9: exercicio0519(); break;
         case 10: exercicio0520(); break;
         case 11: exercicio05E1(); break;
         case 12: exercicio05E2(); break;
@@ -121,7 +119,7 @@ void menuOpcoes()
 
 void multiplos0511(int n)
 {
-    int i = 0;
+    int i    = 0;
     int mult = 7;
 
     for( i = 0; i < n; i = i + 1)
@@ -154,7 +152,7 @@ void exercicio0511()
 
 void multiplos0512(int n)
 {
-    int i = 0;
+    int i    = 0;
     int mult = 12;
 
     for( i = 0; i < n; i++ )
@@ -189,8 +187,8 @@ void exercicio0512()
 
 void potencia0513(int n)
 {
-    int p = n;
-    int i = 0;
+    int p   = n;
+    int i   = 0;
     int num = 0;
 
     for( i = p; i > 0; i = i - 1 )
@@ -224,7 +222,7 @@ void exercicio0513()
 
 void metodo0514(int n)
 {
-    double numerador = 1.0;
+    double numerador   = 1.0;
     double denominador = 6.0;
 
     int i = 0;
@@ -258,12 +256,14 @@ void exercicio0514()
 
 void metodo0515(int x, int n)
 {
-    int p = 1; // potencia
-    double numerador = 1.0;
+    int    p           = 1; // potencia
+    double numerador   = 1.0;
     double denominador = x;
-    int i = 0;
+    int    i           = 0;
+
     //mostrar a potencia par
     print("\n%.lf/%.lf^%d = %.4lf", numerador, denominador, p-1, numerador/(pow(denominador,p-1)) );
+
     for(i = 1; i < n; i = i + 1)
     {   
         print("\n%.lf/%.lf^%d = %.4lf", numerador, denominador, p, numerador/(pow(denominador,p)) );
@@ -286,6 +286,7 @@ void exercicio0515()
     n = readint("Digite uma quantidade: ");
 
     metodo0515(x,n);
+
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();
@@ -294,19 +295,21 @@ void exercicio0515()
 
 void metodo0516(int n)
 {
-    int soma = 3; // soma comeca com o valor 3
-    int i    = 0; // ir incrementando se achar um valor par nao multiplo de 4  
     int num  = 6; // menor valor par nao mutiplo de 4
+    int soma = 3; // soma comeca com o valor 3
+    int i    = 1; // ir incrementando se achar um valor par nao multiplo de 4  
+
     while( n > i) // enquanto quantidade for maior que i
     {   
         if( num % 4 != 0 ) // testar se nao for multiplo de 4
-        { // se true:
+        {
             soma = soma + num; // soma recebe soma mais o numero 
             i = i + 1; // incrementa a variavel de parada
         }
         num = num + 2; // incrementar de 2 em 2 garantindo que o proximo valor sera par
     }
-    print("\n%s%d\n", "Soma = ", soma); // soma  =  3 + 6 + 10 + 14 + 18 = 51 -> resultado esperado
+
+    print("\n%s%d\n", "Soma = ", soma); // soma  =  3 + 6 + 10 + 14 + 18 = 51 -> resultado esperado quando n = 5
 }
 /**
  * Metodo06.
@@ -328,6 +331,26 @@ void exercicio0516()
     clear();
 } // fim exercicio0516
 
+void metodo0517(int n)
+{
+    int    x       = 6; // variavel par e nao multipla de 5
+    double inverso = 0; //
+    double soma    = 0; // 
+    int    i       = 0; // variavel de controle do while
+
+    while( i < n ) // quantidade > 0
+    {
+        if( x % 5 != 0 ) // x = 6 8 12 14 16 
+        {
+            inverso = 1.0/(double)x;
+            soma = soma + inverso;
+            i = i + 1; 
+        }
+        x = x + 2; // garantir que o proximo valor de x sera par
+    }
+
+    print("\n%s%lf\n", "Soma = ", soma); //soma = (1/6) + (1/8) + (1/12) + (1/14) + (1/16) = 0.0589 -> resultado quando n = 5
+}
 /**
  * Metodo07.
  */
@@ -337,6 +360,10 @@ void exercicio0517()
     id("Exercicio 0517:");
 
     // programa
+    int n = 0;
+    n = readint("Digite uma quantidade: ");
+
+    metodo0517(n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
