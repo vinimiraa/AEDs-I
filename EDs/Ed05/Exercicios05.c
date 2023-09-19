@@ -340,7 +340,7 @@ void metodo0517(int n)
 
     while( i < n ) // quantidade > 0
     {
-        if( x % 5 != 0 ) // x = 6 8 12 14 16 
+        if( x % 5 != 0 ) // teste-> x = 6 8 12 14 16 
         {
             inverso = 1.0/(double)x;
             soma = soma + inverso;
