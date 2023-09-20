@@ -141,7 +141,7 @@ void exercicio0511()
     int n = 0;
     n = readint( "Digite uma quantidade: " );
 
-    print("\n%s" , "Multplos de 7 =" );
+    print( "\n%s" , "Multplos de 7 =" );
     multiplos0511(n);
 
     // encerrar
@@ -176,7 +176,7 @@ void exercicio0512()
     int n = 0;
     n = readint( "Digite uma quantidade: " );
 
-    print("\n%s", "Multiplos de 3 e 4 =");
+    print( "\n%s", "Multiplos de 3 e 4 =" );
     multiplos0512(n);
 
     // encerrar
@@ -223,13 +223,13 @@ void exercicio0513()
 void metodo0514(int n)
 {
     double numerador   = 1.0;
-    double denominador = 6.0;
+    double denominador = 7.0;
 
     int i = 0;
     for(i = 0; i < n; i = i + 1)
     {
         printf("\n%.lf/%.lf = %.4lf", numerador, denominador, numerador/denominador);
-        denominador = denominador + 6.0;
+        denominador = denominador + 7.0;
     }
     print("\n");
 }
@@ -243,9 +243,9 @@ void exercicio0514()
 
     // programa
     int n = 0;
-    n = readint("Digite uma quantidade: ");
+    n = readint( "Digite uma quantidade: " );
 
-    print("\n%s\n", "Valores inversos multiplos de 6 =");
+    print( "\n%s\n", "Valores inversos multiplos de 7 =" );
     metodo0514(n);
 
     // encerrar
@@ -282,8 +282,8 @@ void exercicio0515()
     // programa
     double x = 0;
     int    n = 0;
-    x = readdouble("Digite um numero: ");
-    n = readint("Digite uma quantidade: ");
+    x = readdouble( "Digite um numero: " );
+    n = readint( "Digite uma quantidade: " );
 
     metodo0515(x,n);
 
@@ -293,23 +293,22 @@ void exercicio0515()
     clear();
 } // fim exercicio0515
 
-void metodo0516(int n)
+int metodo0516(int n)
 {
-    int num  = 6; // menor valor par nao mutiplo de 4
-    int soma = 3; // soma comeca com o valor 3
-    int i    = 1; // ir incrementando se achar um valor par nao multiplo de 4  
+    int soma = 0;
+    int x    = 3;
 
-    while( n > i) // enquanto quantidade for maior que i
-    {   
-        if( num % 4 != 0 ) // testar se nao for multiplo de 4
+    while (1 <= n)
+    {
+        if( (x % 3 == 0) && (x % 4 != 0) )
         {
-            soma = soma + num; // soma recebe soma mais o numero 
-            i = i + 1; // incrementa a variavel de parada
+            // print("\ns = %2d x = %2d", soma, x);
+            soma = soma + x;
+            n = n - 1;
         }
-        num = num + 2; // incrementar de 2 em 2 garantindo que o proximo valor sera par
+        x = x + 1;
     }
-
-    print("\n%s%d\n", "Soma = ", soma); // soma  =  3 + 6 + 10 + 14 + 18 = 51 -> resultado esperado quando n = 5
+    return ( soma );
 }
 /**
  * Metodo06.
@@ -321,9 +320,9 @@ void exercicio0516()
 
     // programa
     int n = 0;
-    n = readint("Digite uma quantidade: ");
+    n = readint( "Digite uma quantidade: " );
 
-    metodo0516(n);
+    print( "\n%s%d\n", "Soma = ", metodo0516(n) );
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -331,25 +330,22 @@ void exercicio0516()
     clear();
 } // fim exercicio0516
 
-void metodo0517(int n)
+double metodo0517(int n)
 {
-    int    x       = 6; // variavel par e nao multipla de 5
-    double inverso = 0; //
-    double soma    = 0; // 
-    int    i       = 0; // variavel de controle do while
+    double soma = 0;
+    int    x    = 7;
 
-    while( i < n ) // quantidade > 0
+    while (1 <= n)
     {
-        if( x % 5 != 0 ) // teste-> x = 6 8 12 14 16 
+        if( (x % 7 == 0) && (x % 5 != 0) )
         {
-            inverso = 1.0/(double)x;
-            soma = soma + inverso;
-            i = i + 1; 
+            // print("\ns = %lf x = %2d", soma, x); 
+            soma = soma + (1.0/x);
+            n = n - 1;
         }
-        x = x + 2; // garantir que o proximo valor de x sera par
+        x = x + 1;
     }
-
-    print("\n%s%lf\n", "Soma = ", soma); //soma = (1/6) + (1/8) + (1/12) + (1/14) + (1/16) = 0.0589 -> resultado quando n = 5
+    return ( soma );
 }
 /**
  * Metodo07.
@@ -361,9 +357,9 @@ void exercicio0517()
 
     // programa
     int n = 0;
-    n = readint("Digite uma quantidade: ");
+    n = readint( "Digite uma quantidade: " );
 
-    metodo0517(n);
+    print( "\n%s%lf\n", "Soma = ", metodo0517(n) );
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -371,6 +367,29 @@ void exercicio0517()
     clear();
 } // fim exercicio0517
 
+int metodo0518(int n)
+{
+    int soma = 0;
+    int num  = 7; 
+    int x    = 1;
+
+    while( n > 0 )
+    {
+        // print("\ns = %2d x = %2d", soma, x);
+        soma = soma + num;
+        num = num + x;
+        x = x + 1;
+        n = n - 1;
+    }
+    // for(int i = 0; i < n; i = i + 1 )
+    // {
+    //     print("\ns = %2d x = %2d", soma, x);
+    //     soma = soma + num;
+    //     num = num + x;
+    //     x = x + 1;
+    // }
+    return ( soma );
+}
 /**
  * Metodo08.
  */
@@ -380,6 +399,10 @@ void exercicio0518()
     id("Exercicio 0518:");
 
     // programa
+    int n = 0;
+    n = readint( "Digite uma quantidade: " );
+
+    print( "\n%s%d\n", "Soma = ", metodo0518(n) );
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -387,6 +410,25 @@ void exercicio0518()
     clear();
 } // fim exercicio0518
 
+
+int metodo0519(int n)
+{
+    int soma = 0;
+    int num  = 7;
+    int x    = 1;
+
+    while( n > 0 )
+    {
+        // print("\ns = %3d   num = %2d   num^2= %3d   x = %d   n = %d", 
+        //         soma, num, (int)pow(num,2.0), x, n);
+        soma = soma + pow(num, 2); // 0 + 49 = 49 + 64 = 113 + 100 = 213 + 169 = 382 + 289 = 671
+        num = num + x;             // 8 10 13 17 22 
+        x = x + 1;                 // 2  3  4  5  6
+        n = n - 1;                 // 4  3  2  1  0
+    }
+
+    return (soma);
+}
 /**
  * Metodo09.
  */
@@ -396,6 +438,10 @@ void exercicio0519()
     id("Exercicio 0519:");
 
     // programa
+    int n = 0;
+    n = readint( "Digite uma quantidade: " );
+
+    print( "\n%s%d\n", "Soma = ", metodo0519(n) );
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -403,6 +449,24 @@ void exercicio0519()
     clear();
 } // fim exercicio0519
 
+double metodo0520(int n)
+{
+    double soma = 0.0;
+    double num  = 6.0;
+    double x    = 1;
+    int    i    = 0;
+
+    for( i = 1; i <= n; i = i + 1)
+    {
+        // print("\ns = %lf   num = %lf   1.0/num= %lf   x = %lf", 
+        //         soma, num, (1.0/num), x);
+        soma = soma + (1.0/num);
+        num = num + x;
+        x = x + 1;
+    }
+
+    return ( soma );
+}
 /**
  * Metodo10.
  */
@@ -412,6 +476,10 @@ void exercicio0520()
     id("Exercicio 0520:");
 
     // programa
+    int n = 0;
+    n = readint( "Digite uma quantidade: " );
+
+    print( "\n%s%lf\n", "Soma = ", metodo0520(n) );
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -419,6 +487,22 @@ void exercicio0520()
     clear();
 } // fim exercicio0520
 
+int metodo05E1(int x)
+{
+    // n! = n * n-1 * n-2 * ... * 1 = n*(n*-1)
+    // int fat = 0;
+    // for(fat = 1; x > 1; x = x - 1)
+    // {
+    //     fat = fat * x;
+    // }
+    // return ( fat );
+    if( x < 0 )
+        return 0;
+    else if( x == 0 || x == 1)
+        return 1;
+    else
+        return x * metodo05E1(x-1);
+}
 /**
  * Metodo11.
  */
@@ -428,13 +512,32 @@ void exercicio05E1()
     id("Exercicio 05E1:");
 
     // programa
+    int x = 0;
+    x = readint( "Digite um numero: " );
+
+    print( "\n%s%d\n", "Fatorial = ", metodo05E1(x) );
 
     // encerrar
-    printf("\n%s\n", "Aperte ENTER para continuar!");
+    printf( "\n%s\n", "Aperte ENTER para continuar!");
     getchar();
     clear();
 } // fim exercicio05E1
 
+double metodo05E2(int x)
+{
+    double result = 1.0;
+    double nume   = 3;
+    double deno   = 5;
+    int i = 0;
+    for( i = 1; i <= x; i = i + 1 )
+    {
+        result = result * ( (1.0 + nume)/metodo05E1(deno) );
+        // print("\nr = %.12lf   n = %lf    d = %lf", result, nume, deno);
+        nume = nume + 1;
+        deno = deno + 2;
+    }
+    return (result);
+}
 /**
  * Metodo12.
  */
@@ -444,6 +547,10 @@ void exercicio05E2()
     id("Exercicio 05E2:");
 
     // programa
+    int x = 0;
+    x = readint( "Digite uma quantidade: " );
+
+    print( "\n%s%.12lf\n", "f(n) = ", metodo05E2(x) );
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
