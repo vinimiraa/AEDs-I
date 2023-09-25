@@ -201,7 +201,7 @@ int factorial(int x)
     }
     else
     {
-        return ( x * fatorial( x - 1) );
+        return ( x * factorial( x - 1) );
     }
     return ( 0 );
 } // end factorial ( )
