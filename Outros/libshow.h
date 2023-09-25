@@ -188,6 +188,24 @@ int dividers(int x)
     return (count);
 } // end dividers ( )
 
+/**
+    Funcao para ver o fatorial de um numero.
+    @return Fatorial do numero.
+    @param number Numero a ser lido.
+*/
+int factorial(int x)
+{
+    if( (x == 0) || (x == 1) )
+    {
+        return ( 1 );
+    }
+    else
+    {
+        return ( x * fatorial( x - 1) );
+    }
+    return ( 0 );
+} // end factorial ( )
+
 // ---------------------- checar dados
 
 /**
