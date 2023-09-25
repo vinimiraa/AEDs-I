@@ -1,0 +1,144 @@
+PUC-Minas - ICEI - Ciência da Computação
+Algoritmos e Estruturas de Dados I - Aula 2023-2_008
+Anotações
+___
+
+
+Resumo da semana
+
+Introdução à linguagem de programação C
+
+Abstrações de comandos - Funções e procedimentos
+
+Métodos
+- macros                     -> substituição
+- construtores / destrutores -> objetos
+- funções                    -> valor (produção)
+- procedimentos              -> ações (execução)
+
+1.) Funções
+
+    função : Domínio -> Imagem
+    
+    Imagem    Função  Domínio
+      y     =   f    ( )            // retorno , sem parametro
+      y     =   f    (   x   )      // retorno , com parametro
+      y     =   f    ( x1, x2, x3 ) // retorno , com parametros
+   [y1, y2] =   f    ( x1, x2, x3 ) // retornos, com parametros
+
+    Linguagem de programação C/C++
+
+    Imagem    Função  Domínio(s)
+    tipo      nome   ( parâmetro(s) ) // atributos especiais
+    {
+        tipo valor   = inicial;       // definir o valor para retorno
+     // acoes   
+        return ( valor );             // ultima acao
+    } // fim funcao   
+    
+    Usos possíveis:
+    
+    int somar ( int x1, int x2 )      // assinatura = descricao
+                                      // parametros formais
+    {
+        int resultado = 0;
+        resultado = x1+x2;
+        return ( resultado );        
+    }
+                                      // aplicacao  = valor
+    int x = somar ( 2, 3 );           // parametros reais/atuais
+    
+    printf ( "x = %d", x );           // x = 5
+    
+    printf ( "x = %d", somar (2, 3) );
+
+    if ( somar (2, 3) > 0 )
+       printf ( "Resultado positivo = %d", somar (2, 3) );
+       
+    x = 1 + somar (2, 3);
+    
+    x = somar ( 1, somar(2, 3) );
+    
+    x = somar ( somar(1,2), somar(2,3) );
+    
+___
+    
+2.) Procedimentos
+
+    Em C/C++
+    
+    Imagem    Função  Domínio(s)
+    void      nome   ( parâmetro(s) ) // atributos especiais
+    {
+      // acoes
+    } // fim funcao   
+
+    Uso:
+    
+    void somar ( int x1, int x2 )     // descricao
+                                      // parametros formais
+    {
+        int resultado = 0;
+        resultado = x1+x2;
+        printf ( "x = %d", resultado );
+     // NAO HA' RETORNO !!!   
+    }
+    
+    somar ( 2, 3 );                   // aplicacao
+                                      // parametros reais/atuais
+
+___
+
+Projeto de funções/procedimentos
+
+Definir                          Perguntas
+1. objetivo (retorno)            (o que)
+2. dados/parâmetros              (com o que)
+3. assinatura/protótipo          (qual a forma)
+4. exemplos/casos de uso         (porque)
+5. modelo funcional              (de que jeito)
+6. algoritmo/condições/fórmulas  (como)
+7. testes/casos comuns/especiais (serve para que)
+
+Exemplo:
+Calcular e mostrar a tangente de certo ângulo em graus.
+
+1. Objetivo primário  : calcular a tangente -> double (imagem)
+   Objetivo secundário: mostrar  a tangente -> double -> "%lf"
+   
+2. Parâmetro          : ângulo em graus     -> double (domínio)
+
+3. Assinatura         : double tangente ( double angulo )
+
+4. Exemplos           :  
+                        double tg0   = tangente (   0.0 );
+                        double tg45  = tangente (  45.0 );
+                        double tg90  = tangente (  90.0 );
+                        double tg135 = tangente ( 135.0 );
+                        double tg225 = tangente ( 135.0 );
+                        double tg315 = tangente ( 315.0 );
+                        
+5. Modelo             : double tangente ( double angulo )
+                        {
+                            double resultado = 0.0; // padrao
+                            return ( resultado );
+                        } // fim funcao
+
+6. Algoritmo/programa : double tangente ( double angulo )
+                        {
+                            double resultado = 0.0; // padrao
+                            double rads = paraRadianos(angulo);
+                            resultado   = sin(rads)/cos(rads);  
+                            return ( resultado );
+                        } // fim funcao
+                        
+                        OBS.: paraRadianos( ) é outra função
+                              para converter valor em graus.
+                        
+7. Testes             :
+                        double tg0   = tangente (   0.0 ); // OK
+                        double tg45  = tangente (  45.0 ); // OK
+                        double tg90  = tangente (  90.0 ); // NOK
+                        double tg135 = tangente ( 135.0 ); // OK
+                        double tg225 = tangente ( 225.0 ); // OK
+                        double tg315 = tangente ( 315.0 ); // OK
