@@ -469,53 +469,66 @@ int metodo0620(int x, int y, int n)
     int z = 0; 
     if( x <= n )
     {
-        print("\n1 : x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
+        // print("\n1 : x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
         z =fibonacci(y);
         if( z % 2 == 0)  
         {   
             soma = soma + z;
-            // print("\n2 : x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
+            // print("\n1a : x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
             metodo0620(x + 1, y + 1, n);
             // print("\n2a: x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
         }
         else
         {
-            // print("\n3 : x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
+            // print("\n1b : x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
             metodo0620(x, y + 1, n); 
-            // print("\n3a: x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
+            // print("\n2b: x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
         }
-        print("\n1a: x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
+        print("\n2: x = %2d   y = %2d   z = %2d   s = %2d", x,y,z,soma);
     }
     return (soma);
-
-    // int z = 0;
-    // int y = 1;
-    // int x = 1;
-    // int soma = 0;
+}
+int metodo0620_a(int n)
+{
+    int z = 0;
+    int y = 1;
+    int x = 1;
+    int soma = 0;
 
     /*Solucao usando for*/
-    // for(y = 1;x <= n; y = y + 1)
-    // {
-    //     z = fibonacci(y);
-    //     if( z % 2 == 0)
-    //     {
-    //         soma = soma + z;
-    //         x = x + 1;
-    //     }
-    // }
-
-    /*Solucao feita em Sala pelo Professor Theldo*/
-    // while (x <= n)
-    // {
-    //     z = fibonacci(y);
-    //     if( z % 2 == 0)
-    //     {
-    //         soma = soma + z;
-    //         x = x + 1;
-    //     }
-    //     y = y + 1;
-    // }
+    for(y = 1;x <= n; y = y + 1)
+    {
+        z = fibonacci(y);
+        if( z % 2 == 0)
+        {
+            soma = soma + z;
+            x = x + 1;
+        }
+    }
+    return (soma);
 }
+
+int metodo0620_b(int n)
+{
+    int z = 0;
+    int y = 1;
+    int x = 1;
+    int soma = 0;
+
+    /*Solucao usando while*/
+    while (x <= n)
+    {
+        z = fibonacci(y);
+        if( z % 2 == 0)
+        {
+            soma = soma + z;
+            x = x + 1;
+        }
+        y = y + 1;
+    }
+    return (soma);
+}
+
 /**
  * Metodo10.    
  */
@@ -527,11 +540,17 @@ void exercicio0620()
     // programa
     int n = 0;
     int resultado = 0;
+    int resultado_a = 0;
+    int resultado_b = 0;
     n = readint("Digite uma quantidade: ");
 
     resultado = metodo0620(1,1,n);
+    resultado_a = metodo0620_a(n);
+    resultado_b = metodo0620_b(n);
     
-    print("\n%s%d\n", "Soma da quantidade em numeros pares da serie de Fibonacci = ", resultado);
+    print("\n%s%d\n", "Metodo Recursivo: Soma = ", resultado);
+    print("\n%s%d\n", "Metodo com for  : Soma = ", resultado_a);
+    print("\n%s%d\n", "Metodo com while: Soma = ", resultado_b);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -629,7 +648,7 @@ void exercicio06E2()
 
     resultado = metodo06E2(n);
 
-    print("\n%s%lf\n", "Soma = ", resultado);
+    print("\n%s%.12lf\n", "Soma = ", resultado);
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();

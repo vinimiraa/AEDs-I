@@ -1,5 +1,5 @@
 /*
- Exemplo0400 - v0.0. - 17 / 08/ 2023
+ Exemplo0500 - v0.0. - 15 / 09 / 2023
  Author: Vinicius Miranda de Araujo
 */
 
@@ -386,7 +386,7 @@ int main()
     do
     {
         // identificar
-        IO_id("Exemplo0400 - Programa - v0.0");
+        IO_id("Exemplo0500 - Programa - v0.0");
         // ler do teclado
         IO_println("Opcoes");
         IO_println(" 0 - parar");
