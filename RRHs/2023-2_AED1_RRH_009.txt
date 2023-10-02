@@ -1,0 +1,197 @@
+PUC-Minas - ICEI - Ciência da Computação
+Algoritmos e Estruturas de Dados I - Aula 2023-2_009
+Anotações
+___
+
+Resumo da semana
+
+Introdução à linguagem de programação C
+
+Funções e procedimentos recursivos
+
+Recorrência   = Ação de voltar ou acontecer de novo.
+                Ver recursão, recursividade.
+
+Recursão      = Processo de repetição no qual um objeto
+                recorre a uma nova execução completa de
+                sua própria definição.
+                Ver recorrência, recursividade.
+
+Recursividade = Termo usado de maneira geral para
+                descrever um processo recursivo.
+                Ver recursão, recorrência. 
+
+"Para entender recursão, primeiro entender a recursão."
+
+___
+
+Requisitos de um processo recursivo:
+
+1. Possuir um caso básico/limite (base).
+2. Mudar seu estado de modo
+   a se aproximar do caso básico,
+   ou se reorientar para isso.
+3. Chamar a si próprio (motor).
+
+OBS.:
+Se não houver caso básico, será um processo infinito.
+É possível haver mais do que um caso básico,
+assim como é permitido chamar-se mais vezes.
+
+___
+
+Somas e produtos
+
+Dedução da fórmula para calcular o somatório
+dos primeiros números naturais:
+  
+  soma (n) = 3   +  2  +  1  =  6
+  soma (n) = 1   +  2  +  3  =  6
+            _________________ _____
+            (3+1)+(2+2)+(1+3)=(6+6)
+              4  +  4  +  4  =  12
+              
+              3 *   4       12
+  soma (n) = ___________ = ____ = 6 
+  
+                 2           2
+                 
+              n * (n+1)
+  soma (n) = ___________ , se n > 0
+  
+                 2  
+                 
+                   __k=n                         n*(n+1)
+  Somatório (n) = \   k  = 1 + 2 + 3 + ... + n = _______
+                  /__k=1                                
+                                                   2
+__
+
+Propriedades
+
+                    __k=n                     
+  soma (1)       = \   1     = 1+1+1+ ... + 1    = n
+                   /__k=1                     
+                                        
+                    __k=n                     
+  soma (c)       = \   c     = c+c+c+ ... + c    = c*n 
+                   /__k=1                     
+                                        
+                    __k=n                          n*(n+1)
+  soma (k)       = \   k     = 1+2+3+ ... + n    = _______ 
+                   /__k=1                             2
+                                        
+                    __k=n                     
+  soma (pares)   = \  2*k    = 2+4+6+ ... + 2*n  = n*(n+1) 
+                   /__k=1                     
+
+                    __k=n                     
+                 = \  2*k    = 2*(1+2+3+ ... +n) = n*(n+1) 
+                   /__k=1                     
+
+                    __k=n           __k=n 
+                 = \  2*k    = 2 * \   k   
+                   /__k=1          /__k=1        
+
+                    __k=n                           2
+  soma (impares) = \ 2*k-1 = 1+3+5+ ... +(2*n-1) = n  
+                   /__k=1                     
+
+                    __k=n    __k=n      __k=n         __k=n
+                 = \  2*k + \ (-1) = 2*\   k  + (-1)*\   1
+                   /__k=1   /__k=1     /__k=1        /__k=1
+
+                                      2             2
+                 = n*(n+1)+ (-1)*n = n  + n - n  = n
+
+___
+                     
+Definição recursiva para o somatório 
+dos (n) primeiros números naturais
+                     _
+                    |  0             , se n <= 0 (base)
+  somar (n)    ::= < 
+                    |_ n + somar(n-1), se n >  0 (motor)
+
+                     
+Produto dos primeiros naturais
+
+                   _____k=n                         
+  Produtório (n) =  | |  k  = 1 * 2 * 3 * ... * n = n! 
+                    | | k=1                                 
+                                                 
+
+Definição recursiva para o fatorial 
+dos (n) primeiros números naturais
+                     _
+                    |  1                , se n = 0 (base)
+  fatorial (n) ::= < 
+                    |_ n * fatorial(n-1), se n > 0 (motor)
+
+
+___
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Propriedades
+
+                           __k=n
+  Somatório (1)       =   \    1   = 1+1+1+ ... +1     = n 
+                          /__k=1
+
+                           __k=n
+  Somatório (c)       =   \    c   = c+c+c+ ... +c     = n*c 
+                          /__k=1
+
+                           __k=n
+  Somatório (pares)   =   \   2*k  = 2+4+6+ ... +(2*n)   
+                          /__k=1
+
+                           __k=n   
+                      = 2*\    k  = 2*(1+2+3+ ... +n) = n*(n+1) 
+                          /__k=1   
+                      
+                           __k=n
+  Somatório (ímpares) =   \  2*k-1 = 1+3+5+ ... +(2*n-1)   
+                          /__k=1
+
+                           __k=n           __k=n
+                      = 2*\    k   + (-1)*\    1
+                          /__k=1          /__k=1
+                          
+                                                  2
+                      = n*(n+1)    + (-1)* n   = n
+                      
