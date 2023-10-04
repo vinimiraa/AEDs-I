@@ -206,6 +206,28 @@ int factorial(int x)
     return ( 0 );
 } // end factorial ( )
 
+/**
+    Funcao para ver o numero pra fibonacci.
+    @return Numero de Fibonacci na posicao N.
+    @param N posicao do numero.
+*/
+int fibonacci ( int n )
+{
+    int resposta = 0;
+    if ( n == 1 || n == 2 )
+        {
+        resposta = 1;
+        }
+    else
+    {
+        if ( n > 2 )
+        {
+            resposta = fibonacci (n - 1) + fibonacci (n - 2);
+        } 
+    } 
+    return ( resposta );
+} // end Fibonacci ( )
+
 // ---------------------- checar dados
 
 /**

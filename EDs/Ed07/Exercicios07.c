@@ -123,14 +123,21 @@ void metodo0711(char *filename, int n, int x)
 {
     FILE *arquivo = fopen(filename, "wt");
 
-    while( n > 0 )
+    if( arquivo == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo!");
+    else
     {
-        if( x % 3 == 0 && isOdd(x) )
+    
+        while( n > 0 )
         {
-            fprint(arquivo, "%d\n", x);
-            n = n - 1;
+            if( x % 3 == 0 && isOdd(x) )
+            {
+                fprint(arquivo, "%d\n", x);
+                n = n - 1;
+            }
+            x = x + 3;
         }
-        x = x + 3;
+        print("\n%s\n", "Dados gravados no arquivo com sucesso!");
     }
 
     fclose(arquivo);
@@ -147,7 +154,7 @@ void exercicio0711()
     int n = 0;
     n = readint("Digite uma quantidade: ");
 
-    metodo0711("E0711.TXT", n, 9);
+    metodo0711("RESULTADO01.TXT", n, 9);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -171,28 +178,14 @@ void metodo0712_a(FILE *arquivo,int n, int x)
 void metodo0712(char *filename, int n)
 {
     FILE *arquivo = fopen(filename, "wt");
-    // int x = 21;
 
-    /*METODO RECURSIVO*/
-    metodo0712_a(arquivo, n, 21);
-    /*METODO ITERATIVO*/
-    // for(int i = 0; i < n; )
-    // {
-    //     if(x % 7 == 0 && isOdd(x))
-    //     {
-    //         i = i + 1;
-    //     }
-    //     x = x + 7;
-    // }
-    // for(int i = 0; i < n; )
-    // {
-    //     if(x % 7 == 0 && isOdd(x))
-    //     {
-    //         i = i + 1;
-    //         fprint(arquivo,"%d\n", x);
-    //     }
-    //     x = x - 7;
-    // }
+    if( arquivo == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo!");
+    else
+    {
+        metodo0712_a(arquivo, n, 21);
+        print("\n%s\n", "Dados gravados no arquivo com sucesso!");
+    }
 
     fclose(arquivo);
 }
@@ -208,7 +201,7 @@ void exercicio0712()
     int n = 0;
     n = readint("Digite uma quantidade: ");
 
-    metodo0712("E0712.TXT", n);
+    metodo0712("RESULTADO02.TXT", n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -221,10 +214,16 @@ void metodo0713(char *filename, int n, int x)
     FILE *arquivo = fopen(filename, "wt");
     int i = 0;
 
-    for( i = 0; i < n; i = i + 1)
+    if( arquivo == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo!");
+    else
     {
-        fprint(arquivo, "%d\n", x);
-        x = x * 7;
+        for( i = 0; i < n; i = i + 1)
+        {
+            fprint(arquivo, "%d\n", x);
+            x = x * 7;
+        }
+        print("\n%s\n", "Dados gravados no arquivo com sucesso!");
     }
 
     fclose(arquivo);
@@ -241,7 +240,7 @@ void exercicio0713()
     int n = 0;
     n = readint("Digite uma quantidade: ");
 
-    metodo0713("E0713.TXT", n, 1);
+    metodo0713("RESULTADO03.TXT", n, 1);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -254,14 +253,20 @@ void metodo0714_a(FILE *arquivo, int n, double nume, double deno )
     if( n > 0 )
     {
         metodo0714_a(arquivo, n - 1, nume, deno * 7);
-        fprint(arquivo, "%.lf/%.lf = %lf\n", nume, deno, nume/deno); 
+        fprint(arquivo, "%lf\n",nume/deno); 
     }
 }
 void metodo0714(char *filename, int n)
 {
     FILE *arquivo = fopen(filename, "wt");
 
-    metodo0714_a(arquivo, n, 1.0, 1.0);
+    if( arquivo == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo!");
+    else
+    {
+        metodo0714_a(arquivo, n, 1.0, 1.0);    
+        print("\n%s\n", "Dados gravados no arquivo com sucesso!");
+    }
 
     fclose(arquivo);
 }
@@ -277,7 +282,7 @@ void exercicio0714()
     int n = 0;
     n = readint("Digite uma quantidade: ");
 
-    metodo0714("E0714.TXT", n);
+    metodo0714("RESULTADO04.TXT", n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -285,20 +290,23 @@ void exercicio0714()
     clear();
 } // fim exercicio0714
 
-void metodo0715_a(FILE *arquivo, int n, int x, int p)
-{
-    int i = 0;
-    for( i = 0; i < n; i = i + 1)
-    {
-        fprint(arquivo, "%d/%d^%d ou %d/%d = %lf \n", 1, x, p, 1, (int)pow(x,p), 1.0/pow(x,p));
-        p = p + 1;
-    }
-}
 void metodo0715(char *filename, int x, int n)
 {
     FILE *arquivo = fopen(filename, "wt");
+    int i = 0;
+    int p = 0;
 
-    metodo0715_a(arquivo, n, x, 0);
+    if( arquivo == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo!");
+    else
+    {
+        for( i = 0; i < n; i = i + 1)
+        {
+            fprint(arquivo, "%lf \n",1.0/pow(x,p));
+            p = p + 1;
+        }
+        print("\n%s\n", "Dados gravados no arquivo com sucesso!");
+    }
     
     fclose(arquivo);
 }
@@ -316,13 +324,54 @@ void exercicio0715()
     x = readint("Digite um valor: ");
     n = readint("Digite uma quantidade : ");
 
-    metodo0715("E0715.TXT", x, n);
+    metodo0715("RESULTADO05.TXT", x, n);
+
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();
     clear();
 } // fim exercicio0715
 
+void metodo0716(char *filename,int n)
+{
+    FILE *arquivo1 = fopen(filename, "rt"); // arquivo a ser lido
+    FILE *arquivo2 = fopen("RESULTADO06.TXT", "wt"); // novo arquivo
+
+    double soma = 0.0;
+    double x    = 0.0; 
+    int    y    = 0;
+    double array[n]; 
+
+    if( arquivo1 == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo para leitura!");
+    else
+    {
+        fscanf(arquivo1, "%lf", &x);
+        array[y] = x;
+        while ( !feof(arquivo1) && y < n)
+        {
+            y = y + 1;
+            fscan(arquivo1, "%lf", &x);
+            array[y] = x;
+        }
+        print("\n%s\n", "Dados lidos do arquivo com sucesso!");
+    } 
+
+    for(int i = 0; i < n; i = i + 1)
+        soma = soma + array[i]; 
+
+    if ( arquivo2 == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo para gravar!");
+    else
+    {
+        fprint(arquivo2, "%d\n", n);
+        fprint(arquivo2, "%lf\n", soma);
+        print("\n%s\n", "Dados gravados com sucesso!");
+    }
+
+    fclose(arquivo1);
+    fclose(arquivo2);
+}
 /**
  * Metodo06.
  */
@@ -332,6 +381,10 @@ void exercicio0716()
     id("Exercicio 0716:");
 
     // programa
+    int n = 0;
+    n = readint("Digite uma quantidade: ");
+
+    metodo0716("RESULTADO05.TXT",n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -339,6 +392,46 @@ void exercicio0716()
     clear();
 } // fim exercicio0716
 
+void metodo0717(char *filename, int n)
+{
+    FILE *arquivo1 = fopen(filename, "rt");
+    FILE *arquivo2 = fopen("RESULTADO07.TXT", "wt");
+
+    double soma = 0.0;
+    double x    = 0.0;
+    int    i    = 0.0;
+    double array[n];
+
+    if( arquivo1 == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo para leitura!");
+    else
+    {
+        fscan(arquivo1, "%lf", &x);
+        array[i] = x; // array[0]
+        while ( !feof(arquivo1) && i < n )
+        {
+            i = i + 1; // proxima posicao
+            fscan(arquivo1, "%lf", &x);
+            array[i] = x; 
+        }
+        print("\n%s\n", "Dados lidos do arquivo com sucesso!");
+    }
+
+    for( i = 0; i < n; i = i + 1)
+        soma = soma + array[i];
+
+    if( arquivo2 == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo para gravar!");
+    else
+    {
+        fprint(arquivo2, "%d\n", n);     // quantidade
+        fprint(arquivo2, "%lf\n", soma); // soma
+        print("\n%s\n", "Dados gravados no arquivo com sucesso!");
+    }
+
+    fclose(arquivo1);
+    fclose(arquivo2);
+}
 /**
  * Metodo07.
  */
@@ -348,6 +441,10 @@ void exercicio0717()
     id("Exercicio 0717:");
 
     // programa
+    int n = 0;
+    n = readint("Digite uma quantidade: ");
+
+    metodo0717("RESULTADO04.TXT", n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -355,6 +452,32 @@ void exercicio0717()
     clear();
 } // fim exercicio0717
 
+void metodo0718(char *filename,int n)
+{
+    FILE *arquivo = fopen(filename, "wt");
+
+    int z = 0;
+    int i = 1;
+
+    if( arquivo == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo!");
+    else
+    {
+        while ( n > 0 )
+        {
+            z = fibonacci(i);
+            if( z % 2 == 0)
+            {
+                fprint(arquivo, "%d\n", z);
+                n = n - 1; 
+            }
+            i = i + 1;
+        }   
+        print("\n%s\n", "Dados gravados no arquivo com sucesso!");
+    }
+
+    fclose(arquivo);
+}
 /**
  * Metodo08.
  */
@@ -364,6 +487,10 @@ void exercicio0718()
     id("Exercicio 0718:");
 
     // programa
+    int n = 0;
+    n = readint("Digite uma quantidade: ");
+
+    metodo0718("RESULTADO08.TXT",n);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -371,6 +498,29 @@ void exercicio0718()
     clear();
 } // fim exercicio0718
 
+void metodo0719(char* filename, char* palavra)
+{
+    FILE *arquivo = fopen(filename, "wt");
+    int count = 0;
+    int tamanho = strlen(palavra);
+
+    for(int i = 0; i < tamanho; i = i + 1)
+    {
+        if( isUpper(palavra[i]) )
+            count = count + 1;
+    }
+
+    if( arquivo == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo!");
+    else
+    {
+        fprint(arquivo,"%s\n", palavra);
+        fprint(arquivo,"%d\n", count);
+        print("\n%s\n", "Dados gravados no arquivo com sucesso!");
+    }
+
+    fclose(arquivo);
+}
 /**
  * Metodo09.
  */
@@ -380,6 +530,10 @@ void exercicio0719()
     id("Exercicio 0719:");
 
     // programa
+    char *palavra = 0;
+    palavra = readstring("Digite uma cadeia de caracteres: ");
+
+    metodo0719("RESULTADO09.TXT",palavra);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -387,6 +541,34 @@ void exercicio0719()
     clear();
 } // fim exercicio0719
 
+void metodo0720(char* filename, char* palavra)
+{
+    FILE* arquivo = fopen(filename, "wt");
+    int count = 0;
+    int tamanho = strlen(palavra);
+
+    for(int i = 0; i < tamanho; i = i + 1)
+    {
+        if( isDigit(palavra[i]) )
+        {    
+            if(palavra[i] >= '5')
+            {
+                count = count + 1;
+            }
+        }
+    }
+
+    if( arquivo == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo!");
+    else
+    {
+        fprint(arquivo,"%s\n", palavra);
+        fprint(arquivo,"%d\n", count);
+        print("\n%s\n", "Dados gravados no arquivo com sucesso!");
+    }
+
+    fclose(arquivo);
+}
 /**
  * Metodo10.
  */
@@ -396,6 +578,10 @@ void exercicio0720()
     id("Exercicio 0720:");
 
     // programa
+    char* palavra = 0;
+    palavra = readstring("Digite uma cadeia de caracteres: ");
+
+    metodo0720("RESULTADO10.TXT", palavra);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -403,6 +589,36 @@ void exercicio0720()
     clear();
 } // fim exercicio0720
 
+void metodo07E1_a(FILE* arquivo, int x, int divisor)
+{
+    if (x < 0)
+    {
+        x = (-1) * x;
+    } 
+
+    if( divisor <= x )
+    {
+        metodo07E1_a(arquivo, x, divisor + 1);
+        if( x % divisor == 0 )
+        {
+            fprint(arquivo, "%d\n", divisor);
+        }
+    }
+}
+void metodo07E1(char* filename, int x)
+{
+    FILE * arquivo = fopen(filename, "wt");
+
+    if( arquivo == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir arquivo!");
+    else
+    {
+        metodo07E1_a(arquivo, x, 1);
+        print("\n%s\n", "Dados gravados no arquivo com sucesso!");
+    }
+
+    fclose(arquivo);
+}
 /**
  * Metodo11.
  */
@@ -412,6 +628,10 @@ void exercicio07E1()
     id("Exercicio 07E1:");
 
     // programa
+    int x = 0;
+    x = readint("Digite um valor: ");
+
+    metodo07E1("RESULTADOE1.TXT", x);
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
@@ -419,6 +639,37 @@ void exercicio07E1()
     clear();
 } // fim exercicio07E1
 
+int metodo07E2( char* filename )
+{
+    FILE * arquivo = fopen(filename, "rt");
+
+    char palavra[80];
+    int count = 0;
+
+    if( arquivo == NULL )
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo!");
+    else
+    {
+        fgets( palavra, 80, arquivo );
+        if(palavra[0] == 'd' || palavra[0] == 'D')
+                count = count + 1;
+        // print("%s\n", palavra);
+
+        while (!feof(arquivo) && fgets( palavra, 80, arquivo ) != NULL)
+        {
+            // print("%s\n", palavra);
+            if(palavra[0] == 'd' || palavra[0] == 'D')
+            {
+                count = count + 1;
+            }
+        }
+        // print("%d\n", count);
+    }
+
+    fclose(arquivo);
+
+    return (count);
+}
 /**
  * Metodo12.
  */
@@ -428,6 +679,9 @@ void exercicio07E2()
     id("Exercicio 07E2:");
 
     // programa
+    int resultado = metodo07E2("RESULTADOE2.TXT");
+
+    print("%d%s\n", resultado, " palavras comecam com (d) ou (D) no arquivo RESULTADOE2.TXT");
 
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
