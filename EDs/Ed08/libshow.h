@@ -26,8 +26,8 @@
 // ---------------------- redefinicoes para apontamentos
 
 /*
-#ifndef __IO_REFS__
-#define __IO_REFS__
+#ifndef __REFS__
+#define __REFS__
 
 #define nullptr   NULL    // para compatibilizar com C++
 #define null      NULL    // para generalizar
