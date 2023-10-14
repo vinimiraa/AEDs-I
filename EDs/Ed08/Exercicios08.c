@@ -548,6 +548,16 @@ void exercicio0817()
     clear();
 } // fim exercicio0817
 
+bool findnum(int x,int p, int n, int array[])
+{
+    bool resultado =  false;
+    for(int i = p;i < n; i = i + 1)
+    {
+        if(array[i] == x)
+            resultado = true;
+    }
+    return (resultado);
+}
 /**
  * Metodo08.
  */
@@ -557,12 +567,40 @@ void exercicio0818()
     id("Exercicio 0818:");
 
     // programa
+    int x = 0;
+    int n = 0;
+    int p = 0; // alterar a posicao inicial para se comecar a procura
+
+    n = freadArraySize("DADOS03.TXT");
+
+    int array[n];
+
+    freadIntArray("DADOS03.TXT", n, array);
+
+    x =readint("Digite o valor a ser procurado: ");
+
+    if( findnum(x, p, n, array) )
+        print("\n%s%d\n", "O valor existe no arquivo DADOS03.TXT a partir da posicao ", p);
+    else
+        print("\n%s%d\n", "O valor nao existe no arquivo DADOS03.TXT a partir da posicao ", p);
 
     // encerrar
     pause("Aperte ENTER para continuar!");
     clear();
 } // fim exercicio0818
 
+int whereisnum(int x, int p, int n, int array[])
+{
+    int resultado = 0;
+
+    for(int i = p; i < n; i = i + 1)
+    {
+        if(array[i] == x)
+            resultado = i;
+    }
+
+    return (resultado);
+}
 /**
  * Metodo09.
  */
@@ -572,12 +610,48 @@ void exercicio0819()
     id("Exercicio 0819:");
 
     // programa
+    int x = 0;
+    int n = 0;
+    int p = 0; // alterar a posicao inicial para se comecar a procura
+    int resultado = 0;
+
+    n = freadArraySize("DADOS03.TXT");
+
+    int array[n];
+
+    freadIntArray("DADOS03.TXT", n, array);
+    
+    printArray(n,array); 
+
+    x =readint("Digite o valor a ser procurado: ");
+
+    if(findnum(x,p,n,array))
+    {
+        resultado = whereisnum(x,p,n,array);
+        print("\n%s%d\n", "O valor procurado pode ser encontrada no arranjo na posicao ", resultado);
+    }
+    else
+    {
+        print("\n%s\n", "O valor nao esta` no arranjo ou a posicao inicial de procura e` maior, logo nao e possivel encontra-lo.");
+    }
 
     // encerrar
     pause("Aperte ENTER para continuar!");
     clear();
 } // fim exercicio0819
 
+int howmanynum(int x, int p, int n, int array[])
+{
+    int contador = 0;
+
+    for(int i = p; i < n; i = i + 1)
+    {
+        if(array[i] == x)
+            contador = contador + 1;
+    }
+
+    return (contador);
+}
 /**
  * Metodo10.
  */
@@ -587,27 +661,187 @@ void exercicio0820()
     id("Exercicio 0820:");
 
     // programa
+    int x = 0;
+    int n = 0;
+    int p = 0; // alterar a posicao inicial para se comecar a procura
+    int resultado = 0;
 
+    n = freadArraySize("DADOS03.TXT");
+
+    int array[n];
+
+    freadIntArray("DADOS03.TXT", n, array);
+    
+    printArray(n,array); 
+
+    x =readint("Digite o valor a ser procurado: ");
+
+    if(findnum(x,p,n,array))
+    {
+        resultado = howmanynum(x,p,n,array);
+        print("\nO valor (%d) aparece %d vez(es) no arranjo\n", x, resultado);
+    }
+    else
+    {
+        print("\n%s\n", "O valor nao esta` no arranjo ou a posicao inicial de procura e` maior, logo nao e possivel encontra-lo.");
+    }
+    
     // encerrar
     pause("Aperte ENTER para continuar!");
     clear();
 } // fim exercicio0820
 
+/*
+    Quantidade de Divisores
+*/
+int hmdividers( int x )
+{
+    int count   = 0;
+    int divisor = 1;
+
+    if ( x < 0 )
+    {
+        x = ( -1 ) * x;
+    } // end if
+
+    while ( divisor <= x )
+    {
+        if ( x % divisor == 0 )
+        {
+            count = count + 1;
+        } // end if
+        divisor = divisor + 1;
+    } // end while
+
+    return ( count );
+} // end hmdividers ( )
+/*
+    Guardar os divisores de um numero em um arranjo
+*/
+void dividersArray( int x, int array[] )
+{
+    int divisor = 1;
+    int i       = 0;
+
+    while ( divisor <= x )
+    {
+        if ( x % divisor == 0 )
+        {
+            array[i] = divisor;
+            i++;
+        } // end if
+        divisor = divisor + 1;
+    } // end while
+
+} // end dividersArray();
+/**
+    fprintIntArray  - Gravar arranjo com valores inteiros.
+    @param fileName - nome do arquivo
+    @param n        - quantidade de valores
+    @param array    - grupo de valores inteiros
+ */
+void fprintIntArray( string fileName, int n, int array[] )
+{
+    // definir dados locais
+    FILE *arquivo = fopen( fileName, "wt" );
+    int x = 0;
+
+    // gravar quantidade de dados
+    fprint( arquivo, "%d\n", n );
+
+    // gravar valores no arranjo
+    for ( x = 0; x < n; x = x + 1 )
+    {
+        // gravar valor
+        fprint( arquivo, "%d\n", array[x] );
+    } // end for
+
+    // fechar arquivo
+    fclose( arquivo );
+} // end fprintIntArray ( )
 /**
  * Metodo11.
  */
 void exercicio08E1()
 {
     // identificacao
-    id("Exercicio 08E1:");
+    id( "Exercicio 08E1:" );
 
     // programa
+    int x = 0;
+    int n = 0;
+
+    x = readint( "Digite um numero: " ); // Ler o numero
+
+    n = hmdividers( x ); // quantos divisores tem o numero
+    
+    int array[n]; // declarar um arranjo para essa quantidade
+
+    dividersArray( x, array ); // guardar no arranjo os divisores
+
+    printArray( n, array ); // mostrar na tela o arranjo
+    
+    fprintIntArray( "DIVISORES.TXT", n, array ); // gravar em um arquivo a quantidade e o arranjo
+
+    print( "\n%s\n", "A quantidade de divisores e os divisores foram gravados no arquivo DIVISORES.TXT." );
 
     // encerrar
-    pause("Aperte ENTER para continuar!");
-    clear();
+    pause( "Aperte ENTER para continuar!" );
+    clear( );
 } // fim exercicio08E1
 
+/*
+    Ler uma cadeia de caracteres de um arquivo e guardar em um arranjo
+*/
+void freadString(string filename, int n, char strArray[][STR_SIZE])
+{
+    FILE *arquivo = fopen( filename, "rt" );
+    int i = 0;
+
+    if( arquivo == NULL )
+    {
+        print("\n%s\n", "ERRO: Nao foi possivel abrir o arquivo.");
+    }
+    else
+    {
+        fscan(arquivo,"%d", &n); // ler a quantidade de palavras
+        if( n > 100 || n <= 0 )
+        {
+            print("\n%s\n", "ERRO: Tamanho invalido");
+        }
+        else
+        {   
+            for( i = 0; i <= n; i++)
+            {
+                if( fgets(strArray[i], STR_SIZE, arquivo) == NULL) // ler as palavras
+                {
+                    i = n;
+                } // end if
+            } // end for
+        } // end if
+    } // end if
+    
+    fclose(arquivo);
+
+} // end freadString ( )
+
+/*
+    Mostrar na tela as palavras que n comecam com D ou d
+*/
+void nothaveD(int n, char strArray[][STR_SIZE])
+{
+    int count = 0;
+
+    print("\n%s\n", "Palavras que nao comecam com \'d\' ou \'D\':");
+    for( int i = 1; i <= n; i++)
+    {
+        if(strArray[i][0] != 'd' && strArray[i][0] != 'D')
+        {
+            print("%2d: %s", i, strArray[i]);
+            count++;
+        }
+    }
+}
 /**
  * Metodo12.
  */
@@ -617,7 +851,27 @@ void exercicio08E2()
     id("Exercicio 08E2:");
 
     // programa
+    const int MAX_WORDS = 100;
+    char array[MAX_WORDS][STR_SIZE];
+    int n = 0;
 
+    n = freadArraySize("PALAVRAS.TXT");
+
+    if( n <= 0 || n > 100 )
+    {
+        print("\n%s\n", "ERRO: Tamanho Invalido");
+    }
+    else
+    {
+        freadString("PALAVRAS.TXT", n, array);
+
+        print("%s\n", "Todas as palavras: ");
+        for(int i = 1; i <= n; i = i + 1)
+        {
+            print("%2d: %s",i, array[i]);
+        }
+        nothaveD(n, array);
+    }
     // encerrar
     pause("Aperte ENTER para continuar!");
     clear();

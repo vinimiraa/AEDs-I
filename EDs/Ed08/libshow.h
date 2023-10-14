@@ -331,7 +331,7 @@ char charAt ( char* text, unsigned int index )
 
 /**
     Funcao para ver a quantidade de divisores de um numero.
-    @return QUantidade de divisores.
+    @return Quantidade de divisores.
     @param number Numero a ser lido.
 */
 int dividers(int x)
