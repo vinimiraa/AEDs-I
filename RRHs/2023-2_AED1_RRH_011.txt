@@ -1,0 +1,147 @@
+PUC-Minas - ICEI - Ciência da Computação
+Algoritmos e Estruturas de Dados I - Aula 2023-2_011
+Anotações
+
+___
+
+Resumo da semana
+
+Estruturas de Dados
+
+Grupos de dados homogêneos em memória principal
+
+        arranjo                   ___ tamanho
+       ________                  |   
+      /       /|                 v
+     /_______/ |     <- arranjo [5]
+     |       |4|
+     |-------| |
+     |       |3|[3]  <- referência (cursor) a 3 posições da base
+     |-------| |        *(base+3) = *(apontador+3) = apontador[3] = arranjo[3] 
+     |       |2|        // no lugar indicado (*) pela (base+deslocamento)
+     |-------| |        
+  ___|       |1|_____
+    /|-------| |[0]/ <- referência (cursor) na base
+   / |   _   |0/  / 
+  /  |__| |__|/  /   <- &arranjo  = &(arranjo[0]) = base // endereço inicial
+_/_____/  /_____/_      apontador = &(arranjo[0]) = base // endereço inicial 
+_________________      
+ 
+Exemplos: 
+ 
+ for(andar=0; andar<tamanho; andar=andar+1)
+ {
+    printf("%__",   arranjo[andar]); 
+ }
+
+ for(andar=0; andar<tamanho; andar=andar+1)
+ {
+    printf("%__", *(&arranjo+andar)); 
+ }
+
+ for(andar=0; andar<tamanho; andar=andar+1)
+ {
+    printf("%__", *(apontador+andar)); 
+ }
+
+___
+ 
+Referência inicial nula e inexistente
+
+  __________________
+   /              / 
+  /              /   <- arranjo [] // lugar existe, sem qualquer dado
+_/______________/_          
+_________________       
+ 
+ 
+       ???           <- apontador = NULL; // nao existe sequer o lugar
+                        // variável para guardar endereço
+
+Forma alternativa para representar lugar inexistente
+       
+        +-------------- apontador 
+        |              ("aterrado" = não apontar nada)
+     ___v___            // variável não guarda qualquer endereço
+      _____
+        _
+      
+___
+
+Modelo de dados para arranjo
+
+ ___________________________________ 
+|     |     |     |     | ... |     |
+|_____|_____|_____|_____|_____|_____|
+  [0]   [1]   [2]   [3]       [(n-1)]  <- posições do cursor
+
+ _____  
+|__ __|                                <- cursor na base
+   |                                      apontador = &(arranjo[0])
+ __v________________________________ 
+|     |     |     |     | ... |     |
+|_____|_____|_____|_____|_____|_____|
+  [0]   [1]   [2]   [3]       [(n-1)]  
+  
+             _____  
+            |__ __|                    <- cursor a 2 distâncias da base
+               |                          apontador = &(arranjo[2])
+ ______________v____________________      
+|     |     |     |     | ... |     |
+|_____|_____|_____|_____|_____|_____|
+  [0]   [1]   [2]   [3]       [(n-1)]
+
+___
+
+Acessos a elementos   
+
+ ___________________________________ 
+| x0  | x1  | x2  | x3  | ... |     |
+|_____|_____|_____|_____|_____|_____|
+  [0]   [1]   [2]   [3]       [(n-1)]  <- posições do cursor
+
+ _____  
+|__ __|                                <- cursor na base
+   |                                      apontador = &(arranjo[0]);
+ __v________________________________      x0 = *apontador; // arranjo[0] 
+| x0  | x1  | x2  | x3  | ... |     |     //      base
+|_____|_____|_____|_____|_____|_____|
+  [0]   [1]   [2]   [3]       [(n-1)]  
+  
+             _____  
+            |__ __|                    <- cursor a 2 distâncias da base
+               |                          apontador = &(arranjo[2]);
+ ______________v____________________      x2 = *apontador; // arranjo[2]
+| x0  | x1  | x2  | x3  | ... |     |     //      base+2
+|_____|_____|_____|_____|_____|_____|
+  [0]   [1]   [2]   [3]       [(n-1)]
+
+ _____  
+|__ __|                                <- cursor na base
+   |___________                           apontador = &(arranjo[0]);
+               |                          
+ ______________v____________________      x2 = *(apontador+     2      );
+| x0  | x1  | x2  | x3  | ... |     |     //       base   +deslocamento
+|_____|_____|_____|_____|_____|_____|
+  [0]   [1]   [2]   [3]       [(n-1)]
+
+Exemplos
+
+  int  arranjo [] = { 1, 2, 3, 4, 5 };
+  int *p_a = &(arranjo[0]); // referencia na base
+  int  x   = 0;
+  
+  x = arranjo [0]; // x = 1
+  x =  p_a[0]    ; // x = 1
+  x = *(p_a+0)   ; // x = 1
+  x = *p_a       ; // x = 1
+  
+  x = arranjo [2]; // x = 3
+  x = p_a[2]     ; // x = 3
+  x = *(p_a+2)   ; // x = 3
+  
+  x = arranjo [4]; // x = 5
+  x = p_a[4]     ; // x = 5
+  x = *(p_a+4)   ; // x = 5
+  
+___
