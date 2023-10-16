@@ -385,6 +385,27 @@ void metodo06()
     getchar();
 } // fim metodo06
 
+void funcao_b(int n)
+{
+    if( n > 0)
+    {
+        for(int i = 1; i < n; i++)
+        {    print("*");}
+        print("\n");
+        funcao_b( n - 1 );
+    }
+}
+
+void funcao_a(int n)
+{
+    if( n > 0)
+    {
+        funcao_a( n - 1 );
+        for(int i = 0; i < n; i++)
+        {    print("*");}
+        print("\n");
+    }
+}
 /**
  * Metodo07.
  */
@@ -394,7 +415,8 @@ void metodo07()
     printf("\n%s\n\n", "Metodo 07:");
 
     // programa
-
+    funcao_a(5);
+    funcao_b(5);
     // encerrar
     printf("\n%s\n", "Aperte ENTER para continuar!");
     getchar();
