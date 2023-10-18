@@ -348,8 +348,8 @@ void questao07()
     print("%s", "Quantidade = ");
     scanf( "%d", &n );
 
-    f7_a(n);
-    f7_b(n);
+    f7_a(n); //mostrar do comeco ate a metade menos um
+    f7_b(n); //mostrar da metada ate o final
     
     getchar();
     // encerrar
