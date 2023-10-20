@@ -767,6 +767,7 @@ void exercicio09E1()
         printDoubleMatrix(C, L, transposta);
 
         fprintDoubleMatrix("TRANSPOSTA_E1.TXT", C, L, transposta);
+        print( "\n%s\n", "Matriz gravada no arquivo \"TRANSPOSTA_E1.TXT\"." );
     }
 
     // encerrar
@@ -833,6 +834,7 @@ void exercicio09E2()
         printDoubleMatrix(C, L, invertida);
 
         fprintDoubleMatrix("INVERTIDA_E2.TXT", L, C, invertida);
+        print( "\n%s\n", "Matriz gravada no arquivo \"INVERTIDA_E2.TXT\"." );
     }
     // encerrar
     pause("Aperte ENTER para continuar!");
