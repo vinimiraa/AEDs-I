@@ -1,0 +1,346 @@
+PUC-Minas - ICEI - Ciência da Computação
+Algoritmos e Estruturas de Dados I - Aula 2023-2_012
+Anotações
+
+___
+
+Resumo da semana
+
+Estruturas de Dados
+
+Grupos de dados homogêneos em memória principal
+
+Matrizes
+                    _____ _____ _____
+                   |     |     |     |
+         linha ->  | 1,1 | 1,2 | 1,3 |
+                   |-----|-----|-----|
+  matriz           | 2,1 | 2,2 | 2,3 |  matriz [linha][coluna]
+ 3 linhas          |-----|-----|-----|
+    x              | 3,1 | 3,2 | 3,3 |
+ 3 colunas         |_____|_____|_____|
+                      ^
+                      |
+                    coluna
+___
+
+Representação linear
+
+          colunas = 3                         colunas = 3
+      _________________                   _________________
+      _____ _____ _____ _____ _____ _____ _____ _____ _____
+     |     |     |     |     |     |     |     |     |     |
+     | 1,1 | 1,2 | 1,3 | 2,1 | 2,2 | 2,3 | 3,1 | 3,2 | 3,3 |
+     |_____|_____|_____|_____|_____|_____|_____|_____|_____|
+
+                        _________________
+                          colunas = 3
+      __ base = 0
+     |
+     |        0                 1                 2          <- linha
+     v_____ _____ _____ _____ _____ _____ _____ _____ _____
+     |     |     |     |     |     |     |     |     |     |
+     |  0     1     2  |  0     1     2  |  0     1     2  | <- coluna
+     |_________________|_________________|_________________|
+        0     1     2     3     4     5     6     7     8    <- endereço
+        ^                                                        linear
+        |
+        +--> deslocamento = 0
+
+     [0,0] = base + deslocamento    = 0   + 0 = 0
+     [0,1] = base + deslocamento    = 0   + 1 = 1
+     [0,2] = base + deslocamento    = 0   + 2 = 2
+     
+     [0,0] = linha*colunas + coluna = 0*3 + 0 = 0
+     [0,1] = linha*colunas + coluna = 0*3 + 1 = 1
+     [0,2] = linha*colunas + coluna = 0*3 + 2 = 2
+
+     [1,0] = linha*colunas + coluna = 1*3 + 0 = 3
+     [1,1] = linha*colunas + coluna = 1*3 + 1 = 4
+     [1,2] = linha*colunas + coluna = 1*3 + 2 = 5
+
+     [2,0] = linha*colunas + coluna = 2*3 + 0 = 6
+     [2,1] = linha*colunas + coluna = 2*3 + 1 = 7
+     [2,2] = linha*colunas + coluna = 2*3 + 2 = 8
+
+___
+
+                    _____ _____ _____
+                   |     |     |     |
+         linha ->  | 0,0 | 0,1 | 0,2 |
+                   | (0) | (1) | (2) |
+                   |-----|-----|-----|
+  matriz           | 1,0 | 1,1 | 1,2 |  matriz [linha][coluna]
+   3x3             | (3) | (4) | (5) |
+                   |-----|-----|-----|
+                   | 3,0 | 2,1 | 2,2 |
+                   | (6) | (7) | (8) |
+                   |_____|_____|_____|
+                      ^
+                      |
+                    coluna                            
+
+___ 
+
+Áreas para armazenamentos
+                  
+      para linhas                 para colunas
+
+        matriz            [0]  [1]  [2]             [n-1]
+     ______________        ______________________________
+    |              |      |    |    |    |     |    |    |
+    |  linha [0]   |----->|    |    |    | ... |    |    |
+    |              |      |____|____|____|_____|____|____|
+    |--------------|       ______________________________
+    |              |      |    |    |    |     |    |    |
+    |  linha [1]   |----->|    |    |    | ... |    |    |
+    |              |      |____|____|____|_____|____|____|
+    |--------------|     
+    |              |
+    |     ...      |
+    |              |
+    |--------------|       ______________________________
+    |              |      |    |    |    |     |    |    |
+    |  linha [m-1] |----->|    |    |    | ... |    |    |
+    |______________|      |____|____|____|_____|____|____|
+    
+___
+
+Apontamentos
+
+    coluna
+       |
+       v        matriz mxn
+       ____________________________
+      |  _______________________   |
+ [0]  | |   |   |   |...|   |   |  |  <- linha -> matriz[0] = *(matriz+0)
+      | |___|___|___|___|___|___|  |
+      |----------------------------|
+      |  _______________________   |
+ [1]  | |   |   |   |...|   |   |  |  <- linha -> matriz[1] = *(matriz+1)
+      | |___|___|___|___|___|___|  |
+      |----------------------------|
+      |            ...             |
+      |                            |
+      |----------------------------|
+      |  _______________________   |
+[m-1] | |   |   |   |...|   |   |  |  <- linha -> matriz[m] = *(matriz+m)
+      | |___|___|___|___|___|___|  |
+      |____________________________|
+         [0] [1] [2] ...    [n-1]
+
+
+     [ 0 , 0 ] = base + deslocamento    = *( *(matriz+0) +0 )
+     [ 0 , 1 ] = base + deslocamento    = *( *(matriz+0) +1 )
+     [ 0 , 2 ] = base + deslocamento    = *( *(matriz+0) +2 )
+      ...
+     [ 1 , 0 ] = base + deslocamento    = *( *(matriz+1) +0 )
+     [ 1 , 1 ] = base + deslocamento    = *( *(matriz+1) +1 )
+     [ 1 , 2 ] = base + deslocamento    = *( *(matriz+1) +2 )
+      ...
+     [m-1, 0 ] = base + deslocamento    = *( *(matriz+m) +0 )
+     [m-1, 1 ] = base + deslocamento    = *( *(matriz+m) +1 )
+     [m-1, 2 ] = base + deslocamento    = *( *(matriz+m) +2 )
+
+
+___
+
+Acessos
+
+    int matriz [linhas][colunas]; // quantidade = linhas x colunas
+    int         linha,  coluna  ;
+
+    // para percorrer por linhas
+    for ( linha=0; linha<linhas; linha=linha+1 )
+    {
+        for ( coluna=0; coluna<colunas; coluna=coluna+1 )
+        {
+            printf("%d ", matriz [linha][coluna] );
+        }
+        printf ( "\n" );
+    }
+
+    // para percorrer por colunas
+    for ( coluna=0; coluna<colunas; coluna=coluna+1 )
+    {
+        for ( linha=0; linha<linhas; linha=linha+1 )
+        {
+            printf("%d ", matriz [linha][coluna] );
+        }
+        printf ( "\n" );
+    }
+
+___
+    
+Lugares especiais em matrizes (nxn)
+    _                   _             _                   _
+   | a11 a12 a13 a14 a15 |           | a00 a01 a02 a03 a04 |
+   | a21 a22 a23 a24 a25 |           | a10 a11 a12 a13 a14 |
+   | a31 a32 a33 a34 a35 |           | a20 a21 a22 a23 a24 |
+   | a41 a42 a43 a44 a45 |           | a30 a31 a32 a33 a34 |
+   |_a51 a52 a53 a54 a55_|           |_a40 a41 a42 a43 a44_|
+         Matemática                        Computação
+ _                         _       _                         _
+|    a11    a12 a13 a14 a15 |     | a11 a12 a13 a14    a15    |
+| a21    a22    a23 a24 a25 |     | a21 a22 a23    a24    a25 |
+| a31 a32    a33    a34 a35 |     | a31 a32    a33    a34 a35 |
+| a41 a42 a43    a44    a45 |     | a41    a42    a43 a44 a45 |
+|_a51 a52 a53 a54    a55   _|     |_   a51    a52 a53 a54 a55_|
+
+      diagonal principal               diagonal secundária
+        aij -> i == j                 aij -> (i+j) == (n+1)
+
+ _                         _       _                         _
+|    -=-    a12 a13 a14 a15 |     | a11 a12 a13 a14    -=-    |
+| ---    -=-    a23 a24 a25 |     | a21 a22 a23    -=-    --- |
+| --- ---    -=-    a34 a35 |     | a31 a32    -=-    --- --- |
+| --- --- ---    -=-    a45 |     | a41    -=-    --- --- --- |
+|_--- --- --- ---    -=-   _|     |_   -=-    --- --- --- ---_|
+
+      triângulo superior          triângulo superior secundário
+         aij -> i < j                   aij -> (i+j) < (n+1)
+ _                         _       _                         _
+|    -=-    --- --- --- --- |     | --- --- --- ---    -=-    |
+| a21    -=-    --- --- --- |     | --- --- ---    -=-    a25 |
+| a31 a32    -=-    --- --- |     | --- ---    -=-    a34 a35 |
+| a41 a42 a43    -=-    --- |     | ---    -=-    a43 a44 a45 |
+|_a51 a52 a53 a54    -=-   _|     |_   -=-    a52 a53 a54 a55_|
+
+      triângulo inferior          triângulo inferior secundário
+         aij -> i > j                   aij -> (i+j) > (n+1)
+
+ _                   _
+|  -  a12 a13 a14  -  | triângulo norte: aij -> i<j && (i+j)<(n+1)
+| a21  -  a23  -  a25 | triângulo leste: aij -> i<j && (i+j)>(n+1)
+| a31 a32  -  a34 a35 |
+| a41  -  a43  -  a45 | triângulo oeste: aij -> i>j && (i+j)<(n+1)
+|_ -  a52 a53 a54  - _| triângulo sul  : aij -> i>j && (i+j)>(n+1)
+
+___
+
+Matrizes com características especiais
+ _                   _    _                   _    _                   _
+| a11 a12  0  a14 a15 |  | a11 a12 a13 a14 a15 |  | a11  0  a13  0  a15 |
+| a21 a22  0  a24 a25 |  |  0   0   0   0   0  |  | a21  0  a23  0  a25 |
+|  0   0   0   0   0  |  | a31 a32 a33 a34 a35 |  | a31  0  a33  0  a35 |
+| a41 a42  0  a44 a45 |  |  0   0   0   0   0  |  | a41  0  a43  0  a45 |
+|_a51 a52  0  a54 a55_|  |_a51 a52 a53 a54 a55_|  |_a51  0  a53  0  a55_|
+
+       em blocos          em listras horizontais    em listras verticais
+      matriz banda            matriz faixa              matriz faixa
+ _                   _    _                   _    _                   _
+| a11 a12 a13 a14 a15 |  | a11 a12  0   0   0  |  |  0   0  a13 a14 a15 |
+| a21  0   0   0  a25 |  | a21 a22 a23  0   0  |  |  0  a22 a23 a24 a25 |
+| a31  0  a33  0  a35 |  |  0  a32 a33 a34  0  |  | a31 a32 a33 a34 a35 |
+| a41  0   0   0  a45 |  |  0   0  a43 a44 a45 |  | a41 a42 a43 a44  0  |
+|_a51 a52 a53 a54 a55 |  |_ 0   0   0  a54 a55 |  |_a51 a52 a53  0   0 _|
+
+      em patamares           em tridiagonais           em n-diagonais
+ _                   _    _                   _    _                   _
+|  0   0   0   0   0  |  |  1   0   0   0   0  |  |  a   0   0   0   0  |
+|  0   0   0   0   0  |  |  0   1   0   0   0  |  |  0   b   0   0   0  |
+|  0   0   0   0   0  |  |  0   0   1   0   0  |  |  0   0   c   0   0  |
+|  0   0   0   0   0  |  |  0   0   0   1   0  |  |  0   0   0   d   0  |
+|_ 0   0   0   0   0 _|  |_ 0   0   0   0   1 _|  |_ 0   0   0   0   e _|
+
+      matriz nula           matriz identidade           escalonador
+
+___
+
+Operações com matrizes
+
+Soma de matrizes
+     _   _           _   _                     _           _
+    | 1 2 |         | 5 6 |                   |  ( )   ( )  |
+A = |     |  e  B = |     |   =>  C = A + B = |             |
+    |_3 4_|         |_7 8_|                   |_ ( )   ( ) _|
+                                               _           _
+                                              | (1+5) (2+6) |
+                              =>  C = A + B = |             |
+                                              |_(3+7) (4+8)_|
+                                               _           _
+                                              | ( 6 ) ( 8 ) |
+                              =>  C = A + B = |             |
+                                              |_(10 ) (12 )_|
+
+C = A + k * B
+                 _                _     _         _
+                | (1-2*1)  (2-2*2) |   | (-1) (-2) |
+C = A - 2 * A = |                  | = |           | = (-1) * aij
+                |_(3-2*3)  (4-2*4)_|   |_(-3) (-4)_|
+
+C = k1 * A + k2 * B
+                  _                _     _         _
+                 | (2*1-5)  (2*2-6) |   | (-3) (-2) |
+C = 2*A+(-1)*B = |                  | = |           |
+                 |_(2*3-7)  (2*4-8)_|   |_(-1) ( 0)_|
+
+___
+
+Produto de matrizes
+
+Exemplos:                                              _______
+      _   _             _           _                 |       |
+     | 1 2 |           |  7  8  9 10 |                v       v
+ A = | 3 4 |   e   B = |_11 12 13 14_| -> produto C =  A  *  B
+3x2  |_5 6_|      2x4                            3x4  3x(2 2)x4
+                                                         ^ ^
+                                                         |_|
+                                                        iguais
+         10    14
+          9    13
+          8    12
+          7    11
+          |     |
+          v     v          _                                               _
+       1    2             |    ( )         ( )         ( )          ( )     |
+       3    4         C = |    ( )         ( )         ( )          ( )     |
+       5    6             |_   ( )         ( )         ( )          ( )    _|
+
+          10      14
+           9      13
+           8      12       _                                               _
+       1 * 7  2 * 11  ->  | (1*7+2*11)     ( )         ( )          ( )     |
+       3      4           |    ( )         ( )         ( )          ( )     |
+       5      6           |_   ( )         ( )         ( )          ( )    _|
+
+          10      14
+           9      13       _                                               _
+       1 * 8  2 * 12  ->  | (1*7+2*11)  (1*8+2*12)     ( )          ( )     |
+       3 * 7  4 * 11  ->  | (3*7+4*11)     ( )         ( )          ( )     |
+       5      6           |_   ( )         ( )         ( )          ( )    _|
+
+          10      14       _                                               _
+       1 * 9  2 * 13  ->  | (1*7+2*11)  (1*8+2*12)  (1*9+2*13)      ( )     |
+       3 * 8  4 * 12  ->  | (3*7+4*11)  (3*8+4*12)     ( )          ( )     |
+       5 * 7  6 * 11  ->  |_(5*7+6*11)     ( )         ( )          ( )    _|
+
+                           _                                               _
+       1 * 10 2 * 14  ->  | (1*7+2*11)  (1*8+2*12)  (1*9+2*13)  (1*10+2*14) |
+       3 *  9 4 * 13  ->  | (3*7+4*11)  (3*8+4*12)  (3*9+4*13)      ( )     |
+       5 *  8 6 * 12  ->  |_(5*7+6*11)  (5*8+6*12)     ( )          ( )    _|
+            7     11
+                           _                                               _
+       1      2       ->  | (1*7+2*11)  (1*8+2*12)  (1*9+2*13)  (1*10+2*14) |
+       3 * 10 4 * 14  ->  | (3*7+4*11)  (3*8+4*12)  (3*9+4*13)  (3*10+4*14) |
+       5 *  9 6 * 13  ->  |_(5*7+6*11)  (5*8+6*12)  (5*9+6*13)      ( )    _|
+            8     12
+            7     11
+                           _                                               _
+       1      2       ->  | (1*7+2*11)  (1*8+2*12)  (1*9+2*13)  (1*10+2*14) |
+       3      4       ->  | (3*7+4*11)  (3*8+4*12)  (3*9+4*13)  (3*10+4*14) |
+       5 * 10 6 * 14  ->  |_(5*7+6*11)  (5*8+6*12)  (5*9+6*13)  (5*10+6*14)_|
+            9     13
+            8     12
+            7     11
+                           _                                               _
+       1      2           |   ( 29)       ( 32)        ( 35)       ( 38)    |
+       3      4       C = |   ( 65)       ( 72)        ( 79)       ( 86)    |
+       5      6           |_  (101)       (112)        (123)       (134)   _|
+           10     14
+            9     13
+            8     12
+            7     11
+            |      |
+            v      v
+    
