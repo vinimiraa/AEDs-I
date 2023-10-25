@@ -376,6 +376,15 @@ void exercicio04()
     pause("Aperte ENTER para continuar!");
 } // fim exercicio04
 
+double maiorMedia(double x, double y, double z)
+{
+    if( x > y && x > z )
+        return (x);
+    else if( y > x && y > z)
+        return (y);
+    else
+        return (z);
+}
 /**
  * Metodo05.
  */
@@ -385,11 +394,68 @@ void exercicio05()
     id("Exercicio 05:");
 
     // programa
+    int    n = 0;
+    double x = 0.0;
+    double somaMenor  = 0.0, somaMedia  = 0.0, somaMaior  = 0.0;
+    double mediaMenor = 0.0, mediaMedia = 0.0, mediaMaior = 0.0;
+    int    contMenor  = 0  , contMedia  = 0  , contMaior  = 0  ;
+
+    n = readint( "Digite uma quantidade: " );
+    print("\n");
+
+    for( int i = 0; i < n; i = i + 1 )
+    {
+        x = readdouble("Digite um valor: ");
+        
+        if( x < -13.25 )
+        {   
+            somaMenor = somaMenor + x;
+            contMenor = contMenor + 1;
+        }
+        else
+        {    if( -13.25 <= x && x <= 83.75 )
+            {
+                somaMedia = somaMedia + x;
+                contMedia = contMedia + 1;
+            }
+            else
+            {
+                if( x > 83.75 )
+                {
+                    somaMaior = somaMaior + x;
+                    contMaior = contMaior + 1;
+                }
+            }
+        }
+    }
+    mediaMenor = somaMenor/contMenor;
+    mediaMedia = somaMedia/contMedia;
+    mediaMaior = somaMaior/contMaior;
+
+    // print("mediaMenor = %lf mediaMedia = %lf mediaMaior = %lf\n", mediaMenor,mediaMedia,mediaMaior);
+
+    print("\n%s %lf\n", "A maior media e =", 
+            maiorMedia(mediaMenor,mediaMedia,mediaMaior) );
 
     // encerrar
     pause("Aperte ENTER para continuar!");
 } // fim exercicio05
 
+double cuboInverso( int x )
+{
+    double valor = 0.0;
+
+    if( x == 0 )
+    {
+        return (valor);
+    }
+    else
+    {
+        valor = 1/pow(x,3);
+    }
+
+    return (valor);
+}
 /**
  * Metodo06.
  */
@@ -399,7 +465,28 @@ void exercicio06()
     id("Exercicio 06:");
 
     // programa
+    int a = 0, b = 0;
+    int x = 0;
+    double soma = 0.0;
 
+    a = readint( "Digite o inicio do intervalo: " ); 
+    b = readint( "Digite o final do intervalo : " );
+
+    do
+    {
+        x = readint( "Digite um valor: " );
+
+        if( a < x && x < b )
+        {
+            if( x % 2 != 0 )
+            {
+                soma = soma + cuboInverso(x);
+                // print("x = %d f(x) = %lf\n", x , cuboInverso(x));
+            }
+        }
+    } while (x != -1 );
+    
+    print("\n%s %lf\n", "Soma do cubo dos inversos do impares =", soma);
     // encerrar
     pause("Aperte ENTER para continuar!");
 } // fim exercicio06
@@ -413,11 +500,95 @@ void exercicio07()
     id("Exercicio 07:");
 
     // programa
+    double a = 0, b = 0, x = 0;
+    int dentro =0 , fora  = 0;
+    int acima = 0, abaixo = 0;
+
+    a = readdouble( "Digite o inicio do intervalo: " ); 
+    b = readdouble( "Digite o final do intervalo : " );
+    print("\n");
+
+    do
+    {
+        x = readdouble( "Digite um valor: " );
+
+        if( x != 0 )
+        {
+            if( a < x && x < b )
+                dentro = dentro + 1;
+            else
+            {
+                fora = fora + 1;
+
+                if( x > b )
+                {
+                    acima = acima + 1;
+                    // print("acima = %.2lf\n", x);
+                }
+                else
+                {
+                    abaixo = abaixo + 1;
+                    // print("abaixo = %.2lf\n", x);
+                }
+            }
+        }
+    } while (x != 0 );
+
+    print( "\n%s %d\n", "Valores dentro do intervalo:", dentro);
+    print( "%s %d\n"  , "Valores fora do intervalo  :", fora  );
+    // print( "%s %d\n"  , "Valores acima do intervalo  :", acima  );
+    // print( "%s %d\n"  , "Valores abaixo do intervalo  :", abaixo  );
+
+    if ( fora > 0 )
+    {
+        print( "\n%s %.2lf%%\n", "Porcentagem de valores acima do intervalo :", (double)acima / fora * 100 );
+        print( "%s %.2lf%%\n"  , "Porcentagem de valores abaixo do intervalo:", (double)abaixo / fora * 100);
+    }
 
     // encerrar
     pause("Aperte ENTER para continuar!");
 } // fim exercicio07
 
+bool isCrescente(double x, double y, double z)
+{
+    bool resultado = false;
+
+    if( x < y && x < z && y < z)
+    {
+        resultado = true;
+    }
+
+    return (resultado);
+}
+bool isDecrescente(double x, double y, double z)
+{
+    bool resultado = false;
+
+    if( x > y && x > z && y > z)
+    {
+        resultado = true;
+    }
+
+    return (resultado);
+}
+double maiorIs(double x,double y, double z)
+{
+    if( x > y && x > z)
+        return (x);
+    else if( y > x && y > z)
+        return (y);
+    else
+        return (z);
+}
+double menorIs(double x,double y, double z)
+{
+    if( x < y && x < z)
+        return (x);
+    else if( y < x && y < z)
+        return (y);
+    else
+        return (z);
+}
 /**
  * Metodo08.
  */
@@ -427,7 +598,26 @@ void exercicio08()
     id("Exercicio 08:");
 
     // programa
+    double x = 0.0, y = 0.0, z = 0.0;
 
+    x = readdouble( "Digite um valor X: " );
+    y = readdouble( "Digite um valor Y: " );
+    z = readdouble( "Digite um valor Z: " );
+
+    if( isCrescente(x,y,z) )
+        print("\n%s\n", "Os valores estao em ordem crescente.");
+    else if ( isDecrescente(x,y,z) )
+        print("\n%s\n", "Os valores estao em ordem decrescente.");
+    else
+    {
+        if( menorIs(x,y,z) == maiorIs(x,y,z))
+            print("\n%s\n", "O menor valor e o maior sao iguais." );
+        else
+        {
+            print("\n%s %lf.\n", "O menor valor =", menorIs(x,y,z) );
+            print("%s %lf.\n", "O maior valor =", maiorIs(x,y,z) );
+        }
+    }
     // encerrar
     pause("Aperte ENTER para continuar!");
 } // fim exercicio08
