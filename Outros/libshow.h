@@ -66,8 +66,9 @@ const      char   EOS          = '\0';   // definir fim de cadeia de caracteres
 const      char   EOL          = '\n';   // definir mudanca de linha
 const      char   ENDL []      = "\n";   // definir mudanca de linha
 
-const      char   STR_EMPTY [] =  "" ;                   // definir cadeia de caracteres vazia
-const      int    STR_SIZE     = 80;                     // definir tamanho padrao para caracteres
+const      char   STR_EMPTY [] =  "" ;   // definir cadeia de caracteres vazia
+const      int    STR_SIZE     = 80  ;   // definir tamanho padrao para caracteres
+const      int    MAX_SIZE     = 10  ;   // definir tamanho padrao para matrizes
 
 // ---------------------- definicoes de tipos
 

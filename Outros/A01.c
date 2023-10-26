@@ -38,10 +38,6 @@ void questao05();
 void questao06();
 void questao07();
 void questao08();
-void questao09();
-void questao00();
-void questao01();
-void questao02();
 
 // -------------------------- definicao do metodo principal
 
@@ -400,13 +396,3 @@ void questao08()
     getchar();
     clear();
 } // fim questao08
-
-// double pow(double x, double y)
-// {
-//     double resultado = 1.0;
-//     for(int i = 0; i < y; i++)
-//     {
-//         resultado = resultado * x;
-//     }
-//     return (resultado);
-// }
