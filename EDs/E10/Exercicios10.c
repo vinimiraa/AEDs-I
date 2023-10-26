@@ -4,16 +4,16 @@
  * Curso de Ciencia da Computacao
  * Algoritmos e Estruturas de Dados I
  *
- * Exercicios0X - v0.0. - __ / __ / ____
+ * Exercicios10 - v0.0. - 26 / 10 / 2023
  * Author: Vinicius Miranda de Araujo
  *
  * Para compilar em terminal (janela de comandos):
- *      Linux : gcc -o Exercicios0X Exercicios0X.c
- *      Windows: gcc -o Exercicios0X Exercicios0X.c
+ *      Linux : gcc -o Exercicios10 Exercicios10.c
+ *      Windows: gcc -o Exercicios10 Exercicios10.c
  *
  * Para executar em terminal (janela de comandos):
- *      Linux : ./Exercicios0X
- *      Windows: Exercicios0X
+ *      Linux : ./Exercicios10
+ *      Windows: Exercicios10
  *
  */
 
@@ -30,18 +30,18 @@
 // -------------------------- definicao de prototipos
 
 void menuOpcoes();
-void exercicio0X11();
-void exercicio0X12();
-void exercicio0X13();
-void exercicio0X14();
-void exercicio0X15();
-void exercicio0X16();
-void exercicio0X17();
-void exercicio0X18();
-void exercicio0X19();
-void exercicio0X20();
-void exercicio0XE1();
-void exercicio0XE2();
+void exercicio1011();
+void exercicio1012();
+void exercicio1013();
+void exercicio1014();
+void exercicio1015();
+void exercicio1016();
+void exercicio1017();
+void exercicio1018();
+void exercicio1019();
+void exercicio1020();
+void exercicio10E1();
+void exercicio10E2();
 
 // -------------------------- definicao do metodo principal
 
@@ -54,7 +54,7 @@ int main(void)
         clear();
 
         // mostrar identificacao do autor e programa
-        id("Programa: Exercicios0X - v0.0");
+        id("Programa: Exercicios10 - v0.0");
 
         // mostrar menu de opcoes
         menuOpcoes();
@@ -69,40 +69,40 @@ int main(void)
             pause("Aperte ENTER para terminar!");
             break;
         case 1:
-            exercicio0X11();
+            exercicio1011();
             break;
         case 2:
-            exercicio0X12();
+            exercicio1012();
             break;
         case 3:
-            exercicio0X13();
+            exercicio1013();
             break;
         case 4:
-            exercicio0X14();
+            exercicio1014();
             break;
         case 5:
-            exercicio0X15();
+            exercicio1015();
             break;
         case 6:
-            exercicio0X16();
+            exercicio1016();
             break;
         case 7:
-            exercicio0X17();
+            exercicio1017();
             break;
         case 8:
-            exercicio0X18();
+            exercicio1018();
             break;
         case 9:
-            exercicio0X19();
+            exercicio1019();
             break;
         case 10:
-            exercicio0X20();
+            exercicio1020();
             break;
         case 11:
-            exercicio0XE1();
+            exercicio10E1();
             break;
         case 12:
-            exercicio0XE2();
+            exercicio10E2();
             break;
         default:
             pause("ERRO: opcao invalida");
@@ -124,185 +124,446 @@ void menuOpcoes()
     printf("\n");
     printf("%s\n\n", "Escolha alguma das opcoes a seguir:");
     printf("%s\n", "  0 - Encerrar programa");
-    printf("%s\n", "  1 - Exercicio 0X11");
-    printf("%s\n", "  2 - Exercicio 0X12");
-    printf("%s\n", "  3 - Exercicio 0X13");
-    printf("%s\n", "  4 - Exercicio 0X14");
-    printf("%s\n", "  5 - Exercicio 0X15");
-    printf("%s\n", "  6 - Exercicio 0X16");
-    printf("%s\n", "  7 - Exercicio 0X17");
-    printf("%s\n", "  8 - Exercicio 0X18");
-    printf("%s\n", "  9 - Exercicio 0X19");
-    printf("%s\n", " 10 - Exercicio 0X20");
-    printf("%s\n", " 11 - Exercicio 0XE1");
-    printf("%s\n", " 12 - Exercicio 0XE2");
+    printf("%s\n", "  1 - Exercicio 1011");
+    printf("%s\n", "  2 - Exercicio 1012");
+    printf("%s\n", "  3 - Exercicio 1013");
+    printf("%s\n", "  4 - Exercicio 1014");
+    printf("%s\n", "  5 - Exercicio 1015");
+    printf("%s\n", "  6 - Exercicio 1016");
+    printf("%s\n", "  7 - Exercicio 1017");
+    printf("%s\n", "  8 - Exercicio 1018");
+    printf("%s\n", "  9 - Exercicio 1019");
+    printf("%s\n", " 10 - Exercicio 1020");
+    printf("%s\n", " 11 - Exercicio 10E1");
+    printf("%s\n", " 12 - Exercicio 10E2");
     printf("\n");
 } // fim menuOpcoes()
 
+typedef struct s_intArray
+{
+    int  length;
+    int* data  ;
+    int  ix    ;
+} intArray;
+
+int RandomIntGenerate( int a, int b )
+{
+    int x = 0;
+    while( x < a || b < x )
+    {
+        x = rand() % 100;
+    }
+    return( x );
+}
+
+void printIntArray( intArray array )
+{
+    
+    if ( array.data )
+    {
+        for ( array.ix = 0; array.ix < array.length; array.ix = array.ix + 1 )
+        {
+            print( "%2d: %d\n", array.ix, array.data[array.ix] );
+        }
+    }
+} // end printIntArray ( )
+
+void fprintIntArray( string fileName, intArray array )
+{
+    FILE *arquivo = fopen( fileName, "wt" );
+    
+    fprint( arquivo, "%d\n", array.length );
+    
+    if ( array.data )
+    {
+        for ( array.ix = 0; array.ix < array.length; array.ix = array.ix + 1 )
+        {
+            fprint( arquivo, "%d\n", array.data[array.ix] );
+        }
+    }
+
+    fclose( arquivo );
+} // end fprintIntArray ( )
 /**
  * Metodo01.
  */
-void exercicio0X11()
+void exercicio1011()
 {
     // identificacao
-    id("Exercicio 0X11:");
+    id("Exercicio 1011:");
 
     // programa
+    int a = 0, b = 0; // intervalos
+    int x = 0;        // valor a ser lido
+    intArray array;   // arranjo
+    
+    a            = readint( "Digite o limite inicial do intervalo: " );
+    b            = readint( "Digite o limite final do intervalo  : " );
+    array.length = readint( "Digite a quantidade de valores: "       );
+
+    if( a > b )
+    { 
+        print( "\n%s\n", "ERRO: Valor inicial maior que o valor final." );
+    }
+    else
+    {
+        array.data = (int*) malloc ( array.length * sizeof(int) );
+
+        for( array.ix = 0; array.ix < array.length; array.ix = array.ix + 1 )
+        {
+            x = RandomIntGenerate( a, b );
+            array.data[array.ix] = x;
+
+        }
+
+        fprintIntArray( "DADOS.TXT", array );
+
+        print( "\n%s\n", "Dados gravados no arquivo \"DADOS.TXT\". " );
+    }
+
+    if( array.data )
+    {
+        free(array.data);
+        array.data = NULL;
+    }
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0X11
+} // fim exercicio1011
 
+intArray readArrayFromFile( string fileName )
+{
+
+    FILE *arquivo = fopen( fileName, "rt" );
+    static intArray array;
+
+    if (arquivo)
+    {
+        fscan( arquivo, "%d", &array.length );
+
+        if (array.length <= 0)
+        {
+            print( "\n%s\n", "ERRO: Tamanho invalido." );
+            array.length = 0; 
+        }
+        else
+        {
+            array.data = (int*) malloc ( array.length * sizeof(int) );
+            
+            if ( array.data )
+            {
+                array.ix = 0; // posicao 0
+                while (!feof(arquivo) && array.ix < array.length)
+                {
+                    fscan(arquivo, "%d", &(array.data[array.ix]));
+                    array.ix = array.ix + 1;
+                }
+            }
+        }
+    }
+
+    return (array);
+} // end readArrayFromFile ( )
+
+bool searchIntArray( int value, intArray array )
+{
+    bool resultado = false;
+    
+    array.ix = 0;
+    while ( array.ix < array.length && !resultado )
+    {
+        if( value == array.data[array.ix] ) 
+        {
+            resultado = true;
+        }
+        array.ix = array.ix + 1;
+    }
+
+    return ( resultado );
+}
 /**
  * Metodo02.
  */
-void exercicio0X12()
+void exercicio1012()
 {
     // identificacao
-    id("Exercicio 0X12:");
+    id("Exercicio 1012:");
 
     // programa
+    intArray array; // arranjo
+    int x = 0;
+
+    array = readArrayFromFile("DADOS.TXT");
+    
+    x = readint ( "Digite o valor a ser procurado: " );
+
+    if ( searchIntArray( x, array ) )
+    {
+        print( "\n%s\n", "O valor esta no arranjo" );
+    }
+    else
+    {
+        print( "\n%s\n", "O valor nao esta no arranjo" );
+    }
+
+    if( array.data )
+    {
+        free( array.data );
+        array.data = NULL;
+    }
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0X12
+} // fim exercicio1012
 
+bool intArrayCompare( intArray array1, intArray array2 )
+{
+    bool resultado = false;
+    
+    if( array1.length <= 0 || array2.length <= 0 )
+    {
+        print( "\n%s\n", "ERRO: Tamanho Invalido." );
+    }
+    else
+    {
+        if( array1.length == array2.length )
+        {
+            array1.ix = 0;
+            while ( array1.ix < array1.length && !resultado )
+            {
+                if( array1.data[array1.ix] == array2.data[array1.ix] )
+                {
+                    resultado = true;
+                }
+            }
+        }
+    }
+
+    return ( resultado );
+}
 /**
  * Metodo03.
  */
-void exercicio0X13()
+void exercicio1013()
 {
     // identificacao
-    id("Exercicio 0X13:");
+    id("Exercicio 1013:");
 
     // programa
+    intArray arranjo1;
+    intArray arranjo2;
+
+    arranjo1 = readArrayFromFile( "DADOS1.TXT" );
+    arranjo2 = readArrayFromFile( "DADOS2.TXT" );
+    
+    // printIntArray(arranjo1);
+    // print("\n");
+    // printIntArray(arranjo2);
+
+    if( intArrayCompare(arranjo1,arranjo2) )
+    {
+        print( "\n%s\n", "Os arranjos sao iguais." );
+    }
+    else
+    {    
+        print( "\n%s\n", "Os arranjos sao diferentes." );
+    }
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0X13
+} // fim exercicio1013
 
+intArray intArrayAdd( intArray array1, int k, intArray array2 )
+{
+    static intArray soma;
+    
+    if( array1.length <= 0 || array2.length <= 0 )
+    {
+        print( "\n%s\n", "ERRO: Tamanho Invalido." );
+    }
+    else
+    {
+        if( array1.length == array2.length )
+        {
+            soma.data = (int*) malloc ( array1.length * sizeof(int) );
+            soma.length = array1.length;
+            
+            if ( soma.data )
+            {
+                for( soma.ix = 0; soma.ix < soma.length; soma.ix = soma.ix + 1 )
+                {
+                    soma.data[soma.ix] = array1.data[soma.ix] + array2.data[soma.ix] * k;
+                }
+            }
+        }
+    }
+
+    return ( soma );
+}
 /**
  * Metodo04.
  */
-void exercicio0X14()
+void exercicio1014()
 {
     // identificacao
-    id("Exercicio 0X14:");
+    id("Exercicio 1014:");
 
     // programa
+    intArray arranjo1;
+    intArray arranjo2;
+    intArray soma;
+
+    arranjo1 = readArrayFromFile( "DADOS1.TXT" );
+    arranjo2 = readArrayFromFile( "DADOS2.TXT" );
+    
+    soma = intArrayAdd( arranjo1, 1, arranjo2 );
+
+    print( "\n%s\n", "Soma do arranjo gravado em \"DADOS1.TXT\" com o arranjo gravado em \"DADOS2.TXT\": " );
+    printIntArray( soma );
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0X14
+} // fim exercicio1014
 
+bool isArrayDecrescent( intArray array )
+{
+    bool resultado = false;
+
+    if( array.data )
+    {
+        array.ix = 1;
+        while ( array.ix < array.length && !resultado )
+        {
+            if( array.data[array.ix-1] > array.data[array.ix] )
+            {
+                resultado = true;
+            }
+            array.ix = array.ix + 1;
+        }
+    }
+
+    return ( resultado );
+}
 /**
  * Metodo05.
  */
-void exercicio0X15()
+void exercicio1015()
 {
     // identificacao
-    id("Exercicio 0X15:");
+    id("Exercicio 1015:");
 
     // programa
+    intArray arranjo;
+
+    arranjo = readArrayFromFile( "DADOS1.TXT" );
+
+    if( isArrayDecrescent( arranjo ) )
+    {
+        print( "\n%s\n", "O arranjo e decrescente." );
+    }
+    else
+    {
+        print( "\n%s\n", "O arranjo nao e decrescente." );
+    }
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0X15
+} // fim exercicio1015
 
 /**
  * Metodo06.
  */
-void exercicio0X16()
+void exercicio1016()
 {
     // identificacao
-    id("Exercicio 0X16:");
+    id("Exercicio 1016:");
 
     // programa
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0X16
+} // fim exercicio1016
 
 /**
  * Metodo07.
  */
-void exercicio0X17()
+void exercicio1017()
 {
     // identificacao
-    id("Exercicio 0X17:");
+    id("Exercicio 1017:");
 
     // programa
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0X17
+} // fim exercicio1017
 
 /**
  * Metodo08.
  */
-void exercicio0X18()
+void exercicio1018()
 {
     // identificacao
-    id("Exercicio 0X18:");
+    id("Exercicio 1018:");
 
     // programa
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0X18
-
-/**
- * Metodo0X.
- */
-void exercicio0X19()
-{
-    // identificacao
-    id("Exercicio 0X19:");
-
-    // programa
-
-    // encerrar
-    pause("Aperte ENTER para continuar!");
-} // fim exercicio0X19
+} // fim exercicio1018
 
 /**
  * Metodo10.
  */
-void exercicio0X20()
+void exercicio1019()
 {
     // identificacao
-    id("Exercicio 0X20:");
+    id("Exercicio 1019:");
 
     // programa
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0X20
+} // fim exercicio1019
+
+/**
+ * Metodo10.
+ */
+void exercicio1020()
+{
+    // identificacao
+    id("Exercicio 1020:");
+
+    // programa
+
+    // encerrar
+    pause("Aperte ENTER para continuar!");
+} // fim exercicio1020
 
 /**
  * Metodo11.
  */
-void exercicio0XE1()
+void exercicio10E1()
 {
     // identificacao
-    id("Exercicio 0XE1:");
+    id("Exercicio 10E1:");
 
     // programa
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0XE1
+} // fim exercicio10E1
 
 /**
  * Metodo12.
  */
-void exercicio0XE2()
+void exercicio10E2()
 {
     // identificacao
-    id("Exercicio 0XE2:");
+    id("Exercicio 10E2:");
 
     // programa
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio0XE2
+} // fim exercicio10E2
