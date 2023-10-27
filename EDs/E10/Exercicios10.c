@@ -152,9 +152,9 @@ int RandomIntGenerate( int a, int b )
     while( x < a || b < x )
     {
         x = rand() % 100;
-    }
+    } // end while
     return( x );
-}
+} // end RandomIntGenerate ( )
 
 void printIntArray( intArray array )
 {
@@ -164,8 +164,8 @@ void printIntArray( intArray array )
         for ( array.ix = 0; array.ix < array.length; array.ix = array.ix + 1 )
         {
             print( "%2d: %d\n", array.ix, array.data[array.ix] );
-        }
-    }
+        } // end for
+    } // end if
 } // end printIntArray ( )
 
 void fprintIntArray( string fileName, intArray array )
@@ -179,11 +179,12 @@ void fprintIntArray( string fileName, intArray array )
         for ( array.ix = 0; array.ix < array.length; array.ix = array.ix + 1 )
         {
             fprint( arquivo, "%d\n", array.data[array.ix] );
-        }
-    }
+        } // end for
+    } // end if
 
     fclose( arquivo );
 } // end fprintIntArray ( )
+
 /**
  * Metodo01.
  */
@@ -194,7 +195,7 @@ void exercicio1011()
 
     // programa
     int a = 0, b = 0; // intervalos
-    int x = 0;        // valor a ser lido
+    int x = 0;        // valor a ser gerado
     intArray array;   // arranjo
     
     a            = readint( "Digite o limite inicial do intervalo: " );
@@ -214,18 +215,18 @@ void exercicio1011()
             x = RandomIntGenerate( a, b );
             array.data[array.ix] = x;
 
-        }
+        } // end for
 
         fprintIntArray( "DADOS.TXT", array );
 
         print( "\n%s\n", "Dados gravados no arquivo \"DADOS.TXT\". " );
-    }
+    } // end if
 
     if( array.data )
     {
         free(array.data);
         array.data = NULL;
-    }
+    } // end if
 
     // encerrar
     pause("Aperte ENTER para continuar!");
@@ -239,7 +240,7 @@ intArray readArrayFromFile( string fileName )
 
     if (arquivo)
     {
-        fscan( arquivo, "%d", &array.length );
+        fscan( arquivo, "%d", &array.length ); fgetc( arquivo );
 
         if (array.length <= 0)
         {
@@ -256,12 +257,15 @@ intArray readArrayFromFile( string fileName )
                 while (!feof(arquivo) && array.ix < array.length)
                 {
                     fscan(arquivo, "%d", &(array.data[array.ix]));
+                    fgetc( arquivo );
                     array.ix = array.ix + 1;
-                }
-            }
-        }
-    }
-
+                } // end while
+            } // end if
+        } // end if
+    } // end if
+    
+    fclose( arquivo );
+    
     return (array);
 } // end readArrayFromFile ( )
 
@@ -275,12 +279,13 @@ bool searchIntArray( int value, intArray array )
         if( value == array.data[array.ix] ) 
         {
             resultado = true;
-        }
+        } // end if
         array.ix = array.ix + 1;
-    }
+    } // end while
 
     return ( resultado );
-}
+} // end searchIntArray ( )
+
 /**
  * Metodo02.
  */
@@ -304,13 +309,13 @@ void exercicio1012()
     else
     {
         print( "\n%s\n", "O valor nao esta no arranjo" );
-    }
+    } // end if
 
     if( array.data )
     {
         free( array.data );
         array.data = NULL;
-    }
+    } // end if
 
     // encerrar
     pause("Aperte ENTER para continuar!");
@@ -318,7 +323,7 @@ void exercicio1012()
 
 bool intArrayCompare( intArray array1, intArray array2 )
 {
-    bool resultado = false;
+    bool resultado = true;
     
     if( array1.length <= 0 || array2.length <= 0 )
     {
@@ -329,18 +334,20 @@ bool intArrayCompare( intArray array1, intArray array2 )
         if( array1.length == array2.length )
         {
             array1.ix = 0;
-            while ( array1.ix < array1.length && !resultado )
+            while ( array1.ix < array1.length /*&& !resultado*/ )
             {
-                if( array1.data[array1.ix] == array2.data[array1.ix] )
+                if( array1.data[array1.ix] != array2.data[array1.ix] )
                 {
-                    resultado = true;
-                }
-            }
-        }
-    }
+                    resultado = false;
+                } // end if
+                array1.ix = array1.ix + 1;
+            } // end while
+        } // end if
+    } // end if
 
     return ( resultado );
-}
+} // end intArrayCompare ( )
+
 /**
  * Metodo03.
  */
@@ -356,9 +363,10 @@ void exercicio1013()
     arranjo1 = readArrayFromFile( "DADOS1.TXT" );
     arranjo2 = readArrayFromFile( "DADOS2.TXT" );
     
-    // printIntArray(arranjo1);
-    // print("\n");
-    // printIntArray(arranjo2);
+    print( "%s\n", "Arranjo 1:" );
+    printIntArray(arranjo1);
+    print("\n%s\n", "Arranjo 2:" );
+    printIntArray(arranjo2);
 
     if( intArrayCompare(arranjo1,arranjo2) )
     {
@@ -367,7 +375,7 @@ void exercicio1013()
     else
     {    
         print( "\n%s\n", "Os arranjos sao diferentes." );
-    }
+    } // end if
 
     // encerrar
     pause("Aperte ENTER para continuar!");
@@ -393,13 +401,14 @@ intArray intArrayAdd( intArray array1, int k, intArray array2 )
                 for( soma.ix = 0; soma.ix < soma.length; soma.ix = soma.ix + 1 )
                 {
                     soma.data[soma.ix] = array1.data[soma.ix] + array2.data[soma.ix] * k;
-                }
-            }
-        }
-    }
+                } // end for
+            } // end for
+        } // end if
+    } // end if
 
     return ( soma );
-}
+} // end intArrayAdd ( )
+
 /**
  * Metodo04.
  */
@@ -418,7 +427,7 @@ void exercicio1014()
     
     soma = intArrayAdd( arranjo1, 1, arranjo2 );
 
-    print( "\n%s\n", "Soma do arranjo gravado em \"DADOS1.TXT\" com o arranjo gravado em \"DADOS2.TXT\": " );
+    print( "%s\n", "Soma do arranjo gravado em \"DADOS1.TXT\" com o arranjo gravado em \"DADOS2.TXT\": " );
     printIntArray( soma );
 
     // encerrar
@@ -427,23 +436,25 @@ void exercicio1014()
 
 bool isArrayDecrescent( intArray array )
 {
-    bool resultado = false;
+    bool resultado = true;
 
     if( array.data )
     {
         array.ix = 1;
-        while ( array.ix < array.length && !resultado )
+        while ( array.ix < array.length /*&& !resultado*/ )
         {
-            if( array.data[array.ix-1] > array.data[array.ix] )
+            if( array.data[array.ix-1] <= array.data[array.ix] )
             {
-                resultado = true;
-            }
+                resultado = false;
+            } // end if
+            // printf( "%d %d %d %d\n", array.ix, array.data[array.ix-1], array.data[array.ix], resultado ); 
             array.ix = array.ix + 1;
-        }
-    }
+        } // end while
+    } // end if
 
     return ( resultado );
-}
+} // end isArrayDecrescent ( )
+
 /**
  * Metodo05.
  */
@@ -456,7 +467,10 @@ void exercicio1015()
     intArray arranjo;
 
     arranjo = readArrayFromFile( "DADOS1.TXT" );
-
+    
+    print( "%s\n", "Arranjo:" );
+    printIntArray ( arranjo );
+    
     if( isArrayDecrescent( arranjo ) )
     {
         print( "\n%s\n", "O arranjo e decrescente." );
@@ -464,11 +478,160 @@ void exercicio1015()
     else
     {
         print( "\n%s\n", "O arranjo nao e decrescente." );
-    }
+    } // end if
 
     // encerrar
     pause("Aperte ENTER para continuar!");
 } // fim exercicio1015
+
+typedef struct s_intMatrix
+{
+    int row;
+    int col;
+    int** data;
+    int ix,iy;
+} intMatrix;
+
+void printIntMatrix( intMatrix* matrix )
+{
+    if (matrix != NULL && matrix->data != NULL)
+    {
+        for (matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1)
+        {
+            for (matrix->iy = 0; matrix->iy < matrix->col; matrix->iy = matrix->iy + 1)
+            {
+                printf("%3d\t", matrix->data[matrix->ix][matrix->iy]);
+            } // end for
+            printf("\n");
+        } // end for
+    } // end if
+} // end printIntArray ( )
+
+intMatrix* intMatrix_new( int rows, int cols )
+{
+    intMatrix *matrix = (intMatrix*) malloc ( 1 * sizeof(intMatrix) );
+    
+    if( matrix != NULL )
+    {
+        matrix->row = 0;
+        matrix->col = 0;
+        matrix->data = NULL;
+        
+        if ( rows > 0 && cols > 0 )
+        {
+            matrix->row = rows;
+            matrix->col = cols;
+            matrix->data = malloc( rows * sizeof(int*) );
+            
+            if ( matrix->data )
+            {
+                for (matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1)
+                {
+                    matrix->data[matrix->ix] = (int*) malloc( cols * sizeof(int) );
+                } // end for
+            } // end if
+        } // end if
+        matrix->ix = 0;
+        matrix->iy = 0;
+    } // end if
+    return ( matrix );
+} // end intMatrix_new
+
+intMatrix* readMatrixFromFile( string filename )
+{
+    intMatrix* matrix = NULL;
+    int rows = 0;
+    int cols = 0;
+    FILE *arquivo = fopen( filename, "rt" );
+    
+    if ( arquivo == NULL )
+    {
+        print( "\n%s\n", "ERRO: Nao foi possivel abrir o aquivo." );
+    }
+    else
+    {
+        fscanf(arquivo, "%d", &rows); fgetc( arquivo );
+        fscanf(arquivo, "%d", &cols); fgetc( arquivo );
+
+        if (rows <= 0 || cols <= 0)
+        {
+            print( "\n%s\n", "ERRO: Tamanho invalido." );
+        }
+        else
+        {
+
+            matrix = intMatrix_new( rows, cols );
+
+            if (matrix != NULL && matrix->data == NULL)
+            {
+                matrix->row = 0;
+                matrix->col = 0;
+                matrix->ix = 0;
+                matrix->iy = 0;
+            }
+            else
+            {
+                if (matrix != NULL)
+                {
+                    matrix->ix = 0;
+                    while ( !feof( arquivo ) && matrix->ix < matrix->row )
+                    {
+                        matrix->iy = 0;
+                        while ( !feof( arquivo ) && matrix->iy < matrix->col )
+                        {
+                            fscanf( arquivo, "%d", &(matrix->data[matrix->ix][matrix->iy]) );
+                            fgetc( arquivo );
+                            matrix->iy = matrix->iy + 1;
+                        } // end while
+                        matrix->ix = matrix->ix + 1;
+                    } // end while
+                    matrix->ix = 0;
+                    matrix->iy = 0;
+                } // end if
+            } // end if
+        } // end if
+    } // end if
+    fclose ( arquivo );
+    
+    return (matrix);
+} // end readMatrixFromFile ( ) 
+
+intMatrix* matrixTranspose( intMatrix* matrix ) 
+{
+    intMatrix* aux = NULL;
+    int rows = 0;
+    int cols = 0;
+    
+    // printIntMatrix( matrix );
+    
+    if( matrix != NULL && matrix->data != NULL )
+    {
+        rows = matrix->col;
+        cols = matrix->row;
+        
+        // printf("%d %d\n" , rows, cols );
+        aux = intMatrix_new( rows, cols );
+        
+        if( aux != NULL && aux->data != NULL )
+        {
+            aux->ix = 0;
+            while( aux->ix < aux->row )
+            {
+                aux->iy = 0;
+                while( aux->iy < aux->col )
+                {
+                    // printf( "%d %d %d\n", matrix->ix, matrix->iy, matrix->data[matrix->iy][matrix->ix] );
+                    // aux->data[aux->ix][aux->iy] = matrix->data[matrix->iy][matrix->ix]; // antes
+                    aux->data[aux->ix][aux->iy] = matrix->data[aux->iy][aux->ix];          // agora
+                    aux->iy = aux->iy + 1;
+                } // end while
+                aux->ix = aux->ix + 1;
+            } // end while
+        } // end if
+    } // end if
+    
+    return ( aux ) ;
+} // end matrixTranspose ( )
 
 /**
  * Metodo06.
@@ -479,6 +642,21 @@ void exercicio1016()
     id("Exercicio 1016:");
 
     // programa
+    intMatrix* matrix1 = NULL;
+    intMatrix* transposed = NULL;
+    
+    matrix1 = readMatrixFromFile( "DADOS3.TXT" );
+    
+    if ( matrix1 != NULL )
+    {
+        transposed = matrixTranspose( matrix1 );
+
+        print( "%s\n", "Matriz:" );
+        printIntMatrix( matrix1 );
+        
+        print( "\n%s\n", "Matriz Transposta:" );
+        printIntMatrix( transposed );
+    }
 
     // encerrar
     pause("Aperte ENTER para continuar!");
