@@ -217,9 +217,9 @@ void exercicio1011()
 
         } // end for
 
-        fprintIntArray( "DADOS.TXT", array );
+        fprintIntArray( "ARRANJO.TXT", array );
 
-        print( "\n%s\n", "Dados gravados no arquivo \"DADOS.TXT\". " );
+        print( "\n%s\n", "Dados gravados no arquivo \"ARRANJO.TXT\". " );
     } // end if
 
     if( array.data )
@@ -298,17 +298,17 @@ void exercicio1012()
     intArray array; // arranjo
     int x = 0;
 
-    array = readArrayFromFile("DADOS.TXT");
+    array = readArrayFromFile("ARRANJO.TXT");
     
     x = readint ( "Digite o valor a ser procurado: " );
 
     if ( searchIntArray( x, array ) )
     {
-        print( "\n%s\n", "O valor esta no arranjo" );
+        print( "\n%s\n", "O valor esta no arranjo que esta no arquivo \"ARRANJO.TXT\"." );
     }
     else
     {
-        print( "\n%s\n", "O valor nao esta no arranjo" );
+        print( "\n%s\n", "O valor nao esta no arranjo que esta no arquivo \"ARRANJO.TXT\".." );
     } // end if
 
     if( array.data )
@@ -360,8 +360,8 @@ void exercicio1013()
     intArray arranjo1;
     intArray arranjo2;
 
-    arranjo1 = readArrayFromFile( "DADOS1.TXT" );
-    arranjo2 = readArrayFromFile( "DADOS2.TXT" );
+    arranjo1 = readArrayFromFile( "ARRANJO1.TXT" );
+    arranjo2 = readArrayFromFile( "ARRANJO2.TXT" );
     
     print( "%s\n", "Arranjo 1:" );
     printIntArray(arranjo1);
@@ -422,12 +422,12 @@ void exercicio1014()
     intArray arranjo2;
     intArray soma;
 
-    arranjo1 = readArrayFromFile( "DADOS1.TXT" );
-    arranjo2 = readArrayFromFile( "DADOS2.TXT" );
+    arranjo1 = readArrayFromFile( "ARRANJO1.TXT" );
+    arranjo2 = readArrayFromFile( "ARRANJO2.TXT" );
     
     soma = intArrayAdd( arranjo1, 1, arranjo2 );
 
-    print( "%s\n", "Soma do arranjo gravado em \"DADOS1.TXT\" com o arranjo gravado em \"DADOS2.TXT\": " );
+    print( "%s\n", "Soma do arranjo gravado em \"ARRANJO1.TXT\" com o arranjo gravado em \"ARRANJO2.TXT\": " );
     printIntArray( soma );
 
     // encerrar
@@ -466,7 +466,7 @@ void exercicio1015()
     // programa
     intArray arranjo;
 
-    arranjo = readArrayFromFile( "DADOS1.TXT" );
+    arranjo = readArrayFromFile( "ARRANJO1.TXT" );
     
     print( "%s\n", "Arranjo:" );
     printIntArray ( arranjo );
@@ -633,6 +633,22 @@ intMatrix* matrixTranspose( intMatrix* matrix )
     return ( aux ) ;
 } // end matrixTranspose ( )
 
+void free_intMatrix( intMatrix* matrix )
+{
+    if (matrix != NULL)
+    {
+        if (matrix->data != NULL)
+        {
+            for (matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1)
+            {
+                free(matrix->data[matrix->ix]);
+            } // end for
+            free(matrix->data);
+        } // end if
+        free(matrix);
+    } // end if
+} // end free_int_Matrix ( )
+
 /**
  * Metodo06.
  */
@@ -645,22 +661,53 @@ void exercicio1016()
     intMatrix* matrix1 = NULL;
     intMatrix* transposed = NULL;
     
-    matrix1 = readMatrixFromFile( "DADOS3.TXT" );
+    matrix1 = readMatrixFromFile( "MATRIZ1.TXT" );
     
     if ( matrix1 != NULL )
     {
         transposed = matrixTranspose( matrix1 );
 
-        print( "%s\n", "Matriz:" );
-        printIntMatrix( matrix1 );
-        
-        print( "\n%s\n", "Matriz Transposta:" );
-        printIntMatrix( transposed );
+        if ( transposed != NULL )
+        {    
+            print( "%s\n", "Matriz:" );
+            printIntMatrix( matrix1 );
+
+            print( "\n%s\n", "Matriz Transposta:" );
+            printIntMatrix( transposed );
+        }
     }
+
+    free_intMatrix( matrix1 );
+    free_intMatrix( transposed );
 
     // encerrar
     pause("Aperte ENTER para continuar!");
 } // fim exercicio1016
+
+bool isZero_intMatrix ( intMatrix* matrix )
+{
+    bool resultado = true;
+
+    if( matrix != NULL && matrix->data != NULL )
+    {
+        matrix->ix = 0;
+        while( matrix->ix < matrix->row )
+        {
+            matrix->iy = 0;
+            while( matrix->iy < matrix->col )
+            {
+                if( matrix->data[matrix->ix][matrix->iy] != 0 )
+                {
+                    resultado = false;
+                } // end if
+                matrix->iy = matrix->iy + 1;
+            } // end while
+            matrix->ix = matrix->ix + 1;
+        } // end while
+    } // end if
+
+    return ( resultado );
+} // end isZero_intMatrix ( )
 
 /**
  * Metodo07.
@@ -671,10 +718,59 @@ void exercicio1017()
     id("Exercicio 1017:");
 
     // programa
+    intMatrix* matriz = NULL;
+
+    matriz = readMatrixFromFile( "MATRIZ1.TXT" );
+
+    if( matriz != NULL )
+    {
+        printIntMatrix( matriz );
+
+        if( isZero_intMatrix( matriz ) )
+        {
+            print( "\n%s\n", "A matriz so contem valores iguais a zero." );
+        }
+        else
+        {
+            print( "\n%s\n", "A matriz contem algum valor diferente de zero." );
+        }
+    }
+
+    free_intMatrix( matriz );
 
     // encerrar
     pause("Aperte ENTER para continuar!");
 } // fim exercicio1017
+
+bool compare_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
+{
+    bool resultado = true;
+
+    if( matrix1 != NULL && matrix1->data != NULL &&
+        matrix2 != NULL && matrix2->data != NULL )
+    {
+        if( matrix1->row == matrix2->row && matrix1->col == matrix2->col )
+        {
+            matrix1->ix = 0;
+            while( matrix1->ix < matrix1->row )
+            {
+                matrix1->iy = 0;
+                while( matrix1->iy < matrix1->col )
+                {
+                    if( matrix1->data[matrix1->ix][matrix1->iy] !=
+                        matrix2->data[matrix1->ix][matrix1->iy] )
+                    {
+                        resultado = false;
+                    } // end if
+                    matrix1->iy = matrix1->iy + 1; 
+                } // end while
+                matrix1->ix = matrix1->ix + 1; 
+            } // end while
+        } // end if
+    } // end if
+
+    return ( resultado );
+} // end compare_intMatrix ( )
 
 /**
  * Metodo08.
@@ -685,11 +781,68 @@ void exercicio1018()
     id("Exercicio 1018:");
 
     // programa
+    intMatrix* matriz1 = NULL;
+    intMatrix* matriz2 = NULL;
+
+    matriz1 = readMatrixFromFile( "MATRIZ1.TXT" );
+    matriz2 = readMatrixFromFile( "MATRIZ2.TXT" );
+
+    if( matriz1 != NULL && matriz2 != NULL )
+    {
+        print("%s\n", "Matriz 1:");
+        printIntMatrix( matriz1 );
+
+        print("\n%s\n", "Matriz 2:");
+        printIntMatrix( matriz2 );
+
+        if( compare_intMatrix( matriz1, matriz2 ) )
+        {
+            print( "\n%s\n", "As matrizes sao iguais." );
+        }
+        else
+        {
+            print( "\n%s\n", "As matrizes sao diferentes." );
+        }
+    }
+
+    free_intMatrix( matriz1 );
+    free_intMatrix( matriz2 );
 
     // encerrar
     pause("Aperte ENTER para continuar!");
-} // fim exercicio1018
+} // fim exercicio1018 
 
+intMatrix* add_intMatrix( intMatrix* matrix1, int k, intMatrix* matrix2 )
+{
+    intMatrix* aux = NULL;
+
+    if( matrix1 != NULL && matrix1->data != NULL &&
+        matrix2 != NULL && matrix2->data != NULL )
+    {
+        if( matrix1->row == matrix2->row && matrix1->col == matrix2->col )
+        {
+            aux = intMatrix_new( matrix1->row, matrix1->col );
+
+            if( aux != NULL )
+            {
+                aux->ix = 0;
+                while( aux->ix < aux->row )
+                {
+                    aux->iy = 0;
+                    while( aux->iy < aux->col )
+                    {
+                        aux->data[aux->ix][aux->iy] = matrix1->data[aux->ix][aux->iy] +
+                                                      matrix2->data[aux->ix][aux->iy] * k;
+                        aux->iy = aux->iy + 1;
+                    } // end while
+                    aux->ix = aux->ix + 1;
+                } // end while
+            } // end if
+        } // end if
+    } // end if
+
+    return ( aux );
+} // end add_intMatrix ( )
 /**
  * Metodo10.
  */
@@ -699,11 +852,104 @@ void exercicio1019()
     id("Exercicio 1019:");
 
     // programa
+    intMatrix* matriz1 = NULL;
+    intMatrix* matriz2 = NULL;
+    intMatrix* soma = NULL;
+    int k = -1;
+
+    matriz1 = readMatrixFromFile( "MATRIZ1.TXT" );
+    matriz2 = readMatrixFromFile( "MATRIZ2.TXT" );
+
+    if( matriz1 != NULL && matriz2 != NULL )
+    {
+        soma = add_intMatrix( matriz1, k, matriz2 );
+
+        if ( soma != NULL )
+        {
+            print( "%s\n", "Soma da matriz gravada em \"MATRIZ1.TXT\" com a matriz gravado em \"MATRIZ2.TXT\": " );
+            printIntMatrix( soma );
+        }
+    }
+
+    free_intMatrix( matriz1 );
+    free_intMatrix( matriz2 );
+    free_intMatrix( soma );
 
     // encerrar
     pause("Aperte ENTER para continuar!");
 } // fim exercicio1019
 
+
+intMatrix* product_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
+{
+    intMatrix* aux = NULL;
+
+    if( matrix1 != NULL && matrix1->data != NULL &&
+        matrix2 != NULL && matrix2->data != NULL )
+    {
+        if( matrix1->col == matrix2->row  ) 
+        {
+            aux = intMatrix_new( matrix1->row, matrix2->col );
+
+            if( aux != NULL )
+            {
+                aux->ix = 0;
+                while( aux->ix < aux->row )
+                {
+                    aux->iy = 0;
+                    while( aux->iy < aux->col )
+                    {
+                        aux->data[aux->ix][aux->iy] = 0;
+
+                        matrix1->ix = 0;
+                        while( matrix1->ix < matrix1->col )
+                        {
+                            aux->data[aux->ix][aux->iy] +=  matrix1->data[aux->ix][matrix1->ix] *
+                                                            matrix2->data[matrix1->ix][aux->iy];
+                            matrix1->ix = matrix1->ix + 1;
+                        } // end while
+                        aux->iy = aux->iy + 1;
+                    } // end while
+                    aux->ix = aux->ix + 1;
+                } // end while
+            } // end if
+        } // end if
+    } // end if
+
+    return ( aux );
+} // end product_intMatrix ( )
+
+intMatrix* product_intMatrix_a( intMatrix* matrix1, intMatrix* matrix2 )
+{
+    intMatrix* aux = NULL;
+
+    if( matrix1 != NULL && matrix1->data != NULL &&
+        matrix2 != NULL && matrix2->data != NULL )
+    {
+        if( matrix1->col == matrix2->row  ) 
+        {
+            aux = intMatrix_new( matrix1->row, matrix2->col );
+
+            if( aux != NULL )
+            {
+                for ( aux->ix = 0; aux->ix < aux->row; aux->ix++ )
+                {
+                    for ( aux->iy = 0; aux->iy < aux->col; aux->iy++ )
+                    {
+                        aux->data[aux->ix][aux->iy] = 0; 
+                        for ( matrix1->ix = 0; matrix1->ix < matrix1->col; matrix1->ix++ )
+                        {
+                            aux->data[aux->ix][aux->iy] +=  matrix1->data[aux->ix][matrix1->ix] * 
+                                                            matrix2->data[matrix1->ix][aux->iy];
+                        } // end for
+                    } // end for
+                } // end for
+            } // end if
+        } // end if
+    } // end if
+
+    return ( aux );
+} // end product_intMatrix ( )
 /**
  * Metodo10.
  */
@@ -713,6 +959,26 @@ void exercicio1020()
     id("Exercicio 1020:");
 
     // programa
+    intMatrix* matrix1 = NULL;
+    intMatrix* matrix2 = NULL;
+    intMatrix* produto = NULL;
+
+    matrix1 = readMatrixFromFile( "MATRIZ1.TXT" );
+    matrix2 = readMatrixFromFile( "MATRIZ2.TXT" );
+
+    if( matrix1 != NULL && matrix2 != NULL )
+    {
+        produto = product_intMatrix( matrix1, matrix2 );
+
+        if( produto != NULL )
+        {    print( "%s\n", "Produto da matriz gravada em \"MATRIZ1.TXT\" com a matriz gravado em \"MATRIZ2.TXT\": " );
+            printIntMatrix( produto );
+        }
+    }
+
+    free_intMatrix( matrix1 );
+    free_intMatrix( matrix2 );
+    free_intMatrix( produto );
 
     // encerrar
     pause("Aperte ENTER para continuar!");
