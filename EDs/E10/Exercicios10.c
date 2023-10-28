@@ -984,6 +984,142 @@ void exercicio1020()
     pause("Aperte ENTER para continuar!");
 } // fim exercicio1020
 
+int get_intArray( intArray* array, int index)
+{
+    int value = -1;
+
+    if( array->data && (0 <= index && index < array->length) )
+    {
+        value = array->data[ index ];
+    } // end if
+
+    return (value);
+} // end  get_intArray ( )
+
+void set_intArray( intArray* array, int index, int value )
+{
+
+    if( array->data && (0 <= index && index < array->length) )
+    {
+        array->data[ index ] = value;
+    } // end if
+
+} // end set_intArray ( )
+
+void intArray_init( intArray* a, int n, int initial_value )
+{
+    int x = 0;
+
+    if ( n > 0 )
+    {
+        a->length = n;
+        a->data = malloc( a->length * sizeof( int ) );
+        if ( a->data )
+        {
+            for ( x = 0; x < a->length; x = x + 1 )
+            {
+                a->data[x] = initial_value;
+            }
+        } // end if
+   } // end if
+} // end intArray_init ( )
+
+intArray* new_intArray( int n, int initial_value )
+{
+    // int x = 0;
+    intArray* a = NULL;
+
+    if ( n > 0 )
+    {
+        a = malloc( 1 * sizeof( intArray ) );
+        if ( a ) 
+        {
+            intArray_init( a, n, initial_value );
+        } // end if
+   } // end if
+    return ( a );
+} // end new_intArray ( )
+
+void free_intArray ( intArray* a )
+{
+
+    if ( a )
+    {
+        a->length = 0;
+        free ( a->data );
+        a->data   = NULL;
+        a         = NULL; 
+    } // end if 
+} // end intArray_delete ( )
+
+void print_intArray( intArray* a )
+{
+
+    for (a->ix = 0; a->ix < a->length; a->ix = a->ix + 1)
+    {
+        printf("%2d: %d\n", a->ix, a->data[a->ix]);
+    } // end for
+
+} // end intArray_print ( )
+
+intArray* readArrayFromFile_a( string filename )
+{
+    intArray* aux = NULL;
+    int n = 0;
+    int x = 0;
+    FILE *arquivo = fopen(filename, "rt");
+
+    if( arquivo == NULL )
+    {
+        print( "\n%s\n", "ERRO: Nao foi possivel abrir o arquivo" );
+    }
+    else
+    {   
+        fscan( arquivo, "%d", &n ); fgetc(arquivo);
+
+        if( n > 0)
+        {
+            aux = new_intArray( n, 0 );
+
+            if( aux != NULL )
+            {
+                for( aux->ix = 0; aux->ix < aux->length; aux->ix = aux->ix + 1 )
+                {
+                    fscan( arquivo, "%d", &x ); fgetc(arquivo);
+                    aux->data[aux->ix] = x;
+                } // end for
+            } // end if
+        } // end if
+    } // end if
+
+    fclose(arquivo);
+
+    return ( aux );
+} // readArrayFromFile_a ( )
+
+void sortup_intArray( intArray* array )
+{
+    int  x     = 0;
+    int  y     = 0;
+    int  value = 0;
+
+    if ( array )
+    {
+        for ( x = 1; x < array->length; x = x+1 )    // (n-1) vezes
+        {
+            for ( y = 1; y < array->length; y = y+1 ) // (n-1) testes
+            {
+                if ( get_intArray ( array, y-1 ) > get_intArray ( array, y ) )
+                {
+                    value        = get_intArray ( array, y );
+                    set_intArray ( array, y, get_intArray ( array, y-1 ) );
+                    set_intArray ( array, y-1, value );
+                } // end if
+            } // end for
+       } // end if
+    } // end for
+} // end sortup_intArray ( )
+
 /**
  * Metodo11.
  */
@@ -993,11 +1129,50 @@ void exercicio10E1()
     id("Exercicio 10E1:");
 
     // programa
+    intArray* arranjo;
+
+    arranjo = readArrayFromFile_a( "ARRANJO1.TXT" );
+
+    if( arranjo != NULL)
+    {
+        sortup_intArray( arranjo );
+
+        print( "%s\n", "Arranjo ordenado em ordem crescente:" );
+        print_intArray( arranjo );
+    }
+
+    free_intArray( arranjo );
 
     // encerrar
     pause("Aperte ENTER para continuar!");
 } // fim exercicio10E1
 
+bool isIdentity_intMatrix( intMatrix* matrix )
+{
+    bool resultado = true;
+
+    if( matrix != NULL && matrix->data != NULL )
+    {
+        if( matrix->row == matrix->col )
+        {
+            for( matrix->ix = 0; matrix->ix < matrix->row; matrix->ix++ )
+            {
+                for( matrix->iy = 0; matrix->iy < matrix->row; matrix->iy++ )
+                {
+                    if( matrix->data[matrix->ix][matrix->ix] != 1)
+                    {
+                        if( matrix->data[matrix->ix][matrix->iy] != 0)
+                        {
+                            resultado = false;
+                        } // end if
+                    } // end if
+                } // end for
+            } // end for
+        } // end if
+    } // end if
+
+    return ( resultado );
+}
 /**
  * Metodo12.
  */
@@ -1007,6 +1182,36 @@ void exercicio10E2()
     id("Exercicio 10E2:");
 
     // programa
+    intMatrix* matrix1 = NULL;
+    intMatrix* matrix2 = NULL;
+    intMatrix* produto = NULL;
+
+    matrix1 = readMatrixFromFile( "MATRIZ1.TXT" );
+    matrix2 = readMatrixFromFile( "MATRIZ2.TXT" );
+
+    if ( matrix1 != NULL && matrix2 != NULL )
+    {
+        produto = product_intMatrix( matrix1, matrix2 );
+
+        if( produto != NULL )
+        {
+            print( "%s\n", "Matriz Produto: " );
+            printIntMatrix( produto );
+
+            if( isIdentity_intMatrix( produto ) )
+            {
+                print( "\n%s\n", "O produto das duas matrizes e uma matriz identidade" );
+            }
+            else
+            {
+                print( "\n%s\n", "O produto das duas matrizes nao e uma matriz identidade" );
+            }
+        }
+    }
+
+    free_intMatrix( matrix1 );
+    free_intMatrix( matrix2 );
+    free_intMatrix( produto );
 
     // encerrar
     pause("Aperte ENTER para continuar!");
