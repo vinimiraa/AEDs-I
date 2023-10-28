@@ -1,0 +1,404 @@
+PUC-Minas - ICEI - Ciência da Computação
+Algoritmos e Estruturas de Dados I - Aula 2023-2_013
+Anotações
+
+___
+
+Resumo da semana
+
+Estruturas de Dados
+
+Grupos de dados heterogêneos em memória principal
+
+1.) Descritor para estrutura / registro para data
+
+         data
+     ____________
+    |            |
+    |     dia    |
+    |            |
+    |------------|
+    |            |
+    |     mês    |
+    |            |
+    |------------|
+    |            |
+    |     ano    |
+    |____________|
+
+    struct s_data
+    {
+       int dia;
+       int mes;
+       int ano;
+    };
+
+    struct s_data data_1;
+    struct s_data data_2;
+
+    data_1.dia = 01;
+    data_1.mes = 01;
+    data_1.ano = 2021;
+
+    data_2.dia = 31;
+    data_2.mes = 12;
+    data_2.ano = 2021;
+
+2.) Referência para descritor para estrutura / registro para data
+
+         data            ___________
+     ____________       |           |  referência
+    |            |<-----| apontador |     para
+    |     dia    |      |___________|   descritor
+    |            |
+    |------------|
+    |            |
+    |     mês    |
+    |            |
+    |------------|
+    |            |
+    |     ano    |
+    |____________|
+
+    struct s_data
+    {
+       int dia;
+       int mes;
+       int ano;
+    };
+
+    struct s_data *data_1;
+    struct s_data *data_2;
+
+    data_1 = calloc ( 1, sizeof ( struct s_data ) );
+    data_1 = malloc ( 1* sizeof ( struct s_data ) );
+
+    *(data_1).dia = 01;
+    *(data_1).mes = 01;
+    *(data_1).ano = 2021;
+
+      data_2->dia = 31;
+      data_2->mes = 12;
+      data_2->ano = 2021;
+
+3.) Descritor para estrutura com referência
+
+        arranjo
+     ____________
+    |            |
+    |  indexador |--------+
+    |            |        |
+    |------------|        |
+    |            |        |
+    |   tamanho  |--------|--------------------+
+    |            |        |                    |
+    |------------|       _|____________________|__
+    |            |      |    |    |    |     |    |
+    | referência -----> |    |    |    | ... |    |
+    |____________|      |____|____|____|_____|____|
+                           0    1    2        (n-1)
+       descritor         área de armazenamento separada
+
+    struct descritor //  descricao da estrutura de dados
+    {
+      int  x;
+      int  tamanho;
+      int *referencia;
+    };
+
+    struct descritor arranjo;
+
+    arranjo.tamanho    =   n;
+//  arranjo.referencia = (int*) calloc ( arranjo.tamanho, sizeof(int) );
+    arranjo.referencia = (int*) malloc ( arranjo.tamanho* sizeof(int) );
+
+    if ( arranjo.referencia ) // se existir
+    {
+       for ( arranjo.x = 0;
+             arranjo.x < arranjo.tamanho;
+             arranjo.x = arranjo.x+1 )
+       {
+           printf("%d ", arranjo.referencia [arranjo.x] );
+       }
+
+       // liberar a area reservada, quando nao mais necessaria
+       free ( arranjo.referencia );
+       arranjo.referencia = NULL; // nao ha' vinculo com a reserva
+    }
+
+4.) Referência para descritor de estrutura com referência para arranjo
+
+        arranjo          ___________
+     ____________       |           |  referência
+    |            |<-----| apontador |     para
+    |  indexador |      |___________|   descritor
+    |            |
+    |------------|
+    |            |       área de armazenamento separada
+    |   tamanho  |
+    |            |        0    1    2        (n-1)  n
+    |------------|       ______________________________
+    |            |      |    |    |    |     |    |    |
+    | referência -----> |    |    |    | ... |    |    |
+    |____________|      |____|____|____|_____|____|____|
+
+                          ^
+       descritor          |___ indexador
+
+
+    struct descritor *apontador;
+
+//  apontador = &arranjo;
+//  ou
+    apontador = (struct descritor*) malloc ( 1 * sizeof(struct descritor) );
+
+    if ( apontador ) // se existir o descritor
+    {
+       apontador->tamanho    =   n;
+       apontador->referencia = (int*) malloc ( apontador->tamanho * sizeof(int) );
+
+       if ( apontador->referencia ) // se existir
+       {
+          for ( apontador->x = 0;
+                apontador->x < apontador->tamanho;
+                apontador->x = apontador->x+1 )
+          {
+              printf( "%d ", apontador->referencia [apontador->x] );
+          }
+
+          // liberar a area reservada, quando nao mais necessaria
+          free ( apontador->referencia );
+          apontador->referencia = NULL; // nao ha' vinculo com a reserva
+       }
+       // liberar o descritor, quando nao mais necessaria
+          free ( apontador );
+          apontador = NULL;             // nao ha' vinculo com o descritor
+    }
+
+5.) Referências para descritor e armazenador de dados do tipo matriz
+
+        matriz           ___________
+     ____________       |           |  referência
+    |            |<-----| apontador |     para
+    |  indexador |      |___________|   descritor
+    |     (x)    |
+    |------------|
+    |  indexador |
+    |     (y)    |
+    |------------|
+    |            |
+    |   linhas   |
+    |            |
+    |------------|
+    |            |       área de armazenamento separada
+    |   colunas  |
+    |------------|
+    |            |       linhas
+    | referência ----->  ____        colunas
+    |____________|      |    |   ____ ____ ____
+                        |    -->|____|____|____|
+       descritor      0 |____|
+                        |    |   ____ ____ ____
+                        |    -->|____|____|____|
+                      1 |____|
+                        |    |   ____ ____ ____
+                        |    -->|____|____|____|
+                      2 |____|
+                        |    |   ____ ____ ____
+                        |    -->|____|____|____|
+                      3 |____|    0    1    2
+
+    struct descritor //  descricao da estrutura de dados
+    {
+      int   x;
+      int   y;
+      int   linhas;
+      int   colunas;
+      int **referencia;
+    };
+
+    struct descritor *apontador;
+
+//  apontador = &matriz;
+//  ou
+    apontador = (struct descritor*)  malloc ( 1 * sizeof ( struct descritor ) );
+
+    if ( apontador ) // se existir
+    {
+       apontador->linhas     = m;
+       apontador->colunas    = n;
+       apontador->referencia = (int**) malloc ( linhas * sizeof(int*) );
+
+       if ( apontador->referencia ) // se existir
+       {
+          OK = true;
+          for ( apontador->x = 0;
+                apontador->x < apontador->linhas;
+                apontador->x = apontador->x+1 )
+          {
+              apontador->referencia [ apontador->x ]
+              = (int*) malloc ( apontador->colunas * sizeof(int) );
+              OK = OK && (apontador->referencia [ apontador->x ]);
+          }
+
+          if ( OK )
+          {
+             for ( apontador->x = 0;
+                   apontador->x < apontador->linhas;
+                   apontador->x = apontador->x+1 )
+             {
+                 for ( apontador->y = 0;
+                       apontador->y < apontador->colunas;
+                       apontador->y = apontador->y+1 )
+                 {
+                     printf("%d ",
+                       apontador->referencia [apontador->x][apontador->y] );
+                 }
+             }
+
+          // liberar as reservas, quando nao mais necessarias
+             for ( apontador->x = 0;
+                   apontador->x < apontador->linhas;
+                   apontador->x = apontador->x+1 )
+             {
+                  free ( apontador->referencia [ apontador->x ] );
+             }
+             free ( apontador->referencia );
+             apontador->referencia = NULL; // nao ha' vinculo com o descritor          }
+       }
+    // liberar o descritor
+       free ( apontador );
+       apontador = NULL;
+    }
+
+___
+
+Atribuições entre apontadores
+
+1.) Com alocação estática em memória
+
+            arranjo
+          ___________
+         |           |   INTS arranjo;
+         |           |
+         |___________|
+
+                         ref_INTS copia;
+copia --------+          copia = NULL;
+              |
+            __v__
+             ___
+
+            arranjo
+          ___________
+         |           |
+copia -> |           |   copia = &arranjo;
+         |___________|
+
+
+2.) Com alocação dinâmica em memória
+
+                         ref_INTS copia;
+copia --------+          copia = NULL;
+              |
+            __v__
+             ___
+
+          ___________
+         |           |
+copia -> |           |   copia = malloc ( 1 * sizeof(INTS) );
+         |___________|
+
+                      // arranjo definido no mesmo contexto
+                      // copiar o endereco
+                         ref_INTS arranjo  = copia;
+
+                      // ou
+
+                      // arranjo parametro passado por referencia
+                       *(arranjo) = copia;
+
+                      // apontadores para o mesmo endereco (identicos)
+          ___________
+         |           |
+copia -> |           | <- arranjo
+         |___________|
+
+
+copia ---------+
+               |          copia = NULL; // retirar o apontamento
+             __v__
+              ___
+
+          ___________
+         |           |
+         |           | <- arranjo
+         |___________|
+
+                          free ( arranjo ); // liberar area reservada
+               +--------- arranjo = NULL;   // desvincular-se da area
+               |
+             __v__
+              ___
+
+___
+
+Possíveis combinações entre 
+definições de variáveis e 
+métodos com passagens de parâmetros
+
+                    métodos
+
+          estática           estática
+             /                  /
+          estática           dinâmica
+         
+variável
+
+          dinâmica           dinâmica
+             /                  /
+          estática           dinâmica
+
+
+___
+
+Mapeamento da memória para execução de programas
+
+|    . . .    |
+|_____________| <- área dinâmica
+|    Stack    |
+|             |
+|  (métodos)  |
+|             |
+|-------------|
+|      |      |
+|      v      |
+| Área Livre  |
+|      ^      |
+|      |      |
+|-------------|
+|    Heap     |
+|             |
+|   (dados)   |
+|             |
+|=============| <- execução
+|             | <- área estática
+|    Dados    |
+|     Não     |
+|Inicializados|
+|             |
+|-------------|
+|             |
+|    Dados    | 
+|Inicializados|
+|             |
+|-------------|
+|             |
+| Constantes  |
+|             |
+|-------------|
+|             |
+|   Código    |
+|_____________| <- programa
+|             |
+|    . . .    |
