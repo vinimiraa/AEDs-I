@@ -20,6 +20,13 @@
 // -------------------------- lista de dependencias
 
 #include "libshow.hpp"
+using std::cin;      // para entrada
+using std::cout;     // para saida
+using std::endl;     // para mudar de linha
+using std::setw;     // para definir espacamento
+using std::string;   // para cadeia de caracteres
+using std::ifstream; // para ler arquivo
+using std::ofstream; // para gravar arquivo
 
 // -------------------------- tratamento de erro
 
@@ -29,28 +36,47 @@
 
 // -------------------------- definicao de metodos
 
-/**
- * Menu de opcoes
- */
-void menuOpcoes()
+template <typename TYPE>
+class Array
 {
-    std::cout << std::endl;
-    std::cout << "Escolha alguma das opcoes a seguir:" << std::endl;
-    std::cout << "  0 - Encerrar programa " << std::endl;
-    std::cout << "  1 - Exercicio 0X11    " << std::endl;
-    std::cout << "  2 - Exercicio 0X12    " << std::endl;
-    std::cout << "  3 - Exercicio 0X13    " << std::endl;
-    std::cout << "  4 - Exercicio 0X14    " << std::endl;
-    std::cout << "  5 - Exercicio 0X15    " << std::endl;
-    std::cout << "  6 - Exercicio 0X16    " << std::endl;
-    std::cout << "  7 - Exercicio 0X17    " << std::endl;
-    std::cout << "  8 - Exercicio 0X18    " << std::endl;
-    std::cout << "  9 - Exercicio 0X19    " << std::endl;
-    std::cout << " 10 - Exercicio 0X20    " << std::endl;
-    std::cout << " 11 - Exercicio 0XE1    " << std::endl;
-    std::cout << " 12 - Exercicio 0XE2    " << std::endl;
-    std::cout << std::endl;
-} // fim menuOpcoes()
+    public:
+        int length;
+        TYPE *data;
+        int  index; 
+
+        Array( )
+        {
+            length = 0;
+            data = nullptr;
+        } // end Array ( )
+
+        void fprint ( string filename ) 
+        { 
+            ofstream arquivo;  // output file 
+            
+            arquivo.open ( filename ); // abrir o arquivo
+            
+            arquivo << length << endl; // gravar a quantidade
+            
+            for ( index = 0; index < length; index = index + 1 ) 
+            { 
+                arquivo << data[ index ] << endl; // gravar os dados
+            } // end for 
+            
+            arquivo.close ( ); // fechar o arquivo
+        } // end fprint ( ) 
+
+};
+
+int RandomIntGenerate( int a, int b )
+{
+    int x = 0;
+    while( x < a || b < x )
+    {
+        x = rand() % 110;
+    } // end while
+    return ( x );
+} // end RandomIntGenerate
 
 /**
  *  Metodo01.
@@ -61,6 +87,34 @@ void exercicio0X11( void )
     id( "Exercicio 0X11:" );
 
     // programa
+    Array<int> array;
+    int a = 0, b = 0; // intervalos
+    
+    srand( time(NULL) );
+
+    a =  readint( "Digite o inicio do intervalo: " );
+    b =  readint( "Digite o final do intervalo : " );
+    array.length = readint( "Digite o tamanho do arranjo: " );
+
+    if( a > b )
+    { 
+        cout << endl << "ERRO: Valor inicial maior que o valor final." << endl ;
+    }
+    else
+    {
+        array.data = new int[array.length];
+
+        if( array.data != nullptr )
+        {
+            for( array.index = 0; array.index < array.length; array.index = array.index + 1 )
+            {
+                array.data[array.index] = RandomIntGenerate( a, b );
+            }
+            array.fprint( "DADOS.TXT" );
+
+            cout << endl << "Dados gravados em \"DADOS.TXT\"." << endl;
+        }   
+    }
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -220,6 +274,29 @@ void exercicio0XE2( void )
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio0XE2 (  )
 
+/**
+ * Menu de opcoes
+ */
+void menuOpcoes()
+{
+    std::cout << std::endl;
+    std::cout << "Escolha alguma das opcoes a seguir:" << std::endl;
+    std::cout << "  0 - Encerrar programa " << std::endl;
+    std::cout << "  1 - Exercicio 0X11    " << std::endl;
+    std::cout << "  2 - Exercicio 0X12    " << std::endl;
+    std::cout << "  3 - Exercicio 0X13    " << std::endl;
+    std::cout << "  4 - Exercicio 0X14    " << std::endl;
+    std::cout << "  5 - Exercicio 0X15    " << std::endl;
+    std::cout << "  6 - Exercicio 0X16    " << std::endl;
+    std::cout << "  7 - Exercicio 0X17    " << std::endl;
+    std::cout << "  8 - Exercicio 0X18    " << std::endl;
+    std::cout << "  9 - Exercicio 0X19    " << std::endl;
+    std::cout << " 10 - Exercicio 0X20    " << std::endl;
+    std::cout << " 11 - Exercicio 0XE1    " << std::endl;
+    std::cout << " 12 - Exercicio 0XE2    " << std::endl;
+    std::cout << std::endl;
+} // fim menuOpcoes()
+
 // -------------------------- definicao do metodo principal
 
 int main( void )
@@ -228,7 +305,7 @@ int main( void )
 
     do
     {
-        // clearscreen(  );
+        clearscreen(  );
 
         // mostrar identificacao do autor e programa
         id( "Programa: Exercicios0X - v0.0" );

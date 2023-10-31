@@ -14,6 +14,7 @@
 #include <fstream>     // para arquivos
 #include <sstream>     // para conversoes
 #include <string>      // para cadeias de caracteres
+#include <iomanip>     // para formatacao de entradas e saidas
 
 #include <cstdio>      // para entradas e saida
 #include <cstdlib>     // para a biblioteca padrao
@@ -116,7 +117,7 @@ void id ( std::string text )
 {
     std::cout << std::endl;
     std::cout << text << std::endl;
-    std::cout << "Autor: Vinicius Miranda de Araujo - 812839";
+    std::cout << "Autor: Vinicius Miranda de Araujo - 812839" << std::endl;
     std::cout << std::endl;
 } // end id ( )
 
@@ -125,16 +126,14 @@ void id ( std::string text )
     @return valor lido
     @param  text - mensagem a ser exibida antes da leitura
  */
-void pause ( std::string text )
+void pause(std::string text)
 {
-    std::cout << std::endl << text << std::endl;
-    char x = '0';
-    do
-    {
-        x = std::cin.get( );
-        std::cin.clear( );
-    }
-    while ( x != '\n' );
+    std::string dummy;
+    std::cin.clear();
+    std::cout << std::endl << text;
+    std::cin.ignore();
+    std::getline(std::cin, dummy);
+    std::cout << std::endl << std::endl;
 } // end pause ( )
 
 /**
