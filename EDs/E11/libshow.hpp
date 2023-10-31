@@ -384,10 +384,10 @@ std::string tostring ( char x )
     @param  text  - cadeia de caracteres
     @param  index - posicao desejada
  */
-char charAt ( char* text, unsigned int index )
+char charAt ( char* text, int index )
 {
     char x = '\0';
-    if ( text && 0 <= index && index < strlen(text) )
+    if ( text && 0 <= index && index < (int)strlen(text) )
     {  x = text [ index ]; }
     return ( x );
 } // end charAt ( )
