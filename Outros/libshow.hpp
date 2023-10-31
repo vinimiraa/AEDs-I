@@ -114,8 +114,9 @@ void flush ( void )
  */
 void id ( std::string text )
 {
+    std::cout << std::endl;
     std::cout << text << std::endl;
-    std::cout << "Autor: Vinicius Miranda de Araujo - 812839";
+    std::cout << "Autor: Vinicius Miranda de Araujo - 812839" << std::endl;
     std::cout << std::endl;
 } // end id ( )
 
@@ -130,8 +131,9 @@ void pause ( std::string text )
     char x = '0';
     do
     {
-        x = std::cin.get( );
-        std::cin.clear( );
+        // x = std::cin.get( );
+        // std::cin.clear( );
+        x = getchar( );
     }
     while ( x != '\n' );
 } // end pause ( )
