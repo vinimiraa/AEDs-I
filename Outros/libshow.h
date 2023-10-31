@@ -59,7 +59,7 @@
 
 // ---------------------- definicoes de constantes
 
-const long double PI           = 3.14159265358979323846; // definir valor de Pi
+const long double PI           = 3.14159265358979323846; // definir valor de pi
 const long double E            = 2.71828182845904523536; // definir valor do numero de Euler
 
 const      bool   FALSE        = false;  // definir constante
