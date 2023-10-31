@@ -49,10 +49,10 @@
 #ifndef _SHOW_H_
 #define _SHOW_H_
 
-#define print   printf
-#define scan    scanf
-#define fprint  fprintf
-#define fscan   fscanf
+// #define print   printf
+// #define scan    scanf
+// #define fprint  fprintf
+// #define fscan   fscanf
 
 // ---------------------- definicoes de constantes
 
@@ -115,15 +115,34 @@ void pause ( const char * const text )
     do { x = getchar( ); } while ( '\n' != x );
 } // end pause ( )
 
-/*
+/**
+    Metodo para mostrar uma linha com certo texto.
+    @param text - texto a ser exibido
+ */
+void print ( const char * const text )
+{
+    printf ( "%s", text );
+    //puts ( text );
+} // fim print ( )
+
+/**
+    Metodo para mostrar uma linha com certo texto
+    e mudar de linha.
+    @param text - texto a ser exibido
+ */
+void println ( const char * const text )
+{
+    printf ( "%s\n", text );
+    // puts ( text ); putchar ( '\n' );
+} // fim IO_println ( )
+
+/**
     Metodo para limpar o terminal
 */
 void clear()
 {
     system("cls"); // only for windows
 } // end clear ( )
-
-// ---------------------- entrada e leitura de dados
 
 /**
     Funcao para ler valor inteiro do teclado.
@@ -210,8 +229,6 @@ char *readstring(const char *const text)
     flush();
     return (word);
 } // end readString ( )
-
-// ---------------------- outros procedimentos
 
 /**
     Funcao para reservar espaco para guardar cadeia de caracteres.
@@ -314,121 +331,6 @@ char* doubletostr ( double x )
     sprintf ( buffer, "%lf", x );// variante do printf( )
     return  ( buffer );
 } // fim doubletostr ( )
-
-/**
-    Funcao para obter simbolo de certa posicao 
-    em cadeia de caracteres.
-    @return simbolo, se existir; '\0', caso contrario
-    @param  text  - cadeia de caracteres
-    @param  index - posicao desejada
- */
-char charAt ( char* text, unsigned int index )
-{
-    char x = '\0';
-    if ( text && index < strlen(text) )
-    {  x = text [ index ]; }
-    return ( x );
-} // fim charAt ( )
-
-/**
-    Funcao para ver a quantidade de divisores de um numero.
-    @return Quantidade de divisores.
-    @param number Numero a ser lido.
-*/
-int dividers(int x)
-{
-    int divisor = 1;
-    int count = 0;
-    if (x < 0)
-    {
-        x = (-1) * x;
-    } // end if
-    while (divisor <= x)
-    {
-        if (x % divisor == 0)
-        {
-            count = count + 1;
-        } // end if
-        divisor = divisor + 1;
-    } // end while
-    return (count);
-} // end dividers ( )
-
-/**
-    Funcao para ver o fatorial de um numero.
-    @return Fatorial do numero.
-    @param number Numero a ser lido.
-*/
-int factorial(int x)
-{
-    if( (x == 0) || (x == 1) )
-    {
-        return ( 1 );
-    }
-    else
-    {
-        return ( x * factorial( x - 1) );
-    }
-    return ( 0 );
-} // end factorial ( )
-
-/**
-    Funcao para ver o numero na n-esima posicao de fibonacci.
-    @return Numero de Fibonacci na posicao N.
-    @param N posicao do numero.
-*/
-int fibonacci ( int n )
-{
-    int resposta = 0;
-    if ( n == 1 || n == 2 )
-        {
-        resposta = 1;
-        }
-    else
-    {
-        if ( n > 2 )
-        {
-            resposta = fibonacci (n - 1) + fibonacci (n - 2);
-        } 
-    } 
-    return ( resposta );
-} // end Fibonacci ( )
-
-// ---------------------- checar dados
-
-/**
-    Funcao para verificar se o numero esta dentro do intervalo aberto.
-    @return true se dentro do intervalo; falso caso contrario.
-    @param x numero a ser verificado.
-    @param a extrema esquerda do intervalo.
-    @param b extrema direita do intervalo.
-*/
-bool inOpenInterval(double x, double a, double b)
-{
-    bool result = true;
-    if (a >= x || x >= b) // !inOpenInterval(x) = (a < x || x < b)
-    {
-        result = false;
-    } // end if
-    return (result);
-} // end inOpenInterval ( )
-
-/**
-    Funcao para verificar se o numero esta dentro do intervalo fechado.
-    @return true se dentro do intervalo; falso caso contrario.
-    @param x numero a ser verificado.
-    @param a extrema esquerda do intervalo.
-    @param b extrema direita do intervalo.
-*/
-bool inClosedInterval(double x, double a, double b)
-{
-    bool result = true;
-    if (a > x || x > b) // !inClosedInterval(x) = (a <= x || x <= b)
-    {
-        result = false;
-    } // end if
-    return (result);
-} // end inClosedInterval ( )
 
 /**
     Funcao para ver se o numero e par.
@@ -611,6 +513,40 @@ bool isPunct(char c)
 } // end isPunct ( )
 
 /**
+    Funcao para verificar se o numero esta dentro do intervalo aberto.
+    @return true se dentro do intervalo; falso caso contrario.
+    @param x numero a ser verificado.
+    @param a extrema esquerda do intervalo.
+    @param b extrema direita do intervalo.
+*/
+bool inOpenInterval(double x, double a, double b)
+{
+    bool result = true;
+    if (a >= x || x >= b) // !inOpenInterval(x) = (a < x || x < b)
+    {
+        result = false;
+    } // end if
+    return (result);
+} // end inOpenInterval ( )
+
+/**
+    Funcao para verificar se o numero esta dentro do intervalo fechado.
+    @return true se dentro do intervalo; falso caso contrario.
+    @param x numero a ser verificado.
+    @param a extrema esquerda do intervalo.
+    @param b extrema direita do intervalo.
+*/
+bool inClosedInterval(double x, double a, double b)
+{
+    bool result = true;
+    if (a > x || x > b) // !inClosedInterval(x) = (a <= x || x <= b)
+    {
+        result = false;
+    } // end if
+    return (result);
+} // end inClosedInterval ( )
+
+/**
     Funcao para converter o caractere para maiusculo.
     @return maiuscula se miniscula; maiuscula caso contrario.
     @param  char Caractere a ser lido.
@@ -642,200 +578,83 @@ char toLower(char c)
     return (a);
 } // end toLower ( )
 
-// ---------------------- estrutura de dados homogeneas
+/**
+    Funcao para obter simbolo de certa posicao 
+    em cadeia de caracteres.
+    @return simbolo, se existir; '\0', caso contrario
+    @param  text  - cadeia de caracteres
+    @param  index - posicao desejada
+ */
+char charAt ( char* text, unsigned int index )
+{
+    char x = '\0';
+    if ( text && index < strlen(text) )
+    {  x = text [ index ]; }
+    return ( x );
+} // fim charAt ( )
 
 /**
-    Funcao para mostrar na tela um vetor.
-    @param  size Quantidade de elementos do vetor.
-    @param  array Vetor.
+    Funcao para ver a quantidade de divisores de um numero.
+    @return Quantidade de divisores.
+    @param number Numero a ser lido.
 */
-void printArray(int n, int vetor[])
+int dividers(int x)
 {
-    int i = 0;
-    print("\n");
-    for (i = 0; i < n; i = i + 1)
+    int divisor = 1;
+    int count = 0;
+    if (x < 0)
     {
-        print("%2d: %d\n", i, vetor[i]);
-    } // end for
-    print("\n");
-} // end printArray ( )
-
-/**
-    Funcao para inverter as posicoes de um vetor.
-    @param  size Quantidade de elementos do vetor.
-    @param  array Vetor.
-*/
-void reverseArray(int n,int vetor[])
-{
-    int i = 0;
-    for (i = 0; i < n / 2; i++)
+        x = (-1) * x;
+    } // end if
+    while (divisor <= x)
     {
-        int aux = vetor[i];
-        vetor[i] = vetor[n - 1 - i];
-        vetor[n - 1 - i] = aux;
-    } // end for
-} // end reverseArray ( )
-
-/**
-    Funcao para retornar o maior elemento de um vetor.
-    @param  size Quantidade de elementos do vetor.
-    @param  array Vetor.
-*/
-int maxArray(int n,int vetor[])
-{
-    int i = 0, maior = 0;
-    maior = vetor[0];
-    for (i = 0; i < n; i++)
-    {
-        if (vetor[i] > maior)
+        if (x % divisor == 0)
         {
-            maior = vetor[i];
+            count = count + 1;
         } // end if
-    }     // end for
-    return (maior);
-} // end maxArray ( )
+        divisor = divisor + 1;
+    } // end while
+    return (count);
+} // end dividers ( )
 
 /**
-    Funcao para retornar o menor elemento de um vetor.
-    @param  size Quantidade de elementos do vetor.
-    @param  array Vetor.
+    Funcao para ver o fatorial de um numero.
+    @return Fatorial do numero.
+    @param number Numero a ser lido.
 */
-int minArray(int n,int vetor[])
+int factorial(int x)
 {
-    int i = 0, menor = 0;
-    menor = vetor[0];
-    for (i = 0; i < n; i++)
+    if( (x == 0) || (x == 1) )
     {
-        if (vetor[i] < menor)
+        return ( 1 );
+    }
+    else
+    {
+        return ( x * factorial( x - 1) );
+    }
+    return ( 0 );
+} // end factorial ( )
+
+/**
+    Funcao para ver o numero na n-esima posicao de fibonacci.
+    @return Numero de Fibonacci na posicao N.
+    @param N posicao do numero.
+*/
+int fibonacci ( int n )
+{
+    int resposta = 0;
+    if ( n == 1 || n == 2 )
         {
-            menor = vetor[i];
-        } // end if
-    }     // end for
-    return (menor);
-} // end maxArray ( )
-
-/**
-    Funcao para mostrar uma matriz.
-    @param  row Numero de linhas da matriz.
-    @param  col Numero de colunas da matriz.
-    @param  matrix Matriz.
-*/
-void printMatrix(int row, int col, int matrix[][col])
-{
-    int L = 0, C = 0;
-    print("\n");
-    for (L = 0; L < row; L = L + 1)
+        resposta = 1;
+        }
+    else
     {
-        for (C = 0; C < col; C = C + 1)
+        if ( n > 2 )
         {
-            print("[ %2d ] ", matrix[L][C]);
-        } // end for
-        print("\n");
-    } // end for
-    print("\n");
-} // end printMatrix ( )
-
-/**
-    Funcao para mostrar os elementos da diagonal principal de uma matriz.
-    @param  row Numero de linhas da matriz.
-    @param  col Numero de colunas da matriz.
-    @param  matrix Matriz.
-*/
-void leadingMatrix(int row, int col, int matriz[][col])
-{
-    int L = 0;
-    print("\n");
-    for (L = 0; L < row; L = L + 1)
-    {
-        print("[ %2d ] ", matriz[L][L]);
-    } // end for
-    print("\n");
-} // end leadingMatrix ( )
-
-/**
-    Funcao para mostrar os elementos da diagonal secundaria de uma matriz.
-    @param  row Numero de linhas da matriz.
-    @param  col Numero de colunas da matriz.
-    @param  matrix Matriz.
-*/
-void secondaryMatrix(int row, int col, int matrix[][col])
-{
-    int L = 0;
-    print("\n");
-    for (L = 0; L < row; L = L + 1)
-    {
-        print("[ %2d ] ", matrix[L][row - 1 - L]);
-    } // end for
-    print("\n");
-} // end secondaryMatrix ( )
-
-/**
-    Funcao para mostrar os elementos abaixo da diagonal principal de uma matriz.
-    @param  row Numero de linhas da matriz.
-    @param  col Numero de colunas da matriz.
-    @param  matrix Matriz.
-*/
-void inferiorMatrix(int row, int col, int matrix[][col])
-{
-    int L = 0, C = 0;
-    print("\n");
-    for (L = 0; L < row; L = L + 1)
-    {
-        for (C = 0; C < col; C = C + 1)
-        {
-            if (L > C)
-            {
-                print("[ %2d ] ", matrix[L][C]);
-            } // end if
-        }     // end for
-    }         // end for
-    print("\n");
-} // end inferiorMatrix ( )
-
-/**
-    Funcao para mostrar os elementos acima da diagonal principal de uma matriz.
-    @param  row Numero de linhas da matriz.
-    @param  col Numero de colunas da matriz.
-    @param  matrix Matriz.
-*/
-void superiorMatrix(int row, int col, int matrix[][col])
-{
-    int L = 0, C = 0;
-    print("\n");
-    for (L = 0; L < row; L = L + 1)
-    {
-        for (C = 0; C < col; C = C + 1)
-        {
-            if (L < C)
-            {
-                print("[ %2d ] ", matrix[L][C]);
-            } // end if
-        }     // end for
-    }         // end for
-    print("\n");
-} // end superiorMatrix ( )
-
-/**
-    Funcao para mostrar uma matriz transposta.
-    @param  row Numero de linhas da matriz.
-    @param  col Numero de colunas da matriz.
-    @param  matrix Matriz.
-*/
-void transposedMatrix(int row, int col, int matrix[][col])
-{
-    int L = 0, C = 0;
-    int transp[col][row];
-    print("\n");
-    for (C = 0; C < col; C = C + 1)
-    {
-        for (L = 0; L < row; L = L + 1)
-        {
-            transp[C][L] = matrix[L][C];
-            print("[ %2d ] ", transp[C][L]);
-        } // end for
-        print("\n");
-    } // end for
-    print("\n");
-} // end transposedMatrix ( )
+            resposta = fibonacci (n - 1) + fibonacci (n - 2);
+        } 
+    } 
+    return ( resposta );
+} // end Fibonacci ( )
 
 #endif
