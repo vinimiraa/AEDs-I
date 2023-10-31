@@ -89,7 +89,7 @@ void exercicio0X11( void )
     // programa
     Array<int> array;
     int a = 0, b = 0; // intervalos
-    
+
     srand( time(NULL) );
 
     a =  readint( "Digite o inicio do intervalo: " );
@@ -359,7 +359,7 @@ int main( void )
             exercicio0XE2(  );
             break;
         default:
-            pause( "ERRO: opcao invalida" );
+            pause( "ERRO: opcao invalida!" );
             break;
         } // fim switch
 
