@@ -14,6 +14,7 @@
 #include <fstream>     // para arquivos
 #include <sstream>     // para conversoes
 #include <string>      // para cadeias de caracteres
+#include <iomanip>     // para formatacao de entradas e saidas
 
 #include <cstdio>      // para entradas e saida
 #include <cstdlib>     // para a biblioteca padrao
@@ -125,17 +126,14 @@ void id ( std::string text )
     @return valor lido
     @param  text - mensagem a ser exibida antes da leitura
  */
-void pause ( std::string text )
+void pause(std::string text)
 {
-    std::cout << std::endl << text << std::endl;
-    char x = '0';
-    do
-    {
-        // x = std::cin.get( );
-        // std::cin.clear( );
-        x = getchar( );
-    }
-    while ( x != '\n' );
+    std::string dummy;
+    std::cin.clear();
+    std::cout << std::endl << text;
+    std::cin.ignore();
+    std::getline(std::cin, dummy);
+    std::cout << std::endl << std::endl;
 } // end pause ( )
 
 /**
@@ -386,10 +384,10 @@ std::string tostring ( char x )
     @param  text  - cadeia de caracteres
     @param  index - posicao desejada
  */
-char charAt ( char* text, unsigned int index )
+char charAt ( char* text, int index )
 {
     char x = '\0';
-    if ( text && 0 <= index && index < strlen(text) )
+    if ( text && 0 <= index && index < (int)strlen(text) )
     {  x = text [ index ]; }
     return ( x );
 } // end charAt ( )
