@@ -19,7 +19,7 @@
 
 // -------------------------- lista de dependencias
 
-#include "libshow.hpp"
+#include <libshow.hpp>
 using std::cin;      // para entrada
 using std::cout;     // para saida
 using std::endl;     // para mudar de linha
