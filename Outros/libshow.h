@@ -21,28 +21,26 @@
 #include <math.h>    // para definicoes matematicas
 #include <time.h>    // para medir tempo
 #include <wchar.h>   // para 16-bit characters
-// #include <iso646.h>  // para and, or, xor, not alternatives
+#include <iso646.h>  // para and, or, xor, not alternatives
 
 // ---------------------- redefinicoes para apontamentos
 
-/*
 #ifndef __REFS__
 #define __REFS__
 
-#define nullptr   NULL    // para compatibilizar com C++
-#define null      NULL    // para generalizar
+// #define nullptr   NULL    // para compatibilizar com C++
+// #define null      NULL    // para generalizar
 
-#define addr(p)  (&(p))   // para obter endereco
-#define deref(p) (*(p))   // para obter conteudo de endereco
-#define val(p)   (*(p))   // para obter conteudo apontado
+// #define addr(p)  (&(p))   // para obter endereco
+// #define deref(p) (*(p))   // para obter conteudo de endereco
+// #define val(p)   (*(p))   // para obter conteudo apontado
 
-#define ref       *       // para passar parametro por referencia
-                          // (na assinatura)
-#define var       &       // para passar parametro por referencia
-                          // (na chamada)
+// #define ref       *       // para passar parametro por referencia
+//                           // (na assinatura)
+// #define var       &       // para passar parametro por referencia
+//                           // (na chamada)
 
 #endif
-*/
 
 // ---------------------- redefinicoes uteis
 
@@ -50,13 +48,18 @@
 #define _SHOW_H_
 
 // #define print   printf
-// #define scan    scanf
+// #define scan   scanf
 // #define fprint  fprintf
 // #define fscan   fscanf
 
+#define  AND              &&
+#define  OR               ||
+#define  NOT              !
+#define  XOR              ^
+
 // ---------------------- definicoes de constantes
 
-const long double PI           = 3.14159265358979323846; // definir valor de pi
+const long double PI           = 3.14159265358979323846; // definir valor de Pi
 const long double E            = 2.71828182845904523536; // definir valor do numero de Euler
 
 const      bool   FALSE        = false;  // definir constante
@@ -79,6 +82,24 @@ typedef char* string;
 // ---------------------- para entradas e saidas
 
 /**
+    Metodo para limpar a saida de dados padrao.
+ */
+void clear ( )
+{
+    #if defined(_WIN32) || defined(_WIN64) || defined(__WINDOWS__)
+        system ( "cls"   ); // para Windows - OBS: NAO RECOMENDADO !
+    #elif defined(__linux__)
+        system ( "clear" ); // para Linux   - OBS: NAO RECOMENDADO !
+    #elif defined(__APPLE__) && defined(__MACH__)
+        system ( "clear" ); // para Linux   - OBS: NAO RECOMENDADO !
+    #elif defined(unix) || defined(__unix__) || defined(__unix)
+        system ( "clear" ); // para Linux   - OBS: NAO RECOMENDADO !
+    #else
+        #error Unknown_OS
+    #endif
+} // end clear ( )
+
+/**
     Metodo para limpar a entrada de dados padrao.
 */
 void flush()
@@ -97,10 +118,10 @@ void flush()
 */
 void id(const char *const name)
 {
-    print("\n");
-    print("%s\n", name);
-    print("%s\n", "Autor: Vinicius Miranda de Araujo - 812839");
-    print("\n");
+    printf("\n");
+    printf("%s\n", name);
+    printf("%s\n", "Autor: Vinicius Miranda de Araujo - 812839");
+    printf("\n");
 } // end id ( )
 
 /**
@@ -111,7 +132,7 @@ void id(const char *const name)
 void pause ( const char * const text )
 {
     char x = '0';
-    print("\n%s\n", text);
+    printf("\n%s\n", text);
     do { x = getchar( ); } while ( '\n' != x );
 } // end pause ( )
 
@@ -123,7 +144,7 @@ void print ( const char * const text )
 {
     printf ( "%s", text );
     //puts ( text );
-} // fim print ( )
+} // fim printf ( )
 
 /**
     Metodo para mostrar uma linha com certo texto
@@ -134,15 +155,7 @@ void println ( const char * const text )
 {
     printf ( "%s\n", text );
     // puts ( text ); putchar ( '\n' );
-} // fim IO_println ( )
-
-/**
-    Metodo para limpar o terminal
-*/
-void clear()
-{
-    system("cls"); // only for windows
-} // end clear ( )
+} // fim IO_printfln ( )
 
 /**
     Funcao para ler valor inteiro do teclado.
@@ -152,8 +165,8 @@ void clear()
 int readint(const char *const text)
 {
     int x = 0;
-    print("%s", text);
-    scan("%d", &x);
+    printf("%s", text);
+    scanf("%d", &x);
     flush();
     return (x);
 } // end readint ( )
@@ -166,8 +179,8 @@ int readint(const char *const text)
 float readfloat(const char *const text)
 {
     float x = 0.0;
-    print("%s", text);
-    scan("%f", &x);
+    printf("%s", text);
+    scanf("%f", &x);
     flush();
     return (x);
 } // end readfloat ( )
@@ -180,8 +193,8 @@ float readfloat(const char *const text)
 double readdouble(const char *const text)
 {
     double x = 0.0;
-    print("%s", text);
-    scan("%lf", &x);
+    printf("%s", text);
+    scanf("%lf", &x);
     flush();
     return (x);
 } // end readdouble ( )
@@ -196,8 +209,8 @@ double readdouble(const char *const text)
 bool readbool(const char *const text)
 {
     int x = 0;
-    print("%s", text);
-    scan("%d", &x);
+    printf("%s", text);
+    scanf("%d", &x);
     flush();
     return (x != 0);
 } // end readbool ( )
@@ -210,7 +223,7 @@ bool readbool(const char *const text)
 char readchar(const char *const text)
 {
     char x = '0';
-    print("%s", text);
+    printf("%s", text);
     x = getchar();
     flush();
     return (x);
@@ -224,8 +237,8 @@ char readchar(const char *const text)
 char *readstring(const char *const text)
 {
     char *word = (char *)malloc((STR_SIZE + 1) * sizeof(char));
-    print("%s", text);
-    scan("%80[^\n]", word); // ler cadeia de caracteres
+    printf("%s", text);
+    scanf("%80[^\n]", word); // ler cadeia de caracteres
     flush();
     return (word);
 } // end readString ( )
@@ -292,7 +305,7 @@ char* concat ( const char * const text1, const char * const text2 )
 char* booltostr ( bool x )
 {                               // reservar area
     char* buffer = allocchar( STR_SIZE+1 );
-    sprintf ( buffer, "%d", x );// variante do printf( )
+    sprintf ( buffer, "%d", x );// variante do printff( )
     return  ( buffer );
 } // fim booltostr ( )
 
@@ -304,7 +317,7 @@ char* booltostr ( bool x )
 char* chartostr ( char x )
 {
     char* buffer = allocchar( STR_SIZE+1 );
-    sprintf ( buffer, "%c", x );// variante do printf( )
+    sprintf ( buffer, "%c", x );// variante do printff( )
     return  ( buffer );
 } // fim chartostr ( )
 
@@ -316,7 +329,7 @@ char* chartostr ( char x )
 char* inttostr ( int x )
 {
     char* buffer = allocchar( STR_SIZE+1 );
-    sprintf ( buffer, "%d", x );// variante do printf( )
+    sprintf ( buffer, "%d", x );// variante do printff( )
     return  ( buffer );
 } // fim inttostr ( )
 
@@ -328,9 +341,88 @@ char* inttostr ( int x )
 char* doubletostr ( double x )
 {                              
     char* buffer = allocchar( STR_SIZE+1 );
-    sprintf ( buffer, "%lf", x );// variante do printf( )
+    sprintf ( buffer, "%lf", x );// variante do printff( )
     return  ( buffer );
 } // fim doubletostr ( )
+
+/**
+    Funcao para obter simbolo de certa posicao 
+    em cadeia de caracteres.
+    @return simbolo, se existir; '\0', caso contrario
+    @param  text  - cadeia de caracteres
+    @param  index - posicao desejada
+ */
+char charAt ( char* text, unsigned int index )
+{
+    char x = '\0';
+    if ( text && index < strlen(text) )
+    {  x = text [ index ]; }
+    return ( x );
+} // fim charAt ( )
+
+/**
+    Funcao para ver o fatorial de um numero.
+    @return Fatorial do numero.
+    @param number Numero a ser lido.
+*/
+int factorial(int x)
+{
+    if( (x == 0) || (x == 1) )
+    {
+        return ( 1 );
+    }
+    else
+    {
+        return ( x * factorial( x - 1) );
+    }
+    return ( 0 );
+} // end factorial ( )
+
+/**
+    Funcao para ver o numero na n-esima posicao de fibonacci.
+    @return Numero de Fibonacci na posicao N.
+    @param N posicao do numero.
+*/
+int fibonacci ( int n )
+{
+    int resposta = 0;
+    if ( n == 1 || n == 2 )
+        {
+        resposta = 1;
+        }
+    else
+    {
+        if ( n > 2 )
+        {
+            resposta = fibonacci (n - 1) + fibonacci (n - 2);
+        } 
+    } 
+    return ( resposta );
+} // end Fibonacci ( )
+
+/**
+    Funcao para ver a quantidade de divisores de um numero.
+    @return Quantidade de divisores.
+    @param number Numero a ser lido.
+*/
+int dividers(int x)
+{
+    int divisor = 1;
+    int count = 0;
+    if (x < 0)
+    {
+        x = (-1) * x;
+    } // end if
+    while (divisor <= x)
+    {
+        if (x % divisor == 0)
+        {
+            count = count + 1;
+        } // end if
+        divisor = divisor + 1;
+    } // end while
+    return (count);
+} // end dividers ( )
 
 /**
     Funcao para ver se o numero e par.
@@ -577,84 +669,5 @@ char toLower(char c)
     } // end if
     return (a);
 } // end toLower ( )
-
-/**
-    Funcao para obter simbolo de certa posicao 
-    em cadeia de caracteres.
-    @return simbolo, se existir; '\0', caso contrario
-    @param  text  - cadeia de caracteres
-    @param  index - posicao desejada
- */
-char charAt ( char* text, unsigned int index )
-{
-    char x = '\0';
-    if ( text && index < strlen(text) )
-    {  x = text [ index ]; }
-    return ( x );
-} // fim charAt ( )
-
-/**
-    Funcao para ver a quantidade de divisores de um numero.
-    @return Quantidade de divisores.
-    @param number Numero a ser lido.
-*/
-int dividers(int x)
-{
-    int divisor = 1;
-    int count = 0;
-    if (x < 0)
-    {
-        x = (-1) * x;
-    } // end if
-    while (divisor <= x)
-    {
-        if (x % divisor == 0)
-        {
-            count = count + 1;
-        } // end if
-        divisor = divisor + 1;
-    } // end while
-    return (count);
-} // end dividers ( )
-
-/**
-    Funcao para ver o fatorial de um numero.
-    @return Fatorial do numero.
-    @param number Numero a ser lido.
-*/
-int factorial(int x)
-{
-    if( (x == 0) || (x == 1) )
-    {
-        return ( 1 );
-    }
-    else
-    {
-        return ( x * factorial( x - 1) );
-    }
-    return ( 0 );
-} // end factorial ( )
-
-/**
-    Funcao para ver o numero na n-esima posicao de fibonacci.
-    @return Numero de Fibonacci na posicao N.
-    @param N posicao do numero.
-*/
-int fibonacci ( int n )
-{
-    int resposta = 0;
-    if ( n == 1 || n == 2 )
-        {
-        resposta = 1;
-        }
-    else
-    {
-        if ( n > 2 )
-        {
-            resposta = fibonacci (n - 1) + fibonacci (n - 2);
-        } 
-    } 
-    return ( resposta );
-} // end Fibonacci ( )
 
 #endif
