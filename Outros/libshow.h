@@ -21,15 +21,15 @@
 #include <math.h>    // para definicoes matematicas
 #include <time.h>    // para medir tempo
 #include <wchar.h>   // para 16-bit characters
-#include <iso646.h>  // para and, or, xor, not alternatives
+// #include <iso646.h>  // para and, or, xor, not alternatives
 
 // ---------------------- redefinicoes para apontamentos
 
 #ifndef __REFS__
 #define __REFS__
 
-// #define nullptr   NULL    // para compatibilizar com C++
-// #define null      NULL    // para generalizar
+#define nullptr   NULL    // para compatibilizar com C++
+#define null      NULL    // para generalizar
 
 // #define addr(p)  (&(p))   // para obter endereco
 // #define deref(p) (*(p))   // para obter conteudo de endereco
@@ -47,10 +47,10 @@
 #ifndef _SHOW_H_
 #define _SHOW_H_
 
-// #define print   printf
-// #define scan   scanf
-// #define fprint  fprintf
-// #define fscan   fscanf
+#define print   printf
+#define scan    scanf
+#define fprint  fprintf
+#define fscan   fscanf
 
 #define  AND              &&
 #define  OR               ||
@@ -140,7 +140,7 @@ void pause ( const char * const text )
     Metodo para mostrar uma linha com certo texto.
     @param text - texto a ser exibido
  */
-void print ( const char * const text )
+void printl ( const char * const text )
 {
     printf ( "%s", text );
     //puts ( text );
