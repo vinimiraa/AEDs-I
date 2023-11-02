@@ -86,6 +86,8 @@ void exercicio1112( void )
     arranjo.fread ( filename );
 
     maior = arranjo.searchFirstEven( );
+
+    arranjo.print( );
     
     cout << "O maior valor par do arquivo " << filename << " e = " << maior << "." << endl;
 
@@ -111,6 +113,8 @@ void exercicio1113( void )
     arranjo.fread( filename );
 
     menor = arranjo.searchFirstOdd( );
+
+    arranjo.print( );
 
     cout << "O menor valor impar do arquivo " << filename << " e = " << menor << "." << endl;
     
@@ -146,6 +150,7 @@ void exercicio1114( void )
     else
     {
         soma = arranjo.addInterval( a, b );
+        arranjo.print( );
         cout << endl << "Soma dos valores do arranjo entre as posicoes dadas e = " << soma << endl;
     }
 
@@ -181,6 +186,7 @@ void exercicio1115( void )
     else
     {
         media = arranjo.averageInterval( a, b );
+        arranjo.print( );
         cout << endl << "A media dos valores do arranjo entre as posicoes dadas e = " << media << endl;
     }
 
@@ -282,7 +288,7 @@ void exercicio1118( void )
     {
         if ( arranjo.searchInterval( x, a, b ) )
         {
-            cout << "O valor esta presente no arranjo entre as duas posições indicadas." << endl;
+            cout << "O valor esta presente no arranjo entre as duas posicoes indicadas." << endl;
         }
         else
         {
@@ -376,6 +382,11 @@ void exercicio11E1( void )
     Array<int> arranjo1( 5, other1 );
     Array<int> arranjo2( 5, other2 );
 
+    cout << "Arranjo 1: " << endl;
+    arranjo1.print( );
+    cout << "Arranjo 2: " << endl;
+    arranjo2.print( );
+
     if ( arranjo1 != arranjo2 )
     {
         cout << "Os arranjos sao diferentes em pelo menos uma posicao." << endl;
@@ -401,6 +412,28 @@ void exercicio11E2( void )
     id( "Exercicio 11E2:" );
 
     // programa
+    Array<int> arranjo1;
+    Array<int> arranjo2;
+    Array<int> arranjo3;
+
+    arranjo1.fread( "DADOS.TXT" );
+
+    arranjo2 = arranjo1.scalar( 3, 0, arranjo1.getLength( ) );
+
+    arranjo3 = arranjo1 - arranjo2;
+
+    cout << "Arranjo 1: " << endl;
+    arranjo1.print( );
+    
+    cout << "Arranjo 2: " << endl;
+    arranjo2.print( );
+
+    cout << "Diferenca: Arranjo 1 menos Arranjo 2:" << endl;
+    arranjo3.print( );
+
+    arranjo1.free( );
+    arranjo2.free( );
+    arranjo3.free( );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
