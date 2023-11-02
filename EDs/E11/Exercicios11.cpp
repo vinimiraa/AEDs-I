@@ -4,29 +4,25 @@
  * Curso de Ciencia da Computacao
  * Algoritmos e Estruturas de Dados I
  *
- * Exercicios0X - v0.0. - __ / __ / ____
+ * Exercicios11 - v0.0. - 31 / 10 / 2023
  * Author: Vinicius Miranda de Araujo
  *
  * Para compilar em terminal (janela de comandos):
- *      Linux : gcc -o Exercicios0X Exercicios0X.cpp
- *      Windows: gcc -o Exercicios0X Exercicios0X.cpp
+ *      Linux : gcc -o Exercicios11 Exercicios11.cpp
+ *      Windows: gcc -o Exercicios11 Exercicios11.cpp
  *
  * Para executar em terminal (janela de comandos):
- *      Linux : ./Exercicios0X
- *      Windows: Exercicios0X
+ *      Linux : ./Exercicios11
+ *      Windows: Exercicios11
  *
  */
 
 // -------------------------- lista de dependencias
 
 #include <libshow.hpp>
-using std::cin;      // para entrada
-using std::cout;     // para saida
-using std::endl;     // para mudar de linha
-using std::setw;     // para definir espacamento
-using std::string;   // para cadeia de caracteres
-using std::ifstream; // para ler arquivo
-using std::ofstream; // para gravar arquivo
+#include "myarray.hpp"
+
+using namespace std;
 
 // -------------------------- tratamento de erro
 
@@ -36,243 +32,379 @@ using std::ofstream; // para gravar arquivo
 
 // -------------------------- definicao de metodos
 
-template <typename TYPE>
-class Array
-{
-    public:
-        int length;
-        TYPE *data;
-        int  index; 
-
-        Array( )
-        {
-            length = 0;
-            data = nullptr;
-        } // end Array ( )
-
-        void fprint ( string filename ) 
-        { 
-            ofstream arquivo;  // output file 
-            
-            arquivo.open ( filename ); // abrir o arquivo
-            
-            arquivo << length << endl; // gravar a quantidade
-            
-            for ( index = 0; index < length; index = index + 1 ) 
-            { 
-                arquivo << data[ index ] << endl; // gravar os dados
-            } // end for 
-            
-            arquivo.close ( ); // fechar o arquivo
-        } // end fprint ( ) 
-
-};
-
-int RandomIntGenerate( int a, int b )
-{
-    int x = 0;
-    while( x < a || b < x )
-    {
-        x = rand() % 110;
-    } // end while
-    return ( x );
-} // end RandomIntGenerate
-
 /**
  *  Metodo01.
  */
-void exercicio0X11( void )
+void exercicio1111( void )
 {
     // identificacao
-    id( "Exercicio 0X11:" );
+    id( "Exercicio 1111:" );
 
     // programa
-    Array<int> array;
+    Array<int> arranjo; // classe
     int a = 0, b = 0; // intervalos
-
-    srand( time(NULL) );
+    string filename = "DADOS.TXT";
 
     a =  readint( "Digite o inicio do intervalo: " );
     b =  readint( "Digite o final do intervalo : " );
-    array.length = readint( "Digite o tamanho do arranjo: " );
+    arranjo.setLength( readint( "Digite o tamanho do arranjo: " ) );
 
     if( a > b )
-    { 
-        cout << endl << "ERRO: Valor inicial maior que o valor final." << endl ;
+    {
+        cout << endl << "ERRO: Limites do Intervalo Invalidos." << endl;
     }
     else
     {
-        array.data = new int[array.length];
+        arranjo.RandomIntGenerate( a, b );
 
-        if( array.data != nullptr )
-        {
-            for( array.index = 0; array.index < array.length; array.index = array.index + 1 )
-            {
-                array.data[array.index] = RandomIntGenerate( a, b );
-            }
-            array.fprint( "DADOS.TXT" );
+        arranjo.print( );
 
-            cout << endl << "Dados gravados em \"DADOS.TXT\"." << endl;
-        }   
+        arranjo.fprint( filename );
+
+        cout << endl << "Dados gravados em " << filename << "." << endl;
     }
+
+    arranjo.free();
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0X11 (  )
+} // fim exercicio1111 (  )
 
 /**
  *  Metodo02.
  */
-void exercicio0X12( void )
+void exercicio1112( void )
 {
     // identificacao
-    id( "Exercicio 0X12:" );
+    id( "Exercicio 1112:" );
 
     // programa
+    Array<int> arranjo;
+    string filename = "DADOS.TXT";
+    int maior = 0;
+    
+    arranjo.fread ( filename );
+
+    maior = arranjo.searchFirstEven( );
+    
+    cout << "O maior valor par do arquivo " << filename << " e = " << maior << "." << endl;
+
+    arranjo.free();
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0X12 (  )
+} // fim exercicio1112 (  )
 
 /**
  *  Metodo03.
  */
-void exercicio0X13( void )
+void exercicio1113( void )
 {
     // identificacao
-    id( "Exercicio 0X13:" );
+    id( "Exercicio 1113:" );
 
     // programa
+    Array<int> arranjo;
+    string filename = "DADOS.TXT";
+    int menor = 0;
+
+    arranjo.fread( filename );
+
+    menor = arranjo.searchFirstOdd( );
+
+    cout << "O menor valor impar do arquivo " << filename << " e = " << menor << "." << endl;
+    
+    arranjo.free();
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0X13 (  )
+} // fim exercicio1113 (  )
 
 /**
  *  Metodo04.
  */
-void exercicio0X14( void )
+void exercicio1114( void )
 {
     // identificacao
-    id( "Exercicio 0X14:" );
+    id( "Exercicio 1114:" );
 
     // programa
+    Array<int> arranjo;
+    string filename = "DADOS.TXT";
+    int soma = 0;
+    int a= 0, b = 0;
+
+    arranjo.fread( filename );
+
+    a = readint( "Digite o inicio do intervalo: " );
+    b = readint( "Digite o final do intervalo : " );
+
+    if ( a > b )
+    {
+        cout << endl << "ERRO: Limites do Intervalo Invalidos." << endl;
+    }
+    else
+    {
+        soma = arranjo.addInterval( a, b );
+        cout << endl << "Soma dos valores do arranjo entre as posicoes dadas e = " << soma << endl;
+    }
+
+    arranjo.free();
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0X14 (  )
+} // fim exercicio1114 (  )
 
 /**
  *  Metodo05.
  */
-void exercicio0X15( void )
+void exercicio1115( void )
 {
     // identificacao
-    id( "Exercicio 0X15:" );
+    id( "Exercicio 1115:" );
 
     // programa
+    Array<int> arranjo;
+    string filename = "DADOS.TXT";
+    double media = 0.0;
+    int a = 0, b = 0;
+
+    arranjo.fread( filename );
+
+    a = readint( "Digite o inicio do intervalo: " );
+    b = readint( "Digite o final do intervalo : " );
+
+    if ( a > b )
+    {
+        cout << endl << "ERRO: Limites do Intervalo Invalidos." << endl;
+    }
+    else
+    {
+        media = arranjo.averageInterval( a, b );
+        cout << endl << "A media dos valores do arranjo entre as posicoes dadas e = " << media << endl;
+    }
+
+    arranjo.free();
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0X15 (  )
+} // fim exercicio1115 (  )
 
 /**
  *  Metodo06.
  */
-void exercicio0X16( void )
+void exercicio1116( void )
 {
     // identificacao
-    id( "Exercicio 0X16:" );
+    id( "Exercicio 1116:" );
 
     // programa
+    Array<int> arranjo;
+    string filename = "DADOS.TXT";
+    
+    arranjo.fread( "DADOS.TXT" );
+
+    arranjo.print( );
+
+    if ( arranjo.positives( ) )
+    {
+        cout << "O arranjo so tem valores positivos." << endl;
+    }
+    else
+    {
+        cout << "O arranjo tem valor negativo." << endl;
+    }
+
+    arranjo.free();
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0X16 (  )
+} // fim exercicio1116 (  )
 
 /**
  *  Metodo07.
  */
-void exercicio0X17( void )
+void exercicio1117( void )
 {
     // identificacao
-    id( "Exercicio 0X17:" );
+    id( "Exercicio 1117:" );
 
     // programa
+    Array<int> arranjo;
+    string filename = "DADOS.TXT";
+    
+    arranjo.fread( "DADOS.TXT" );
+
+    arranjo.print( );
+
+    if ( arranjo.isCrescent( ) )
+    {
+        cout << "Os valores do arranjo estao em ordem crescente." << endl;
+    }
+    else
+    {
+        cout << "Os valores do arranjo nao estao em ordem." << endl;
+    }
+
+    arranjo.free();
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0X17 (  )
+} // fim exercicio1117 (  )
 
 /**
  *  Metodo08.
  */
-void exercicio0X18( void )
+void exercicio1118( void )
 {
     // identificacao
-    id( "Exercicio 0X18:" );
+    id( "Exercicio 1118:" );
 
     // programa
+    Array<int> arranjo;
+    string filename = "DADOS.TXT";
+    int a = 0, b = 0; // intervalos
+    int x = 0;        // valor
+    
+    arranjo.fread( "DADOS.TXT" );
+
+    a = readint( "Digite o inicio do intervalo: " );
+    b = readint( "Digite o final do intervalo : " );
+    x = readint( "Digite o valor a ser procurado: " );
+
+    arranjo.print( );
+
+    if ( a > b )
+    {
+        cout << endl << "ERRO: Limites do Intervalo Invalidos." << endl;
+    }
+    else
+    {
+        if ( arranjo.searchInterval( x, a, b ) )
+        {
+            cout << "O valor esta presente no arranjo entre as duas posições indicadas." << endl;
+        }
+        else
+        {
+            cout << "O valor nao esta presente no arranjo entre as duas posicoes indicadas." << endl;
+        }
+    }
+
+    arranjo.free();
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0X18 (  )
-
-/**
- *  Metodo0X.
- */
-void exercicio0X19( void )
-{
-    // identificacao
-    id( "Exercicio 0X19:" );
-
-    // programa
-
-    // encerrar
-    pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0X19 (  )
-
-/**
- *  Metodo10.
- */
-void exercicio0X20( void )
-{
-    // identificacao
-    id( "Exercicio 0X20:" );
-
-    // programa
-
-    // encerrar
-    pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0X20 (  )
+} // fim exercicio1118 (  )
 
 /**
  *  Metodo11.
  */
-void exercicio0XE1( void )
+void exercicio1119( void )
 {
     // identificacao
-    id( "Exercicio 0XE1:" );
+    id( "Exercicio 1119:" );
 
     // programa
+    Array<int> arranjo;
+    Array<int> novo;
+    string filename = "DADOS.TXT";
+    int a = 0, b = 0; // intervalos
+    int k = 0;        // constante
+
+    arranjo.fread( filename );
+
+    a = readint( "Digite o inicio do intervalo: " );
+    b = readint( "Digite o final do intervalo : " );
+    k = readint( "Digite a constante: " );
+
+    if ( a > b )
+    {
+        cout << endl << "ERRO: Limites do Intervalo Invalidos." << endl;
+    }
+    else
+    {
+        novo = arranjo.scalar( k, a, b );
+        novo.print( );
+    }
+
+    arranjo.free();
+    novo.free();
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0XE1 (  )
+} // fim exercicio1119 (  )
+
+/**
+ *  Metodo10.
+ */
+void exercicio1120( void )
+{
+    // identificacao
+    id( "Exercicio 1120:" );
+
+    // programa
+    Array<int> arranjo;
+    string filename = "DADOS.TXT";
+
+    arranjo.fread( filename );
+
+    cout << "Antes da Ordenacao:" << endl;
+    arranjo.print( );
+
+    arranjo.sortUp( );
+
+    cout << "Depois de Ordenar:" << endl;
+    arranjo.print( );
+
+    arranjo.free( );
+
+    // encerrar
+    pause( "Aperte ENTER para continuar!" );
+} // fim exercicio1120 (  )
+
+/**
+ *  Metodo11.
+ */
+void exercicio11E1( void )
+{
+    // identificacao
+    id( "Exercicio 11E1:" );
+
+    // programa
+    int other1 [ ] = { 1, 2, 3, 4, 5 };
+    int other2 [ ] = { 1, 2, 6, 4, 5 };
+    Array<int> arranjo1( 5, other1 );
+    Array<int> arranjo2( 5, other2 );
+
+    if ( arranjo1 != arranjo2 )
+    {
+        cout << "Os arranjos sao diferentes em pelo menos uma posicao." << endl;
+    }
+    else
+    {
+        cout << "Os arranjos sao iguais em todas as posicoes." << endl;
+    }
+
+    arranjo1.free( );
+    arranjo2.free( );
+
+    // encerrar
+    pause( "Aperte ENTER para continuar!" );
+} // fim exercicio11E1 (  )
 
 /**
  *  Metodo12.
  */
-void exercicio0XE2( void )
+void exercicio11E2( void )
 {
     // identificacao
-    id( "Exercicio 0XE2:" );
+    id( "Exercicio 11E2:" );
 
     // programa
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
-} // fim exercicio0XE2 (  )
+} // fim exercicio11E2 (  )
 
 /**
  * Menu de opcoes
@@ -282,18 +414,18 @@ void menuOpcoes()
     std::cout << std::endl;
     std::cout << "Escolha alguma das opcoes a seguir:" << std::endl;
     std::cout << "  0 - Encerrar programa " << std::endl;
-    std::cout << "  1 - Exercicio 0X11    " << std::endl;
-    std::cout << "  2 - Exercicio 0X12    " << std::endl;
-    std::cout << "  3 - Exercicio 0X13    " << std::endl;
-    std::cout << "  4 - Exercicio 0X14    " << std::endl;
-    std::cout << "  5 - Exercicio 0X15    " << std::endl;
-    std::cout << "  6 - Exercicio 0X16    " << std::endl;
-    std::cout << "  7 - Exercicio 0X17    " << std::endl;
-    std::cout << "  8 - Exercicio 0X18    " << std::endl;
-    std::cout << "  9 - Exercicio 0X19    " << std::endl;
-    std::cout << " 10 - Exercicio 0X20    " << std::endl;
-    std::cout << " 11 - Exercicio 0XE1    " << std::endl;
-    std::cout << " 12 - Exercicio 0XE2    " << std::endl;
+    std::cout << "  1 - Exercicio 1111    " << std::endl;
+    std::cout << "  2 - Exercicio 1112    " << std::endl;
+    std::cout << "  3 - Exercicio 1113    " << std::endl;
+    std::cout << "  4 - Exercicio 1114    " << std::endl;
+    std::cout << "  5 - Exercicio 1115    " << std::endl;
+    std::cout << "  6 - Exercicio 1116    " << std::endl;
+    std::cout << "  7 - Exercicio 1117    " << std::endl;
+    std::cout << "  8 - Exercicio 1118    " << std::endl;
+    std::cout << "  9 - Exercicio 1119    " << std::endl;
+    std::cout << " 10 - Exercicio 1120    " << std::endl;
+    std::cout << " 11 - Exercicio 11E1    " << std::endl;
+    std::cout << " 12 - Exercicio 11E2    " << std::endl;
     std::cout << std::endl;
 } // fim menuOpcoes()
 
@@ -308,7 +440,7 @@ int main( void )
         clearscreen(  );
 
         // mostrar identificacao do autor e programa
-        id( "Programa: Exercicios0X - v0.0" );
+        id( "Programa: Exercicios11 - v0.0" );
 
         // mostrar menu de opcoes
         menuOpcoes(  );
@@ -323,40 +455,40 @@ int main( void )
             pause("Aperte ENTER para terminar!");
             break;
         case 1:
-            exercicio0X11(  );
+            exercicio1111(  );
             break;
         case 2:
-            exercicio0X12(  );
+            exercicio1112(  );
             break;
         case 3:
-            exercicio0X13(  );
+            exercicio1113(  );
             break;
         case 4:
-            exercicio0X14(  );
+            exercicio1114(  );
             break;
         case 5:
-            exercicio0X15(  );
+            exercicio1115(  );
             break;
         case 6:
-            exercicio0X16(  );
+            exercicio1116(  );
             break;
         case 7:
-            exercicio0X17(  );
+            exercicio1117(  );
             break;
         case 8:
-            exercicio0X18(  );
+            exercicio1118(  );
             break;
         case 9:
-            exercicio0X19(  );
+            exercicio1119(  );
             break;
         case 10:
-            exercicio0X20(  );
+            exercicio1120(  );
             break;
         case 11:
-            exercicio0XE1(  );
+            exercicio11E1(  );
             break;
         case 12:
-            exercicio0XE2(  );
+            exercicio11E2(  );
             break;
         default:
             pause( "ERRO: opcao invalida!" );
