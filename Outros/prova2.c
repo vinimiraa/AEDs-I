@@ -179,7 +179,47 @@ void p_07(void)
 
 void p_08(void)
 {
+    FILE *dados = fopen( "DADOS.TXT", "rt" );
+    FILE *resultado = fopen( "RESULTADOS.TXT", "wt" );
 
+    int array[7];
+    int valor = 0;
+    int x = 0; 
+    int contador = 0;
+
+    if( dados == NULL || resultado == NULL )
+    {
+        printf( "ERRO ao abrir o aqruivo." );
+    }
+    else
+    {   
+        fscanf(dados,"%d", &valor); fgetc(dados);
+        if(valor % 10 == 1  && valor / 10000 == 3)
+        {
+            array[x] = valor;
+            contador++;
+        }
+
+        x = 1;
+        while( !feof( dados ) )
+        {
+            fscanf(dados, "%d", &valor ); fgetc(dados);
+            if(valor % 10 == 1  && valor / 10000 == 3)
+            {
+                array[x] = valor;
+                contador++;
+            }
+            x = x + 1;
+        }
+
+        for( x = 0; x < contador; x++ )
+        {
+            fprintf( resultado, "%d\n", array[x] );
+        }
+    }
+
+    fclose(dados);
+    fclose(resultado);
 }
 
 int main()
