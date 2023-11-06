@@ -77,6 +77,10 @@ typedef struct s_floatMatrix
 
 // ---------------------- para entradas e saidas
 
+/**
+ * Verifica se a matriz de inteiros e os dados existem.
+ * @return TRUE : se existem; FALSE : caso contrario.
+*/
 bool exist_intMatrix( intMatrix* matrix )
 {
     bool result = false;
@@ -87,6 +91,10 @@ bool exist_intMatrix( intMatrix* matrix )
     return ( result );
 }
 
+/**
+ * Cria e aloca o espaço de memória para uma matriz de inteiros.
+ * @return MATRIZ.
+*/
 intMatrix* new_intMatrix( int rows, int columns )
 {
     intMatrix *matrix = ( intMatrix* ) malloc ( 1 * sizeof( intMatrix ) );
@@ -118,6 +126,9 @@ intMatrix* new_intMatrix( int rows, int columns )
     return ( matrix );
 } // end new_intMatrix ( )
 
+/**
+ * Inicializa uma matriz de inteiros com um valor. 
+*/
 void init_intMatrix( intMatrix* matrix, int rows, int columns, int init_value )
 {
     if( exist_intMatrix( matrix ) && rows > 0 && columns > 0 )
@@ -134,6 +145,9 @@ void init_intMatrix( intMatrix* matrix, int rows, int columns, int init_value )
     } // end if
 } // end init_intMatrix ( )
 
+/**
+ * Libera o espaço de memória de uma matriz de inteiros.
+*/
 void free_intMatrix( intMatrix* matrix )
 {
     if ( exist_intMatrix( matrix ) )
@@ -147,6 +161,9 @@ void free_intMatrix( intMatrix* matrix )
     } // end if
 } // end free_int_Matrix ( )
 
+/**
+ * Mostra uma matriz com valores inteiros.
+*/
 void print_intMatrix( intMatrix* matrix )
 {
     if ( exist_intMatrix( matrix ) )
@@ -162,6 +179,10 @@ void print_intMatrix( intMatrix* matrix )
     } // end if
 } // end print_intMatrix ( )
 
+/**
+ * Lê os dados de uma matriz de inteiros.
+ * @return MATRIZ com os dados lidos.
+*/
 intMatrix* read_intMatrix( )
 {
     intMatrix* matrix = NULL;
@@ -209,6 +230,9 @@ intMatrix* read_intMatrix( )
     return ( matrix );
 } // end read_intMatrix ( )
 
+/**
+ * Grava em um arquivo uma matriz de inteiros.
+*/
 void fprint_intMatrix( string filename , intMatrix* matrix )
 {
     FILE* file = fopen( filename, "wt" );
@@ -233,6 +257,10 @@ void fprint_intMatrix( string filename , intMatrix* matrix )
     } // end if
 } // end fprint_intMatrix ( )
 
+/**
+ * Lê de um arquivo uma matriz de inteiros.
+ * @return MATRIZ com os valores lidos do arquivo.
+*/
 intMatrix* fread_intMatrix( string filename )
 {
     FILE *file = fopen( filename, "rt" );
@@ -251,7 +279,7 @@ intMatrix* fread_intMatrix( string filename )
 
         if ( rows <= 0 || columns <= 0 )
         {
-            printf( "\n%s\n", "ERRO: Invalid size." );
+            printf( "\n%s\n", "ERROR: Invalid size." );
         }
         else
         {
@@ -291,6 +319,10 @@ intMatrix* fread_intMatrix( string filename )
     return (matrix);
 } // end fread_intMatrix ( ) 
 
+/**
+ * Faz a transposição de uma matriz de inteiros.
+ * @return MATRIZ transposta.
+*/
 intMatrix* transpose_intMatrix( intMatrix* matrix ) 
 {
     intMatrix* transposed = NULL;
@@ -331,8 +363,12 @@ intMatrix* transpose_intMatrix( intMatrix* matrix )
     } // end if
     
     return ( transposed ) ;
-} // end matrixTranspose ( )
+} // end transpose_intMatrix ( )
 
+/**
+ * Verifica se a matriz de inteiros só tem zeros.
+ * @return TRUE : se só tem zeros; FALSE : caso contrário.
+*/
 bool iszero_intMatrix ( intMatrix* matrix )
 {
     bool result = true;
@@ -358,13 +394,21 @@ bool iszero_intMatrix ( intMatrix* matrix )
     return ( result );
 } // end iszero_intMatrix ( )
 
+/**
+ * Verifica se duas matrizes de inteiros são iguais.
+ * @return TRUE : se iguais; FALSE : caso contrário. 
+*/
 bool compare_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
     bool result = true;
 
     if( exist_intMatrix( matrix1 ) && exist_intMatrix( matrix2 ) )
     {
-        if( matrix1->row == matrix2->row && matrix1->col == matrix2->col )
+        if( matrix1->row != matrix2->row && matrix1->col != matrix2->col )
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+        }
+        else
         {
             matrix1->ix = 0;
             while( matrix1->ix < matrix1->row && !result )
@@ -387,13 +431,21 @@ bool compare_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
     return ( result );
 } // end compare_intMatrix ( )
 
-intMatrix* add_intMatrix( intMatrix* matrix1, int k, intMatrix* matrix2 )
+/**
+ * Soma duas matrizes de inteiros.
+ * @return MATRIZ resultante da soma.
+*/
+intMatrix* add_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
     intMatrix* aux = NULL;
 
     if( exist_intMatrix( matrix1 ) && exist_intMatrix( matrix2 ) )
     {
-        if( matrix1->row == matrix2->row && matrix1->col == matrix2->col )
+        if( matrix1->row != matrix2->row && matrix1->col != matrix2->col )
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+        }
+        else
         {
             aux = new_intMatrix( matrix1->row, matrix1->col );
 
@@ -405,8 +457,8 @@ intMatrix* add_intMatrix( intMatrix* matrix1, int k, intMatrix* matrix2 )
                     aux->iy = 0;
                     while( aux->iy < aux->col )
                     {
-                        aux->data[aux->ix][aux->iy] = matrix1->data[aux->ix][aux->iy] +
-                                                      matrix2->data[aux->ix][aux->iy] * k;
+                        aux->data[aux->ix][aux->iy] =   matrix1->data[aux->ix][aux->iy] +
+                                                        matrix2->data[aux->ix][aux->iy];
                         aux->iy = aux->iy + 1;
                     } // end while
                     aux->ix = aux->ix + 1;
@@ -418,13 +470,60 @@ intMatrix* add_intMatrix( intMatrix* matrix1, int k, intMatrix* matrix2 )
     return ( aux );
 } // end add_intMatrix ( )
 
+/**
+ * Faz a diferença de duas matrizes de inteiros.
+ * @return MATRIZ resultante da diferença.
+*/
+intMatrix* diff_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
+{
+    intMatrix* aux = NULL;
+
+    if( exist_intMatrix( matrix1 ) && exist_intMatrix( matrix2 ) )
+    {
+        if( matrix1->row != matrix2->row && matrix1->col != matrix2->col )
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+        }
+        else
+        {
+            aux = new_intMatrix( matrix1->row, matrix1->col );
+
+            if( aux != NULL )
+            {
+                aux->ix = 0;
+                while( aux->ix < aux->row )
+                {
+                    aux->iy = 0;
+                    while( aux->iy < aux->col )
+                    {
+                        aux->data[aux->ix][aux->iy] =   matrix1->data[aux->ix][aux->iy] -
+                                                        matrix2->data[aux->ix][aux->iy];
+                        aux->iy = aux->iy + 1;
+                    } // end while
+                    aux->ix = aux->ix + 1;
+                } // end while
+            } // end if
+        } // end if
+    } // end if
+
+    return ( aux );
+} // end diff_intMatrix ( )
+
+/**
+ * Faz o produto de duas matrizes de inteiros.
+ * @return MATRIZ resultante do produto.
+*/
 intMatrix* product_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
     intMatrix* aux = NULL;
 
     if( exist_intMatrix( matrix1) && exist_intMatrix( matrix2 ) )
     {
-        if( matrix1->col == matrix2->row ) 
+        if( matrix1->col != matrix2->row ) 
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+        }
+        else
         {
             aux = new_intMatrix( matrix1->row, matrix2->col );
 
@@ -457,8 +556,8 @@ intMatrix* product_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 } // end product_intMatrix ( )
 
 /**
-    copyIntMatrix - Copiar matriz com valores inteiros.
-    @return referencia para o grupo de valores inteiros
+    Copia uma matriz com valores inteiros.
+    @return cópia da MATRIZ;
 */
 intMatrix* copy_intMatrix( intMatrix* matrix )
 {
@@ -466,13 +565,13 @@ intMatrix* copy_intMatrix( intMatrix* matrix )
 
     if ( !exist_intMatrix( matrix ) )
     {
-        printf("\nERROR: missing data.\n");
+        printf( "\n%s\n", "ERROR: Missing data." );
     }
     else
     {
         if (matrix->row <= 0 || matrix->col <= 0)
         {
-            printf("\nERROR: Invalid size.\n");
+            printf( "\n%s\n", "ERROR: Invalid size." );
         }
         else
         {
@@ -568,126 +667,3 @@ intMatrix* copy_intMatrix( intMatrix* matrix )
 //     return (menor);
 // } // end maxArray ( )
 
-// /**
-//     Funcao para mostrar uma matriz.
-//     @param  row Numero de linhas da matriz.
-//     @param  col Numero de colunas da matriz.
-//     @param  matrix Matriz.
-// */
-// void printMatrix(int row, int col, int matrix[][col])
-// {
-//     int L = 0, C = 0;
-//     print("\n");
-//     for (L = 0; L < row; L = L + 1)
-//     {
-//         for (C = 0; C < col; C = C + 1)
-//         {
-//             print("[ %2d ] ", matrix[L][C]);
-//         } // end for
-//         print("\n");
-//     } // end for
-//     print("\n");
-// } // end printMatrix ( )
-
-// /**
-//     Funcao para mostrar os elementos da diagonal principal de uma matriz.
-//     @param  row Numero de linhas da matriz.
-//     @param  col Numero de colunas da matriz.
-//     @param  matrix Matriz.
-// */
-// void leadingMatrix(int row, int col, int matriz[][col])
-// {
-//     int L = 0;
-//     print("\n");
-//     for (L = 0; L < row; L = L + 1)
-//     {
-//         print("[ %2d ] ", matriz[L][L]);
-//     } // end for
-//     print("\n");
-// } // end leadingMatrix ( )
-
-// /**
-//     Funcao para mostrar os elementos da diagonal secundaria de uma matriz.
-//     @param  row Numero de linhas da matriz.
-//     @param  col Numero de colunas da matriz.
-//     @param  matrix Matriz.
-// */
-// void secondaryMatrix(int row, int col, int matrix[][col])
-// {
-//     int L = 0;
-//     print("\n");
-//     for (L = 0; L < row; L = L + 1)
-//     {
-//         print("[ %2d ] ", matrix[L][row - 1 - L]);
-//     } // end for
-//     print("\n");
-// } // end secondaryMatrix ( )
-
-// /**
-//     Funcao para mostrar os elementos abaixo da diagonal principal de uma matriz.
-//     @param  row Numero de linhas da matriz.
-//     @param  col Numero de colunas da matriz.
-//     @param  matrix Matriz.
-// */
-// void inferiorMatrix(int row, int col, int matrix[][col])
-// {
-//     int L = 0, C = 0;
-//     print("\n");
-//     for (L = 0; L < row; L = L + 1)
-//     {
-//         for (C = 0; C < col; C = C + 1)
-//         {
-//             if (L > C)
-//             {
-//                 print("[ %2d ] ", matrix[L][C]);
-//             } // end if
-//         }     // end for
-//     }         // end for
-//     print("\n");
-// } // end inferiorMatrix ( )
-
-// /**
-//     Funcao para mostrar os elementos acima da diagonal principal de uma matriz.
-//     @param  row Numero de linhas da matriz.
-//     @param  col Numero de colunas da matriz.
-//     @param  matrix Matriz.
-// */
-// void superiorMatrix(int row, int col, int matrix[][col])
-// {
-//     int L = 0, C = 0;
-//     print("\n");
-//     for (L = 0; L < row; L = L + 1)
-//     {
-//         for (C = 0; C < col; C = C + 1)
-//         {
-//             if (L < C)
-//             {
-//                 print("[ %2d ] ", matrix[L][C]);
-//             } // end if
-//         }     // end for
-//     }         // end for
-//     print("\n");
-// } // end superiorMatrix ( )
-
-// /**
-//     Funcao para mostrar uma matriz transposta.
-//     @param  row Numero de linhas da matriz.
-//     @param  col Numero de colunas da matriz.
-//     @param  matrix Matriz.
-// */
-// void transposedMatrix(int row, int col, int matrix[][col])
-// {
-//     int L = 0, C = 0;
-//     int transp[col][row];
-//     print("\n");
-//     for (C = 0; C < col; C = C + 1)
-//     {
-//         for (L = 0; L < row; L = L + 1)
-//         {
-//             transp[C][L] = matrix[L][C];
-//             print("[ %2d ] ", transp[C][L]);
-//         } // end for
-//         print("\n");
-//     } // end for
-//     print("\n");
-// } // end transposedMatrix ( )
