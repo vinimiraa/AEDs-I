@@ -26,6 +26,9 @@ using std::string; // para cadeia de caracteres
 using std::ifstream; // para ler    arquivo
 using std::ofstream; // para gravar arquivo
 
+#include <cstdlib>
+#include <time.h>
+
 template <typename T>
 class Matrix
 {
@@ -36,7 +39,7 @@ private: // area reservada
     T **data;
 
 public: // area aberta
-    Matrix()
+    Matrix(void)
     {
         // definir valores iniciais
         this->rows = 0;
@@ -45,7 +48,7 @@ public: // area aberta
         data = nullptr;
     } // end constructor
 
-    Matrix(int rows = 0, int columns = 0, T initial)
+    Matrix(int rows = 0, int columns = 0, T initial = 0)
     {
         // definir dado local
         bool OK = true;
@@ -95,6 +98,16 @@ public: // area aberta
         } // end if
     }     // end set ( )
 
+    void setRows( int rows )
+    {
+        this->rows = rows;
+    }
+
+    void setColumns( int columns )
+    {
+        this->columns = columns;
+    }
+
     T get(int row, int column)
     {
         T value = optional;
@@ -110,12 +123,12 @@ public: // area aberta
         return (value);
     } // end get ( )
 
-    const int getRows()
+    int getRows()
     {
         return (rows);
     } // end getRows ( )
 
-    const int getColumns()
+    int getColumns()
     {
         return (columns);
     } // end getColumns ( )
@@ -149,6 +162,7 @@ public: // area aberta
         cout << endl;
     } // end read ( )
 
+    // grava linha, coluna e os valores
     void fprint(string fileName)
     {
         ofstream afile;
@@ -350,6 +364,65 @@ public: // area aberta
         }         // end if
         return (result);
     } // end operator* ( )
+
+    void free()
+    {
+        if (data != nullptr)
+        {
+            delete (data);
+            data = nullptr;
+        } // end if
+    } // end free ( )
+
+    void randomIntGenerate( int inferior, int superior )
+    {
+        srand( time( 0 ) );
+        int x = 0;
+        int y = 0;
+        int z = 0;
+        
+        for( x = 0; x < rows; x = x + 1 )
+        {
+            for( y = 0; y < columns; y = y + 1 )
+            {
+                z = (rand() % (superior - inferior + 1)) + inferior;
+                data[x][y] = z;
+            } // end for
+        } // end for
+    } // end randomIntGenerate ( )
+
+    // grava a quantidade total e os valores
+    void fprint_b(string fileName)
+    {
+        ofstream afile;
+
+        afile.open(fileName);
+        afile << rows*columns << endl;
+        for (int x = 0; x < rows; x = x + 1)
+        {
+            for (int y = 0; y < columns; y = y + 1)
+            {
+                afile << data[x][y] << endl;
+            } // end for
+        }     // end for
+        afile.close();
+    } // end fprint_b ( )
+
+    Matrix<T> scalar( int k )
+    {
+        Matrix aux(*this);
+        int x = 0, y = 0;
+
+        for( x = 0; x < rows; x = x + 1 )
+        {
+            for( y = 0; y < columns; y = y + 1 )
+            {
+                aux.data[x][y] = data[x][y] * k;
+            }
+        }
+
+        return ( aux );
+    }
 
 }; // end class
 
