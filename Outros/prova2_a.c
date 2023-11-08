@@ -1,96 +1,102 @@
 /**
- * Prova de Algum Semestre de AED 1 do Theldo.
+ * Prova de Algum Semestre de AED 1,
  * Autor : Vinicius MIranda de Araujo - 812839
- * Data  : 07/11/2023
+ * Data  : 09/10/2023
 */
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-void q01( int a[], int n, int x, int y )
-{
-    // int z = 0;
-    if( x < y )
-    {
-        a[x] = a[x]+a[y];
-        a[y] = a[x]-a[y];
-        a[x] = a[x]-a[y];
-        printf("%d ", a[x]);
-        q01( a, n, x+1, y-1 );
-    }
-}
-
-/* QUESTÃO 1 */
 void p_01(void)
 {
-    int n =7;
-    int a[ ] = { 2, 4, 6, 7, 5, 3, 1 };
-    q01( a, n, 0, n-1 );  // 1 3 5
+    int array [ ] = { 0,1,2,3,4,5,6,7,8,9 };
+    int x = 0, y = 0, z = 0;
+    for( x = 3; x < 7; x = x + 1 )
+    {
+        z = array[x];
+        for( y= x; y < 10; y = y + 1)
+        {
+            array[y] = array[y+1];
+        }
+        array[y-1] = z;
+    }
+    for( x  = 0; x < 10; x = x + 1 )
+    {
+        printf( "%d ", array[x] );
+    }
+    printf("\n");
 }
 
-int q02( char a[ ], int y, int x )
-{
-    y = y - 1;
-    if( x <= y && a[x] == a[y] ) return ( 1 + q02( a, y, x ) );
-    else if( x < y )             return (     q02( a, y, x ) );
-}
 
-/* QUESTÃO 2 */
 void p_02(void)
 {
-    char a[ ] = "abracadabra";
-    printf( "\n%d\n", q02( a, strlen(a), 0 ) );  // 5
-}
-
-void q03( int n, int a[ ][ n ] )
-{
-    int x = 0, y = 0 /*z = 0*/;
-    while( x < n )
+    int array [ ][ 3 ] = { {0,1,2}, {3,4,5}, {6,7,8} };
+    int x = 0, y = 0, z = 0;
+    for( x = 0; x < 3; x = x + 1 )
     {
-        y = x + 1;
-        while( y < n )
+        z = array[2-x][2-x];
+        for( y = 2; y >= 0; y = y - 1 )
         {
-            if( a[x][y] < a[y][x] )
+            array[y][x] = array[x][y];
+            if( x == y )
             {
-                a[x][y] = a[x][y] + a[y][x];
+                array[x][y] = z;
             }
-            printf("%2d\t", a[x][y] );
-            y = y + 1;
         }
-        x = x + 1;
+    }
+    for( x = 0; x < 3; x = x + 1 )
+    {
+        for( y = 0; y < 3; y = y + 1 )
+        {
+            printf("%d\t", array[x][y] );
+        }
         printf("\n");
     }
 }
 
-/* QUESTÃO 3 */
+char* substring( int start, int end, char *source )
+{
+    char* destiny = NULL;
+    int x = 0, y = 0;
+    destiny = malloc( strlen(source) * sizeof(char) );
+    destiny[y] = '\0';
+    for( x = start; x < end; x = x + 1 )
+    {
+        destiny[y] = source[x];
+        y = y + 1;
+    }
+    return ( destiny );
+}
 void p_03(void)
 {
-    int a[3][3] = { {1,2,3}, {4,5,6}, {7,8,9} };
-    q03( 3, a );  // 6 10 14
+    printf( "\n%s\n", substring( 1, 4, "abcde" ) );
+    printf( "\n%s\n", substring( 4, 6, "abcde" ) );
+    printf( "\n%s\n", substring( 0, 3, "abcde" ) );
+    printf( "\n%s\n", substring( 3, 5, "abcde" ) );
 }
 
-struct s { int a; double b; double c; };
-
-double q04( struct s x )
+int f04( int x, char *s )
 {
-    int y = x.a;
-    double z = 1.0;
-    x.c = x.b;
-    while( y > 0 )
+    int result = 0;
+    if( 0 <= x && x < (int)strlen(s) )
     {
-        x.c = x.c * 10; 
-        z = z * 10;
-        y = y - 1;
+        result = ( s[x] == '0' || s[x] == 1 )&& f04( x+1, s );
     }
-    return ( (int)x.c/ z );
+    else 
+    {
+        result = 1;
+    }
+
+    return ( result );
 }
 
-/* QUESTÃO 4 */
 void p_04(void)
 {
-    struct s x = { 2, 0.12345, 0.0 };
-    printf("\n%lf\n", q04( x ) );  // 0.120000
+    printf("\n%d\n", f04( 3, "01|O" ) );
+    printf("\n%d\n", f04( 2, "0|10" ) );
+    printf("\n%d\n", f04( 1, "O101" ) );
+    printf("\n%d\n", f04( 0, "0101" ) );
 }
 
 void q05( int* a, int* b, int* c )
@@ -99,8 +105,6 @@ void q05( int* a, int* b, int* c )
         d = *b, e = *c; if( d > e ) { *b = e; *c = d; }
         d = *a, e = *b; if( d > e ) { *a = e; *b = d; }
 }
-
-/* QUESTÃO 5 */
 void p_05(void)
 {
     int x = 3, y = 1, z = 2;
@@ -133,7 +137,6 @@ void centralizeString(char S[], int N)
     }
 }
 
-/* QUESTÃO 6 */
 void p_06(void)
 {
     char S[80];
@@ -171,7 +174,6 @@ void metodo7( int row, int col, int matrix[][col], int arranjo[] )
     }
 }
 
-/* QUESTÃO 7 */
 void p_07(void)
 {
     int col = 3;
@@ -186,55 +188,49 @@ void p_07(void)
     }
 }
 
-/* QUESTÃO 8 */
 void p_08(void)
 {
-FILE* file = fopen( "DADOS.TXT", "rt" );
-    FILE* result = fopen( "RESULTADOS.TXT", "wt" );
+    FILE *dados = fopen( "DADOS.TXT", "rt" );
+    FILE *resultado = fopen( "RESULTADOS.TXT", "wt" );
 
     int array[7];
-    int value = 0;
-    int count = 0;
-    int x = 0;
+    int valor = 0;
+    int x = 0; 
+    int contador = 0;
 
-    if( file == NULL )
+    if( dados == NULL || resultado == NULL )
     {
-        printf( "\n%s\n", "ERROR: Unable to open file." );
+        printf( "ERRO ao abrir o aqruivo." );
     }
     else
-    {
-        fscanf( file, "%d", &value );
-        if( value % 10 == 1 && value / 10000 == 3 )
-        {   
-            array[0] = value;
-            count++;
-        }
-        x = 1;
-        while( !feof( file ) && x < 7 )
+    {   
+        fscanf(dados,"%d", &valor); fgetc(dados);
+        if(valor % 10 == 1  && valor / 10000 == 3)
         {
-            fscanf( file, "%d", &value );
-            if( value % 10 == 1 && value / 10000 == 3 )
-            {   
-                array[x] = value;
-                count++;
-            }
-            else
+            array[x] = valor;
+            contador++;
+        }
+
+        x = 1;
+        while( !feof( dados ) )
+        {
+            fscanf(dados, "%d", &valor ); fgetc(dados);
+            if(valor % 10 == 1  && valor / 10000 == 3)
             {
-                array[x] = 0;
-                count++;
+                array[x] = valor;
+                contador++;
             }
             x = x + 1;
         }
 
-        fprintf( result, "%d\n", count );
-        for( x = 0; x < count; x = x + 1 )
+        for( x = 0; x < contador; x++ )
         {
-            fprintf( result, "%d\n", array[x] );
+            fprintf( resultado, "%d\n", array[x] );
         }
     }
 
-    fclose(  file  );
-    fclose( result );
+    fclose(dados);
+    fclose(resultado);
 }
 
 int main()
