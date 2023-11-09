@@ -82,6 +82,8 @@ void exercicio1211( void )
         matriz.fprint_b( filename );
         matriz.print( );
         cout << "Matriz gravada em " << filename << endl;
+        
+        matriz.free( );
     }
 
     // encerrar
@@ -99,7 +101,7 @@ void exercicio1212( void )
     // programa
     Matrix<int> matriz1;
     Matrix<int> matriz2;
-    string filename = "DADOS.TXT";
+    string filename = "DADOS1.TXT";
     int k = 0;
 
     k = readint( "Digite a constante: " );
@@ -108,6 +110,9 @@ void exercicio1212( void )
 
     matriz2 = matriz1.scalar( k );
     
+    cout << endl << "Matriz Original: " << endl;
+    matriz1.print( );
+    cout << endl << "Matriz Multiplicada por " << k << ": " << endl;
     matriz2.print( );
 
     matriz1.free();
@@ -126,7 +131,23 @@ void exercicio1213( void )
     id( "Exercicio 1213:" );
 
     // programa
+    Matrix<int> matriz;
+    string filename = "DADOS1.TXT";
 
+    matriz.fread( filename );
+    matriz.print( );
+
+    if( matriz.identidade( ) )
+    {
+        cout << "A matriz e identidade." << endl;
+    }
+    else
+    {
+        cout << "A matriz nao e identidade." << endl;
+    }
+
+    matriz.free( );
+    
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1213 (  )
@@ -140,7 +161,23 @@ void exercicio1214( void )
     id( "Exercicio 1214:" );
 
     // programa
+    Matrix<int> matriz1;
+    Matrix<int> matriz2;
+    string filename1 = "DADOS1.TXT";
+    string filename2 = "DADOS2.TXT";
 
+    matriz1.fread( filename1 );
+    matriz2.fread( filename2 );
+
+    cout << "Matriz 1: " << endl;
+    matriz1.print( );
+    cout << "Matriz 2: " << endl;
+    matriz2.print( );
+
+    cout << "Iguais = " << (matriz1 == matriz2) << endl;
+
+    matriz1.free( );
+    matriz2.free( );
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1214 (  )
@@ -154,7 +191,29 @@ void exercicio1215( void )
     id( "Exercicio 1215:" );
 
     // programa
+    Matrix<int> matriz1;
+    Matrix<int> matriz2;
+    Matrix<int> soma;
+    string filename1 = "DADOS1.TXT";
+    string filename2 = "DADOS2.TXT";
 
+    matriz1.fread( filename1 );
+    matriz2.fread( filename2 );
+
+
+    cout << "Matriz 1: " << endl;
+    matriz1.print( );
+    cout << "Matriz 2: " << endl;
+    matriz2.print( );
+    
+    soma = matriz1.add( matriz2 );
+    
+    cout << "Soma: " << endl;
+    soma.print( );
+    
+    matriz1.free( );
+    matriz2.free( );
+    soma.free( );
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1215 (  )
@@ -168,6 +227,20 @@ void exercicio1216( void )
     id( "Exercicio 1216:" );
 
     // programa
+    Matrix<int> matriz;
+    string filename = "DADOS1.TXT";
+
+    matriz.fread( filename );
+
+    cout << "Original: " << endl;
+    matriz.print( );
+
+    matriz.addRows( 0, 1, (-1) );
+
+    cout << "Soma: " << endl;
+    matriz.print( );
+
+    matriz.free( );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -182,7 +255,18 @@ void exercicio1217( void )
     id( "Exercicio 1217:" );
 
     // programa
+    Matrix<int> matriz;
+    string filename = "DADOS1.TXT";
 
+    matriz.fread( filename );
+
+    cout << "Original: " << endl;
+    matriz.print( );
+
+    matriz.addRows( 0, 1, (-1) );
+
+    cout << "Soma: " << endl;
+    matriz.print( );
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1217 (  )

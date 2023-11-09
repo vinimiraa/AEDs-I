@@ -48,7 +48,7 @@ public: // area aberta
         data = nullptr;
     } // end constructor
 
-    Matrix(int rows = 0, int columns = 0, T initial = 0)
+    Matrix(int rows, int columns, T initial)
     {
         // definir dado local
         bool OK = true;
@@ -408,20 +408,132 @@ public: // area aberta
         afile.close();
     } // end fprint_b ( )
 
-    Matrix<T> scalar( int k )
+    Matrix scalar( int k )
     {
-        Matrix aux(*this);
-        int x = 0, y = 0;
+        Matrix<T> aux( this->rows, this->columns, 0);
 
-        for( x = 0; x < rows; x = x + 1 )
+        for  (int x = 0; x < aux.rows; x = x + 1 )
         {
-            for( y = 0; y < columns; y = y + 1 )
+            for ( int y = 0; y < aux.columns; y = y + 1 )
             {
-                aux.data[x][y] = data[x][y] * k;
+                aux.set( x, y, this->get( x, y ) * k) ;
+                // aux.data[x][y] = this->data[x][y] * k;
             }
         }
 
         return ( aux );
+    }
+
+    bool identidade( )
+    {
+        bool result = true;
+        int x = 0;
+        int y = 0;
+
+        /*
+        for( int x = 0; x < this->rows; x = x + 1 )
+        {
+            for( int y = 0; y < this->columns; y = y + 1 )
+            {
+                if( x == y && this->data[x][y] == 1 )
+                {
+                    if( x != y && this->data[x][y] == 0 )
+                    {
+                        result = true;
+                    } // end if
+                } // end if
+            } // end for
+        } // end for
+        */
+        if( rows != columns )
+        {
+            result = false;
+        }
+        else
+        {
+            x = 0;
+            while( x < rows )
+            {
+                y = 0;
+                while( y < columns )
+                {
+                    if( x == y && data[x][y] != 1)
+                    {   
+                        result = false;     
+                    }
+                    else if ( x != y && data[x][y] != 0 )
+                    {
+                        result = false;
+                    } // end if
+                    y = y + 1;
+                } // end while
+                x = x + 1;
+            } // end while
+        } // end if
+
+        return ( result );
+    } // end identidade ( )
+
+    bool operator== (const Matrix<T> &other)
+    {
+        bool result = true;
+        int x = 0;
+        int y = 0;
+
+        if (other.rows == 0 || rows != other.rows ||
+            other.columns == 0 || columns != other.columns)
+        {
+            result = false;
+        }
+        else
+        {
+            x = 0;
+            while ( x < rows )
+            {
+                y = 0;
+                while ( y < columns )
+                {
+                    if ( data[x][y] != other.data[x][y] )
+                    {
+                        result = false;
+                    }
+                    y = y + 1;
+                } // end while
+                x = x + 1;
+            } // end while
+        }     // end if
+        return (result);
+    } // end operator== ( )
+
+    Matrix add( const Matrix<T> &other )
+    {
+        Matrix<T> result( rows, columns, 0 );
+        if( rows != other.rows || columns != other.columns )
+        {
+            cout << endl << "ERROR: Invalid size." << endl;
+        }
+        else
+        {
+            result.rows = rows;
+            result.columns = columns;
+            for( int x = 0; x < result.rows ; x = x + 1 )
+            {
+                for( int y = 0; y < result.columns; y = y + 1 )
+                {
+                    result.data[x][y] = data[x][y] + other.data[x][y];
+                } // end for
+            }  // end for
+        } // end if
+        return ( result );
+    } // end add ( )
+
+    void addRows( int row1, int row2, T k )
+    {
+        int x = 0;
+        for( x = 0; x < columns; x = x + 1 )
+        {
+            data[row1][x] = (data[row1][x] + data[row2][x]) * k;
+        }
     }
 
 }; // end class
