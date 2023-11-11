@@ -533,8 +533,146 @@ public: // area aberta
         for( x = 0; x < columns; x = x + 1 )
         {
             data[row1][x] = (data[row1][x] + data[row2][x]) * k;
+        } // end for
+    } // end addRows ( )
+
+    void subtractRows( int row1, int row2, T k )
+    {
+        int x = 0;
+        for( x = 0; x < columns; x = x + 1 )
+        {
+            data[row1][x] = (data[row1][x] - data[row2][x]) * k;
+        } // end for
+    } // end subtractRows ( )
+
+    bool searchValue( int value )
+    {
+        bool result = false;
+        int x = 0;
+        int y = 0;
+        /*
+        for( x = ; x < rows; x = x + 1 )
+        {
+            for( y = 0; y < columns; y = y + 1 )
+            {
+                if( data[x][y] == value )
+                {
+                    result = true;  
+                }
+            }
         }
-    }
+        */
+        x = 0;
+        while( x < rows && !result)
+        {
+            y = 0;
+            while( y < columns  && !result)
+            {
+                if( data[x][y] == value )
+                {
+                    result = true;
+                } // end if
+                y = y + 1;
+            } // end while
+            x = x + 1;
+        } // end while
+        return ( result );
+    } // end searchValue ( )
+
+    int searchRows( int value )
+    {
+        int result = 0;
+        int x = 0;
+        int y = 0;
+        x = 0;
+        while( x < rows && !result)
+        {
+            y = 0;
+            while( y < columns  && !result)
+            {
+                if( data[x][y] == value )
+                {
+                    result = x;
+                } // end if
+                y = y + 1;
+            } // end while
+            x = x + 1;
+        } // end while
+        return ( result );
+    } // end searchRows ( )
+
+    int searchColumns( int value )
+    {
+        int result = 0;
+        int x = 0;
+        int y = 0;
+        x = 0;
+        while( x < rows && !result)
+        {
+            y = 0;
+            while( y < columns  && !result)
+            {
+                if( data[x][y] == value )
+                {
+                    result = y;
+                } // end if
+                y = y + 1;
+            } // end while
+            x = x + 1;
+        } // end while
+        return ( result );
+    } // end searchColumns ( )
+
+    void transpose(Matrix<T> &result)
+    {
+        result.setRows(columns);
+        result.setColumns(rows);
+    
+        for (int x = 0; x < rows; x++)
+        {
+            for (int y = 0; y < columns; y++)
+            {
+                //         row col   value
+                result.set( y, x, data[x][y] );
+            }
+        }
+    } // end transpose ( )
+
+    void transpose_a( )
+    {
+        for (int x = 0; x < columns; x++)
+        {
+            for (int y = 0; y < rows; y++)
+            {
+                data[x][y] = data[y][x];
+            } // end for
+        } // end for
+    } // end transpose_a ( )
+
+    bool isNormal( )
+    {
+        bool result = true;
+
+        if( rows != columns )
+        {
+            result = false;
+        }
+        else
+        {
+            for( int x = 0; x < rows - 1; x = x + 1 )
+            {
+                for( int y = 0; y < columns - 1; y = y + 1 )
+                {
+                    if( !(data[x][y] < data[x][y + 1] && data[x][y] < data[x + 1][y]) )
+                    {
+                        result = false;
+                    } // end if
+                } // end for
+            } // end for
+        } // end if
+
+        return ( result ); 
+    } // end isNormal ( )
 
 }; // end class
 

@@ -267,6 +267,9 @@ void exercicio1217( void )
 
     cout << "Soma: " << endl;
     matriz.print( );
+
+    matriz.free( );
+
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1217 (  )
@@ -280,6 +283,27 @@ void exercicio1218( void )
     id( "Exercicio 1218:" );
 
     // programa
+    Matrix<int> matriz;
+    string filename = "DADOS1.TXT";
+    int x = 0;
+
+    matriz.fread( filename );
+
+
+    x = readint( "Digite o valor a ser procurado: " );
+
+    matriz.print( );
+
+    if( matriz.searchValue( x ) )
+    {
+        cout << "O valor esta na linha " << matriz.searchRows( x ) << endl;
+    }
+    else
+    {
+        cout << "O valor nao esta na matriz." << endl;
+    }
+    
+    matriz.free( );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -294,6 +318,27 @@ void exercicio1219( void )
     id( "Exercicio 1219:" );
 
     // programa
+    Matrix<int> matriz;
+    string filename = "DADOS1.TXT";
+    int x = 0;
+
+    matriz.fread( filename );
+
+
+    x = readint( "Digite o valor a ser procurado: " );
+
+    matriz.print( );
+
+    if( matriz.searchValue( x ) )
+    {
+        cout << "O valor esta na coluna " << matriz.searchColumns( x ) << endl;
+    }
+    else
+    {
+        cout << "O valor nao esta na matriz." << endl;
+    }
+
+    matriz.free( );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -308,6 +353,24 @@ void exercicio1220( void )
     id( "Exercicio 1220:" );
 
     // programa
+    Matrix<int> matriz1;
+    Matrix<int> matriz2;
+    string filename = "DADOS1.TXT";
+
+    matriz1.fread( filename );
+
+    cout << "Original: " << endl;
+    matriz1.print( );
+
+    matriz2.transpose( matriz1 );
+    // matriz1.transpose_a( );
+
+    cout << "Transposta: " << endl;
+    matriz2.print( );
+    // matriz1.print( );
+
+    matriz1.free( );
+    matriz2.free( );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -322,6 +385,22 @@ void exercicio12E1( void )
     id( "Exercicio 12E1:" );
 
     // programa
+    Matrix<int> matriz;
+
+    matriz.fread( "DADOS1.TXT" );
+
+    matriz.print( );
+
+    if( matriz.isNormal() )
+    {
+        cout << "A matriz segue as caracteristicas." << endl;
+    }
+    else
+    {
+        cout << "A matriz nao segue as caracteristicas." << endl;
+    }
+
+    matriz.free( );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -336,6 +415,32 @@ void exercicio12E2( void )
     id( "Exercicio 12E2:" );
 
     // programa
+    int linha = 0, coluna = 0;
+    int z = 1;
+
+    linha = readint( "Digite o numero de linhas: " );
+    coluna = readint( "Digite o numero de colunas: " );
+
+    if( linha != coluna )
+    {
+        cout << "ERROR: Invalid size." << endl;
+    }
+    else
+    {
+        Matrix<int> matriz( coluna, linha, 0 );
+
+        for( int x = 0; x < matriz.getRows( ); x = x + 1 )
+        {
+            for( int y = 0; y < matriz.getColumns( ); y = y + 1 )
+            {
+                matriz.set( y, x, z );
+                z++;
+            }
+        }
+        
+        matriz.print( );
+        matriz.free( );
+    }
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
