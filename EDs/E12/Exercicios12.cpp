@@ -324,7 +324,6 @@ void exercicio1219( void )
 
     matriz.fread( filename );
 
-
     x = readint( "Digite o valor a ser procurado: " );
 
     matriz.print( );
