@@ -263,7 +263,7 @@ void exercicio1217( void )
     cout << "Original: " << endl;
     matriz.print( );
 
-    matriz.addRows( 0, 1, (-1) );
+    matriz.subtractRows( 0, 1, (2) );
 
     cout << "Soma: " << endl;
     matriz.print( );
