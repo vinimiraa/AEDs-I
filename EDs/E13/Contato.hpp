@@ -40,8 +40,9 @@ class Contato : public Erro
         string nome;
         string fone;
         string fone2;
+        int    n;
         
-        bool phoneIsValid_a ( )
+        bool testPhone ( )
         {
             bool result = true;
             int x = 0;
@@ -78,6 +79,7 @@ class Contato : public Erro
         nome  = "";
         fone  = "";
         fone2 = "";
+        n     = 0 ;
     } // end constructor (padrão)
     
     // ----------------------------------- metodos para acesso
@@ -103,7 +105,10 @@ class Contato : public Erro
         if ( fone.empty ( ) )
             setErro ( 2 ); // fone invalido
         else
+        {
             this->fone = fone;
+            setN(); // Atualizar a quantidade de telefones associados
+        }
     } // end setFone ( )
     
     /**
@@ -115,8 +120,21 @@ class Contato : public Erro
         if ( fone2.empty ( ) )
             setErro ( 2 ); // fone invalido
         else
+        {
             this->fone2 = fone2;
+            setN(); // Atualizar a quantidade de telefones associados
+        }
     } // end setFone ( )
+
+    void setN( )
+    {      
+        if( fone.empty( ) && fone2.empty( ) )
+            n = 0;
+        else if( fone.empty( ) || fone2.empty( ) )
+            n = 1;
+        else
+            n = 2;
+    } // end setN ( )
 
     /**
     *   Funcao para obter nome.
@@ -145,15 +163,10 @@ class Contato : public Erro
         return ( this->fone2 );
     } // end getFone ( )
     
-    /**
-    *   Funcao para obter dados de uma pessoa.
-    *   @return dados de uma pessoa
-    
-    std::string toString ( )
+    int getN ( )
     {
-        return ( "{ "+getNome( )+", "+getFone( )+" }" );
-    } // end toString ( )
-    */
+        return ( n );
+    } // end getN ( )
     
     /**
     *   Funcao para obter dados de uma pessoa.
@@ -176,6 +189,7 @@ class Contato : public Erro
         setNome ( nome_inicial ); // nome = nome_inicial;
         setFone ( fone_inicial ); // fone = fone_inicial;
         setFone2( fone2_inicial); // fone2= fone2_inicial;
+        setN( );
     } // end constructor (alternativo)
 
     /**
@@ -188,6 +202,7 @@ class Contato : public Erro
         setNome ( another.nome ); // copiar nome
         setFone ( another.fone ); // copiar fone
         setFone2( another.fone2); // copiar fone 2
+        setN( );
     } // end constructor (alternativo)
     
     void readName( std::string text )
@@ -208,9 +223,9 @@ class Contato : public Erro
         setFone( phone );
     }
     
-    bool phoneIsValid ( )
+    bool isValidPhone ( )
     {
-        return ( phoneIsValid_a( ) );
+        return ( testPhone( ) );
     } // end phoneIsValid ( )
     
     void readFromFile( std::string fileName )
@@ -255,20 +270,69 @@ class Contato : public Erro
         
         afile.close();
     } // end writeToFile ( )
-    
+
     int phones( )
     {
-        int n = 0;
-        
-        if( fone.empty( ) && fone2.empty( ) )
-            n = 0;
-        else if( fone.empty( ) || fone2.empty( ) )
-            n = 1;
+        return ( getN( ) );
+    }
+
+    void setPhone2a( std::string phone )
+    {
+        char c;
+        if ( fone2.empty( ) )
+        {
+            if ( n == 1 )
+            {
+                cout << "O contato possui apenas um telefone. Deseja adicionar mais um? (S/N): ";
+                cin >> c;
+
+                if ( c == 'S' || c == 's' )
+                {
+                    setFone2( phone );
+                    setN();
+                }
+                else
+                {
+                    cout << "O segundo telefone nao foi adicionado." << endl;
+                }
+            }
+            else
+            {
+                setFone2( "" );
+            }
+        }
+    }
+
+    void setPhone2b( std::string phone )
+    {
+        if ( n != 2 )
+        {
+            setErro( 3 );
+            cout << "ERRO: Tentativa de alterar o segundo telefone sem dois telefones definidos." << endl;
+        }
+        else if ( fone2.empty( ) )
+        {
+            setErro(2); // 
+        }
         else
-            n = 2;
-        
-        return ( n );
-    } // end phones ( )
+        {
+            setFone2( phone );
+        }
+    }
+
+    void setPhone2c( std::string phone )
+    {
+        if( n == 1 )
+        {
+            setErro( 4 );
+        }
+        else
+        {
+            // setFone2( phone );
+            fone2.assign( phone );
+            setN();
+        }
+    }
     
 }; // fim da classe Contato
 

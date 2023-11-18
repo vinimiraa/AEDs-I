@@ -83,7 +83,7 @@ void exercicio1313( void )
     
     pessoa1->readPhone( "Telefone = " );
     
-    if( pessoa1->phoneIsValid( ) )
+    if( pessoa1->isValidPhone( ) )
         cout << "Telefone = \"" << pessoa1->getFone() << "\"" << endl;
     else
         cout << "Telefone Invalido." << endl;
@@ -141,8 +141,16 @@ void exercicio1316( void )
 
     // programa
     Contato* contato1 = new Contato ( "Joao", "91234-5678", "4002-8922" );
+    Contato* contato2 = new Contato ( "Lucas", "91234-5678", "" );
+    Contato* contato3 = new Contato ( "Miguel", "", "4002-8922" );
+    Contato* contato4 = new Contato ( "Vitor", "", "" );
+    Contato* contato5 = new Contato ( "", "", "" );
     
     cout << "Contato1 - " << contato1->toString( ) << endl;
+    cout << "Contato2 - " << contato2->toString( ) << endl;
+    cout << "Contato3 - " << contato3->toString( ) << endl;
+    cout << "Contato4 - " << contato4->toString( ) << endl;
+    cout << "Contato5 - " << contato5->toString( ) << endl;
     
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -158,7 +166,7 @@ void exercicio1317( void )
 
     // programa
     Contato* contato1 = new Contato ( "Joao", "91234-5678", "4002-8922" );
-    Contato* contato2 = new Contato ( "José", "91234-5678", "" );
+    Contato* contato2 = new Contato ( "Jose", "91234-5678", "" );
     Contato* contato3 = new Contato ( "Pedro", "", "4002-8922" );
     Contato* contato4 = new Contato ( "Marcos", "", "" );
     
@@ -187,6 +195,15 @@ void exercicio1318( void )
     id( "Exercicio 1318:" );
 
     // programa
+    Contato* contato1 = new Contato( "Jose", "91234-5678", "" );
+
+    cout << "Contato1 - " << contato1->toString( ) << endl;
+    cout << "Telefone(s) = " << contato1->phones( ) << endl << endl;
+
+    contato1->setPhone2a( "97777-3333" );
+
+    cout << endl << "Contato1 - " << contato1->toString( ) << endl;
+    cout << "Telefone(s) = " << contato1->phones( ) << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -201,6 +218,15 @@ void exercicio1319( void )
     id( "Exercicio 1319:" );
 
     // programa
+    Contato* contato1 = new Contato( "Jose", "91234-5678", "4002-8922" );
+
+    cout << "Contato1 - " << contato1->toString( ) << endl;
+    cout << "Telefone(s) = " << contato1->phones( ) << endl << endl;
+
+    contato1->setPhone2b( "97777-3333" );
+
+    cout << "Contato1 - " << contato1->toString( ) << endl;
+    cout << "Telefone(s) = " << contato1->phones( ) << endl << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -215,6 +241,15 @@ void exercicio1320( void )
     id( "Exercicio 1320:" );
 
     // programa
+    Contato* contato1 = new Contato( "Jose", "91234-5678", "4002-8922" );
+
+    cout << "Contato1 - " << contato1->toString( ) << endl;
+    cout << "Telefone(s) = " << contato1->phones( ) << endl << endl;
+
+    contato1->setPhone2c( "" );
+
+    cout << "Contato1 - " << contato1->toString( ) << endl;
+    cout << "Telefone(s) = " << contato1->phones( ) << endl << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
