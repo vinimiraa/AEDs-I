@@ -1,0 +1,54 @@
+PUC-Minas - ICEI - Ciência da Computação
+Algoritmos e Estruturas de Dados I - Aula 2023-2_016
+
+Anotações
+
+___
+
+Resumo da semana
+
+Arranjos com caracteres, cadeias de caracteres e strings
+
+Exemplos:
+
+ _______________________
+|     |     |     |     |  // arranjo com caracteres
+| '1' | '2' | '3' | '4' |  char s1 [ ] = {'1','2','3','4'};
+|_____|_____|_____|_____|  // tamanho=4 (NAO usar strlen( ))
+   0     1     2     3   
+   
+ _______________________
+|     |     |     |     |  // arranjo com caracteres+'\0'
+| 'a' | 'b' | 'c' | '\0'|  char s2 [4] = "abc";
+|_____|_____|_____|_____|  printf ("%d",strlen(s2));  // 3
+   0     1     2     3   
+ 
+ ___________
+|           |              
+|     4     | length
+|___________|___________
+|     |     |     |     |  // std::string
+| 'a' | 'b' | 'c' | 'd' |  std::string s3 = "abcd";
+|_____|_____|_____|_____|  std::cout << s3.length( ); // 4
+   0     1     2     3   
+   
+Restrições:
+
+01. std::string poderá receber 
+    uma cadeia de caracteres diretamente (constante)
+    
+    char r  []    = "def";
+    std::string s = "abc";
+
+    s = r;
+
+02. cadeia de caracteres só poderá receber 
+    a conversão de std::string usando a função c_str( )
+    
+    char r  []    = "def";
+    std::string s = "abc";
+
+    strcpy  ( r, s.c_str( ) );
+    strncpy ( r, s.c_str( ), 3 );
+   
+
