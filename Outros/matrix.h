@@ -27,8 +27,6 @@
 #ifndef _MATRIX_H_
 #define _MATRIX_H_
 
-typedef char* string;
-
 // ---------------------- definicoes de constantes
 
 const int MAX_SIZE = 10 ;  // definir tamanho padrao para matrizes
@@ -43,6 +41,11 @@ typedef struct s_intMatrix
     int ix,iy;
 } intMatrix;
 
+/**
+    Definicao de referencia para matriz com inteiros baseado em estrutura
+*/
+typedef intMatrix* ref_intMatrix;
+
 typedef struct s_doubleMatrix
 {
     int row;
@@ -50,6 +53,11 @@ typedef struct s_doubleMatrix
     double** data;
     int ix,iy;
 } doubleMatrix;
+
+/**
+    Definicao de referencia para matriz real baseado em estrutura
+*/
+typedef doubleMatrix* ref_doubleMatrix;
 
 typedef struct s_charMatrix
 {
@@ -378,7 +386,7 @@ doubleMatrix* read_doubleMatrix( )
 /**
  * Grava em um arquivo uma matriz de inteiros.
 */
-void fprint_intMatrix( string filename , intMatrix* matrix )
+void fprint_intMatrix( char* filename , intMatrix* matrix )
 {
     FILE* file = fopen( filename, "wt" );
 
@@ -405,7 +413,7 @@ void fprint_intMatrix( string filename , intMatrix* matrix )
 /**
  * Grava em um arquivo uma matriz real.
 */
-void fprint_doubleMatrix( string filename , doubleMatrix* matrix )
+void fprint_doubleMatrix( char* filename , doubleMatrix* matrix )
 {
     FILE* file = fopen( filename, "wt" );
 
@@ -433,7 +441,7 @@ void fprint_doubleMatrix( string filename , doubleMatrix* matrix )
  * Lê de um arquivo uma matriz de inteiros.
  * @return MATRIZ com os valores lidos do arquivo.
 */
-intMatrix* fread_intMatrix( string filename )
+intMatrix* fread_intMatrix( char* filename )
 {
     FILE *file = fopen( filename, "rt" );
     intMatrix* matrix = NULL;
@@ -495,7 +503,7 @@ intMatrix* fread_intMatrix( string filename )
  * Lê de um arquivo uma matriz real.
  * @return MATRIZ com os valores lidos do arquivo.
 */
-doubleMatrix* fread_doubleMatrix( string filename )
+doubleMatrix* fread_doubleMatrix( char* filename )
 {
     FILE *file = fopen( filename, "rt" );
     doubleMatrix* matrix = NULL;
