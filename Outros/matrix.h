@@ -67,14 +67,6 @@ typedef struct s_boolMatrix
     int ix,iy;
 } boolMatrix;
 
-typedef struct s_floatMatrix
-{
-    int row;
-    int col;
-    float** data;
-    int ix,iy;
-} floatMatrix;
-
 // ---------------------- para entradas e saidas
 
 /**
@@ -87,9 +79,23 @@ bool exist_intMatrix( intMatrix* matrix )
     if( matrix != NULL && matrix->data != NULL )
     {
         result = true;
-    }
+    } // end if
     return ( result );
-}
+} // end exist_intMatrix ( )
+
+/**
+ * Verifica se a matriz real e os dados existem.
+ * @return TRUE : se existem; FALSE : caso contrario.
+*/
+bool exist_doubleMatrix( doubleMatrix* matrix )
+{
+    bool result = false;
+    if( matrix != NULL && matrix->data != NULL )
+    {
+        result = true;
+    } // end if
+    return ( result );
+} // end exist_doubleMatrix ( )
 
 /**
  * Cria e aloca o espaço de memória para uma matriz de inteiros.
@@ -127,11 +133,46 @@ intMatrix* new_intMatrix( int rows, int columns )
 } // end new_intMatrix ( )
 
 /**
+ * Cria e aloca o espaço de memória para uma matriz real.
+ * @return MATRIZ.
+*/
+doubleMatrix* new_doubleMatrix( int rows, int columns )
+{
+    doubleMatrix *matrix = ( doubleMatrix* ) malloc ( 1 * sizeof( doubleMatrix ) );
+    
+    if( matrix != NULL )
+    {
+        matrix->row = 0;
+        matrix->col = 0;
+        matrix->data = NULL;
+        
+        if ( rows > 0 && columns > 0 )
+        {
+            matrix->row = rows;
+            matrix->col = columns;
+            matrix->data = ( double** ) malloc( rows * sizeof( double* ) );
+            
+            if ( matrix->data )
+            {
+                for (matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1)
+                {
+                    matrix->data[matrix->ix] = ( double* ) malloc( columns * sizeof( double ) );
+                } // end for
+            } // end if
+        } // end if
+        matrix->ix = 0;
+        matrix->iy = 0;
+    } // end if
+
+    return ( matrix );
+} // end new_doubleMatrix ( )
+
+/**
  * Inicializa uma matriz de inteiros com um valor. 
 */
-void init_intMatrix( intMatrix* matrix, int rows, int columns, int init_value )
+void init_intMatrix( intMatrix* matrix, int init_value )
 {
-    if( exist_intMatrix( matrix ) && rows > 0 && columns > 0 )
+    if( exist_intMatrix( matrix ) )
     {
         for( matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1 )
         {
@@ -144,6 +185,25 @@ void init_intMatrix( intMatrix* matrix, int rows, int columns, int init_value )
         matrix->iy = 0;
     } // end if
 } // end init_intMatrix ( )
+
+/**
+ * Inicializa uma matriz real com um valor. 
+*/
+void init_doubleMatrix( doubleMatrix* matrix, double init_value )
+{
+    if( exist_doubleMatrix( matrix ) )
+    {
+        for( matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1 )
+        {
+            for( matrix->iy = 0; matrix->iy < matrix->col; matrix->iy = matrix->iy + 1 )
+            {
+                matrix->data[matrix->ix][matrix->iy] = init_value;
+            } // end for
+        } // end for
+        matrix->ix = 0;
+        matrix->iy = 0;
+    } // end if
+} // end init_doubleMatrix ( )
 
 /**
  * Libera o espaço de memória de uma matriz de inteiros.
@@ -159,7 +219,23 @@ void free_intMatrix( intMatrix* matrix )
         free(matrix->data);
         free(matrix);
     } // end if
-} // end free_int_Matrix ( )
+} // end free_intMatrix ( )
+
+/**
+ * Libera o espaço de memória de uma matriz real.
+*/
+void free_doubleMatrix( doubleMatrix* matrix )
+{
+    if ( exist_doubleMatrix( matrix ) )
+    {
+        for (matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1)
+        {
+            free(matrix->data[matrix->ix]);
+        } // end for
+        free(matrix->data);
+        free(matrix);
+    } // end if
+} // end free_doubleMatrix ( )
 
 /**
  * Mostra uma matriz com valores inteiros.
@@ -178,6 +254,24 @@ void print_intMatrix( intMatrix* matrix )
         } // end for
     } // end if
 } // end print_intMatrix ( )
+
+/**
+ * Mostra uma matriz com valores reais.
+*/
+void print_doubleMatrix( doubleMatrix* matrix )
+{
+    if ( exist_doubleMatrix( matrix ) )
+    {
+        for ( matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1 )
+        {
+            for ( matrix->iy = 0; matrix->iy < matrix->col; matrix->iy = matrix->iy + 1 )
+            {
+                printf( "%.2lf\t", matrix->data[matrix->ix][matrix->iy] );
+            } // end for
+            printf( "\n" );
+        } // end for
+    } // end if
+} // end print_doubleMatrix ( )
 
 /**
  * Lê os dados de uma matriz de inteiros.
@@ -220,7 +314,7 @@ intMatrix* read_intMatrix( )
                 for( matrix->iy = 0; matrix->iy < matrix->col; matrix->iy = matrix->iy + 1 )
                 {
                     printf( "%2d, %2d: ", matrix->ix, matrix->iy );
-                    scanf( "%d", matrix->data[matrix->ix][matrix->iy] );
+                    scanf( "%d", &matrix->data[matrix->ix][matrix->iy] );
                     getchar( );
                 } // end for
             } // end for
@@ -229,6 +323,57 @@ intMatrix* read_intMatrix( )
 
     return ( matrix );
 } // end read_intMatrix ( )
+
+/**
+ * Lê os dados de uma matriz real.
+ * @return MATRIZ com os dados lidos.
+*/
+doubleMatrix* read_doubleMatrix( )
+{
+    doubleMatrix* matrix = NULL;
+    int rows = 0;
+    int columns = 0;
+
+    do
+    {
+        printf( "\n%s" , "Rows = " );
+        scanf( "%d", &rows ); 
+        getchar( );
+    }while( rows <= 0 );
+    do
+    {
+        printf( "\n%s", "Columns = " );
+        scanf( "%d", &columns );
+        getchar( );
+    } while ( columns <= 0 );
+
+    matrix = new_doubleMatrix( rows, columns );
+
+    if( matrix != NULL )
+    {
+        if( matrix->data == NULL )
+        {
+            matrix->row = 0;
+            matrix->col = 0;
+            matrix->ix  = 0;
+            matrix->iy  = 0;
+        }
+        else
+        {
+            for( matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1 )
+            {
+                for( matrix->iy = 0; matrix->iy < matrix->col; matrix->iy = matrix->iy + 1 )
+                {
+                    printf( "%2d, %2d: ", matrix->ix, matrix->iy );
+                    scanf( "%lf", &matrix->data[matrix->ix][matrix->iy] );
+                    getchar( );
+                } // end for
+            } // end for
+        } // end if
+    } // end if
+
+    return ( matrix );
+} // end read_doubleMatrix ( )
 
 /**
  * Grava em um arquivo uma matriz de inteiros.
@@ -256,6 +401,33 @@ void fprint_intMatrix( string filename , intMatrix* matrix )
         fclose( file );
     } // end if
 } // end fprint_intMatrix ( )
+
+/**
+ * Grava em um arquivo uma matriz real.
+*/
+void fprint_doubleMatrix( string filename , doubleMatrix* matrix )
+{
+    FILE* file = fopen( filename, "wt" );
+
+    if( !exist_doubleMatrix( matrix ) )
+    {
+        printf( "\n%s\n", "ERROR: the matrix does not exist." );
+    }
+    else
+    {
+        fprintf( file, "%d\n", matrix->row );
+        fprintf( file, "%d\n", matrix->col );
+        for( matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1 )
+        {
+            for( matrix->iy = 0; matrix->iy < matrix->col; matrix->iy = matrix->iy + 1 )
+            {
+                fprintf( file, "%lf\n", matrix->data[matrix->ix][matrix->iy] );
+            } // end for
+        } // end for
+
+        fclose( file );
+    } // end if
+} // end fprint_doubleMatrix ( )
 
 /**
  * Lê de um arquivo uma matriz de inteiros.
@@ -320,6 +492,68 @@ intMatrix* fread_intMatrix( string filename )
 } // end fread_intMatrix ( ) 
 
 /**
+ * Lê de um arquivo uma matriz real.
+ * @return MATRIZ com os valores lidos do arquivo.
+*/
+doubleMatrix* fread_doubleMatrix( string filename )
+{
+    FILE *file = fopen( filename, "rt" );
+    doubleMatrix* matrix = NULL;
+    int rows = 0;
+    int columns = 0;
+    
+    if ( file == NULL )
+    {
+        printf( "\n%s\n", "ERROR: Unable to open the file." );
+    }
+    else
+    {
+        fscanf( file, "%d", &rows ); fgetc( file );
+        fscanf( file, "%d", &columns ); fgetc( file );
+
+        if ( rows <= 0 || columns <= 0 )
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+        }
+        else
+        {
+            matrix = new_doubleMatrix( rows, columns );
+
+            if ( matrix != NULL && matrix->data == NULL )
+            {
+                matrix->row = 0;
+                matrix->col = 0;
+                matrix->ix = 0;
+                matrix->iy = 0;
+            }
+            else
+            {
+                if ( matrix != NULL )
+                {
+                    matrix->ix = 0;
+                    while ( !feof( file ) && matrix->ix < matrix->row )
+                    {
+                        matrix->iy = 0;
+                        while ( !feof( file ) && matrix->iy < matrix->col )
+                        {
+                            fscanf( file, "%lf", &( matrix->data[matrix->ix][matrix->iy] ) );
+                            fgetc( file );
+                            matrix->iy = matrix->iy + 1;
+                        } // end while
+                        matrix->ix = matrix->ix + 1;
+                    } // end while
+                    matrix->ix = 0;
+                    matrix->iy = 0;
+                } // end if
+            } // end if
+        } // end if
+    } // end if
+    fclose ( file );
+    
+    return (matrix);
+} // end fread_doubleMatrix ( ) 
+
+/**
  * Faz a transposição de uma matriz de inteiros.
  * @return MATRIZ transposta.
 */
@@ -366,6 +600,52 @@ intMatrix* transpose_intMatrix( intMatrix* matrix )
 } // end transpose_intMatrix ( )
 
 /**
+ * Faz a transposição de uma matriz real.
+ * @return MATRIZ transposta.
+*/
+doubleMatrix* transpose_doubleMatrix( doubleMatrix* matrix ) 
+{
+    doubleMatrix* transposed = NULL;
+    int rows = 0;
+    int columns = 0;
+    
+    if( exist_doubleMatrix( matrix ) )
+    {
+        rows = matrix->col;
+        columns = matrix->row;
+
+        transposed = new_doubleMatrix( rows, columns );
+        
+        if( transposed != NULL && transposed->data == NULL )
+        {
+            transposed->row = 0;
+            transposed->col = 0;
+            transposed->ix  = 0;
+            transposed->iy  = 0;
+        }
+        else
+        {
+            if( transposed != NULL )
+            {
+                transposed->ix = 0;
+                while( transposed->ix < transposed->row )
+                {
+                    transposed->iy = 0;
+                    while( transposed->iy < transposed->col )
+                    {
+                        transposed->data[transposed->ix][transposed->iy] = matrix->data[transposed->iy][transposed->ix];
+                        transposed->iy = transposed->iy + 1;
+                    } // end while
+                    transposed->ix = transposed->ix + 1;
+                } // end while
+            } // end if
+        } // end if
+    } // end if
+    
+    return ( transposed ) ;
+} // end transpose_doubleMatrix ( )
+
+/**
  * Verifica se a matriz de inteiros só tem zeros.
  * @return TRUE : se só tem zeros; FALSE : caso contrário.
 */
@@ -373,13 +653,13 @@ bool iszero_intMatrix ( intMatrix* matrix )
 {
     bool result = true;
 
-    if( matrix != NULL && matrix->data != NULL )
+    if( exist_intMatrix( matrix ) )
     {
         matrix->ix = 0;
-        while( matrix->ix < matrix->row )
+        while( matrix->ix < matrix->row && !result )
         {
             matrix->iy = 0;
-            while( matrix->iy < matrix->col )
+            while( matrix->iy < matrix->col && !result )
             {
                 if( matrix->data[matrix->ix][matrix->iy] != 0 )
                 {
@@ -395,6 +675,35 @@ bool iszero_intMatrix ( intMatrix* matrix )
 } // end iszero_intMatrix ( )
 
 /**
+ * Verifica se a matriz real só tem zeros.
+ * @return TRUE : se só tem zeros; FALSE : caso contrário.
+*/
+bool iszero_doubleMatrix ( doubleMatrix* matrix )
+{
+    bool result = true;
+
+    if( exist_doubleMatrix( matrix ) )
+    {
+        matrix->ix = 0;
+        while( matrix->ix < matrix->row && !result )
+        {
+            matrix->iy = 0;
+            while( matrix->iy < matrix->col && !result )
+            {
+                if( matrix->data[matrix->ix][matrix->iy] != 0.0 )
+                {
+                    result = false;
+                } // end if
+                matrix->iy = matrix->iy + 1;
+            } // end while
+            matrix->ix = matrix->ix + 1;
+        } // end while
+    } // end if
+
+    return ( result );
+} // end iszero_doubleMatrix ( )
+
+/**
  * Verifica se duas matrizes de inteiros são iguais.
  * @return TRUE : se iguais; FALSE : caso contrário. 
 */
@@ -407,6 +716,7 @@ bool compare_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
         if( matrix1->row != matrix2->row && matrix1->col != matrix2->col )
         {
             printf( "\n%s\n", "ERROR: Invalid size." );
+            result = false;
         }
         else
         {
@@ -430,6 +740,120 @@ bool compare_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 
     return ( result );
 } // end compare_intMatrix ( )
+
+/**
+ * Verifica se duas matrizes reais são iguais.
+ * @return TRUE : se iguais; FALSE : caso contrário. 
+*/
+bool compare_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
+{
+    bool result = true;
+
+    if( exist_doubleMatrix( matrix1 ) && exist_doubleMatrix( matrix2 ) )
+    {
+        if( matrix1->row != matrix2->row && matrix1->col != matrix2->col )
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+            result = false;
+        }
+        else
+        {
+            matrix1->ix = 0;
+            while( matrix1->ix < matrix1->row && !result )
+            {
+                matrix1->iy = 0;
+                while( matrix1->iy < matrix1->col && !result )
+                {
+                    if( matrix1->data[matrix1->ix][matrix1->iy] !=
+                        matrix2->data[matrix1->ix][matrix1->iy] )
+                    {
+                        result = false;
+                    } // end if
+                    matrix1->iy = matrix1->iy + 1; 
+                } // end while
+                matrix1->ix = matrix1->ix + 1; 
+            } // end while
+        } // end if
+    } // end if
+
+    return ( result );
+} // end compare_doubleMatrix ( )
+
+/**
+    Copia uma matriz com valores inteiros.
+    @return cópia da MATRIZ;
+*/
+intMatrix* copy_intMatrix( intMatrix* matrix )
+{
+    intMatrix* copy = NULL;
+
+    if ( !exist_intMatrix( matrix ) )
+    {
+        printf( "\n%s\n", "ERROR: Missing data." );
+    }
+    else
+    {
+        if (matrix->row <= 0 || matrix->col <= 0)
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+        }
+        else
+        {
+            copy = new_intMatrix( matrix->row, matrix->col );
+
+            if ( exist_intMatrix( copy ) )
+            {
+                for (copy->ix = 0; copy->ix < copy->row; copy->ix = copy->ix + 1)
+                {
+                    for (copy->iy = 0; copy->iy < copy->col; copy->iy = copy->iy + 1)
+                    {
+                        copy->data[copy->ix][copy->iy] = matrix->data[copy->ix][copy->iy];
+                    } // end for
+                } // end for
+            } // end if
+        } // end if
+    } // end if
+
+    return ( copy );
+} // end copy_intMatrix ( )
+
+/**
+    Copia uma matriz com valores reais.
+    @return cópia da MATRIZ;
+*/
+doubleMatrix* copy_doubleMatrix( doubleMatrix* matrix )
+{
+    doubleMatrix* copy = NULL;
+
+    if ( !exist_doubleMatrix( matrix ) )
+    {
+        printf( "\n%s\n", "ERROR: Missing data." );
+    }
+    else
+    {
+        if (matrix->row <= 0 || matrix->col <= 0)
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+        }
+        else
+        {
+            copy = new_doubleMatrix( matrix->row, matrix->col );
+
+            if ( exist_doubleMatrix( copy ) )
+            {
+                for (copy->ix = 0; copy->ix < copy->row; copy->ix = copy->ix + 1)
+                {
+                    for (copy->iy = 0; copy->iy < copy->col; copy->iy = copy->iy + 1)
+                    {
+                        copy->data[copy->ix][copy->iy] = matrix->data[copy->ix][copy->iy];
+                    } // end for
+                } // end for
+            } // end if
+        } // end if
+    } // end if
+
+    return ( copy );
+} // end copy_doubleMatrix ( )
 
 /**
  * Soma duas matrizes de inteiros.
@@ -471,6 +895,45 @@ intMatrix* add_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 } // end add_intMatrix ( )
 
 /**
+ * Soma duas matrizes reais.
+ * @return MATRIZ resultante da soma.
+*/
+doubleMatrix* add_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
+{
+    doubleMatrix* aux = NULL;
+
+    if( exist_doubleMatrix( matrix1 ) && exist_doubleMatrix( matrix2 ) )
+    {
+        if( matrix1->row != matrix2->row && matrix1->col != matrix2->col )
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+        }
+        else
+        {
+            aux = new_doubleMatrix( matrix1->row, matrix1->col );
+
+            if( aux != NULL )
+            {
+                aux->ix = 0;
+                while( aux->ix < aux->row )
+                {
+                    aux->iy = 0;
+                    while( aux->iy < aux->col )
+                    {
+                        aux->data[aux->ix][aux->iy] =   matrix1->data[aux->ix][aux->iy] +
+                                                        matrix2->data[aux->ix][aux->iy];
+                        aux->iy = aux->iy + 1;
+                    } // end while
+                    aux->ix = aux->ix + 1;
+                } // end while
+            } // end if
+        } // end if
+    } // end if
+
+    return ( aux );
+} // end add_doubleMatrix ( )
+
+/**
  * Faz a diferença de duas matrizes de inteiros.
  * @return MATRIZ resultante da diferença.
 */
@@ -508,6 +971,45 @@ intMatrix* diff_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 
     return ( aux );
 } // end diff_intMatrix ( )
+
+/**
+ * Faz a diferença de duas matrizes reais.
+ * @return MATRIZ resultante da diferença.
+*/
+doubleMatrix* diff_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
+{
+    doubleMatrix* aux = NULL;
+
+    if( exist_doubleMatrix( matrix1 ) && exist_doubleMatrix( matrix2 ) )
+    {
+        if( matrix1->row != matrix2->row && matrix1->col != matrix2->col )
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+        }
+        else
+        {
+            aux = new_doubleMatrix( matrix1->row, matrix1->col );
+
+            if( aux != NULL )
+            {
+                aux->ix = 0;
+                while( aux->ix < aux->row )
+                {
+                    aux->iy = 0;
+                    while( aux->iy < aux->col )
+                    {
+                        aux->data[aux->ix][aux->iy] =   matrix1->data[aux->ix][aux->iy] -
+                                                        matrix2->data[aux->ix][aux->iy];
+                        aux->iy = aux->iy + 1;
+                    } // end while
+                    aux->ix = aux->ix + 1;
+                } // end while
+            } // end if
+        } // end if
+    } // end if
+
+    return ( aux );
+} // end diff_doubleMatrix ( )
 
 /**
  * Faz o produto de duas matrizes de inteiros.
@@ -556,41 +1058,99 @@ intMatrix* product_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 } // end product_intMatrix ( )
 
 /**
-    Copia uma matriz com valores inteiros.
-    @return cópia da MATRIZ;
+ * Faz o produto de duas matrizes reais.
+ * @return MATRIZ resultante do produto.
 */
-intMatrix* copy_intMatrix( intMatrix* matrix )
+doubleMatrix* product_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 {
-    intMatrix* copy = NULL;
+    doubleMatrix* aux = NULL;
 
-    if ( !exist_intMatrix( matrix ) )
+    if( exist_doubleMatrix( matrix1) && exist_doubleMatrix( matrix2 ) )
     {
-        printf( "\n%s\n", "ERROR: Missing data." );
-    }
-    else
-    {
-        if (matrix->row <= 0 || matrix->col <= 0)
+        if( matrix1->col != matrix2->row ) 
         {
             printf( "\n%s\n", "ERROR: Invalid size." );
         }
         else
         {
-            copy = new_intMatrix( matrix->row, matrix->col );
+            aux = new_doubleMatrix( matrix1->row, matrix2->col );
 
-            if ( exist_intMatrix( copy ) )
+            if( exist_doubleMatrix( aux ) )
             {
-                for (copy->ix = 0; copy->ix < copy->row; copy->ix = copy->ix + 1)
+                aux->ix = 0;
+                while( aux->ix < aux->row )
                 {
-                    for (copy->iy = 0; copy->iy < copy->col; copy->iy = copy->iy + 1)
+                    aux->iy = 0;
+                    while( aux->iy < aux->col )
                     {
-                        copy->data[copy->ix][copy->iy] = matrix->data[copy->ix][copy->iy];
-                    } // end for
-                } // end for
+                        aux->data[aux->ix][aux->iy] = 0;
+
+                        matrix1->ix = 0;
+                        while( matrix1->ix < matrix1->col )
+                        {
+                            aux->data[aux->ix][aux->iy] +=  matrix1->data[aux->ix][matrix1->ix] *
+                                                            matrix2->data[matrix1->ix][aux->iy];
+                            matrix1->ix = matrix1->ix + 1;
+                        } // end while
+                        aux->iy = aux->iy + 1;
+                    } // end while
+                    aux->ix = aux->ix + 1;
+                } // end while
             } // end if
         } // end if
     } // end if
 
-    return (copy);
-} // end copy_intMatrix ( )
+    return ( aux );
+} // end product_doubleMatrix ( )
+
+/**
+ * Multiplica cada elemento de uma matriz de inteiros por uma constante inteira.
+ * @return MATRIZ resultante.
+*/
+intMatrix* scalar_intMatrix( intMatrix* matrix, int k )
+{
+    intMatrix* aux = NULL;
+    if ( exist_intMatrix( matrix ) )
+    {
+        aux = new_intMatrix( matrix->row, matrix->col );
+        if( exist_intMatrix( aux ) )
+        {
+            for( aux->ix = 0; aux->ix < aux->row; aux->ix = aux->ix + 1 )
+            {
+                for( aux->iy = 0; aux->iy < aux->col; aux->iy = aux->iy + 1 )
+                {
+                    aux->data[aux->ix][aux->iy] = matrix->data[aux->ix][aux->iy] * k;
+                } // end for
+            } // end for
+        } // end if
+    } // end if
+
+    return ( aux );
+} // end scalar_intMatrix ( )
+
+/**
+ * Multiplica cada elemento de uma matriz real por uma constante real.
+ * @return MATRIZ resultante.
+*/
+doubleMatrix* scalar_doubleMatrix( doubleMatrix* matrix, double k )
+{
+    doubleMatrix* aux = NULL;
+    if ( exist_doubleMatrix( matrix ) )
+    {
+        aux = new_doubleMatrix( matrix->row, matrix->col );
+        if( exist_doubleMatrix( aux ) )
+        {
+            for( aux->ix = 0; aux->ix < aux->row; aux->ix = aux->ix + 1 )
+            {
+                for( aux->iy = 0; aux->iy < aux->col; aux->iy = aux->iy + 1 )
+                {
+                    aux->data[aux->ix][aux->iy] = matrix->data[aux->ix][aux->iy] * k;
+                } // end for
+            } // end for
+        } // end if
+    } // end if
+
+    return ( aux );
+} // end scalar_doubleMatrix ( )
 
 #endif
