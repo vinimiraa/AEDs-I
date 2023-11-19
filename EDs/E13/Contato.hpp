@@ -52,7 +52,7 @@ class Contato : public Erro
         {
             bool result = true;
             int x = 0;
-            while( x < fone.size( ) && result )
+            while( x < (int)fone.size( ) && result )
             {
                 if( ( '0' > fone[x] || fone[x] > '9' ) && fone[x] != '-' )
                 {
