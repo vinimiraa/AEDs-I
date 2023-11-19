@@ -171,16 +171,16 @@ void exercicio1317( void )
     Contato* contato4 = new Contato ( "Marcos", "", "" );
     
     cout << "Contato1 - " << contato1->toString( ) << endl;
-    cout << "Contato 1 = " << contato1->phones( ) << " telefone(s)." << endl << endl;
+    cout << "Contato 1 = " << contato1->phone( ) << " telefone(s)." << endl << endl;
     
     cout << "Contato2 - " << contato2->toString( ) << endl;
-    cout << "Contato 2 = " << contato2->phones( ) << " telefone(s)." << endl << endl;
+    cout << "Contato 2 = " << contato2->phone( ) << " telefone(s)." << endl << endl;
     
     cout << "Contato3 - " << contato3->toString( ) << endl;
-    cout << "Contato 3 = " << contato3->phones( ) << " telefone(s)." << endl << endl;
+    cout << "Contato 3 = " << contato3->phone( ) << " telefone(s)." << endl << endl;
     
     cout << "Contato4 - " << contato4->toString( ) << endl;
-    cout << "Contato 4 = " << contato4->phones( ) << " telefone(s)." << endl << endl;
+    cout << "Contato 4 = " << contato4->phone( ) << " telefone(s)." << endl << endl;
     
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -198,12 +198,12 @@ void exercicio1318( void )
     Contato* contato1 = new Contato( "Jose", "91234-5678", "" );
 
     cout << "Contato1 - " << contato1->toString( ) << endl;
-    cout << "Telefone(s) = " << contato1->phones( ) << endl << endl;
+    cout << "Telefone(s) = " << contato1->phone( ) << endl << endl;
 
     contato1->setPhone2a( "97777-3333" );
 
     cout << endl << "Contato1 - " << contato1->toString( ) << endl;
-    cout << "Telefone(s) = " << contato1->phones( ) << endl;
+    cout << "Telefone(s) = " << contato1->phone( ) << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -221,12 +221,12 @@ void exercicio1319( void )
     Contato* contato1 = new Contato( "Jose", "91234-5678", "4002-8922" );
 
     cout << "Contato1 - " << contato1->toString( ) << endl;
-    cout << "Telefone(s) = " << contato1->phones( ) << endl << endl;
+    cout << "Telefone(s) = " << contato1->phone( ) << endl << endl;
 
     contato1->setPhone2b( "97777-3333" );
 
     cout << "Contato1 - " << contato1->toString( ) << endl;
-    cout << "Telefone(s) = " << contato1->phones( ) << endl << endl;
+    cout << "Telefone(s) = " << contato1->phone( ) << endl << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -244,12 +244,12 @@ void exercicio1320( void )
     Contato* contato1 = new Contato( "Jose", "91234-5678", "4002-8922" );
 
     cout << "Contato1 - " << contato1->toString( ) << endl;
-    cout << "Telefone(s) = " << contato1->phones( ) << endl << endl;
+    cout << "Telefone(s) = " << contato1->phone( ) << endl << endl;
 
     contato1->setPhone2c( "" );
 
     cout << "Contato1 - " << contato1->toString( ) << endl;
-    cout << "Telefone(s) = " << contato1->phones( ) << endl << endl;
+    cout << "Telefone(s) = " << contato1->phone( ) << endl << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -264,6 +264,30 @@ void exercicio13E1( void )
     id( "Exercicio 13E1:" );
 
     // programa
+    Contato contato;
+
+    contato.setPhones("91234-5678");
+    contato.setPhones("4002-8922");
+
+    cout << "Quantidade de telefones: " << contato.getXp() << endl;
+
+    cout << "Telefones: ";
+    for (int i = 0; i < contato.getXp(); i++)
+    {
+        cout << contato.getPhones(i) << " ";
+    }
+    cout << endl;
+
+    contato.removePhones(0);
+
+    cout << endl << "Quantidade de telefones: " << contato.getXp() << endl;
+
+    cout << "Telefones: ";
+    for (int i = 0; i < contato.getXp(); i++)
+    {
+        cout << contato.getPhones(i) << " ";
+    }
+    cout << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -278,6 +302,28 @@ void exercicio13E2( void )
     id( "Exercicio 13E2:" );
 
     // programa
+    Contato contato1;
+    Contato* contato2 = new Contato("Lucas", "99876-5432", "2298-2004",
+                                    "Rua Residencial, 789", "Avenida Profissional, 654");
+
+    contato1.setPhones("91234-5678");
+    contato1.setPhones("4002-8922");
+
+    contato1.setERes("Rua Residencial, 123");
+    contato1.setECom("Avenida Profissional, 456");
+
+    cout << "Contato 1: " << endl << endl;
+    cout << "Telefones: ";
+    for (int i = 0; i < contato1.getXp(); i++)
+    {
+        cout << contato1.getPhones(i) << " ";
+    }
+    cout << endl;
+
+    cout << "Endereco Residencial: " << contato1.getERes() << endl;
+    cout << "Endereco Profissional: " << contato1.getECom() << endl;
+
+    cout << endl << "Contato 2 - " << contato2->toString2( ) << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );

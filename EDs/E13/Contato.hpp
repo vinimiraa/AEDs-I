@@ -37,10 +37,16 @@ class Contato : public Erro
         atributos privados.
     */
     private:
-        string nome;
-        string fone;
-        string fone2;
-        int    n;
+        string nome;       // nome
+        string fone;       // telefone 1
+        string fone2;      // telefone 2
+        int    n;          // quantidade de telefones
+
+        string phones[10]; // arranjo de telefones
+        int    xp;         // quantidade de telefones no arranjo
+
+        string e_res;      // endereço residencial
+        string e_com;      // endereço comercial
         
         bool testPhone ( )
         {
@@ -80,6 +86,7 @@ class Contato : public Erro
         fone  = "";
         fone2 = "";
         n     = 0 ;
+        xp    = 0 ;
     } // end constructor (padrão)
     
     // ----------------------------------- metodos para acesso
@@ -136,6 +143,42 @@ class Contato : public Erro
             n = 2;
     } // end setN ( )
 
+    void setPhones( std::string phone )
+    {
+        if( xp < 10 )
+        {
+            phones[xp] = phone;
+            xp = xp + 1;
+        }
+        else
+        {
+            setErro( 5 );
+        }
+    }
+
+    void setERes ( std::string adress )
+    {
+        if( adress.empty( ) )
+        {
+            setErro( 7 );
+        }
+        else
+        {
+            this->e_res = adress;
+        }
+    }
+    void setECom ( std::string adress )
+    {
+        if( adress.empty( ) )
+        {
+            setErro( 7 );
+        }
+        else
+        {
+            this->e_com = adress;
+        }
+    }
+
     /**
     *   Funcao para obter nome.
     *   @return nome armazenado
@@ -167,6 +210,33 @@ class Contato : public Erro
     {
         return ( n );
     } // end getN ( )
+
+    std::string getPhones( int x )
+    {
+        if ( 0 <= x && x <= 10)
+        {
+            return ( phones[x] );
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    int getXp ( )
+    {
+        return ( xp );
+    }
+
+    std::string getERes ( )
+    {
+        return( e_res );
+    }
+
+    std::string getECom ( )
+    {
+        return( e_com );
+    }
     
     /**
     *   Funcao para obter dados de uma pessoa.
@@ -177,12 +247,18 @@ class Contato : public Erro
         return ( "{ "+getNome( )+", "+getFone( )+", "+getFone2( )+" }" );
     } // end toString ( )
 
+    std::string toString2 ( )
+    {
+        return ( "{ "+getNome( )+", "+getFone( )+", "+getFone2( )+", "+getERes( )+", "+getECom( )+" }" );
+    } // end toString ( )
+
     /**
     *   Construtor alternativo.
     *   @param nome_inicial a ser atribuido
     *   @param fone_inicial a ser atribuido
     */
-    Contato ( std::string nome_inicial, std::string fone_inicial, std::string fone2_inicial )
+    Contato (   std::string nome_inicial, std::string fone_inicial,
+                std::string fone2_inicial   )
     {
         setErro ( 0 ); // nenhum erro, ainda
         // atribuir valores iniciais
@@ -204,6 +280,20 @@ class Contato : public Erro
         setFone2( another.fone2); // copiar fone 2
         setN( );
     } // end constructor (alternativo)
+
+    Contato (   std::string nome_inicial, std::string fone_inicial,
+                std::string fone2_inicial, 
+                std::string eres_inicial, std::string ecom_inicial  )
+    {
+        setErro ( 0 ); // nenhum erro, ainda
+        // atribuir valores iniciais
+        setNome ( nome_inicial ); // nome = nome_inicial ;
+        setFone ( fone_inicial ); // fone = fone_inicial ;
+        setFone2( fone2_inicial); // fone2= fone2_inicial;
+        setERes ( eres_inicial ); // e_res= eres_inicial ;
+        setECom ( ecom_inicial ); // e_com= ecom_inicial ;
+        setN( );
+    } // end constructor (alternativo)
     
     void readName( std::string text )
     {
@@ -221,6 +311,24 @@ class Contato : public Erro
         cin >> phone;
         // getchar( );
         setFone( phone );
+    }
+
+    void readERes( std::string text )
+    {
+        std::string adress;
+        cout << text;
+        cin >> adress;
+        // getchar( );
+        setERes( adress );
+    }
+
+    void readECom( std::string text )
+    {
+        std::string adress;
+        cout << text;
+        cin >> adress;
+        // getchar( );
+        setECom( adress );
     }
     
     bool isValidPhone ( )
@@ -271,7 +379,7 @@ class Contato : public Erro
         afile.close();
     } // end writeToFile ( )
 
-    int phones( )
+    int phone( )
     {
         return ( getN( ) );
     }
@@ -308,11 +416,12 @@ class Contato : public Erro
         if ( n != 2 )
         {
             setErro( 3 );
-            cout << "ERRO: Tentativa de alterar o segundo telefone sem dois telefones definidos." << endl;
+            cout << endl << "ERRO: Tentativa de alterar o segundo telefone sem dois telefones definidos." << endl;
         }
         else if ( fone2.empty( ) )
         {
-            setErro(2); // 
+            setErro(2);
+            cout << endl << "ERRO: Não existe o segundo telefone." << endl;
         }
         else
         {
@@ -325,12 +434,30 @@ class Contato : public Erro
         if( n == 1 )
         {
             setErro( 4 );
+            cout << endl << "ERRO: Existe apenas um telefone." << endl;
         }
         else
         {
             // setFone2( phone );
             fone2.assign( phone );
             setN();
+        }
+    }
+
+    void removePhones( int x )
+    {
+        if( 0 <= x && x <= 10 )
+        {
+            for( int i = x; i < xp - 1; i = i + 1 )
+            {
+                phones[i] = phones[ i + 1 ];
+                phones[ i + 1 ] = "0";
+            }
+            xp = xp - 1;
+        }
+        else
+        {
+            setErro( 6 );
         }
     }
     
