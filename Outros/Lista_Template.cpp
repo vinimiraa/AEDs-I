@@ -30,29 +30,6 @@
 // -------------------------- definicao de metodos
 
 /**
- * Menu de opcoes
- */
-void menuOpcoes()
-{
-    std::cout << std::endl;
-    std::cout << "Escolha alguma das opcoes a seguir:" << std::endl;
-    std::cout << "  0 - Encerrar programa " << std::endl;
-    std::cout << "  1 - Exercicio 0X11    " << std::endl;
-    std::cout << "  2 - Exercicio 0X12    " << std::endl;
-    std::cout << "  3 - Exercicio 0X13    " << std::endl;
-    std::cout << "  4 - Exercicio 0X14    " << std::endl;
-    std::cout << "  5 - Exercicio 0X15    " << std::endl;
-    std::cout << "  6 - Exercicio 0X16    " << std::endl;
-    std::cout << "  7 - Exercicio 0X17    " << std::endl;
-    std::cout << "  8 - Exercicio 0X18    " << std::endl;
-    std::cout << "  9 - Exercicio 0X19    " << std::endl;
-    std::cout << " 10 - Exercicio 0X20    " << std::endl;
-    std::cout << " 11 - Exercicio 0XE1    " << std::endl;
-    std::cout << " 12 - Exercicio 0XE2    " << std::endl;
-    std::cout << std::endl;
-} // fim menuOpcoes()
-
-/**
  *  Metodo01.
  */
 void exercicio0X11( void )
@@ -219,6 +196,29 @@ void exercicio0XE2( void )
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio0XE2 (  )
+
+/**
+ * Menu de opcoes
+ */
+void menuOpcoes()
+{
+    std::cout << std::endl;
+    std::cout << "Escolha alguma das opcoes a seguir:" << std::endl;
+    std::cout << "  0 - Encerrar programa " << std::endl;
+    std::cout << "  1 - Exercicio 0X11    " << std::endl;
+    std::cout << "  2 - Exercicio 0X12    " << std::endl;
+    std::cout << "  3 - Exercicio 0X13    " << std::endl;
+    std::cout << "  4 - Exercicio 0X14    " << std::endl;
+    std::cout << "  5 - Exercicio 0X15    " << std::endl;
+    std::cout << "  6 - Exercicio 0X16    " << std::endl;
+    std::cout << "  7 - Exercicio 0X17    " << std::endl;
+    std::cout << "  8 - Exercicio 0X18    " << std::endl;
+    std::cout << "  9 - Exercicio 0X19    " << std::endl;
+    std::cout << " 10 - Exercicio 0X20    " << std::endl;
+    std::cout << " 11 - Exercicio 0XE1    " << std::endl;
+    std::cout << " 12 - Exercicio 0XE2    " << std::endl;
+    std::cout << std::endl;
+} // fim menuOpcoes()
 
 // -------------------------- definicao do metodo principal
 

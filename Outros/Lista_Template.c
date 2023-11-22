@@ -27,117 +27,8 @@
 
 // -------------------------- definicao de variaveis globais
 
-// -------------------------- definicao de prototipos
-
-void menuOpcoes();
-void exercicio0X11();
-void exercicio0X12();
-void exercicio0X13();
-void exercicio0X14();
-void exercicio0X15();
-void exercicio0X16();
-void exercicio0X17();
-void exercicio0X18();
-void exercicio0X19();
-void exercicio0X20();
-void exercicio0XE1();
-void exercicio0XE2();
-
-// -------------------------- definicao do metodo principal
-
-int main(void)
-{
-    int opcao = 0;
-
-    do
-    {
-        clear();
-
-        // mostrar identificacao do autor e programa
-        id("Programa: Exercicios0X - v0.0");
-
-        // mostrar menu de opcoes
-        menuOpcoes();
-
-        // ler opcao do teclado
-        opcao = readint("Opcao = ");
-
-        // executar a opcao escolhida
-        switch (opcao)
-        {
-        case 0:
-            pause("Aperte ENTER para terminar!");
-            break;
-        case 1:
-            exercicio0X11();
-            break;
-        case 2:
-            exercicio0X12();
-            break;
-        case 3:
-            exercicio0X13();
-            break;
-        case 4:
-            exercicio0X14();
-            break;
-        case 5:
-            exercicio0X15();
-            break;
-        case 6:
-            exercicio0X16();
-            break;
-        case 7:
-            exercicio0X17();
-            break;
-        case 8:
-            exercicio0X18();
-            break;
-        case 9:
-            exercicio0X19();
-            break;
-        case 10:
-            exercicio0X20();
-            break;
-        case 11:
-            exercicio0XE1();
-            break;
-        case 12:
-            exercicio0XE2();
-            break;
-        default:
-            pause("ERRO: opcao invalida");
-            break;
-        } // fim switch
-
-    } while (opcao != 0);
-
-    return (0);
-}
 
 // -------------------------- definicao de metodos
-
-/**
- * Menu de opcoes
- */
-void menuOpcoes()
-{
-    printf("\n");
-    printf("%s\n\n", "Escolha alguma das opcoes a seguir:");
-    printf("%s\n", "  0 - Encerrar programa");
-    printf("%s\n", "  1 - Exercicio 0X11");
-    printf("%s\n", "  2 - Exercicio 0X12");
-    printf("%s\n", "  3 - Exercicio 0X13");
-    printf("%s\n", "  4 - Exercicio 0X14");
-    printf("%s\n", "  5 - Exercicio 0X15");
-    printf("%s\n", "  6 - Exercicio 0X16");
-    printf("%s\n", "  7 - Exercicio 0X17");
-    printf("%s\n", "  8 - Exercicio 0X18");
-    printf("%s\n", "  9 - Exercicio 0X19");
-    printf("%s\n", " 10 - Exercicio 0X20");
-    printf("%s\n", " 11 - Exercicio 0XE1");
-    printf("%s\n", " 12 - Exercicio 0XE2");
-    printf("\n");
-} // fim menuOpcoes()
 
 /**
  * Metodo01.
@@ -306,3 +197,97 @@ void exercicio0XE2()
     // encerrar
     pause("Aperte ENTER para continuar!");
 } // fim exercicio0XE2
+
+/**
+ * Menu de opcoes
+ */
+void menuOpcoes()
+{
+    printf("\n");
+    printf("%s\n\n", "Escolha alguma das opcoes a seguir:");
+    printf("%s\n", "  0 - Encerrar programa");
+    printf("%s\n", "  1 - Exercicio 0X11");
+    printf("%s\n", "  2 - Exercicio 0X12");
+    printf("%s\n", "  3 - Exercicio 0X13");
+    printf("%s\n", "  4 - Exercicio 0X14");
+    printf("%s\n", "  5 - Exercicio 0X15");
+    printf("%s\n", "  6 - Exercicio 0X16");
+    printf("%s\n", "  7 - Exercicio 0X17");
+    printf("%s\n", "  8 - Exercicio 0X18");
+    printf("%s\n", "  9 - Exercicio 0X19");
+    printf("%s\n", " 10 - Exercicio 0X20");
+    printf("%s\n", " 11 - Exercicio 0XE1");
+    printf("%s\n", " 12 - Exercicio 0XE2");
+    printf("\n");
+} // fim menuOpcoes()
+
+// -------------------------- definicao do metodo principal
+
+int main(void)
+{
+    int opcao = 0;
+
+    do
+    {
+        clear();
+
+        // mostrar identificacao do autor e programa
+        id("Programa: Exercicios0X - v0.0");
+
+        // mostrar menu de opcoes
+        menuOpcoes();
+
+        // ler opcao do teclado
+        opcao = readint("Opcao = ");
+
+        // executar a opcao escolhida
+        switch (opcao)
+        {
+        case 0:
+            pause("Aperte ENTER para terminar!");
+            break;
+        case 1:
+            exercicio0X11();
+            break;
+        case 2:
+            exercicio0X12();
+            break;
+        case 3:
+            exercicio0X13();
+            break;
+        case 4:
+            exercicio0X14();
+            break;
+        case 5:
+            exercicio0X15();
+            break;
+        case 6:
+            exercicio0X16();
+            break;
+        case 7:
+            exercicio0X17();
+            break;
+        case 8:
+            exercicio0X18();
+            break;
+        case 9:
+            exercicio0X19();
+            break;
+        case 10:
+            exercicio0X20();
+            break;
+        case 11:
+            exercicio0XE1();
+            break;
+        case 12:
+            exercicio0XE2();
+            break;
+        default:
+            pause("ERRO: opcao invalida");
+            break;
+        } // fim switch
+
+    } while (opcao != 0);
+
+    return (0);
+}
