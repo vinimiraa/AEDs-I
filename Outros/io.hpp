@@ -1,10 +1,10 @@
 /**
-   IO - Console input/output library.
-   @author  PUC-Minas - ICEI
-   @version 0.1 - 2023-1
+    IO - Console input/output library.
+    @author  PUC-Minas - ICEI
+    @version 0.1 - 2023-1
 
-   IO - v2023-1_0.1 - __ / __ / _____
-   Author: __________________________
+    IO - v2023-1_0.1 - 22 / 11 / 2023
+    Author: Vinicius Miranda de Araujo
 
 */
 // ---------------------- lista de dependencias
@@ -99,8 +99,8 @@ void IO_debug ( bool condition, const char *text )
 {
   if ( IO_trace && condition )
   {
-     printf ( "\nDBG> %s\n", text );
-     getchar( );
+      printf ( "\nDBG> %s\n", text );
+      getchar( );
   } // end if
 } // end IO_debug ( )
 
@@ -154,7 +154,7 @@ std::string IO_version ( void )
 void IO_id ( std::string text )
 {
     std::cout << text << std::endl;
-    std::cout << "Autor: ________________________";
+    std::cout << "Autor: Vinicius Miranda de Araujo";
     std::cout << std::endl;          // mudar de linha
 } // fim IO_id ( )
 
@@ -577,9 +577,9 @@ char* IO_substring ( char *text, int start, int size )
     chars  buffer = NULL;
     if ( start >= 0 && size > 0 && (start+size) < (int) strlen(text) )
     {
-       buffer = IO_new_chars ( size+1 );
-       memcpy ( buffer, text+start, size );
-       buffer [size] = '\0';
+        buffer = IO_new_chars ( size+1 );
+        memcpy ( buffer, text+start, size );
+        buffer [size] = '\0';
     }
     return ( buffer );
 } // fim IO_substring ( )
