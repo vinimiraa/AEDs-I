@@ -39,21 +39,13 @@ void exercicio1411( void )
     id( "Exercicio 1411:" );
 
     // programa
-    MyString s1( "423" );
-    MyString s2( "-423" );
-    MyString s3( "+423" );
-    MyString s4( "4.23" );
-    MyString s5( "+4.23" );
-    MyString s6( "-4.23" );
-    MyString s7( "ABC" );
+    MyString s;
+    s.setString( readstring( "Digite uma string: " ) );
 
-    cout << "s1 = " << "\""+s1.getString( )+"\"" << " -> " << s1.getInt( ) << endl;
-    cout << "s2 = " << "\""+s2.getString( )+"\"" << " -> " << s2.getInt( ) << endl;
-    cout << "s3 = " << "\""+s3.getString( )+"\"" << " -> " << s3.getInt( ) << endl;
-    cout << "s4 = " << "\""+s4.getString( )+"\"" << " -> " << s4.getInt( ) << endl;
-    cout << "s5 = " << "\""+s5.getString( )+"\"" << " -> " << s5.getInt( ) << endl;
-    cout << "s6 = " << "\""+s6.getString( )+"\"" << " -> " << s6.getInt( ) << endl;
-    cout << "s7 = " << "\""+s7.getString( )+"\"" << " -> " << s7.getInt( ) << endl;
+    cout << endl << "String: " << "\""+s.getString( )+"\"" << "\tInteiro: " << s.getInt( ) << endl;
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -68,21 +60,15 @@ void exercicio1412( void )
     id( "Exercicio 1412:" );
 
     // programa
-    MyString s1( "423" );
-    MyString s2( "-423" );
-    MyString s3( "+423" );
-    MyString s4( "4.23" );
-    MyString s5( "+4.23" );
-    MyString s6( "-4.23" );
-    MyString s7( "ABC" );
+    MyString s;
 
-    cout << "s1 = " << "\""+s1.getString( )+"\"" << " -> " << s1.getDouble( ) << endl;
-    cout << "s2 = " << "\""+s2.getString( )+"\"" << " -> " << s2.getDouble( ) << endl;
-    cout << "s3 = " << "\""+s3.getString( )+"\"" << " -> " << s3.getDouble( ) << endl;
-    cout << "s4 = " << "\""+s4.getString( )+"\"" << " -> " << s4.getDouble( ) << endl;
-    cout << "s5 = " << "\""+s5.getString( )+"\"" << " -> " << s5.getDouble( ) << endl;
-    cout << "s6 = " << "\""+s6.getString( )+"\"" << " -> " << s6.getDouble( ) << endl;
-    cout << "s7 = " << "\""+s7.getString( )+"\"" << " -> " << s7.getDouble( ) << endl;
+    s.setString( readstring( "Digite uma string: " ) );
+
+    cout << endl << "String: " << "\""+s.getString( )+"\"" << "\tReal: " << s.getDouble( ) << endl;
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
+
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1412 (  )
@@ -96,21 +82,15 @@ void exercicio1413( void )
     id( "Exercicio 1413:" );
 
     // programa
-    MyString s1( "true" );
-    MyString s2( "false" );
-    MyString s3( "T" );
-    MyString s4( "F" );
-    MyString s5( "0" );
-    MyString s6( "1" );
-    MyString s7( "ABC" );
+    MyString s;
 
-    cout << "s1 = " << "\""+s1.getString( )+"\"" << " -> " << s1.getBoolean( ) << endl;
-    cout << "s2 = " << "\""+s2.getString( )+"\"" << " -> " << s2.getBoolean( ) << endl;
-    cout << "s3 = " << "\""+s3.getString( )+"\"" << " -> " << s3.getBoolean( ) << endl;
-    cout << "s4 = " << "\""+s4.getString( )+"\"" << " -> " << s4.getBoolean( ) << endl;
-    cout << "s5 = " << "\""+s5.getString( )+"\"" << " -> " << s5.getBoolean( ) << endl;
-    cout << "s6 = " << "\""+s6.getString( )+"\"" << " -> " << s6.getBoolean( ) << endl;
-    cout << "s7 = " << "\""+s7.getString( )+"\"" << " -> " << s7.getBoolean( ) << endl;
+    s.setString( readstring( "Digite uma string: " ) );
+
+    cout << endl << "String: " << "\""+s.getString( )+"\"" << "\tBoolean: " << s.getBoolean( ) << endl;
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
+
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1413 (  )
@@ -124,6 +104,21 @@ void exercicio1414( void )
     id( "Exercicio 1414:" );
 
     // programa
+    MyString s;
+
+    s.setString( readstring( "Digite uma string: " ) );
+
+    if( s.contains( readstring( "Digite a substring a ser procurada: " ) ) )
+    {
+        cout << endl << "A string esta contida na string original." << endl;
+    }
+    else
+    {
+        cout << endl << "A string nao esta contida na string original." << endl;
+    }
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -138,6 +133,14 @@ void exercicio1415( void )
     id( "Exercicio 1415:" );
 
     // programa
+    MyString s;
+
+    s.setString( readstring( "Digite uma string: " ) );
+
+    cout << endl << "String: " << "\""+s.getString( )+"\"" << "\tMaiuscula: " << s.toUpperCase( ) << endl;
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -152,6 +155,14 @@ void exercicio1416( void )
     id( "Exercicio 1416:" );
 
     // programa
+    MyString s;
+
+    s.setString( readstring( "Digite uma string: " ) );
+
+    cout << endl << "String: " << "\""+s.getString( )+"\"" << "\tMinuscula: " << s.toLowerCase( ) << endl;
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -166,7 +177,21 @@ void exercicio1417( void )
     id( "Exercicio 1417:" );
 
     // programa
+    MyString s;
+    char novo = '\0', original = '\0'; 
 
+    s.setString( readstring( "Digite uma string: " ) );
+    
+    original = readchar( "Digite o caractere a ser trocado: " );
+
+    novo = readchar( "Digite o novo caractere a ser colocado: " );
+
+    cout << endl << "String: " << "\""+s.getString( )+"\"" << "\tNova String: " 
+        << s.replace( original, novo ) << endl;
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
+    
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1417 (  )
@@ -180,6 +205,14 @@ void exercicio1418( void )
     id( "Exercicio 1418:" );
 
     // programa
+    MyString s;
+
+    s.setString( readstring( "Digite uma string: " ) );
+
+    cout << endl << "String: " << "\""+s.getString( )+"\"" << "\tCodificada: " << s.encrypt( ) << endl;
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -194,7 +227,15 @@ void exercicio1419( void )
     id( "Exercicio 1419:" );
 
     // programa
+    MyString s;
 
+    s.setString( readstring( "Digite uma string: " ) );
+
+    cout << endl << "String: " << "\""+s.getString( )+"\"" << "\tDecodificada: " << s.decrypt( ) << endl;
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
+    
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1419 (  )
@@ -208,6 +249,23 @@ void exercicio1420( void )
     id( "Exercicio 1420:" );
 
     // programa
+    MyString s( "abcdef ghijk lmnopqr" );
+    string sequencia[10];
+
+    int x = 0;
+
+    x = s.split( sequencia );
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
+
+    cout << "String: " << "\""+s.getString( )+"\"" << endl;
+    cout << "Quantidade de strings: " << x << endl << endl;
+
+    for( int y = 0; y < x; y = y + 1 )
+    {
+        cout << concat( "s", concat( tostring(y),": " ) ) << sequencia[y] << endl;
+    }
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );

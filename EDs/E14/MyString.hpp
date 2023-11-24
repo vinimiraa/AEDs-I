@@ -252,7 +252,7 @@ public:
             str[x]= toUpper( str[x] );
         }
         return ( str );
-    }
+    } // end toUpperCase ( )
 
     /**
      *  Método para converter String para minusculo.
@@ -262,10 +262,11 @@ public:
     {
         for( int x = 0; x < (int)str.size( ); x = x + 1 )
         {
-                str[x]= toLower( str[x] );
+                str[x] = toLower( str[x] );
         }
         return ( str );
-    }
+    } // end toLowerCase ( )
+
     /**
      *  Método para converter String para Boolean.
      *  @return True ou False.
@@ -274,11 +275,11 @@ public:
     {
         bool result = false;
 
-        if( s == "1" || s == "T" || toUpperCase( s ) == "TRUE" )
+        if( s == "1" || s  == "T" || toLowerCase( s ) == "true" )
         {
             result = true;
         }
-        else if( s == "0" || s == "F" || toUpperCase( s ) == "FALSE" )
+        else if( s == "0" || s == "F" || toLowerCase( s ) == "false" )
         {
             result = false;
         }
@@ -292,18 +293,253 @@ public:
 
     } // end getBoolean ( )
 
+    /**
+     *  Método para verificar se o texto está contido no conteúdo.
+     *  @return TRUE se está contido; FALSE caso contrário. 
+    */
     bool contains( std::string text )
     {
         bool result = false;
+        /* // para posição fixa 
+        if( text.size( ) > 0 && text.size( ) <= s.size( ) )
+        {
+            for( int x = 0; x < (int)s.size( ); x = x + 1 )
+            {
+                if( s[x] == text[0] )
+                {
+                    for( int y = x, z = 0; y < (int)text.size( ); y = y + 1, z = z + 1 )
+                    {
+                        if( s[y] == text[z] )
+                        {
+                            result = true;
+                        }
+                        else
+                        {
+                            result = false;
+                        } // end if
+                    } // end for
+                } // end if
+            } // end for
+        } 
+        else
+        {
+            setErro( 4 );
+        }// end if */
 
-        
+        // para qualquer posição
+        if( text.size( ) > 0 && text.size( ) <= s.size( ) )
+        {
+            for( int x = 0, y = 0; x < (int)s.size( ); x = x + 1 )
+            {
+                if( s[x] == text[y] )
+                {
+                    y = y + 1;
+                } // end if
+                if( y == (int)text.size( ) )
+                {
+                    result = true;
+                } // end if
+            } // end for
+        } 
+        else
+        {
+            setErro( 4 ); 
+        } // end if
 
         return ( result );
-    }
+
+    } // end contains ( )
+
+    /**
+     *  Método para converter String para maiusculo.
+     *  @return String maiuscula.
+    */
+    std::string toUpperCase( )
+    {
+        for( int x = 0; x < (int)s.size( ); x = x + 1 )
+        {
+            s[x]= toUpper( s[x] );
+        } // end for
+        return ( s );
+    } // end toUpperCase ( )
+
+    /**
+     *  Método para converter String para minusculo.
+     *  @return String minuscula.
+    */
+    std::string toLowerCase( )
+    {
+        for( int x = 0; x < (int)s.size( ); x = x + 1 )
+        {
+                s[x] = toLower( s[x] );
+        } // end for
+        return ( s );
+    } // end toLowerCase ( )
+
+    /**
+     *  Método para trocar as ocorrências de um caractere por outro.
+     *  @return String com os caracteres trocados.
+    */
+    std::string replace( char original, char novo )
+    {
+        std::string aux = s;
+        if( aux.empty( ) )
+        {
+            setErro( 7 );
+        }
+        else
+        {
+            for( int x = 0; x < (int)aux.size( ); x = x + 1 )
+            {
+                if( aux[x] == original )
+                {
+                    aux[x] = novo;
+                } // end if
+            } // end for
+        } // end if
+
+        return ( aux );
+
+    } // end replace ( )
+
+    /**
+     *  Método para codificar a string para a Cifra de César.
+     *  @return String Codificada.
+    */
+    std::string encrypt( )
+    {
+        std::string aux = s;
+
+        if( aux.empty( ) )
+        {
+            setErro( 8 );
+        }
+        else
+        {
+            for( int x  = 0; x < (int)aux.size( ); x = x + 1 )
+            {
+                if( isLower( aux[x] ) )
+                {
+                    if( aux[x] + 3 <= 122 )
+                        aux[x] =  ( s[x] + 3 );
+                    else
+                        aux[x] = ( ( s[x] + 3 ) - 122 ) + 96;
+                }
+                else if( isUpper( aux[x] ) )
+                {
+                    if( aux[x] + 3 <= 90 )
+                        aux[x] =  ( s[x] + 3 );
+                    else
+                        aux[x] = ( ( s[x] + 3 ) - 90 ) + 64;
+                }
+                else if( isDigit( aux[x] ) )
+                {
+                    if( aux[x] + 3 <= 57 )
+                        aux[x] =  ( s[x] + 3 );
+                    else
+                        aux[x] = ( ( s[x] + 3 ) - 57 ) + 47;
+                }
+                else
+                {
+                    aux[x] = ( s[x] + 3 );
+                } // end if
+            } // end for
+        } // end if
+
+        return ( aux );
+
+    } // end encrypt ( )
+
+    /**
+     *  Método para descodificar a Cifra de César para String.
+     *  @return String Decodificada.
+    */
+    std::string decrypt( )
+    {
+        std::string aux = s;
+
+        if( aux.empty( ) )
+        {
+            setErro( 9 );
+        }
+        else
+        {
+            for( int x  = 0; x < (int)aux.size( ); x = x + 1 )
+            {
+                if( isLower( aux[x] ) )
+                {
+                    if( aux[x] - 3 < 97 )
+                        aux[x] = ( ( s[x] - 3 ) + 122 ) - 96;
+                    else
+                        aux[x] =  ( s[x] - 3 );
+                }
+                else if( isUpper( aux[x] ) )
+                {
+                    if( aux[x] - 3 < 65 )
+                        aux[x] = ( ( s[x] - 3 ) + 90 ) - 64; 
+                    else
+                        aux[x] =  ( s[x] - 3 );
+                }
+                else if( isDigit( aux[x] ) )
+                {
+                    if( aux[x] - 3 < 48 )
+                        aux[x] = ( ( s[x] - 3 ) + 57 ) - 47;
+                    else
+                        aux[x] =  ( s[x] - 3 );
+                }
+                else
+                {
+                    aux[x] = ( s[x] - 3 );
+                } // end if
+            } // end for
+        } // end if
+
+        return ( aux );
+
+    } // end decrypt ( )
+
+    /**
+     *  Método para separar todas as sequencias de caracteres separadas por espaços em branco.
+     *  @return quantidade de sequencias de caracteres identificadas, se houver; zero, caso contrario.
+    */
+    int split( std::string sequencia[ ] )
+    {
+        int result = 0;
+        std::string aux = "";
+
+        if( s.empty( ) )
+        {
+            setErro( 10 );
+        }
+        else
+        {
+            for( int x = 0; x < (int)s.size( ); x = x + 1 )
+            {
+                if( !isSpace( s[x] ) )
+                {
+                    aux = aux + s[x];
+                }
+                else
+                {
+                    sequencia[result] = aux;
+                    aux = "";
+                    result = result + 1;
+                } // end if
+            } // end for
+
+            if( !aux.empty( ) )
+            {
+                sequencia[result] = aux;
+                result = result + 1;
+            } // end if
+        } // end if
+
+        return ( result );
+
+    } // end split ( )
 
     std::string getErroMsg()
     {
-
         std::string erroMsg = "";
 
         switch( getErro( ) )
@@ -312,25 +548,31 @@ public:
                 erroMsg = NO_ERROR; 
                 break;
             case 1: 
-                erroMsg = "[ERRO] Nao foi possivel converter para inteiro"; 
+                erroMsg = "[ERRO] Nao foi possivel converter para inteiro."; 
                 break;
             case 2: 
-                erroMsg = "[ERRO] Nao foi possivel converter para real"; 
+                erroMsg = "[ERRO] Nao foi possivel converter para real."; 
                 break;
             case 3: 
-                erroMsg = "[ERRO] Nao foi possivel converter para valor logico"; 
+                erroMsg = "[ERRO] Nao foi possivel converter para valor logico."; 
                 break;
             case 4: 
-                erroMsg = "[ERRO] Nao foi possivel encontrar a substring"; 
+                erroMsg = "[ERRO] Nao foi possivel encontrar a substring."; 
                 break;
-            case 5: 
-                erroMsg = "[ERRO] Nao foi possivel alocar memoria para dividir string"; 
+            case 7: 
+                erroMsg = "[ERRO] Nao foi possivel trocar um caractere por outro."; 
                 break;
-            case 6: 
-                erroMsg = "[ERRO] Nao foi possivel inverter a string"; 
+            case 8: 
+                erroMsg = "[ERRO] Nao foi possivel codificar a string."; 
+                break;
+            case 9: 
+                erroMsg = "[ERRO] Nao foi possivel decodificar a string."; 
+                break;
+            case 10:
+                erroMsg = "[ERRO] Nao foi possivel separar as cadeias de caractere.";
                 break;
             default: 
-                erroMsg = "Codigo de erro invalido"; 
+                erroMsg = "Codigo de erro invalido."; 
                 break;
         }
 
