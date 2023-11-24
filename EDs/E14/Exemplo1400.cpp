@@ -36,7 +36,7 @@ void pause(std::string text)
 
 // ----------------------------------------------- classes
 
-#include "Erro.hpp" // classe para tratar erros
+#include "libs/Erro.hpp" // classe para tratar erros
 
 class MyString : public Erro
 {
