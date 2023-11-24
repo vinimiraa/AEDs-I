@@ -19,8 +19,8 @@
 
 // -------------------------- lista de dependencias
 
-#include "libshow.hpp"
-#include "MyString.hpp"
+#include "libs/libshow.hpp"
+#include "libs/MyString.hpp"
 
 // -------------------------- tratamento de erro
 
