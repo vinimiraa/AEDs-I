@@ -659,7 +659,6 @@ public:
 
     } // end getErroMsg ( )
 
-
 }; // end class MyString
 
 #endif
