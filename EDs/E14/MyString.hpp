@@ -538,6 +538,79 @@ public:
 
     } // end split ( )
 
+    /**
+     *  Método para fragmentar o conteúdo usando um delimitador à escolha, diferente de espaço em branco.
+     *  @return quantidade de sequencias de caracteres identificadas, se houver.
+    */
+    int fragmentar( char c, std::string sequencia[ ] )
+    {
+        std::string aux = "";
+        int y = 0;
+
+        if( s.empty( ) )
+        {
+            setErro( 11 );
+        }
+        else
+        {
+            // colocar o delimitador nos espaços em branco
+            for( int x = 0; x < (int)s.size( ); x = x + 1 )
+            {
+                if( isSpace( s[x] ) )
+                {
+                    s[x] = c;
+                } // end if
+            } // end for
+
+            // guardar no arranjo cada string até o novo delimitador
+            for( int x = 0; x < (int)s.size( ); x = x + 1 )
+            {
+                if( s[x] != c )
+                {
+                    aux = aux + s[x];
+                }
+                else
+                {
+                    sequencia[y] = aux;
+                    aux = "";
+                    y = y + 1;
+                } // end if
+            } // end for
+
+            if( !aux.empty( ) )
+            {
+                sequencia[y] = aux;
+                y = y + 1;
+            } // end if
+        } // end if
+
+        return ( y );
+
+    } // end fragmentar ( )
+
+    /**
+     *  Método para inverter a ordem dos símbolos na cadeia de caracteres.
+    */
+    void inverter( )
+    {
+        char temp;
+
+        if( s.empty( ) )
+        {
+            setErro( 12 );
+        }
+        else
+        {
+            for( int x = 0; x < (int)s.size( )/2; x = x + 1 )
+            {
+                temp = s[x];
+                s[x] = s[ s.size( ) - ( x + 1 ) ];
+                s[ s.size( ) - ( x + 1 ) ] = temp;
+            } // end for
+        } // end if
+        
+    } // end inverter ( )
+
     std::string getErroMsg()
     {
         std::string erroMsg = "";
@@ -570,6 +643,12 @@ public:
                 break;
             case 10:
                 erroMsg = "[ERRO] Nao foi possivel separar as cadeias de caractere.";
+                break;
+            case 11:
+                erroMsg = "[ERRO] Nao foi possivel fragmentar.";
+                break;
+            case 12:
+                erroMsg = "[ERRO] Nao foi possivel inverter.";
                 break;
             default: 
                 erroMsg = "Codigo de erro invalido."; 

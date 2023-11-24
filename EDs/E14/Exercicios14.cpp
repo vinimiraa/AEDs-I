@@ -280,6 +280,27 @@ void exercicio14E1( void )
     id( "Exercicio 14E1:" );
 
     // programa
+    MyString s( "banana laranja abacaxi maracuja uva" );
+    string sequencia[10];
+    int x = 0;
+    char c;
+    
+    c = readchar( "Digite um delimitador: " );
+
+    cout << endl << "String: " << "\""+s.getString( )+"\"" << endl << endl; 
+    
+    x = s.fragmentar( c, sequencia );
+
+    cout << "Nova String: " << "\""+s.getString( )+"\"" << endl << endl;
+
+    cout << "String Fragmentada: " << endl;
+    for( int z = 0; z < x; z = z + 1 )
+    {
+        cout << concat( "s", concat( tostring(z),": " ) ) << sequencia[z] << endl;
+    }
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -294,7 +315,19 @@ void exercicio14E2( void )
     id( "Exercicio 14E2:" );
 
     // programa
+    MyString s;
 
+    s.setString( readstring( "Digite uma string: " ) );
+
+    cout << endl << "String: " << "\""+s.getString( )+"\"" << endl << endl; 
+    
+    s.inverter( );
+
+    cout << "Invertida: " << "\""+s.getString( )+"\"" << endl;
+    
+    if( s.hasErro( ) )
+        cout << endl << s.getErroMsg( ) << endl;
+    
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio14E2 (  )
