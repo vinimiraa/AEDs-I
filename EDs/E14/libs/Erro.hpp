@@ -4,6 +4,8 @@
 #ifndef _ERRO_H_
 #define _ERRO_H_
 
+#include <string>
+
 /**
     Tratamento de erro.
     Codigos de erro: 0. Nao ha' erro.
