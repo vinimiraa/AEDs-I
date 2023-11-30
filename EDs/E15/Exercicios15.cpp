@@ -254,6 +254,9 @@ void exercicio1517( void )
     
     cout << endl << "Comparacao = " <<  x << endl;
     
+    delete_intArray( array1 );
+    delete_intArray( array2 );
+
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1517 (  )
@@ -270,7 +273,6 @@ void exercicio1518( void )
     intArray* array1 = nullptr;
     intArray* array2 = nullptr;
     intArray* concat = nullptr;
-    int x = 0;
     
     cout << "Arranjo 1: " << endl;
     array1 = read_intArray( );
@@ -279,8 +281,13 @@ void exercicio1518( void )
     
     concat = intArray_cat( array1, array2 );
     
+    cout << "Arranjos Concatenados: " << endl;
     print_intArray( concat );
     
+    delete_intArray( array1 );
+    delete_intArray( array2 );
+    delete_intArray( concat );
+
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1518 (  )
@@ -294,6 +301,28 @@ void exercicio1519( void )
     id( "Exercicio 1519:" );
 
     // programa
+    intArray* array1 = nullptr;
+    intArray* array2 = nullptr;
+    int x = 0;
+    
+    cout << "Arranjo 1: " << endl;
+    array1 = read_intArray( );
+    cout << endl;
+
+    array2 = new_intArray( array1->length );
+
+    x = readint( "Digite o valor a ser procurado: ");
+    
+    array2 = intArray_seek( array1, x );
+    
+    if( array2 )
+        print_intArray( array2 );
+        // cout << "OK";
+    else
+        cout << "array[]" << endl;
+    
+    delete_intArray( array1 );
+    delete_intArray( array2 );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -308,6 +337,21 @@ void exercicio1520( void )
     id( "Exercicio 1520:" );
 
     // programa
+    intArray* array1 = nullptr;
+    intArray* result = nullptr;
+    int start = 0, end = 0;
+
+    array1 = read_intArray( ); cout << endl;
+    start = readint( "Digite a posicao inicial: " );
+    end = readint( "Digite a posicao final: " );
+
+    result = intArray_sub( array1, start, end );
+
+    cout << "Sequencia separada: ";
+    print_intArray( result );
+
+    delete_intArray( array1 );
+    delete_intArray( result );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -322,6 +366,23 @@ void exercicio15E1( void )
     id( "Exercicio 15E1:" );
 
     // programa
+    intArray* array1 = nullptr;
+    intArray* array2 = nullptr;
+    intArray* result = nullptr;
+
+    cout << "Arranjo 1: " << endl;
+    array1 = read_intArray( ); cout << endl;
+    cout << "Arranjo 2: " << endl;
+    array2 = read_intArray( );
+
+    result = intArray_merge( array1, array2 );
+
+    cout << "Arranjos Intercalados: "; 
+    print_intArray( result );
+
+    delete_intArray( array1 );
+    delete_intArray( array2 );
+    delete_intArray( result );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -336,6 +397,23 @@ void exercicio15E2( void )
     id( "Exercicio 15E2:" );
 
     // programa
+    intArray* array1 = nullptr;
+    intArray* array2 = nullptr;
+    intArray* result = nullptr;
+
+    cout << "Arranjo 1: " << endl;
+    array1 = read_intArray( ); cout << endl;
+    cout << "Arranjo 2: " << endl;
+    array2 = read_intArray( );
+
+    result = intArray_mergeUp( array1, array2 );
+
+    cout << "Arranjos Intercalados em Ordem Crescente: "; 
+    print_intArray( result );
+
+    delete_intArray( array1 );
+    delete_intArray( array2 );
+    delete_intArray( result );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
