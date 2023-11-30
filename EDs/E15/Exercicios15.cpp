@@ -21,6 +21,7 @@
 
 #include "libs/libshow.hpp"
 #include "libs/cstring.hpp"
+#include "libs/intArray.hpp"
 
 using namespace std;
 
@@ -240,7 +241,19 @@ void exercicio1517( void )
     id( "Exercicio 1517:" );
 
     // programa
-
+    intArray* array1 = nullptr;
+    intArray* array2 = nullptr;
+    int x = 0;
+    
+    cout << "Arranjo 1: " << endl;
+    array1 = read_intArray( );
+    cout << endl << "Arranjo 2: " << endl;
+    array2 = read_intArray( );
+    
+    x = intArray_cmp( array1, array2 );
+    
+    cout << endl << "Comparacao = " <<  x << endl;
+    
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1517 (  )
@@ -254,7 +267,20 @@ void exercicio1518( void )
     id( "Exercicio 1518:" );
 
     // programa
-
+    intArray* array1 = nullptr;
+    intArray* array2 = nullptr;
+    intArray* concat = nullptr;
+    int x = 0;
+    
+    cout << "Arranjo 1: " << endl;
+    array1 = read_intArray( );
+    cout << endl << "Arranjo 2: " << endl;
+    array2 = read_intArray( );
+    
+    concat = intArray_cat( array1, array2 );
+    
+    print_intArray( concat );
+    
     // encerrar
     pause( "Aperte ENTER para continuar!" );
 } // fim exercicio1518 (  )

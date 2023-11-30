@@ -270,67 +270,6 @@ class String
         data = new char[length+1];
         data = str_cpy( data, text );
     } // alternative
-
-    typedef  struct s_intArray { int length; int *data; } intArray; 
-
-    typedef intArray* ref_intArray;
-
-    /**  
-        Funcao para comparar arranjos de inteiros 
-        por meio de apontadores. 
-        @return zero, se forem iguais; 
-                negativo, se o valor da diferenca for menor e estiver no primeiro arranjo 
-                positivo , se o valor da diferenca for maior   e estiver no primeiro arranjo 
-        @param p - apontador para inicio do primeiro  arranjo 
-        @param q - apontador para inicio do segundo arranjo 
-  */ 
-    int intArray_cmp ( ref_intArray p, ref_intArray q );
-
-    /**  
-        Funcao para juntar arranjos de inteiros 
-        por meio de apontadores. 
-        @return apontador para inicio do arranjo com a uniao 
-        @param p - apontador para inicio do primeiro  arranjo 
-        @param q - apontador para inicio do segundo arranjo 
-  */ 
-    ref_intArray intArray_cat ( ref_intArray p, ref_intArray q );
-
-    /**  
-        Funcao para procurar pela primeira ocorrencia de valor em arranjo 
-        por meio de apontador. 
-        @return apontador para a primeira ocorrência; NULL, caso contrario 
-        @param a - apontador para arranjo de inteiros 
-        @param x - valor ser procurado 
-    */ 
-    ref_intArray intArray_seek ( ref_intArray a, int x );
-
-    /**  
-        Funcao para separar sequencia de valores em arranjo 
-        por meio de apontador. 
-        @return apontador para inicio da sequencia de inteiros; NULL, caso contrario 
-        @param a      - apontador para arranjo de inteiros 
-        @param start - posicao inicial 
-        @param size  - quantidade de dados 
-    */ 
-    ref_intArray intArray_sub ( ref_intArray a, int start, int size ); 
-
-    /**  
-        Funcao para intercalar arranjos de inteiros 
-        por meio de apontadores. 
-        @return apontador para inicio do arranjo com a uniao 
-        @param p - apontador para inicio do primeiro  arranjo 
-        @param q - apontador para inicio do segundo arranjo 
-  */ 
-    ref_intArray intArray_merge ( ref_intArray p, ref_intArray q );
-
-    /**  
-        Funcao para intercalar arranjos de inteiros em ordem crescente 
-        por meio de apontadores. 
-        @return apontador para inicio do arranjo com a uniao 
-        @param p - apontador para inicio do primeiro  arranjo 
-        @param q - apontador para inicio do segundo arranjo 
-  */ 
-    ref_intArray intArray_mergeUp ( ref_intArray p, ref_intArray q );
         
 }; // end class
 
