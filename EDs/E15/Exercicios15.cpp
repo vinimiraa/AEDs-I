@@ -246,13 +246,13 @@ void exercicio1517( void )
     int x = 0;
     
     cout << "Arranjo 1: " << endl;
-    array1 = read_intArray( );
-    cout << endl << "Arranjo 2: " << endl;
-    array2 = read_intArray( );
+    array1 = read_intArray( ); cout << endl;
+    cout << "Arranjo 2: " << endl;
+    array2 = read_intArray( ); cout << endl;
     
     x = intArray_cmp( array1, array2 );
     
-    cout << endl << "Comparacao = " <<  x << endl;
+    cout << "Comparacao = " <<  x << endl;
     
     delete_intArray( array1 );
     delete_intArray( array2 );
@@ -275,9 +275,9 @@ void exercicio1518( void )
     intArray* concat = nullptr;
     
     cout << "Arranjo 1: " << endl;
-    array1 = read_intArray( );
-    cout << endl << "Arranjo 2: " << endl;
-    array2 = read_intArray( );
+    array1 = read_intArray( ); cout << endl;
+    cout << "Arranjo 2: " << endl;
+    array2 = read_intArray( ); cout << endl;
     
     concat = intArray_cat( array1, array2 );
     
@@ -316,10 +316,12 @@ void exercicio1519( void )
     array2 = intArray_seek( array1, x );
     
     if( array2 )
+    {
+        cout << endl << "Arranjo para a primeira ocorrencia: ";
         print_intArray( array2 );
-        // cout << "OK";
+    }
     else
-        cout << "array[]" << endl;
+        cout << endl << "array[]" << endl;
     
     delete_intArray( array1 );
     delete_intArray( array2 );
@@ -347,7 +349,7 @@ void exercicio1520( void )
 
     result = intArray_sub( array1, start, end );
 
-    cout << "Sequencia separada: ";
+    cout << endl << "Sequencia separada: ";
     print_intArray( result );
 
     delete_intArray( array1 );
@@ -373,7 +375,7 @@ void exercicio15E1( void )
     cout << "Arranjo 1: " << endl;
     array1 = read_intArray( ); cout << endl;
     cout << "Arranjo 2: " << endl;
-    array2 = read_intArray( );
+    array2 = read_intArray( ); cout << endl;
 
     result = intArray_merge( array1, array2 );
 
@@ -382,7 +384,7 @@ void exercicio15E1( void )
 
     delete_intArray( array1 );
     delete_intArray( array2 );
-    delete_intArray( result );
+    // delete_intArray( result );
 
     // encerrar
     pause( "Aperte ENTER para continuar!" );
@@ -404,7 +406,7 @@ void exercicio15E2( void )
     cout << "Arranjo 1: " << endl;
     array1 = read_intArray( ); cout << endl;
     cout << "Arranjo 2: " << endl;
-    array2 = read_intArray( );
+    array2 = read_intArray( ); cout << endl;
 
     result = intArray_mergeUp( array1, array2 );
 

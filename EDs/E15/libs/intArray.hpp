@@ -277,6 +277,7 @@ ref_intArray intArray_sub ( ref_intArray a, int start, int size )
 ref_intArray intArray_merge ( ref_intArray p, ref_intArray q )
 {
     unsigned int x = 0;
+    unsigned int y = 1;
     intArray* result = nullptr;
 
     if( exist_intArray( p ) && exist_intArray( q ) )
@@ -285,7 +286,27 @@ ref_intArray intArray_merge ( ref_intArray p, ref_intArray q )
 
         if( exist_intArray( result ) )
         {
-            cout << "OK";
+            while( *(p->data+x) && *(q->data+x) )
+            {
+                *(result->data+y-1) = *(p->data+x);
+                *(result->data+y)   = *(q->data+x);
+                x = x + 1;
+                y = y + 2;
+            } // end while
+
+            while( *(p->data+x) )
+            {
+                *(result->data+y-1) = *(p->data+x);
+                x = x + 1;
+                y = y + 1;
+            } // end while
+
+            while( *(q->data+x) )
+            {
+                *(result->data+y-1) = *(q->data+x);
+                x = x + 1;
+                y = y + 1;
+            } // end while
         } // end if
     } // end if
 
@@ -300,7 +321,52 @@ ref_intArray intArray_merge ( ref_intArray p, ref_intArray q )
     @param p - apontador para inicio do primeiro  arranjo 
     @param q - apontador para inicio do segundo arranjo 
 */ 
-ref_intArray intArray_mergeUp ( ref_intArray p, ref_intArray q );
+ref_intArray intArray_mergeUp ( ref_intArray p, ref_intArray q )
+{
+    unsigned int x = 0;
+    unsigned int y = 1;
+    intArray* result = nullptr;
 
+    if( exist_intArray( p ) && exist_intArray( q ) )
+    {
+        result = new_intArray( p->length + q->length );
+
+        if( exist_intArray( result ) )
+        {
+            while( *(p->data+x) && *(q->data+x) )
+            {
+                if( *(p->data+x) < *(q->data+x) )
+                {
+                    *(result->data+y-1) = *(p->data+x);
+                    *(result->data+y)   = *(q->data+x);
+                }
+                else
+                {
+                    *(result->data+y-1) = *(q->data+x);
+                    *(result->data+y)   = *(p->data+x);
+                }
+                x = x + 1;
+                y = y + 2;
+            } // end while
+
+            while( *(p->data+x) )
+            {
+                *(result->data+y-1) = *(p->data+x);
+                x = x + 1;
+                y = y + 1;
+            } // end while
+
+            while( *(q->data+x) )
+            {
+                *(result->data+y-1) = *(q->data+x);
+                x = x + 1;
+                y = y + 1;
+            } // end while
+        } // end if
+    } // end if
+
+    return ( result );
+
+} // end intArray_mergeUp ( )
 
 #endif
