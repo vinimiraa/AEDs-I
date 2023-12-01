@@ -11,74 +11,14 @@
  *  sujeito aos termos e condições estabelecidos no contrato de licença, se fornecido,
  *  ou, na ausência de tal contrato, pelos termos padrão da Licença MIT.
  *  ----------------------------------------------------------------------------
- */
-
+*/
 
 // ---------------------- lista de dependencias
 
+#include "matrix.h"  // definicoes dos metodos
 #include <stdio.h>   // para entradas e saidas
 #include <stdlib.h>  // para a biblioteca padrao
-#include <stddef.h>  // para definicoes basicas
-#include <stdarg.h>  // para tratar argumentos
-#include <string.h>  // para cadeias de caracteres
-#include <ctype.h>   // para tipos padroes
 #include <math.h>    // para definicoes matematicas
-#include <time.h>    // para medir tempo
-#include <wchar.h>   // para 16-bit characters
-
-// ---------------------- redefinicoes uteis
-
-#ifndef _MATRIX_H_
-#define _MATRIX_H_
-
-// ---------------------- definicoes de constantes
-
-const int MAX_SIZE = 10 ;  // definir tamanho padrao para matrizes
-
-// ---------------------- definicoes de variaveis globais
-
-#define bool  int
-#define false 0
-#define true (!false)
-
-typedef struct s_intMatrix
-{
-    int row;
-    int col;
-    int** data;
-    int ix,iy;
-} intMatrix;
-
-/**
-    Definicao de referencia para matriz com inteiros baseado em estrutura
-*/
-typedef intMatrix* ref_intMatrix;
-
-typedef struct s_doubleMatrix
-{
-    int row;
-    int col;
-    double** data;
-    int ix,iy;
-} doubleMatrix;
-
-/**
-    Definicao de referencia para matriz real baseado em estrutura
-*/
-typedef doubleMatrix* ref_doubleMatrix;
-
-typedef struct s_boolMatrix
-{
-    int row;
-    int col;
-    bool** data;
-    int ix,iy;
-} boolMatrix;
-
-/**
-    Definicao de referencia para matriz booleana baseado em estrutura
-*/
-typedef boolMatrix* ref_boolMatrix;
 
 // ---------------------- intMatrix
 
@@ -1665,5 +1605,3 @@ boolMatrix* copy_boolMatrix( boolMatrix* matrix )
 
     return ( copy );
 } // end copy_boolMatrix ( )
-
-#endif
