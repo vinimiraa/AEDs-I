@@ -1,6 +1,6 @@
 /*
  *  ----------------------------------------------------------------------------
- *  Biblioteca Matrix em C - "matrix_cpy.h"
+ *  Copia da Biblioteca Matrix em C - "matrix_cpy.h"
  *  ----------------------------------------------------------------------------
  *  Copyright (c) 2023, Vinicius Miranda de Araujo
  *  Todos os direitos reservados.
