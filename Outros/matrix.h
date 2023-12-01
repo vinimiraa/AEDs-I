@@ -59,27 +59,24 @@ typedef struct s_doubleMatrix
 */
 typedef doubleMatrix* ref_doubleMatrix;
 
-typedef struct s_charMatrix
-{
-    int row;
-    int col;
-    char** data;
-    int ix,iy;
-} charMatrix;
-
 typedef struct s_boolMatrix
 {
     int row;
     int col;
-    float** data;
+    bool** data;
     int ix,iy;
 } boolMatrix;
+
+/**
+    Definicao de referencia para matriz booleana baseado em estrutura
+*/
+typedef boolMatrix* ref_boolMatrix;
 
 // ---------------------- para entradas e saidas
 
 /**
- * Verifica se a matriz de inteiros e os dados existem.
- * @return TRUE : se existem; FALSE : caso contrario.
+ *  Verifica se a matriz de inteiros e os dados existem.
+ *  @return TRUE : se existem; FALSE : caso contrario.
 */
 bool exist_intMatrix( intMatrix* matrix )
 {
@@ -92,8 +89,8 @@ bool exist_intMatrix( intMatrix* matrix )
 } // end exist_intMatrix ( )
 
 /**
- * Verifica se a matriz real e os dados existem.
- * @return TRUE : se existem; FALSE : caso contrario.
+ *  Verifica se a matriz real e os dados existem.
+ *  @return TRUE : se existem; FALSE : caso contrario.
 */
 bool exist_doubleMatrix( doubleMatrix* matrix )
 {
@@ -106,8 +103,22 @@ bool exist_doubleMatrix( doubleMatrix* matrix )
 } // end exist_doubleMatrix ( )
 
 /**
- * Cria e aloca o espaço de memória para uma matriz de inteiros.
- * @return MATRIZ.
+ *  Verifica se a matriz booleana e os dados existem.
+ *  @return TRUE : se existem; FALSE : caso contrario.
+*/
+bool exist_boolMatrix( boolMatrix* matrix )
+{
+    bool result = false;
+    if( matrix != NULL && matrix->data != NULL )
+    {
+        result = true;
+    } // end if
+    return ( result );
+} // end exist_boolMatrix ( )
+
+/**
+ *  Cria e aloca o espaço de memória para uma matriz de inteiros.
+ *  @return MATRIZ.
 */
 intMatrix* new_intMatrix( int rows, int columns )
 {
@@ -141,8 +152,8 @@ intMatrix* new_intMatrix( int rows, int columns )
 } // end new_intMatrix ( )
 
 /**
- * Cria e aloca o espaço de memória para uma matriz real.
- * @return MATRIZ.
+ *  Cria e aloca o espaço de memória para uma matriz real.
+ *  @return MATRIZ.
 */
 doubleMatrix* new_doubleMatrix( int rows, int columns )
 {
@@ -176,7 +187,42 @@ doubleMatrix* new_doubleMatrix( int rows, int columns )
 } // end new_doubleMatrix ( )
 
 /**
- * Inicializa uma matriz de inteiros com um valor. 
+ *  Cria e aloca o espaço de memória para uma matriz booleana.
+ *  @return MATRIZ.
+*/
+boolMatrix* new_boolMatrix( int rows, int columns )
+{
+    boolMatrix *matrix = ( boolMatrix* ) malloc ( 1 * sizeof( boolMatrix ) );
+    
+    if( matrix != NULL )
+    {
+        matrix->row = 0;
+        matrix->col = 0;
+        matrix->data = NULL;
+        
+        if ( rows > 0 && columns > 0 )
+        {
+            matrix->row = rows;
+            matrix->col = columns;
+            matrix->data = ( bool** ) malloc( rows * sizeof( bool* ) );
+            
+            if ( matrix->data )
+            {
+                for (matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1)
+                {
+                    matrix->data[matrix->ix] = ( bool* ) malloc( columns * sizeof( bool ) );
+                } // end for
+            } // end if
+        } // end if
+        matrix->ix = 0;
+        matrix->iy = 0;
+    } // end if
+
+    return ( matrix );
+} // end new_boolMatrix ( )
+
+/**
+ *  Inicializa uma matriz de inteiros com um valor. 
 */
 void init_intMatrix( intMatrix* matrix, int init_value )
 {
@@ -195,7 +241,7 @@ void init_intMatrix( intMatrix* matrix, int init_value )
 } // end init_intMatrix ( )
 
 /**
- * Inicializa uma matriz real com um valor. 
+ *  Inicializa uma matriz real com um valor. 
 */
 void init_doubleMatrix( doubleMatrix* matrix, double init_value )
 {
@@ -214,7 +260,26 @@ void init_doubleMatrix( doubleMatrix* matrix, double init_value )
 } // end init_doubleMatrix ( )
 
 /**
- * Libera o espaço de memória de uma matriz de inteiros.
+ *  Inicializa uma matriz booleana com um valor. 
+*/
+void init_boolMatrix( boolMatrix* matrix, bool init_value )
+{
+    if( exist_boolMatrix( matrix ) )
+    {
+        for( matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1 )
+        {
+            for( matrix->iy = 0; matrix->iy < matrix->col; matrix->iy = matrix->iy + 1 )
+            {
+                matrix->data[matrix->ix][matrix->iy] = init_value;
+            } // end for
+        } // end for
+        matrix->ix = 0;
+        matrix->iy = 0;
+    } // end if
+} // end init_boolMatrix ( )
+
+/**
+ *  Libera o espaço de memória de uma matriz de inteiros.
 */
 void free_intMatrix( intMatrix* matrix )
 {
@@ -230,7 +295,7 @@ void free_intMatrix( intMatrix* matrix )
 } // end free_intMatrix ( )
 
 /**
- * Libera o espaço de memória de uma matriz real.
+ *  Libera o espaço de memória de uma matriz real.
 */
 void free_doubleMatrix( doubleMatrix* matrix )
 {
@@ -246,7 +311,23 @@ void free_doubleMatrix( doubleMatrix* matrix )
 } // end free_doubleMatrix ( )
 
 /**
- * Mostra uma matriz com valores inteiros.
+ *  Libera o espaço de memória de uma matriz booleana.
+*/
+void free_boolMatrix( boolMatrix* matrix )
+{
+    if ( exist_boolMatrix( matrix ) )
+    {
+        for (matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1)
+        {
+            free(matrix->data[matrix->ix]);
+        } // end for
+        free(matrix->data);
+        free(matrix);
+    } // end if
+} // end free_boolMatrix ( )
+
+/**
+ *  Mostra uma matriz com valores inteiros.
 */
 void print_intMatrix( intMatrix* matrix )
 {
@@ -264,7 +345,7 @@ void print_intMatrix( intMatrix* matrix )
 } // end print_intMatrix ( )
 
 /**
- * Mostra uma matriz com valores reais.
+ *  Mostra uma matriz com valores reais.
 */
 void print_doubleMatrix( doubleMatrix* matrix )
 {
@@ -282,8 +363,26 @@ void print_doubleMatrix( doubleMatrix* matrix )
 } // end print_doubleMatrix ( )
 
 /**
- * Lê os dados de uma matriz de inteiros.
- * @return MATRIZ com os dados lidos.
+ *  Mostra uma matriz com valores booleanos.
+*/
+void print_boolMatrix( boolMatrix* matrix )
+{
+    if ( exist_boolMatrix( matrix ) )
+    {
+        for ( matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1 )
+        {
+            for ( matrix->iy = 0; matrix->iy < matrix->col; matrix->iy = matrix->iy + 1 )
+            {
+                printf( "%d\t", matrix->data[matrix->ix][matrix->iy] );
+            } // end for
+            printf( "\n" );
+        } // end for
+    } // end if
+} // end print_boolMatrix ( )
+
+/**
+ *  Lê os dados de uma matriz de inteiros.
+ *  @return MATRIZ com os dados lidos.
 */
 intMatrix* read_intMatrix( )
 {
@@ -333,8 +432,8 @@ intMatrix* read_intMatrix( )
 } // end read_intMatrix ( )
 
 /**
- * Lê os dados de uma matriz real.
- * @return MATRIZ com os dados lidos.
+ *  Lê os dados de uma matriz real.
+ *  @return MATRIZ com os dados lidos.
 */
 doubleMatrix* read_doubleMatrix( )
 {
@@ -384,7 +483,58 @@ doubleMatrix* read_doubleMatrix( )
 } // end read_doubleMatrix ( )
 
 /**
- * Grava em um arquivo uma matriz de inteiros.
+ *  Lê os dados de uma matriz booleana.
+ *  @return MATRIZ com os dados lidos.
+*/
+boolMatrix* read_boolMatrix( )
+{
+    boolMatrix* matrix = NULL;
+    int rows = 0;
+    int columns = 0;
+
+    do
+    {
+        printf( "\n%s" , "Rows = " );
+        scanf( "%d", &rows ); 
+        getchar( );
+    }while( rows <= 0 );
+    do
+    {
+        printf( "\n%s", "Columns = " );
+        scanf( "%d", &columns );
+        getchar( );
+    } while ( columns <= 0 );
+
+    matrix = new_boolMatrix( rows, columns );
+
+    if( matrix != NULL )
+    {
+        if( matrix->data == NULL )
+        {
+            matrix->row = 0;
+            matrix->col = 0;
+            matrix->ix  = 0;
+            matrix->iy  = 0;
+        }
+        else
+        {
+            for( matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1 )
+            {
+                for( matrix->iy = 0; matrix->iy < matrix->col; matrix->iy = matrix->iy + 1 )
+                {
+                    printf( "%2d, %2d: ", matrix->ix, matrix->iy );
+                    scanf( "%d", &matrix->data[matrix->ix][matrix->iy] );
+                    getchar( );
+                } // end for
+            } // end for
+        } // end if
+    } // end if
+
+    return ( matrix );
+} // end read_boolMatrix ( )
+
+/**
+ *  Grava em um arquivo uma matriz de inteiros.
 */
 void fprint_intMatrix( char* filename , intMatrix* matrix )
 {
@@ -411,7 +561,7 @@ void fprint_intMatrix( char* filename , intMatrix* matrix )
 } // end fprint_intMatrix ( )
 
 /**
- * Grava em um arquivo uma matriz real.
+ *  Grava em um arquivo uma matriz real.
 */
 void fprint_doubleMatrix( char* filename , doubleMatrix* matrix )
 {
@@ -438,8 +588,35 @@ void fprint_doubleMatrix( char* filename , doubleMatrix* matrix )
 } // end fprint_doubleMatrix ( )
 
 /**
- * Lê de um arquivo uma matriz de inteiros.
- * @return MATRIZ com os valores lidos do arquivo.
+ *  Grava em um arquivo uma matriz booleana.
+*/
+void fprint_boolMatrix( char* filename , boolMatrix* matrix )
+{
+    FILE* file = fopen( filename, "wt" );
+
+    if( !exist_boolMatrix( matrix ) )
+    {
+        printf( "\n%s\n", "ERROR: the matrix does not exist." );
+    }
+    else
+    {
+        fprintf( file, "%d\n", matrix->row );
+        fprintf( file, "%d\n", matrix->col );
+        for( matrix->ix = 0; matrix->ix < matrix->row; matrix->ix = matrix->ix + 1 )
+        {
+            for( matrix->iy = 0; matrix->iy < matrix->col; matrix->iy = matrix->iy + 1 )
+            {
+                fprintf( file, "%d\n", matrix->data[matrix->ix][matrix->iy] );
+            } // end for
+        } // end for
+
+        fclose( file );
+    } // end if
+} // end fprint_boolMatrix ( )
+
+/**
+ *  Lê de um arquivo uma matriz de inteiros.
+ *  @return MATRIZ com os valores lidos do arquivo.
 */
 intMatrix* fread_intMatrix( char* filename )
 {
@@ -500,8 +677,8 @@ intMatrix* fread_intMatrix( char* filename )
 } // end fread_intMatrix ( ) 
 
 /**
- * Lê de um arquivo uma matriz real.
- * @return MATRIZ com os valores lidos do arquivo.
+ *  Lê de um arquivo uma matriz real.
+ *  @return MATRIZ com os valores lidos do arquivo.
 */
 doubleMatrix* fread_doubleMatrix( char* filename )
 {
@@ -559,11 +736,73 @@ doubleMatrix* fread_doubleMatrix( char* filename )
     fclose ( file );
     
     return (matrix);
-} // end fread_doubleMatrix ( ) 
+} // end fread_doubleMatrix ( )
 
 /**
- * Faz a transposição de uma matriz de inteiros.
- * @return MATRIZ transposta.
+ *  Lê de um arquivo uma matriz booleana.
+ *  @return MATRIZ com os valores lidos do arquivo.
+*/
+boolMatrix* fread_boolMatrix( char* filename )
+{
+    FILE *file = fopen( filename, "rt" );
+    boolMatrix* matrix = NULL;
+    int rows = 0;
+    int columns = 0;
+    
+    if ( file == NULL )
+    {
+        printf( "\n%s\n", "ERROR: Unable to open the file." );
+    }
+    else
+    {
+        fscanf( file, "%d", &rows ); fgetc( file );
+        fscanf( file, "%d", &columns ); fgetc( file );
+
+        if ( rows <= 0 || columns <= 0 )
+        {
+            printf( "\n%s\n", "ERROR: Invalid size." );
+        }
+        else
+        {
+            matrix = new_boolMatrix( rows, columns );
+
+            if ( matrix != NULL && matrix->data == NULL )
+            {
+                matrix->row = 0;
+                matrix->col = 0;
+                matrix->ix = 0;
+                matrix->iy = 0;
+            }
+            else
+            {
+                if ( matrix != NULL )
+                {
+                    matrix->ix = 0;
+                    while ( !feof( file ) && matrix->ix < matrix->row )
+                    {
+                        matrix->iy = 0;
+                        while ( !feof( file ) && matrix->iy < matrix->col )
+                        {
+                            fscanf( file, "%d", &( matrix->data[matrix->ix][matrix->iy] ) );
+                            fgetc( file );
+                            matrix->iy = matrix->iy + 1;
+                        } // end while
+                        matrix->ix = matrix->ix + 1;
+                    } // end while
+                    matrix->ix = 0;
+                    matrix->iy = 0;
+                } // end if
+            } // end if
+        } // end if
+    } // end if
+    fclose ( file );
+    
+    return (matrix);
+} // end fread_boolMatrix ( ) 
+
+/**
+ *  Faz a transposição de uma matriz de inteiros.
+ *  @return MATRIZ transposta.
 */
 intMatrix* transpose_intMatrix( intMatrix* matrix ) 
 {
@@ -608,8 +847,8 @@ intMatrix* transpose_intMatrix( intMatrix* matrix )
 } // end transpose_intMatrix ( )
 
 /**
- * Faz a transposição de uma matriz real.
- * @return MATRIZ transposta.
+ *  Faz a transposição de uma matriz real.
+ *  @return MATRIZ transposta.
 */
 doubleMatrix* transpose_doubleMatrix( doubleMatrix* matrix ) 
 {
@@ -654,8 +893,8 @@ doubleMatrix* transpose_doubleMatrix( doubleMatrix* matrix )
 } // end transpose_doubleMatrix ( )
 
 /**
- * Verifica se a matriz de inteiros só tem zeros.
- * @return TRUE : se só tem zeros; FALSE : caso contrário.
+ *  Verifica se a matriz de inteiros só tem zeros.
+ *  @return TRUE : se só tem zeros; FALSE : caso contrário.
 */
 bool iszero_intMatrix ( intMatrix* matrix )
 {
@@ -683,8 +922,8 @@ bool iszero_intMatrix ( intMatrix* matrix )
 } // end iszero_intMatrix ( )
 
 /**
- * Verifica se a matriz real só tem zeros.
- * @return TRUE : se só tem zeros; FALSE : caso contrário.
+ *  Verifica se a matriz real só tem zeros.
+ *  @return TRUE : se só tem zeros; FALSE : caso contrário.
 */
 bool iszero_doubleMatrix ( doubleMatrix* matrix )
 {
@@ -712,8 +951,8 @@ bool iszero_doubleMatrix ( doubleMatrix* matrix )
 } // end iszero_doubleMatrix ( )
 
 /**
- * Verifica se duas matrizes de inteiros são iguais.
- * @return TRUE : se iguais; FALSE : caso contrário. 
+ *  Verifica se duas matrizes de inteiros são iguais.
+ *  @return TRUE : se iguais; FALSE : caso contrário. 
 */
 bool compare_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
@@ -750,8 +989,8 @@ bool compare_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 } // end compare_intMatrix ( )
 
 /**
- * Verifica se duas matrizes reais são iguais.
- * @return TRUE : se iguais; FALSE : caso contrário. 
+ *  Verifica se duas matrizes reais são iguais.
+ *  @return TRUE : se iguais; FALSE : caso contrário. 
 */
 bool compare_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 {
@@ -864,8 +1103,8 @@ doubleMatrix* copy_doubleMatrix( doubleMatrix* matrix )
 } // end copy_doubleMatrix ( )
 
 /**
- * Soma duas matrizes de inteiros.
- * @return MATRIZ resultante da soma.
+ *  Soma duas matrizes de inteiros.
+ *  @return MATRIZ resultante da soma.
 */
 intMatrix* add_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
@@ -903,8 +1142,8 @@ intMatrix* add_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 } // end add_intMatrix ( )
 
 /**
- * Soma duas matrizes reais.
- * @return MATRIZ resultante da soma.
+ *  Soma duas matrizes reais.
+ *  @return MATRIZ resultante da soma.
 */
 doubleMatrix* add_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 {
@@ -942,8 +1181,8 @@ doubleMatrix* add_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 } // end add_doubleMatrix ( )
 
 /**
- * Faz a diferença de duas matrizes de inteiros.
- * @return MATRIZ resultante da diferença.
+ *  Faz a diferença de duas matrizes de inteiros.
+ *  @return MATRIZ resultante da diferença.
 */
 intMatrix* diff_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
@@ -981,8 +1220,8 @@ intMatrix* diff_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 } // end diff_intMatrix ( )
 
 /**
- * Faz a diferença de duas matrizes reais.
- * @return MATRIZ resultante da diferença.
+ *  Faz a diferença de duas matrizes reais.
+ *  @return MATRIZ resultante da diferença.
 */
 doubleMatrix* diff_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 {
@@ -1020,8 +1259,8 @@ doubleMatrix* diff_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 } // end diff_doubleMatrix ( )
 
 /**
- * Faz o produto de duas matrizes de inteiros.
- * @return MATRIZ resultante do produto.
+ *  Faz o produto de duas matrizes de inteiros.
+ *  @return MATRIZ resultante do produto.
 */
 intMatrix* product_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
@@ -1066,8 +1305,8 @@ intMatrix* product_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 } // end product_intMatrix ( )
 
 /**
- * Faz o produto de duas matrizes reais.
- * @return MATRIZ resultante do produto.
+ *  Faz o produto de duas matrizes reais.
+ *  @return MATRIZ resultante do produto.
 */
 doubleMatrix* product_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 {
@@ -1112,8 +1351,8 @@ doubleMatrix* product_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2
 } // end product_doubleMatrix ( )
 
 /**
- * Multiplica cada elemento de uma matriz de inteiros por uma constante inteira.
- * @return MATRIZ resultante.
+ *  Multiplica cada elemento de uma matriz de inteiros por uma constante inteira.
+ *  @return MATRIZ resultante.
 */
 intMatrix* scalar_intMatrix( intMatrix* matrix, int k )
 {
@@ -1137,8 +1376,8 @@ intMatrix* scalar_intMatrix( intMatrix* matrix, int k )
 } // end scalar_intMatrix ( )
 
 /**
- * Multiplica cada elemento de uma matriz real por uma constante real.
- * @return MATRIZ resultante.
+ *  Multiplica cada elemento de uma matriz real por uma constante real.
+ *  @return MATRIZ resultante.
 */
 doubleMatrix* scalar_doubleMatrix( doubleMatrix* matrix, double k )
 {
@@ -1160,5 +1399,96 @@ doubleMatrix* scalar_doubleMatrix( doubleMatrix* matrix, double k )
 
     return ( aux );
 } // end scalar_doubleMatrix ( )
+
+/**
+ *  Realiza a operação lógica AND entre duas matrizes booleanas.
+ *  @return MATRIZ resultante da operação AND.
+ */
+boolMatrix* and_boolMatrix( boolMatrix* matrix1, boolMatrix* matrix2 )
+{
+    boolMatrix* result = NULL;
+
+    if( exist_boolMatrix( matrix1 ) && exist_boolMatrix( matrix2 ) ) 
+    {
+        if( matrix1->row == matrix2->row && matrix1->col == matrix2->col )
+        {
+            result = new_boolMatrix( matrix1->row, matrix1->col );
+
+            if( exist_boolMatrix( result ) )
+            {
+                for( result->ix = 0; result->ix < result->row; result->ix = result->ix + 1) 
+                {
+                    for( result->iy = 0; result->iy < result->col; result->iy = result->iy + 1 ) 
+                    {
+                        result->data[result->ix][result->iy] =
+                                matrix1->data[result->ix][result->iy] &&
+                                matrix2->data[result->ix][result->iy];
+                    } // end for
+                } // end for
+            } // end if
+        } // end if
+    } // end if
+
+    return ( result );
+} // end and_boolMatrix ( )
+
+/**
+ *  Realiza a operação lógica OR entre duas matrizes booleanas.
+ *  @return MATRIZ resultante da operação OR.
+ */
+boolMatrix* or_boolMatrix( boolMatrix* matrix1, boolMatrix* matrix2 ) 
+{
+    boolMatrix* result = NULL;
+
+    if( exist_boolMatrix( matrix1 ) && exist_boolMatrix( matrix2 ) ) 
+    {
+        if( matrix1->row == matrix2->row && matrix1->col == matrix2->col )
+        {
+            result = new_boolMatrix(matrix1->row, matrix1->col);
+
+            if ( exist_boolMatrix( result ) ) 
+            {
+                for( result->ix = 0; result->ix < result->row; result->ix = result->ix + 1 ) 
+                {
+                    for( result->iy = 0; result->iy < result->col; result->iy = result->iy + 1 ) 
+                    {
+                        result->data[result->ix][result->iy] =
+                                matrix1->data[result->ix][result->iy] ||
+                                matrix2->data[result->ix][result->iy];
+                    } // end for
+                } // end for
+            } // end if
+        } // end if
+    } // end if
+
+    return ( result );
+} // end or_boolMatrix ( )
+
+/**
+ *  Realiza a operação lógica NOT em uma matriz booleana.
+ *  @return MATRIZ resultante da operação NOT.
+ */
+boolMatrix* not_boolMatrix( boolMatrix* matrix ) 
+{
+    boolMatrix* result = NULL;
+
+    if ( exist_boolMatrix( matrix ) ) 
+    {
+        result = new_boolMatrix( matrix->row, matrix->col );
+
+        if ( exist_boolMatrix( result ) ) 
+        {
+            for( result->ix = 0; result->ix < result->row; result->ix = result->ix +1 ) 
+            {
+                for( result->iy = 0; result->iy < result->col; result->iy = result->iy +1 ) 
+                {
+                    result->data[result->ix][result->iy] = !matrix->data[result->ix][result->iy];
+                } // end for
+            } // end for
+        } // end if
+    } // end if
+
+    return ( result );
+} // end not_boolMatrix ( )
 
 #endif
