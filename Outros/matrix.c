@@ -1,6 +1,6 @@
 /*
  *  ----------------------------------------------------------------------------
- *  "Biblioteca Matrix em C"
+ *  Definicoes da Biblioteca Matrix em C - "matrix.c"
  *  ----------------------------------------------------------------------------
  *  Copyright (c) 2023, Vinicius Araujo
  *  Todos os direitos reservados.
