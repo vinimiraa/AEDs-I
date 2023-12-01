@@ -2,7 +2,7 @@
  *  ----------------------------------------------------------------------------
  *  Biblioteca Matrix em C - "matrix_cpy.h"
  *  ----------------------------------------------------------------------------
- *  Copyright (c) 2023, Vinicius Araujo
+ *  Copyright (c) 2023, Vinicius Miranda de Araujo
  *  Todos os direitos reservados.
  *  
  *  Este código fonte é propriedade exclusiva de Vinicius Miranda de Araujo e não pode ser
