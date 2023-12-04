@@ -1,20 +1,20 @@
 /*
- * -------------------------- Documentacao
- * Pontificia Universidade Catolica de Minas Gerais
- * Curso de Ciencia da Computacao
- * Algoritmos e Estruturas de Dados I
- *
- * Exercicios0X - v0.0. - __ / __ / ____
- * Author: Vinicius Miranda de Araujo
- *
- * Para compilar em terminal (janela de comandos):
- *      Linux : gcc -o Exercicios0X Exercicios0X.c
- *      Windows: gcc -o Exercicios0X Exercicios0X.c
- *
- * Para executar em terminal (janela de comandos):
- *      Linux : ./Exercicios0X
- *      Windows: Exercicios0X
- *
+ *  -------------------------- Documentacao
+ *  Pontificia Universidade Catolica de Minas Gerais
+ *  Curso de Ciencia da Computacao
+ *  Algoritmos e Estruturas de Dados I
+ *  
+ *  Exercicios0X - v0.0. - __ / __ / ____
+ *  Author: Vinicius Miranda de Araujo
+ *  
+ *  Para compilar em terminal (janela de comandos):
+ *       Linux : gcc -o Exercicios0X Exercicios0X.c
+ *       Windows: gcc -o Exercicios0X Exercicios0X.c
+ *  
+ *  Para executar em terminal (janela de comandos):
+ *       Linux : ./Exercicios0X
+ *       Windows: Exercicios0X
+ *  
  */
 
 // -------------------------- lista de dependencias
