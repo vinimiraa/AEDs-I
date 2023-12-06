@@ -1632,4 +1632,5 @@ boolMatrix* copy_boolMatrix( boolMatrix* matrix )
 
     return ( copy );
 } // end copy_boolMatrix ( )
+
 // ---------------------------------- Fim
