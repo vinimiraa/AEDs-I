@@ -16,56 +16,39 @@
 #ifndef _MATRIX_H_
 #define _MATRIX_H_
 
-// ---------------------- definicoes de constantes
+// ---------------------------------- Definições de Constantes
 
-const int MAX_SIZE = 10 ;  // definir tamanho padrao para matrizes
+// Tamanho padrão para matrizes sem estruturas
+const int MAX_SIZE = 10 ;  
 
-// ---------------------- definicoes de variaveis globais
+// ---------------------------------- Definições de Variáveis Globais
 
+// Definição de tipos booleanos
 #define bool  int
 #define false 0
 #define true (!false)
 
-typedef struct s_intMatrix
-{
-    int row;
-    int col;
-    int** data;
-    int ix,iy;
-} intMatrix;
+// Estrutura para matriz de inteiros.
+typedef struct s_intMatrix intMatrix;
 
-/**
-    Definicao de referencia para matriz com inteiros baseado em estrutura
-*/
+// Referência para matriz com inteiros baseado em estrutura.
 typedef intMatrix* ref_intMatrix;
 
-typedef struct s_doubleMatrix
-{
-    int row;
-    int col;
-    double** data;
-    int ix,iy;
-} doubleMatrix;
+// Estrutura para matriz real.
+typedef struct s_doubleMatrix doubleMatrix;
 
-/**
-    Definicao de referencia para matriz real baseado em estrutura
-*/
+// Referência para matriz real baseado em estrutura.
 typedef doubleMatrix* ref_doubleMatrix;
 
-typedef struct s_boolMatrix
-{
-    int row;
-    int col;
-    bool** data;
-    int ix,iy;
-} boolMatrix;
+// Estrutura para matriz booleana.
+typedef struct s_boolMatrix boolMatrix;
 
-/**
-    Definicao de referencia para matriz booleana baseado em estrutura
-*/
+// Referência para matriz booleana baseado em estrutura.
 typedef boolMatrix* ref_boolMatrix;
 
-// ---------------------- intMatrix*
+// ---------------------------------- Protótipo de Funções
+
+// ---------------------- Protótipo de intMatrix
 
 bool exist_intMatrix( intMatrix* matrix );
 
@@ -103,7 +86,7 @@ intMatrix* product_intMatrix( intMatrix* matrix1, intMatrix* matrix2 );
 
 intMatrix* scalar_intMatrix( intMatrix* matrix, int k );
 
-// ---------------------- doubleMatrix*
+// ---------------------- Protótipo de doubleMatrix
 
 bool exist_doubleMatrix( doubleMatrix* matrix );
 
@@ -141,7 +124,7 @@ doubleMatrix* product_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2
 
 doubleMatrix* scalar_doubleMatrix( doubleMatrix* matrix, double k );
 
-// ---------------------- boolMatrix*
+// ---------------------- Protótipo de boolMatrix
 
 bool exist_boolMatrix( boolMatrix* matrix );
 
@@ -175,4 +158,5 @@ bool test_bit_boolMatrix( boolMatrix* matrix, int row, int col );
 
 boolMatrix* copy_boolMatrix( boolMatrix* matrix );
 
+// ---------------------------------- Fim
 #endif

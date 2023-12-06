@@ -13,18 +13,45 @@
  *  ----------------------------------------------------------------------------
 */
 
-// ---------------------- lista de dependencias
+// ---------------------------------- Lista de Dependências
 
 #include "matrix.h"  // definicoes dos metodos
 #include <stdio.h>   // para entradas e saidas
 #include <stdlib.h>  // para a biblioteca padrao
-#include <math.h>    // para definicoes matematicas
 
-// ---------------------- intMatrix
+// ---------------------------------- Definições de Variáveis Globais
+
+struct s_intMatrix
+{
+    int row;
+    int col;
+    int** data;
+    int ix,iy;
+};
+
+struct s_doubleMatrix
+{
+    int row;
+    int col;
+    double** data;
+    int ix,iy;
+};
+
+struct s_boolMatrix
+{
+    int row;
+    int col;
+    bool** data;
+    int ix,iy;
+};
+
+// ---------------------------------- Definição de Funções
+
+// ---------------------- Funções de intMatrix
 
 /**
  *  Verifica se a matriz de inteiros e os dados existem.
- *  @return TRUE : se existem; FALSE : caso contrario.
+ *  @return true : se existem; false : caso contrario.
 */
 bool exist_intMatrix( intMatrix* matrix )
 {
@@ -38,7 +65,7 @@ bool exist_intMatrix( intMatrix* matrix )
 
 /**
  *  Cria e aloca o espaço de memória para uma matriz de inteiros.
- *  @return MATRIZ.
+ *  @return Matriz.
 */
 intMatrix* new_intMatrix( int rows, int columns )
 {
@@ -126,7 +153,7 @@ void print_intMatrix( intMatrix* matrix )
 
 /**
  *  Lê os dados de uma matriz de inteiros.
- *  @return MATRIZ com os dados lidos.
+ *  @return Matriz com os dados lidos.
 */
 intMatrix* read_intMatrix( )
 {
@@ -204,7 +231,7 @@ void fprint_intMatrix( char* filename , intMatrix* matrix )
 
 /**
  *  Lê de um arquivo uma matriz de inteiros.
- *  @return MATRIZ com os valores lidos do arquivo.
+ *  @return Matriz com os valores lidos do arquivo.
 */
 intMatrix* fread_intMatrix( char* filename )
 {
@@ -296,7 +323,7 @@ int get_int_intMatrix( intMatrix* matrix, int row, int col )
 
 /**
  *  Faz a transposição de uma matriz de inteiros.
- *  @return MATRIZ transposta.
+ *  @return Matriz transposta.
 */
 intMatrix* transpose_intMatrix( intMatrix* matrix ) 
 {
@@ -342,7 +369,7 @@ intMatrix* transpose_intMatrix( intMatrix* matrix )
 
 /**
  *  Verifica se a matriz de inteiros só tem zeros.
- *  @return TRUE : se só tem zeros; FALSE : caso contrário.
+ *  @return true : se só tem zeros; false : caso contrário.
 */
 bool iszero_intMatrix ( intMatrix* matrix )
 {
@@ -371,7 +398,7 @@ bool iszero_intMatrix ( intMatrix* matrix )
 
 /**
  *  Verifica se duas matrizes de inteiros são iguais.
- *  @return TRUE : se iguais; FALSE : caso contrário. 
+ *  @return true : se iguais; false : caso contrário. 
 */
 bool compare_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
@@ -409,7 +436,7 @@ bool compare_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 
 /**
     Copia uma matriz com valores inteiros.
-    @return cópia da MATRIZ;
+    @return cópia da Matriz;
 */
 intMatrix* copy_intMatrix( intMatrix* matrix )
 {
@@ -447,7 +474,7 @@ intMatrix* copy_intMatrix( intMatrix* matrix )
 
 /**
  *  Soma duas matrizes de inteiros.
- *  @return MATRIZ resultante da soma.
+ *  @return Matriz resultante da soma.
 */
 intMatrix* add_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
@@ -486,7 +513,7 @@ intMatrix* add_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 
 /**
  *  Faz a diferença de duas matrizes de inteiros.
- *  @return MATRIZ resultante da diferença.
+ *  @return Matriz resultante da diferença.
 */
 intMatrix* diff_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
@@ -525,7 +552,7 @@ intMatrix* diff_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 
 /**
  *  Faz o produto de duas matrizes de inteiros.
- *  @return MATRIZ resultante do produto.
+ *  @return Matriz resultante do produto.
 */
 intMatrix* product_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 {
@@ -571,7 +598,7 @@ intMatrix* product_intMatrix( intMatrix* matrix1, intMatrix* matrix2 )
 
 /**
  *  Multiplica cada elemento de uma matriz de inteiros por uma constante inteira.
- *  @return MATRIZ resultante.
+ *  @return Matriz resultante.
 */
 intMatrix* scalar_intMatrix( intMatrix* matrix, int k )
 {
@@ -594,11 +621,11 @@ intMatrix* scalar_intMatrix( intMatrix* matrix, int k )
     return ( aux );
 } // end scalar_intMatrix ( )
 
-// ---------------------- doubleMatrix
+// ---------------------- Funções de doubleMatrix
 
 /**
  *  Verifica se a matriz real e os dados existem.
- *  @return TRUE : se existem; FALSE : caso contrario.
+ *  @return true : se existem; false : caso contrario.
 */
 bool exist_doubleMatrix( doubleMatrix* matrix )
 {
@@ -612,7 +639,7 @@ bool exist_doubleMatrix( doubleMatrix* matrix )
 
 /**
  *  Cria e aloca o espaço de memória para uma matriz real.
- *  @return MATRIZ.
+ *  @return Matriz.
 */
 doubleMatrix* new_doubleMatrix( int rows, int columns )
 {
@@ -700,7 +727,7 @@ void print_doubleMatrix( doubleMatrix* matrix )
 
 /**
  *  Lê os dados de uma matriz real.
- *  @return MATRIZ com os dados lidos.
+ *  @return Matriz com os dados lidos.
 */
 doubleMatrix* read_doubleMatrix( )
 {
@@ -778,7 +805,7 @@ void fprint_doubleMatrix( char* filename , doubleMatrix* matrix )
 
 /**
  *  Lê de um arquivo uma matriz real.
- *  @return MATRIZ com os valores lidos do arquivo.
+ *  @return Matriz com os valores lidos do arquivo.
 */
 doubleMatrix* fread_doubleMatrix( char* filename )
 {
@@ -870,7 +897,7 @@ double get_double_doubleMatrix( doubleMatrix* matrix, int row, int col )
 
 /**
  *  Faz a transposição de uma matriz real.
- *  @return MATRIZ transposta.
+ *  @return Matriz transposta.
 */
 doubleMatrix* transpose_doubleMatrix( doubleMatrix* matrix ) 
 {
@@ -916,7 +943,7 @@ doubleMatrix* transpose_doubleMatrix( doubleMatrix* matrix )
 
 /**
  *  Verifica se a matriz real só tem zeros.
- *  @return TRUE : se só tem zeros; FALSE : caso contrário.
+ *  @return true : se só tem zeros; false : caso contrário.
 */
 bool iszero_doubleMatrix ( doubleMatrix* matrix )
 {
@@ -945,7 +972,7 @@ bool iszero_doubleMatrix ( doubleMatrix* matrix )
 
 /**
  *  Verifica se duas matrizes reais são iguais.
- *  @return TRUE : se iguais; FALSE : caso contrário. 
+ *  @return true : se iguais; false : caso contrário. 
 */
 bool compare_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 {
@@ -983,7 +1010,7 @@ bool compare_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 
 /**
     Copia uma matriz com valores reais.
-    @return cópia da MATRIZ;
+    @return cópia da Matriz;
 */
 doubleMatrix* copy_doubleMatrix( doubleMatrix* matrix )
 {
@@ -1021,7 +1048,7 @@ doubleMatrix* copy_doubleMatrix( doubleMatrix* matrix )
 
 /**
  *  Soma duas matrizes reais.
- *  @return MATRIZ resultante da soma.
+ *  @return Matriz resultante da soma.
 */
 doubleMatrix* add_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 {
@@ -1060,7 +1087,7 @@ doubleMatrix* add_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 
 /**
  *  Faz a diferença de duas matrizes reais.
- *  @return MATRIZ resultante da diferença.
+ *  @return Matriz resultante da diferença.
 */
 doubleMatrix* diff_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 {
@@ -1099,7 +1126,7 @@ doubleMatrix* diff_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 
 /**
  *  Faz o produto de duas matrizes reais.
- *  @return MATRIZ resultante do produto.
+ *  @return Matriz resultante do produto.
 */
 doubleMatrix* product_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2 )
 {
@@ -1145,7 +1172,7 @@ doubleMatrix* product_doubleMatrix( doubleMatrix* matrix1, doubleMatrix* matrix2
 
 /**
  *  Multiplica cada elemento de uma matriz real por uma constante real.
- *  @return MATRIZ resultante.
+ *  @return Matriz resultante.
 */
 doubleMatrix* scalar_doubleMatrix( doubleMatrix* matrix, double k )
 {
@@ -1168,11 +1195,11 @@ doubleMatrix* scalar_doubleMatrix( doubleMatrix* matrix, double k )
     return ( aux );
 } // end scalar_doubleMatrix ( )
 
-// ---------------------- boolMatrix
+// ---------------------- Funções de boolMatrix
 
 /**
  *  Verifica se a matriz booleana e os dados existem.
- *  @return TRUE : se existem; FALSE : caso contrario.
+ *  @return true : se existem; false : caso contrario.
 */
 bool exist_boolMatrix( boolMatrix* matrix )
 {
@@ -1186,7 +1213,7 @@ bool exist_boolMatrix( boolMatrix* matrix )
 
 /**
  *  Cria e aloca o espaço de memória para uma matriz booleana.
- *  @return MATRIZ.
+ *  @return Matriz.
 */
 boolMatrix* new_boolMatrix( int rows, int columns )
 {
@@ -1274,7 +1301,7 @@ void print_boolMatrix( boolMatrix* matrix )
 
 /**
  *  Lê os dados de uma matriz booleana.
- *  @return MATRIZ com os dados lidos.
+ *  @return Matriz com os dados lidos.
 */
 boolMatrix* read_boolMatrix( )
 {
@@ -1352,7 +1379,7 @@ void fprint_boolMatrix( char* filename , boolMatrix* matrix )
 
 /**
  *  Lê de um arquivo uma matriz booleana.
- *  @return MATRIZ com os valores lidos do arquivo.
+ *  @return Matriz com os valores lidos do arquivo.
 */
 boolMatrix* fread_boolMatrix( char* filename )
 {
@@ -1414,7 +1441,7 @@ boolMatrix* fread_boolMatrix( char* filename )
 
 /**
  *  Realiza a operação lógica AND entre duas matrizes booleanas.
- *  @return MATRIZ resultante da operação AND.
+ *  @return Matriz resultante da operação AND.
  */
 boolMatrix* and_boolMatrix( boolMatrix* matrix1, boolMatrix* matrix2 )
 {
@@ -1446,7 +1473,7 @@ boolMatrix* and_boolMatrix( boolMatrix* matrix1, boolMatrix* matrix2 )
 
 /**
  *  Realiza a operação lógica OR entre duas matrizes booleanas.
- *  @return MATRIZ resultante da operação OR.
+ *  @return Matriz resultante da operação OR.
  */
 boolMatrix* or_boolMatrix( boolMatrix* matrix1, boolMatrix* matrix2 ) 
 {
@@ -1478,7 +1505,7 @@ boolMatrix* or_boolMatrix( boolMatrix* matrix1, boolMatrix* matrix2 )
 
 /**
  *  Realiza a operação lógica NOT em uma matriz booleana.
- *  @return MATRIZ resultante da operação NOT.
+ *  @return Matriz resultante da operação NOT.
  */
 boolMatrix* not_boolMatrix( boolMatrix* matrix ) 
 {
@@ -1549,7 +1576,7 @@ void clear_bit_boolMatrix( boolMatrix* matrix, int row, int col )
 
 /**
  *  Testar o valor do bit na posição específica.
- *  @return TRUE : bit iguai a 1; FALSE : caso contrário.
+ *  @return true : bit iguai a 1; false : caso contrário.
 */
 bool test_bit_boolMatrix( boolMatrix* matrix, int row, int col ) 
 {
@@ -1570,7 +1597,7 @@ bool test_bit_boolMatrix( boolMatrix* matrix, int row, int col )
 
 /**
     Copia uma matriz com valores booleanos.
-    @return cópia da MATRIZ;
+    @return cópia da Matriz;
 */
 boolMatrix* copy_boolMatrix( boolMatrix* matrix )
 {
@@ -1605,3 +1632,4 @@ boolMatrix* copy_boolMatrix( boolMatrix* matrix )
 
     return ( copy );
 } // end copy_boolMatrix ( )
+// ---------------------------------- Fim
