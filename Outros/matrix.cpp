@@ -58,7 +58,7 @@ Matrix<T>::Matrix( int row, int col )
         this->col = col;
 
         data =  new T *[row];
-        if( data !- nullptr )
+        if( data != nullptr )
         {
             for( int x = 0; x < row; x = x + 1 )
             {
@@ -288,7 +288,7 @@ Matrix<T> Matrix<T>::transpose( )
     int x = 0;
     int y = 0;
 
-    if ( other.row == 0 || other.col == 0 )
+    if ( row == 0 || col == 0 )
     {
         cout << "\nERROR: Missing data.\n" << endl;
     }
@@ -362,18 +362,33 @@ Matrix<T> Matrix<T>::transpose( const Matrix<T> &other )
 template <typename T>
 Matrix<T> Matrix<T>::scalar( T k )
 {
-    Matrix<T> result( this->rows, this->columns );
+    static Matrix<T> result( 1, 1 );
     int x = 0;
     int y = 0;
 
-    for( x = 0; x < result.rows; x = x + 1 )
+    if ( row == 0 || col == 0 )
     {
-        for( y = 0; y < result.columns; y = y + 1 )
+        cout << "\nERROR: Missing data.\n" << endl;
+    }
+    else
+    {
+        result.row = row;
+        result.col = col;
+        result.data = new T *[result.row];
+
+        for ( x = 0; x < result.row; x = x + 1 ) 
         {
-            // result.set( x, y, this->get( x, y ) * k) ;
-            result.data[x][y] = this->data[x][y] * k;
+            result.data[x] = new T[result.col];
         } // end for
-    } // end for
+
+        for ( x = 0; x < result.row; x = x + 1 )
+        {
+            for ( y = 0; y < result.col; y = y + 1 )
+            {
+                result.data[x][y] = data[x][y] * k ;
+            } // end for
+        } // end for
+    } // end if
 
     return ( result );
 } // end scalar ( )
