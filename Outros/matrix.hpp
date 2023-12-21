@@ -20,7 +20,7 @@
 
 #include <string>
 
-// ---------------------------------- Lista de Dependências
+// ---------------------------------- Protótipo da Classe
 
 template <typename T>
 class Matrix
