@@ -1,6 +1,6 @@
 /*
  *  ----------------------------------------------------------------------------
- *  Cópia da Biblioteca de Arranjos em C - "array.h"
+ *  Cópia da Biblioteca de Arranjos em C - "array_cpy.h"
  *  ----------------------------------------------------------------------------
  *  Copyright (c) 2023, Vinicius MIranda de Araujo
  *  Todos os direitos reservados.
@@ -333,6 +333,9 @@ intArray* copy_intArray( intArray* array )
     return ( copy );
 } // end copy_intArray ( )
 
+/**
+ *  Ordenar o arranjo de inteiros em ordem crescente.
+*/
 void sort_up_intArray( intArray* array )
 {
     int y = 0;
@@ -630,6 +633,9 @@ doubleArray* copy_doubleArray( doubleArray* array )
     return ( copy );
 } // end copy_doubleArray ( )
 
+/**
+ *  Ordenar o arranjo real em ordem crescente.
+*/
 void sort_up_doubleArray( doubleArray* array )
 {
     int y = 0;

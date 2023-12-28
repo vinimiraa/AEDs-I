@@ -27,8 +27,8 @@
 
 // ---------------------- redefinicoes uteis
 
-#ifndef _MATRIX_H_
-#define _MATRIX_H_
+#ifndef _MATRIX_CPY_H_
+#define _MATRIX_CPY_H_
 
 // ---------------------- definicoes de constantes
 

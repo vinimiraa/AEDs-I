@@ -13,8 +13,8 @@
  *  ----------------------------------------------------------------------------
 */
 
-#ifndef _MATRIX_HPP_
-#define _MATRIX_HPP_
+#ifndef _MATRIX_CPY_HPP_
+#define _MATRIX_CPY_HPP_
 
 // ---------------------------------- Lista de Dependências
 
