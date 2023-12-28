@@ -35,6 +35,13 @@ struct s_doubleArray
     int     ix  ;
 };
 
+struct s_boolArray
+{
+    int   size;
+    bool *data;
+    int   ix  ;
+};
+
 
 // ---------------------------------- Definição de Funções
 
@@ -95,7 +102,7 @@ void init_intArray( intArray* array, int init_value )
 } // end init_intArray ( )
 
 /**
- *  Liberar o espeço de memória de um arranjo de inteiros
+ *  Liberar o espeço de memória de um arranjo de inteiros.
 */
 void free_intArray( intArray* array )
 {
@@ -185,7 +192,7 @@ void fprint_intArray( char* filename, intArray* array )
     else
     {
         fprintf( file, "%d\n", array->size );
-        for( array->ix = 0; array->ix < array->data; array->ix = array->ix + 1 )
+        for( array->ix = 0; array->ix < array->size; array->ix = array->ix + 1 )
         {
             fprintf( file, "%d\n", array->data[array->ix] ); 
         } // end for
@@ -313,7 +320,7 @@ intArray* copy_intArray( intArray* array )
     return ( copy );
 } // end copy_intArray ( )
 
-void sort_up__intArray( intArray* array )
+void sort_up_intArray( intArray* array )
 {
     int y = 0;
     int x = 0;
@@ -466,7 +473,7 @@ doubleArray* read_doubleArray( void )
     } // end if
 
     return ( array );
-} // end read_intArray ( )
+} // end read_doubleArray ( )
 
 /**
  *  Gravar em um arquivo um arranjo real.
@@ -482,14 +489,14 @@ void fprint_doubleArray( char* filename, doubleArray* array )
     else
     {
         fprintf( file, "%d\n", array->size );
-        for( array->ix = 0; array->ix < array->data; array->ix = array->ix + 1 )
+        for( array->ix = 0; array->ix < array->size; array->ix = array->ix + 1 )
         {
             fprintf( file, "%lf\n", array->data[array->ix] ); 
         } // end for
     } // end if
 
     fclose( file );
-} // end fprint_intArray ( )
+} // end fprint_doubleArray ( )
 
 /**
  *  Ler de um arquivo um arranjo real.
@@ -540,7 +547,7 @@ doubleArray* fread_doubleArray( char* filename )
 
     fclose( file );
     return( array );
-} // end fread_intArray ( )
+} // end fread_doubleArray ( )
 
 /**
  *  Inserir um valor real em uma posição específica de um arranjo real.
@@ -562,7 +569,7 @@ void set_double_doubleArray( doubleArray* array, int index, double value )
 */
 double get_double_doubleArray( doubleArray* array, int index )
 {
-    double value = 0;
+    double value = 0.0;
 
     if( exist_doubleArray( array ) )
     {
@@ -595,7 +602,7 @@ doubleArray* copy_doubleArray( doubleArray* array )
         }
         else
         {
-            copy = new_intArray( array->size );
+            copy = new_doubleArray( array->size );
 
             if( copy != NULL )
             {
@@ -608,14 +615,14 @@ doubleArray* copy_doubleArray( doubleArray* array )
     } // end if
 
     return ( copy );
-} // end copy_intArray ( )
+} // end copy_doubleArray ( )
 
-void sort_up__doubleArray( doubleArray* array )
+void sort_up_doubleArray( doubleArray* array )
 {
     int y = 0;
     int x = 0;
     double aux = 0;
-    if( exist_intArray( array ) )
+    if( exist_doubleArray( array ) )
     {
         for( y = 1; y < array->size; y = y + 1 )
         {
@@ -630,6 +637,281 @@ void sort_up__doubleArray( doubleArray* array )
             } // end for
         } // end for
     } // end if
-} // end sort_up_intArray ( )
+} // end sort_up_doubleArray ( )
+
+// ---------------------- Definições de boolArray
+
+/**
+ *  Verificar se o arranjo booleano e seus dados existem.
+ *  @return true se existem; false caso contrário.
+*/
+bool exist_boolArray( boolArray* array )
+{
+    bool result = false;
+
+    if( array != NULL && array->data != NULL )
+    {
+        result = true;
+    }
+    
+    return ( result );
+} // end exist_boolArray ( )
+
+/**
+ *  Criar um novo arranjo booleano.
+ *  @return novo arranjo.
+*/
+boolArray* new_boolArray( int size )
+{
+    boolArray* array = ( boolArray* ) malloc( 1 * sizeof( boolArray ) );
+
+    if( array != NULL )
+    {
+        array->size = 0;
+        array->data = NULL;
+        array->ix = -1;
+        if( size > 0 )
+        {
+            array->size = size;
+            array->data = ( bool* ) malloc( size * sizeof( bool ) );
+            array->ix = 0; 
+        } // end if
+    } // end if
+
+    return ( array );
+} // end new_boolArray ( )
+
+/**
+ *  Inicializar um arranjo booleano.
+*/
+void init_boolArray( boolArray* array, bool init_value )
+{
+    if( exist_boolArray( array ) )
+    {
+        for( array->ix = 0; array->ix < array->size; array->ix = array->ix + 1 )
+        {
+            array->data[array->ix] = init_value;
+        } // end for
+    } // end if
+} // end init_boolArray ( )
+
+/**
+ *  Liberar o espeço de memória de um arranjo booleano.
+*/
+void free_boolArray( boolArray* array )
+{
+    if( array != NULL )
+    {
+        if( array->data != NULL )
+        {
+            free( array->data );
+        } // end if
+        free( array );
+    } // end if
+} // end free_boolArray ( )
+
+/**
+ *  Mostrar no terminal padrão um arranjo booleano.
+*/
+void print_boolArray( boolArray* array )
+{
+    if( array != NULL )
+    {
+        if( array->data == NULL )
+        {
+            printf( "\n%s\n", "[ NULL ]" );
+        }
+        else
+        {   
+            printf( "\n" );
+            for( array->ix = 0; array->ix < array->size; array->ix = array->ix + 1 )
+            {
+                printf( "%2d ", array->data[array->ix] ); 
+            } // end for
+            printf( "\n" );
+        } // end if
+    } // end if
+} // end print_boolArray ( )
+
+/**
+ *  Ler os dados e criar um arranjo booleano.
+ *  @return arranjo com os dados lidos.
+*/
+boolArray* read_boolArray( void )
+{
+    boolArray* array = NULL;
+    int size = 0;
+
+    do
+    {
+        printf( "\n%s", "Size = " );
+        scanf( "%d", &size );
+        getchar( );
+    } while ( size <= 0 );
+
+    array = new_boolArray( size );
+
+    if( array != NULL )
+    {
+        if( array->data == NULL )
+        {
+            array->size = 0;
+            array->ix = 0;
+        }
+        else
+        {
+            for( array->ix = 0; array->ix < array->size; array->ix = array->ix + 1 )
+            {
+                printf( "%2d: ", array->ix );
+                scanf( "%d", &array->data[array->ix] );
+                getchar( );
+            } // end for
+        } // end of
+    } // end if
+
+    return ( array );
+} // end read_boolArray ( )
+
+/**
+ *  Gravar em um arquivo um arranjo booleano.
+*/
+void fprint_boolArray( char* filename, boolArray* array )
+{
+    FILE* file = fopen( filename, "wt" );
+
+    if( !exist_boolArray( array ) )
+    {
+        printf( "\n%s\n", "[ERRO]: the array does not exist." );
+    }
+    else
+    {
+        fprintf( file, "%d\n", array->size );
+        for( array->ix = 0; array->ix < array->size; array->ix = array->ix + 1 )
+        {
+            fprintf( file, "%d\n", array->data[array->ix] ); 
+        } // end for
+    } // end if
+
+    fclose( file );
+} // end fprint_boolArray ( )
+
+/**
+ *  Ler de um arquivo um arranjo booleano.
+ *  @return arranjo com os valores lidos do arquivo.
+*/
+boolArray* fread_boolArray( char* filename )
+{
+    FILE* file = fopen( filename, "rt" );
+    boolArray* array = NULL;
+    int n = 0;
+
+    if( file == NULL )
+    {
+        printf( "\n%s\n", "[ERRO]: Unable to open the file." );
+    }
+    else
+    {
+        fscanf( file, "%d", &n ); fgetc( file );
+        if( n < 0 )
+        {
+            printf( "\n%s\n", "[ERRO]: Invalid size." ); 
+        }
+        else
+        {
+            array = new_boolArray( n );
+
+            if( array != NULL & array->data == NULL )
+            {
+                array->size = 0;
+                array->ix = 0;
+            }
+            else
+            {
+                if( array != NULL )
+                {
+                    array->ix = 0;
+                    while( !feof( file ) && array->ix < array->size )
+                    {
+                        fscanf( file, "%d", &array->data[array->ix] );
+                        fgetc( file );
+                        array->ix = array->ix + 1;
+                    } // end while
+                    array->ix = 0;
+                } // end if
+            } // end if
+        } // end if
+    } // end if
+
+    fclose( file );
+    return( array );
+} // end fread_boolArray ( )
+
+/**
+ *  Inserir um valor booleano em ums posição específica do arranjo booleano.
+*/
+void set_bool_boolArray( boolArray* array, int index, bool value )
+{
+    if( exist_boolArray( array ) )
+    {
+        if( 0 <= index && index < array->size )
+        {
+            array->data[index] = value;
+        } // end if
+    } // end if
+} // end set_bool_boolArray ( )
+
+/**
+ *  Acssar um valor booleano em uma posição específica de um arranjo booleano.
+ *  @return valor na posição.
+*/
+int get_bool_boolArray( boolArray* array, int index )
+{
+    bool value = 0;
+
+    if( exist_boolArray( array ) )
+    {
+        if( 0 <= index && index < array->size ) 
+        {
+            value = array->data[index];
+        } // end if
+    } // end if
+
+    return ( value );
+} // end get_bool_boolArray ( )
+
+/**
+ *  Copiar um arranjo booleano para outro arranjo booleano.
+ *  @return cópia do arranjo.
+*/
+boolArray* copy_boolArray( boolArray* array )
+{
+    boolArray* copy = NULL;
+    
+    if( !exist_boolArray( array ) )
+    {
+        printf( "\n%s\n", "[ERRO]: Missing datas." );
+    }
+    else
+    {
+        if( array->size <= 0 )
+        {
+            printf( "\n%s\n", "[ERRO]: Invalid size." );
+        }
+        else
+        {
+            copy = new_boolArray( array->size );
+
+            if( copy != NULL )
+            {
+                for( copy->ix = 0; copy->ix < copy->size; copy->ix =copy->ix + 1 )
+                {
+                    copy->data[copy->ix] = array->data[copy->ix];
+                } // end for
+            } // end if
+        } // end if
+    } // end if
+
+    return ( copy );
+} // end copy_boolArray ( )
 
 // ---------------------------------- Fim

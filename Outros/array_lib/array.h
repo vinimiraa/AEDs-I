@@ -39,6 +39,12 @@ typedef struct s_doubleArray doubleArray;
 // Referência para arranjos real baseado em estrutura.
 typedef doubleArray* ref_doubleArray;
 
+// Estrutura para arranjos booleano.
+typedef struct s_boolArray boolArray;
+
+// Referência para arranjos booleanos baseado em estrutura.
+typedef boolArray* ref_boolArray;
+
 // ---------------------------------- Protótipo de Funções
 
 // ---------------------- Protótipo de intArray
@@ -92,6 +98,30 @@ double       get_double_doubleArray ( doubleArray* array, int index );
 doubleArray* copy_doubleArray       ( doubleArray* array );
 
 void         sort_up_doubleArray    ( doubleArray* array );
+
+// ---------------------- Protótipo de boolArray
+
+bool       exist_boolArray    ( boolArray* array );
+
+boolArray* new_boolArray      ( int size );
+
+void       init_boolArray     ( boolArray* array, bool init_value );
+
+void       free_boolArray     ( boolArray* array );
+
+void       print_boolArray    ( boolArray* array );
+
+boolArray* read_boolArray     ( void );
+
+void       fprint_boolArray   ( char* filename , boolArray* array );
+
+boolArray* fread_boolArray    ( char* filename );
+
+void       set_bool_boolArray ( boolArray* array, int index, bool value );
+
+bool       get_bool_boolArray ( boolArray* array, int index );
+
+boolArray* copy_boolArray     ( boolArray* array );
 
 // ---------------------------------- Fim
 #endif
