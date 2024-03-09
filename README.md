@@ -1,32 +1,16 @@
-# Informações
+# 💻 Algoritmo e Estrutura de Dados 1
 
-`MATÉRIA`
+## 📃 Descrição
 
-Algoritmo e Estrutura de Dados 1
+Exercícios e estudos desenvolvidos durante o semestre.
 
-`CURSO`
+## 📑 Estrutura do Repositório
 
-Ciência da Computação
+- [Estudos Dirigidos(EDs)](/EDs/)
+- [Guias](/Guias/)
+- [Bibliotecas](/Bibliotecas/)
+- [Material](/Material/)
 
-## Autor
+## 👨‍💻 Autor
 
-Vinícius Miranda de Araújo
-
-## Estrutura do Repositório
-
-- [Estudos Dirigidos(EDs)](#Estudos-Digiridos)
-- [Guias](#Guias)
-- [Outros](#outros)
-
-
-# Estudos-Digiridos
-
-Contém as minhas resoluções dos EDs.
-
-# Guias
-
-Contém as minhas resoluções dos Guias.
-
-# Outros
-
-Contém templates para a realização dos EDs e várias bibliotecas que fiz ao longo do semestre.
+`Vinícius Miranda de Araujo`
