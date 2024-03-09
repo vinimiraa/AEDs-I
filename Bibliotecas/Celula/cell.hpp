@@ -1,6 +1,6 @@
 /*
  *  ----------------------------------------------------------------------------
- *  Cópia da Biblioteca Cell em C++ - "cell_cpy.hpp"
+ *  Biblioteca de Celula em C++ - "cell.hpp"
  *  ----------------------------------------------------------------------------
  *  Copyright (c) 2023, Vinicius MIranda de Araujo
  *  Todos os direitos reservados.
@@ -15,8 +15,8 @@
 
 // ---------------------------------- Lista de Dependências
 
-#ifndef _CELL_HPP_
-#define _CELL_HPP_
+#ifndef __CELL_HPP__
+#define __CELL_HPP__
 
 #include <iostream>
 #include <iomanip>
@@ -30,6 +30,9 @@ template <typename T>
 class Cell
 {
     protected:
+        /**
+         *  Atributos
+        */
         T     value;
         Cell *right;
         Cell *left ;
@@ -44,7 +47,7 @@ class Cell
             this->value = 0;
             this->left  = nullptr;
             this->right = nullptr;
-        } // end Cell::Cell ( ) 
+        } // end Cell ( ) 
 
         /**
          *  Alternative Constructor.
@@ -55,7 +58,7 @@ class Cell
             this->value = value;
             this->left  = nullptr;
             this->right = nullptr;
-        } // end Cell::Cell ( )
+        } // end Cell ( )
 
         /**
          *  Alternative Constructor.
@@ -66,7 +69,7 @@ class Cell
             this->value = value;
             this->left  = left ;
             this->right = right;
-        } // end Cell::Cell ( )
+        } // end Cell ( )
 
         /**
          *  Method to change the value.
@@ -75,7 +78,7 @@ class Cell
         void set_value( T value )
         {
             this->value = value;
-        } // end Cell::set_value ( )
+        } // end set_value ( )
 
         /**
          *  Method to access the value.
@@ -84,7 +87,7 @@ class Cell
         T get_value( void )
         {
             return ( this->value );
-        } // end Cell::get_value ( )
+        } // end get_value ( )
 
         /**
          *  Method to link the left side.
@@ -93,7 +96,7 @@ class Cell
         void set_left( Cell* link   )
         {
             this->left = link;
-        } // end Cell::set_left ( )
+        } // end set_left ( )
 
         /**
          *  Method to access the link on the left.
@@ -104,7 +107,7 @@ class Cell
             Cell* link = nullptr;
             link = this->left;
             return ( link );
-        } // end Cell::get_left ( )
+        } // end get_left ( )
 
         /**
          *  Method to link the right side.
@@ -113,7 +116,7 @@ class Cell
         void set_right( Cell* link   )
         {
             this->right = link;
-        } // end Cell::set_rigth ( )
+        } // end set_rigth ( )
 
         /**
          *  Method to access the link on the right.
@@ -124,7 +127,7 @@ class Cell
             Cell* link = nullptr;
             link = this->right;
             return ( link );
-        } // end Cell::get_right ( )
+        } // end get_right ( )
 
         /**
          *  Method for connecting a cell.
@@ -137,7 +140,7 @@ class Cell
                 second->set_left( this );
                 this->set_right( second );
             } // end if
-        } // end Cell::connect ( )
+        } // end connect ( )
 
         /**
          *  Method to disconnect a cell.
@@ -150,7 +153,7 @@ class Cell
                 second->set_left( nullptr );
                 this->set_right( nullptr );
             } // end if
-        } // end Cell::disconnect ( )
+        } // end disconnect ( )
 
         /**
          *  Method to show cells on the right side.
@@ -172,7 +175,7 @@ class Cell
                 } // end while
             } // end if
             cout << endl;
-        } // end Cell::rprint ( )
+        } // end rprint ( )
 
         /**
          *  Method to show cells on the left side.
@@ -230,7 +233,7 @@ class Cell
                 back = tmp;
             } // end if
             return ( back );
-        } // end Cell::push_back ( )
+        } // end push_back ( )
 
         /**
          *  Method to remove cell from end.
@@ -252,7 +255,7 @@ class Cell
                 last->disconnect( back );
             } // end if
             return ( back );
-        } // end Cell::pop_back ( )
+        } // end pop_back ( )
 
         /**
          *  Method to insert a cell at the beginning.
@@ -266,11 +269,11 @@ class Cell
                 tmp->set_left( this->get_left( ) );
                 tmp->set_right( this->get_right( ) );
                 tmp->set_value( this->get_value( ) );
-                this->Cell::set_value( value );
-                this->Cell::connect( tmp   );
+                this->set_value( value );
+                this->connect( tmp   );
             } // end if
             return ( this );
-        } // end Cell::push_front ( )
+        } // end push_front ( )
 
         /**
          *  Method to remove cell from the beginning.
@@ -309,7 +312,7 @@ class Cell
             int value = 0;
             int x     = 0;
             Cell* cursor = this;
-            if ( 0 <= index && index < this->intCell::length( ) )
+            if ( 0 <= index && index < this->intlength( ) )
             {
                 x = index;
                 while ( x > 0 )
@@ -326,7 +329,7 @@ class Cell
          *  Method for exchanging cell contents.
          *  Método para trocar conteúdos de células.
         */
-        void swap( Cell* second    )
+        void swap( Cell* second )
         {
             int value = 0;
             if ( second )
@@ -337,7 +340,7 @@ class Cell
             } // end if
         } // end Cell:swap ( )
 
-}; // end class Cell
+}; // end class
 
 // ---------------------------------- Fim
 #endif

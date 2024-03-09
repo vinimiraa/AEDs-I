@@ -6,7 +6,6 @@
 
     LIBSHOW - v2023-2_0.1 - 22 / 08 / 2023
     Author: Vinícius Miranda de Araújo
-
 */
 
 // ---------------------- lista de dependencias

@@ -1,6 +1,6 @@
 /*
  *  ----------------------------------------------------------------------------
- *  Cópia da Biblioteca Matrix em C++ - "matrix.hpp"
+ *  Biblioteca Matrix em C++ - "matrix.hpp"
  *  ----------------------------------------------------------------------------
  *  Copyright (c) 2023, Vinicius MIranda de Araujo
  *  Todos os direitos reservados.
@@ -13,8 +13,8 @@
  *  ----------------------------------------------------------------------------
 */
 
-#ifndef _MATRIX_CPY_HPP_
-#define _MATRIX_CPY_HPP_
+#ifndef __MATRIX_HPP__
+#define __MATRIX_HPP__
 
 // ---------------------------------- Lista de Dependências
 
@@ -39,7 +39,9 @@ template <typename T>
 class Matrix
 {
 private:
-    // Atributos
+    /**
+     *  Atributos
+    */
     int   row;
     int   col;
     T   **data;
@@ -53,7 +55,7 @@ public:
         this->row = 0;
         this->col = 0;
         data = nullptr;
-    } // end constructor ( )
+    } // end Matrix ( )
 
     /**
      *  Construtor Alternativo
@@ -81,7 +83,7 @@ public:
                 } // end if
             } // end if
         } // end if
-    } // end constructor ( )
+    } // end Matrix ( )
 
     /**
      *  Destrutor
@@ -97,7 +99,7 @@ public:
             delete (data);
             data = nullptr;
         } // end if
-    } // end destructor ( )
+    } // end ~Matrix ( )
 
     /**
      *  Método para pegar o número de linhas.
@@ -605,7 +607,7 @@ public:
         return (result);
     } // end operator== ( )
 
-}; // end class Matrix
+}; // end class
 
 // ---------------------------------- Fim
 #endif

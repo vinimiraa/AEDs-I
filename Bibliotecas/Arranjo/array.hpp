@@ -1,6 +1,6 @@
 /*
  *  ----------------------------------------------------------------------------
- *  Cópia da Biblioteca de Arranjos em C++ - "array_cpy.hpp"
+ *  Biblioteca de Arranjos em C++ - "array.hpp"
  *  ----------------------------------------------------------------------------
  *  Copyright (c) 2023, Vinicius MIranda de Araujo
  *  Todos os direitos reservados.
@@ -15,7 +15,6 @@
 
 // ---------------------------------- Lista de Dependências
 
-#include "array.hpp"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -30,8 +29,8 @@ using std::string;
 
 // ---------------------------------- Definições Úteis
 
-#ifndef _ARRAY_CPY_HPP_
-#define _ARRAY_CPY_HPP_
+#ifndef __ARRAY_HPP__
+#define __ARRAY_HPP__
 
 // ---------------------------------- Protótipo da Classe
 
@@ -39,6 +38,9 @@ template <typename T>
 class Array
 {
 private:
+    /**
+     *  Atributos
+    */
     int size;
     T  *data;
     T   optional;
@@ -53,7 +55,7 @@ public:
         this->size = 0;
         this->data = nullptr;
         this->ix = -1;
-    } // end Array::Array ( )
+    } // end Array ( )
 
     /**
      *  Construtor Alternativo.
@@ -69,7 +71,7 @@ public:
             this->data = new T [ size ];
             this->ix = 0;
         } // end if
-    } // end Array::Array ( )
+    } // end Array ( )
 
     /**
      *  Construtor Alternativo.
@@ -89,7 +91,7 @@ public:
             } // end for
             this->ix = 0;
         } // end if
-    } // end Array::Array ( )
+    } // end Array ( )
 
     /**
      *  Inserir o tamanho do arranjo.
@@ -100,7 +102,7 @@ public:
         {
             this->size = size;
         } // end if
-    } // end Array::set_size ( )
+    } // end set_size ( )
 
     /**
      *  Acessar o tamanho do arranjo.
@@ -111,7 +113,7 @@ public:
         int value = 0;
         value = this->size;
         return ( value );
-    } // end Array::get_size( );
+    } // end get_size( );
 
     /**
      *  Inserir um valor em uma posição específica.
@@ -122,7 +124,7 @@ public:
         {
             this->data[index] = value;
         } // end if
-    } // end Array::set ( )
+    } // end set ( )
 
     /**
      *  Acessar um valor em uma posição específica.
@@ -136,7 +138,7 @@ public:
             value = this->data[index];
         }
         return ( value );
-    } // end Array::get ( )
+    } // end get ( )
 
     /**
      *  Mostrar na saída padrão os dados do arranjo.
@@ -150,7 +152,7 @@ public:
                 << this->data[this->ix] << endl; 
         } // end for
         cout << endl;
-    } // end Array::print ( )
+    } // end print ( )
 
     /**
      *  Ler da entrada padrão os dados do arranjo.
@@ -164,7 +166,7 @@ public:
             cin >> data[ this->ix ]; 
         } // end for 
         cout << endl;
-    } // end Array::read ( )
+    } // end read ( )
 
     /**
      *  Gravar em um arquivo os dados do arranjo;
@@ -179,7 +181,7 @@ public:
             afile << this->data[ this->ix ] << endl; 
         } // end for 
         afile.close( ); 
-    } // end Array::fprint ( )
+    } // end fprint ( )
 
     /**
      *  Ler os dados de um arquivo e armazená-los no arranjo.
@@ -204,7 +206,7 @@ public:
             } // end for 
         } // end if 
         afile.close( ); 
-    } // end Array::fread ( )
+    } // end fread ( )
 
     /**
      *  Ordenar o arranjo em ordem crescente.
@@ -225,7 +227,7 @@ public:
                 } // end if
             } // end for
         } // end for
-    } // end Array::sort_up ( )
+    } // end sort_up ( )
 
     /**
      *  Sobrecarga do operardor de igualdade.
@@ -249,7 +251,7 @@ public:
         return ( *this ); 
     } // end operator= ( )
 
-};
+}; // end class
 
 // ---------------------------------- Fim
 #endif

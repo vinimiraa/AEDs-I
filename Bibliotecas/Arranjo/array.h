@@ -1,6 +1,6 @@
 /*
  *  ----------------------------------------------------------------------------
- *  Definições da Biblioteca de Arranjos em C - "array.c"
+ *  Biblioteca de Arranjos em C - "array.h"
  *  ----------------------------------------------------------------------------
  *  Copyright (c) 2023, Vinicius MIranda de Araujo
  *  Todos os direitos reservados.
@@ -15,33 +15,46 @@
 
 // ---------------------------------- Lista de Dependências
 
-#include "array.h"
 #include <stdio.h>
 #include <stdlib.h>
 
+// ---------------------------------- Definições Úteis
+
+#ifndef __ARRAY_H__
+#define __ARRAY_H__
+
+#define bool  int
+#define false 0
+#define true (!false)
+
 // ---------------------------------- Definições de Variáveis Globais
 
-struct s_intArray
+typedef struct s_intArray
 {
     int  size;
     int *data;
     int  ix  ;
-};
+} intArray;
 
-struct s_doubleArray
+typedef intArray* ref_intArray;
+
+typedef struct s_doubleArray
 {
     int     size;
     double *data;
     int     ix  ;
-};
+} doubleArray;
 
-struct s_boolArray
+typedef doubleArray* ref_doubleArray;
+
+typedef struct s_boolArray
 {
     int   size;
     bool *data;
     int   ix  ;
-};
+} boolArray;
 
+typedef boolArray* ref_boolArray;
 
 // ---------------------------------- Definição de Funções
 
@@ -921,3 +934,4 @@ boolArray* copy_boolArray( boolArray* array )
 } // end copy_boolArray ( )
 
 // ---------------------------------- Fim
+#endif
